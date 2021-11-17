@@ -5,7 +5,7 @@ import java.time.Duration;
 import java.util.Objects;
 
 public class Procedure implements Entity{
-    private int procedureId;
+    private int id;
     private String name;
     private String imageName;
     private BigDecimal price;
@@ -15,12 +15,29 @@ public class Procedure implements Entity{
     public Procedure() {
     }
 
-    public int getProcedureId() {
-        return procedureId;
+    public Procedure(String name, String imageName, BigDecimal price, String description, Duration duration) {
+        this.name = name;
+        this.imageName = imageName;
+        this.price = price;
+        this.description = description;
+        this.duration = duration;
     }
 
-    public void setProcedureId(int procedureId) {
-        this.procedureId = procedureId;
+    public Procedure(int id, String name, String imageName, BigDecimal price, String description, Duration duration) {
+        this.id = id;
+        this.name = name;
+        this.imageName = imageName;
+        this.price = price;
+        this.description = description;
+        this.duration = duration;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -68,23 +85,23 @@ public class Procedure implements Entity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Procedure procedure = (Procedure) o;
-        return procedureId == procedure.procedureId && Objects.equals(name, procedure.name) && Objects.equals(imageName, procedure.imageName) && Objects.equals(price, procedure.price) && Objects.equals(description, procedure.description) && Objects.equals(duration, procedure.duration);
+        return id == procedure.id && Objects.equals(name, procedure.name) && Objects.equals(imageName, procedure.imageName) && Objects.equals(price, procedure.price) && Objects.equals(description, procedure.description) && Objects.equals(duration, procedure.duration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(procedureId, name, imageName, price, description, duration);
+        return Objects.hash(id, name, imageName, price, description, duration);
     }
 
     @Override
     public String toString() {
         return "Procedure{" +
-                "procedureId=" + procedureId +
+                "procedureId=" + id +
                 ", name='" + name + '\'' +
                 ", imageName='" + imageName + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", duration=" + duration +
+                ", duration=" + duration + "\n" +
                 '}';
     }
 }
