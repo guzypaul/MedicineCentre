@@ -18,7 +18,7 @@ public class Main {
         properties.put("serverTimezone","UTC");
         ProcedureDaoImpl procedureDao = new ProcedureDaoImpl();
         procedureDao.setConnection(DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine_centre", properties ));
-        System.out.println(procedureDao.update(new Procedure(4,"burning", "image.jpg", new BigDecimal("125"), "ok", Duration.ofMinutes(120))));
+        System.out.println(procedureDao.update(new Procedure(4,"burning", "image.jpg", new BigDecimal("300"), "ok", Duration.ofMinutes(120))));
 
     }
 }

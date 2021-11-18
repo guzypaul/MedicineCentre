@@ -101,7 +101,7 @@ public class Procedure implements Entity{
                 ", imageName='" + imageName + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", duration=" + duration + "\n" +
-                '}';
+                ", duration=" + duration +
+                '}'  + "\n" ;
     }
 }

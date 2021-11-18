@@ -1,4 +1,4 @@
-package by.guzypaul.medicinecentre.dao;
+package by.guzypaul.medicinecentre.dao.mapper;
 
 import by.guzypaul.medicinecentre.entity.Procedure;
 
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Duration;
 
-public class DaoMapper {
+public class DaoProcedureMapper {
     public Procedure mapProcedure (ResultSet resultSet) throws SQLException {
         Procedure procedure = new Procedure();
         procedure.setId(resultSet.getInt("id"));

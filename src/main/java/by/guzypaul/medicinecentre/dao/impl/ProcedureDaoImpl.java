@@ -1,7 +1,7 @@
 package by.guzypaul.medicinecentre.dao.impl;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
-import by.guzypaul.medicinecentre.dao.DaoMapper;
+import by.guzypaul.medicinecentre.dao.mapper.DaoProcedureMapper;
 import by.guzypaul.medicinecentre.dao.ProcedureDao;
 import by.guzypaul.medicinecentre.entity.Procedure;
 
@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProcedureDaoImpl implements ProcedureDao {
-    private static final String READ_PROCEDURE_BY_ID_SQL = "SELECT procedures.id, procedures.name, " +
-            "procedures.description, procedures.duration, procedures.price, " +
-            "procedures.image_name FROM procedures WHERE procedures.id = ?";
     private static final String READ_ALL_PROCEDURE_SQL = "SELECT procedures.id, procedures.name, " +
             "procedures.description, procedures.duration, procedures.price, " +
             "procedures.image_name FROM procedures";
+    private static final String READ_PROCEDURE_BY_ID_SQL = "SELECT procedures.id, procedures.name, " +
+            "procedures.description, procedures.duration, procedures.price, " +
+            "procedures.image_name FROM procedures WHERE procedures.id = ?";
     private static final String DELETE_PROCEDURE_BY_ID_SQL = "DELETE FROM procedures WHERE procedures.id = ?";
     private static final String CREATE_PROCEDURE_BY_ID_SQL = "INSERT INTO procedures (procedures.name," +
             " procedures.description, procedures.duration, procedures.price, procedures.image_name) " +
@@ -23,7 +23,7 @@ public class ProcedureDaoImpl implements ProcedureDao {
     private static final String UPDATE_PROCEDURE_BY_ID_SQL = "UPDATE procedures SET name = ?," +
             " description = ?, duration = ?, price = ?, image_name = ? " +
             "WHERE procedures.id = ?";
-    private final DaoMapper daoMapper = new DaoMapper();
+    private final DaoProcedureMapper daoProcedureMapper = new DaoProcedureMapper();
     private Connection connection;
 
     @Override
@@ -32,7 +32,7 @@ public class ProcedureDaoImpl implements ProcedureDao {
             ResultSet resultSet = statement.executeQuery(READ_ALL_PROCEDURE_SQL);
             List<Procedure> procedureList = new ArrayList<>();
             while (resultSet.next()) {
-                procedureList.add(daoMapper.mapProcedure(resultSet));
+                procedureList.add(daoProcedureMapper.mapProcedure(resultSet));
             }
 
             return procedureList;
@@ -47,7 +47,7 @@ public class ProcedureDaoImpl implements ProcedureDao {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            return daoMapper.mapProcedure(resultSet);
+            return daoProcedureMapper.mapProcedure(resultSet);
 
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
@@ -67,11 +67,7 @@ public class ProcedureDaoImpl implements ProcedureDao {
     @Override
     public boolean create(Procedure entity) throws DaoException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PROCEDURE_BY_ID_SQL)) {
-            preparedStatement.setString(1, entity.getName());
-            preparedStatement.setString(2, entity.getDescription());
-            preparedStatement.setInt(3, (int) entity.getDuration().toMinutes());
-            preparedStatement.setBigDecimal(4, entity.getPrice());
-            preparedStatement.setString(5, entity.getImageName());
+            setProcedureEntity(entity, preparedStatement);
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
@@ -81,16 +77,20 @@ public class ProcedureDaoImpl implements ProcedureDao {
     @Override
     public boolean update(Procedure entity) throws DaoException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PROCEDURE_BY_ID_SQL)) {
-            preparedStatement.setString(1, entity.getName());
-            preparedStatement.setString(2, entity.getDescription());
-            preparedStatement.setInt(3, (int) entity.getDuration().toMinutes());
-            preparedStatement.setBigDecimal(4, entity.getPrice());
-            preparedStatement.setString(5, entity.getImageName());
-            preparedStatement.setInt(6, entity.getId());
+            setProcedureEntity(entity, preparedStatement);
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
         }
+    }
+
+    private void setProcedureEntity(Procedure entity, PreparedStatement preparedStatement) throws SQLException { //todo change method's name
+        preparedStatement.setString(1, entity.getName());
+        preparedStatement.setString(2, entity.getDescription());
+        preparedStatement.setInt(3, (int) entity.getDuration().toMinutes());
+        preparedStatement.setBigDecimal(4, entity.getPrice());
+        preparedStatement.setString(5, entity.getImageName());
+        preparedStatement.setInt(6, entity.getId());
     }
 
     public void setConnection(Connection connection) {
