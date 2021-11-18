@@ -16,7 +16,7 @@ public class DoctorDaoImpl implements DoctorDao {
             "doctors.rank, doctors.doctor_info FROM doctors WHERE doctors.id = ?";
     private static final String DELETE_DOCTOR_BY_ID_SQL = "DELETE FROM doctors WHERE doctors.id = ?";
     private static final String CREATE_DOCTOR_BY_ID_SQL = "INSERT INTO doctors (doctors.qualification, " +
-            "doctors.rank, doctors.doctor_info) " + "VALUES (?, ?, ?)";
+            "doctors.rank, doctors.doctor_info) VALUES (?, ?, ?)";
     private static final String UPDATE_DOCTOR_BY_ID_SQL = "UPDATE doctors SET qualification = ?," +
             " rank = ?, doctor_info = ? WHERE doctors.id = ?";
 
