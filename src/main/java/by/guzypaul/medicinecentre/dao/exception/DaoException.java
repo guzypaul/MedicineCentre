@@ -1,4 +1,4 @@
-package by.guzypaul.medicinecentre.dao;
+package by.guzypaul.medicinecentre.dao.exception;
 
 public class DaoException extends Exception{
     public DaoException() {

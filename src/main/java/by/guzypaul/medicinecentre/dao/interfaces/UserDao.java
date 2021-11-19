@@ -1,4 +1,4 @@
-package by.guzypaul.medicinecentre.dao;
+package by.guzypaul.medicinecentre.dao.interfaces;
 
 import by.guzypaul.medicinecentre.entity.User;
 

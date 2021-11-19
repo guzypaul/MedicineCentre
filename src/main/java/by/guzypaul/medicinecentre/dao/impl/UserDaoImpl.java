@@ -1,8 +1,8 @@
 package by.guzypaul.medicinecentre.dao.impl;
 
-import by.guzypaul.medicinecentre.dao.DaoException;
+import by.guzypaul.medicinecentre.dao.exception.DaoException;
 import by.guzypaul.medicinecentre.dao.mapper.DaoUserMapper;
-import by.guzypaul.medicinecentre.dao.UserDao;
+import by.guzypaul.medicinecentre.dao.interfaces.UserDao;
 import by.guzypaul.medicinecentre.entity.User;
 
 import java.sql.*;

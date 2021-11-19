@@ -1,6 +1,6 @@
 package by.guzypaul.medicinecentre.controller;
 
-import by.guzypaul.medicinecentre.dao.DaoException;
+import by.guzypaul.medicinecentre.dao.exception.DaoException;
 import by.guzypaul.medicinecentre.dao.impl.ProcedureDaoImpl;
 import by.guzypaul.medicinecentre.entity.Procedure;
 
