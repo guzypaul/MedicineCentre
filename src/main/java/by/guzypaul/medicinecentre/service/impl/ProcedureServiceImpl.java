@@ -55,7 +55,7 @@ public class ProcedureServiceImpl implements ProcedureService {
 
     @Override
     public boolean create(Procedure entity) throws ServiceException {
-        logger.log(Level.DEBUG, "createById()" + entity);
+        logger.log(Level.DEBUG, "create() " + entity);
         try {
             return procedureDao.create(entity);
         } catch (DaoException e) {
@@ -65,7 +65,7 @@ public class ProcedureServiceImpl implements ProcedureService {
 
     @Override
     public boolean update(Procedure entity) throws ServiceException {
-        logger.log(Level.DEBUG, "updateById()" + entity);
+        logger.log(Level.DEBUG, "update() " + entity);
         try {
             return procedureDao.update(entity);
         } catch (DaoException e) {
