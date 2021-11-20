@@ -5,6 +5,7 @@ import by.guzypaul.medicinecentre.dao.interfaces.ProcedureDao;
 import by.guzypaul.medicinecentre.entity.Procedure;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
+import by.guzypaul.medicinecentre.validator.ProcedureValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -71,5 +72,28 @@ public class ProcedureServiceImpl implements ProcedureService {
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public boolean checkData(Procedure entity) {
+        boolean isValid = true;
+
+        if (!ProcedureValidator.isValidDuration(entity.getDuration())) {
+            isValid = false;
+        }
+        if (!ProcedureValidator.isValidName(entity.getName())) {
+            isValid = false;
+        }
+        if (!ProcedureValidator.isValidImageName(entity.getImageName())) {
+            isValid = false;
+        }
+        if (!ProcedureValidator.isValidPrice(entity.getPrice())) {
+            isValid = false;
+        }
+        if (!ProcedureValidator.isValidDescription(entity.getDescription())) {
+            isValid = false;
+        }
+
+        return isValid;
     }
 }
