@@ -1,111 +1,135 @@
 package by.guzypaul.medicinecentre.dao.connection;
 
+import by.guzypaul.medicinecentre.dao.exception.DaoException;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Set;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.logging.Logger;
+import java.util.ArrayDeque;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
+public class ConnectionPool {
+	private static final AtomicBoolean INSTANCE_CREATED = new AtomicBoolean(false);
+	private static final String CONNECTION_IS_NULL_ENTER_MESSAGE = "Connection cannot be null";
+	private static final String INCORRECT_CONNECTION_ENTER_MESSAGE = "Return connection does not exist";
+	private static final String CONNECTIONS_NOT_CREATED_ENTER_MESSAGE = "Connections not created";
+	private static final Lock INSTANCE_LOCK = new ReentrantLock();
+	private static final Lock CONNECTION_LOCK = new ReentrantLock();
+	private static final Condition CONNECTION_CONDITION = CONNECTION_LOCK.newCondition();
+	private static ConnectionPool instance;
+	private ArrayDeque<Connection> freeConnections;
+	private ArrayDeque<Connection> busyConnections;
+	//private DataBasePropertiesReader propertiesReader;
 
-final public class ConnectionPool {
-
-	private static Logger logger = Logger.getLogger("ConnectionPool.class");
-
-	private String url;
-	private String user;
-	private String password;
-	private int maxSize;
-	private int checkConnectionTimeout;
-
-	private BlockingQueue<PooledConnection> freeConnections = new LinkedBlockingQueue<>();
-	private Set<PooledConnection> usedConnections = new ConcurrentSkipListSet<>();
-
-	private ConnectionPool() {}
-
-	public synchronized Connection getConnection() {
-		PooledConnection connection = null;
-		while(connection == null) {
-			try {
-				if(!freeConnections.isEmpty()) {
-					connection = freeConnections.take();
-					if(!connection.isValid(checkConnectionTimeout)) {
-						try {
-							connection.getConnection().close();
-						} catch(SQLException e) {}
-						connection = null;
-					}
-				} else if(usedConnections.size() < maxSize) {
-					connection = createConnection();
-				} else {
-					throw new RuntimeException();
-				}
-			} catch(InterruptedException | SQLException e) {
-				throw new RuntimeException(e);
-			}
-		}
-		usedConnections.add(connection);
-		return connection;
+	private ConnectionPool() {
+		freeConnections = new ArrayDeque<>();
+		busyConnections = new ArrayDeque<>();
+		//propertiesReader = new ProdDataBasePropertiesReader();
 	}
 
-	synchronized void freeConnection(PooledConnection connection) {
-		try {
-			if(connection.isValid(checkConnectionTimeout)) {
-				connection.clearWarnings();
-				connection.setAutoCommit(true);
-				usedConnections.remove(connection);
-				freeConnections.put(connection);
-			}
-		} catch(SQLException | InterruptedException e1) {
-			try {
-				connection.getConnection().close();
-			} catch(SQLException e2) {}
-		}
+//	public void setPropertiesReader(DataBasePropertiesReader propertiesReader) {
+//		this.propertiesReader = propertiesReader;
+//	}
+
+	public int getFreeConnectionsSize() {
+		return freeConnections.size();
 	}
 
-	public synchronized void init(String driverClass, String url, String user, String password, int startSize,
-								  int maxSize, int checkConnectionTimeout) throws RuntimeException {
-		try {
-			destroy();
-			Class.forName(driverClass);
-			this.url = url;
-			this.user = user;
-			this.password = password;
-			this.maxSize = maxSize;
-			this.checkConnectionTimeout = checkConnectionTimeout;
-			for(int counter = 0; counter < startSize; counter++) {
-				freeConnections.put(createConnection());
-			}
-		} catch(ClassNotFoundException | SQLException | InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+	public int getBusyConnectionsSize() {
+		return busyConnections.size();
 	}
-
-	private static ConnectionPool instance = new ConnectionPool();
 
 	public static ConnectionPool getInstance() {
+		if (!INSTANCE_CREATED.get()) {
+			try {
+				INSTANCE_LOCK.lock();
+				if (instance == null) {
+					instance = new ConnectionPool();
+					INSTANCE_CREATED.set(true);
+				}
+			} finally {
+				INSTANCE_LOCK.unlock();
+			}
+		}
+
 		return instance;
 	}
 
-	private PooledConnection createConnection() throws SQLException {
-		return new PooledConnection(DriverManager.getConnection(url, user, password));
-	}
+//	public void initializeConnectionPool(int connectionsNumber) throws DaoException {
+//		try {
+//			closeConnections();
+//			CONNECTION_LOCK.lock();
+//			//Class.forName(propertiesReader.readDriverName());
+//
+//			for (int i = 0; i < connectionsNumber; i++) {
+//				freeConnections.push(new ProxyConnection(DriverManager.getConnection(propertiesReader.readUrl(),
+//						propertiesReader.readProperties())));
+//			}
+//		} catch (ClassNotFoundException | SQLException e) {
+//			throw new DaoException(e);
+//		} finally {
+//			CONNECTION_LOCK.unlock();
+//		}
+//	}
 
-	public synchronized void destroy() {
-		usedConnections.addAll(freeConnections);
-		freeConnections.clear();
-		for(PooledConnection connection : usedConnections) {
-			try {
-				connection.getConnection().close();
-			} catch(SQLException e) {}
+	public Connection acquireConnection() throws DaoException {
+		try {
+			CONNECTION_LOCK.lock();
+			if (!freeConnections.isEmpty() || !busyConnections.isEmpty()) {
+				if (freeConnections.isEmpty()) {
+					CONNECTION_CONDITION.await();
+				}
+				Connection connection = freeConnections.poll();
+				busyConnections.push(connection);
+				return connection;
+			} else {
+				throw new DaoException(CONNECTIONS_NOT_CREATED_ENTER_MESSAGE);
+			}
+		} catch (InterruptedException e) {
+			throw new DaoException(e);
+		} finally {
+			CONNECTION_LOCK.unlock();
 		}
-		usedConnections.clear();
 	}
 
-	@Override
-	protected void finalize() throws Throwable {
-		destroy();
+	public void putBackConnection(Connection connection) throws DaoException {
+		if (connection == null) {
+			throw new DaoException(CONNECTION_IS_NULL_ENTER_MESSAGE);
+		}
+
+		try {
+			CONNECTION_LOCK.lock();
+			if (busyConnections.remove(connection)) {
+				freeConnections.add(connection);
+				if (freeConnections.size() >= 1) {
+					CONNECTION_CONDITION.signal();
+				}
+			} else {
+				throw new DaoException(INCORRECT_CONNECTION_ENTER_MESSAGE);
+			}
+		} finally {
+			CONNECTION_LOCK.unlock();
+		}
+	}
+
+	public void closeConnections() throws DaoException {
+		try {
+			CONNECTION_LOCK.lock();
+			TimeUnit.SECONDS.sleep(1);
+			for (Connection connection : freeConnections) {
+				ProxyConnection proxyConnection = (ProxyConnection) connection;
+				proxyConnection.getConnection().close();
+
+				freeConnections = new ArrayDeque<>();
+				busyConnections = new ArrayDeque<>();
+			}
+		} catch (InterruptedException | SQLException e) {
+			throw new DaoException(e);
+		} finally {
+			CONNECTION_LOCK.unlock();
+		}
 	}
 }
