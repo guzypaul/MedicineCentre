@@ -1,6 +1,7 @@
 package by.guzypaul.medicinecentre.service.impl;
 
 import by.guzypaul.medicinecentre.dao.exception.DaoException;
+import by.guzypaul.medicinecentre.dao.impl.ProcedureDaoImpl;
 import by.guzypaul.medicinecentre.dao.interfaces.AppointmentDao;
 import by.guzypaul.medicinecentre.entity.Appointment;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
@@ -15,7 +16,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     private static final Logger logger = LogManager.getLogger();
     private final AppointmentDao appointmentDao;
 
-    public AppointmentServiceImpl(AppointmentDao appointmentDao) {
+    public AppointmentServiceImpl(AppointmentDao appointmentDao, ProcedureDaoImpl procedureDao) {
         this.appointmentDao = appointmentDao;
     }
 

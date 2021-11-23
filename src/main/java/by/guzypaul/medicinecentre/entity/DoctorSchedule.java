@@ -1,6 +1,7 @@
 package by.guzypaul.medicinecentre.entity;
 
 import java.sql.Time;
+import java.util.Date;
 import java.util.Objects;
 
 public class DoctorSchedule implements Entity{
@@ -8,23 +9,26 @@ public class DoctorSchedule implements Entity{
     private int doctorId;
     private Time startTime;
     private Time endTime;
+    private Date date;
     private String info;
 
     public DoctorSchedule() {
     }
 
-    public DoctorSchedule(int doctorId, Time startTime, Time endTime, String info) {
+    public DoctorSchedule(int doctorId, Time startTime, Time endTime, Date date, String info) {
         this.doctorId = doctorId;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.date = date;
         this.info = info;
     }
 
-    public DoctorSchedule(int id, int doctorId, Time startTime, Time endTime, String info) {
+    public DoctorSchedule(int id, int doctorId, Time startTime, Time endTime, Date date, String info) {
         this.id = id;
         this.doctorId = doctorId;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.date = date;
         this.info = info;
     }
 
@@ -68,17 +72,25 @@ public class DoctorSchedule implements Entity{
         this.info = info;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DoctorSchedule that = (DoctorSchedule) o;
-        return id == that.id && doctorId == that.doctorId && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime) && Objects.equals(info, that.info);
+        return id == that.id && doctorId == that.doctorId && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime) && Objects.equals(date, that.date) && Objects.equals(info, that.info);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, doctorId, startTime, endTime, info);
+        return Objects.hash(id, doctorId, startTime, endTime, date, info);
     }
 
     @Override
@@ -88,6 +100,7 @@ public class DoctorSchedule implements Entity{
                 ", doctorId=" + doctorId +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
+                ", date=" + date +
                 ", info='" + info + '\'' +
                 '}';
     }

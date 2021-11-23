@@ -11,11 +11,11 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-public class DoctorScheduleImpl implements DoctorScheduleService {
+public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     private static final Logger logger = LogManager.getLogger();
     private final DoctorScheduleDao doctorScheduleDao;
 
-    public DoctorScheduleImpl(DoctorScheduleDao doctorScheduleDao) {
+    public DoctorScheduleServiceImpl(DoctorScheduleDao doctorScheduleDao) {
         this.doctorScheduleDao = doctorScheduleDao;
     }
 
