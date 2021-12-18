@@ -6,18 +6,18 @@ public class Doctor implements Entity {
     private int id;
     private String qualification;
     private String rank;
-    private int doctorInfo;
+    private User doctorInfo;
 
     public Doctor() {
     }
 
-    public Doctor(String qualification, String rank, int doctorInfo) {
+    public Doctor(String qualification, String rank, User doctorInfo) {
         this.qualification = qualification;
         this.rank = rank;
         this.doctorInfo = doctorInfo;
     }
 
-    public Doctor(int id, String qualification, String rank, int doctorInfo) {
+    public Doctor(int id, String qualification, String rank, User doctorInfo) {
         this.id = id;
         this.qualification = qualification;
         this.rank = rank;
@@ -48,11 +48,11 @@ public class Doctor implements Entity {
         this.rank = rank;
     }
 
-    public int getDoctorInfo() {
+    public User getDoctorInfo() {
         return doctorInfo;
     }
 
-    public void setDoctorInfo(int doctorInfo) {
+    public void setDoctorInfo(User doctorInfo) {
         this.doctorInfo = doctorInfo;
     }
 
@@ -61,7 +61,7 @@ public class Doctor implements Entity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return id == doctor.id && doctorInfo == doctor.doctorInfo && Objects.equals(qualification, doctor.qualification) && Objects.equals(rank, doctor.rank);
+        return id == doctor.id && Objects.equals(qualification, doctor.qualification) && Objects.equals(rank, doctor.rank) && Objects.equals(doctorInfo, doctor.doctorInfo);
     }
 
     @Override

@@ -8,10 +8,11 @@ import java.sql.SQLException;
 public class DaoDoctorMapper {
     public Doctor mapDoctor (ResultSet resultSet) throws SQLException {
         Doctor doctor = new Doctor();
-        doctor.setId(resultSet.getInt("id"));
+        DaoUserMapper daoUserMapper = new DaoUserMapper();
+        doctor.setId(resultSet.getInt("doctor_id"));
         doctor.setQualification(resultSet.getString("qualification"));
         doctor.setRank(resultSet.getString("rank"));
-        doctor.setDoctorInfo(resultSet.getInt("doctor_info"));
+        doctor.setDoctorInfo(daoUserMapper.mapUser(resultSet));
 
         return doctor;
     }

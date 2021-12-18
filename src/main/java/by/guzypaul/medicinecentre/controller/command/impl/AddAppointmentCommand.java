@@ -37,18 +37,13 @@ public class AddAppointmentCommand implements Command {
         String procedureId =request.getParameter(ParameterAndAttribute.PROCEDURE_ID);
         String scheduleId = request.getParameter(ParameterAndAttribute.SCHEDULE_ID);
         String time = request.getParameter(ParameterAndAttribute.START_TIME);
-        //appointmentData.put(ParameterAndAttribute.USER_ID, userId);
-        appointment.setClientId(Integer.parseInt(userId));
-        //appointmentData.put(ParameterAndAttribute.DOCTOR_ID, doctorId);
-        appointment.setDoctorId(Integer.parseInt(doctorId));
-        //appointmentData.put(ParameterAndAttribute.PROCEDURE_ID, procedureId);
-        appointment.setProcedureId(Integer.parseInt(procedureId));
+//        appointment.setClientId(Integer.parseInt(userId));
+//        appointment.setDoctorId(Integer.parseInt(doctorId));
+//        appointment.setProcedureId(Integer.parseInt(procedureId));
 
-        //appointmentData.put(ParameterAndAttribute.START_TIME, time);
         appointment.setStartTime(Time.valueOf(time));
         try {
             String date = doctorScheduleService.readById(Integer.parseInt(scheduleId)).getDate().toString();
-            //appointmentData.put(ParameterAndAttribute.APPOINTMENT_DATE, date);
             appointment.setDate(Date.valueOf(date));
             if (appointmentService.create(appointment)) {
                 session.setAttribute(ParameterAndAttribute.MESSAGE_FOR_USER, Message.SUCCESSFUL);

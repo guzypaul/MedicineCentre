@@ -87,7 +87,7 @@ public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
     }
 
     private void setDoctorScheduleEntity(DoctorSchedule entity, PreparedStatement preparedStatement) throws SQLException { //todo change method's name
-        preparedStatement.setInt(1, entity.getDoctorId());
+        //preparedStatement.setInt(1, entity.getDoctorId()); //todo
         preparedStatement.setTime(2, entity.getStartTime());
         preparedStatement.setTime(3, entity.getEndTime());
         preparedStatement.setString(4, entity.getInfo());

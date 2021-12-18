@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-    private static final String READ_ALL_USER_SQL = "SELECT users.id, users.name, " +
+    private static final String READ_ALL_USER_SQL = "SELECT users.id AS user_id, users.name, " +
             "users.surname, users.password, users.email, " +
             "users.phone, users.role FROM users";
     private static final String READ_USER_BY_ID_SQL = "SELECT users.id, users.name, " +
@@ -68,7 +68,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean create(User entity) throws DaoException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_USER_BY_ID_SQL)) {
-            setUserEntity(entity, preparedStatement);
+            fillUserData(entity, preparedStatement);
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
@@ -78,7 +78,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean update(User entity) throws DaoException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_BY_ID_SQL)) {
-            setUserEntity(entity, preparedStatement);
+            fillUserData(entity, preparedStatement);
             preparedStatement.setInt(7, entity.getId());
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException throwables) {
@@ -86,7 +86,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    private void setUserEntity(User entity, PreparedStatement preparedStatement) throws SQLException { //todo change method's name
+    private void fillUserData(User entity, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, entity.getName());
         preparedStatement.setString(2, entity.getSurname());
         preparedStatement.setString(3, entity.getPassword());

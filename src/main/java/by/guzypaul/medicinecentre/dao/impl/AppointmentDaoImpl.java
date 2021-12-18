@@ -88,12 +88,12 @@ public class AppointmentDaoImpl implements AppointmentDao {
     }
 
     private void setAppointmentEntity(Appointment entity, PreparedStatement preparedStatement) throws SQLException { //todo change method's name
-        preparedStatement.setInt(1, entity.getClientId());
-        preparedStatement.setInt(2, entity.getDoctorId());
+        //preparedStatement.setInt(1, entity.getClientId());
+        //preparedStatement.setInt(2, entity.getDoctorId()); //todo
         preparedStatement.setDate(3, (Date) entity.getDate());
         preparedStatement.setTime(4, entity.getStartTime());
         preparedStatement.setTime(5, entity.getEndTime());
-        preparedStatement.setInt(6, entity.getProcedureId());
+        //preparedStatement.setInt(6, entity.getProcedureId());
         preparedStatement.setString(7, entity.getStatus());
 
     }

@@ -6,37 +6,35 @@ import java.util.Objects;
 
 public class Appointment implements Entity {
     private int id;
-    private int clientId;
-    private int doctorId;
+    private User userClient;
+    private Doctor doctor;
     private Date date;
     private Time startTime;
     private Time endTime;
-    private int procedureId;
-    private String status; // todo enum???
+    private Procedure procedure;
+    private String status;
 
     public Appointment() {
     }
 
-    public Appointment(int clientId, int doctorId, Date date, Time startTime, Time endTime, int procedureId,
-                       String status) {
-        this.clientId = clientId;
-        this.doctorId = doctorId;
+    public Appointment(User userClient, Doctor doctor, Date date, Time startTime, Time endTime, Procedure procedure, String status) {
+        this.userClient = userClient;
+        this.doctor = doctor;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.procedureId = procedureId;
+        this.procedure = procedure;
         this.status = status;
     }
 
-    public Appointment(int id, int clientId, int doctorId, Date date, Time startTime, Time endTime, int procedureId,
-                       String status) {
+    public Appointment(int id, User userClient, Doctor doctor, Date date, Time startTime, Time endTime, Procedure procedure, String status) {
         this.id = id;
-        this.clientId = clientId;
-        this.doctorId = doctorId;
+        this.userClient = userClient;
+        this.doctor = doctor;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.procedureId = procedureId;
+        this.procedure = procedure;
         this.status = status;
     }
 
@@ -48,20 +46,28 @@ public class Appointment implements Entity {
         this.id = id;
     }
 
-    public int getClientId() {
-        return clientId;
+    public User getUserClient() {
+        return userClient;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    public void setUserClient(User userClient) {
+        this.userClient = userClient;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    public Procedure getProcedure() {
+        return procedure;
+    }
+
+    public void setProcedure(Procedure procedure) {
+        this.procedure = procedure;
     }
 
     public Date getDate() {
@@ -88,14 +94,6 @@ public class Appointment implements Entity {
         this.endTime = endTime;
     }
 
-    public int getProcedureId() {
-        return procedureId;
-    }
-
-    public void setProcedureId(int procedureId) {
-        this.procedureId = procedureId;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -109,27 +107,24 @@ public class Appointment implements Entity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Appointment that = (Appointment) o;
-        return id == that.id && clientId == that.clientId && doctorId == that.doctorId
-                && procedureId == that.procedureId && Objects.equals(date, that.date)
-                && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime)
-                && Objects.equals(status, that.status);
+        return id == that.id && Objects.equals(userClient, that.userClient) && Objects.equals(doctor, that.doctor) && Objects.equals(date, that.date) && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime) && Objects.equals(procedure, that.procedure) && Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, clientId, doctorId, date, startTime, endTime, procedureId, status);
+        return Objects.hash(id, userClient, doctor, date, startTime, endTime, procedure, status);
     }
 
     @Override
     public String toString() {
         return "Appointment{" +
                 "id=" + id +
-                ", clientId=" + clientId +
-                ", doctorId=" + doctorId +
+                ", userClient=" + userClient +
+                ", doctor=" + doctor +
                 ", date=" + date +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
-                ", procedureId=" + procedureId +
+                ", procedure=" + procedure +
                 ", status='" + status + '\'' +
                 '}';
     }

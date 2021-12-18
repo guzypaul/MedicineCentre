@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class DaoUserMapper {
     public User mapUser (ResultSet resultSet) throws SQLException {
         User user = new User();
-        user.setId(resultSet.getInt("id"));
+        user.setId(resultSet.getInt("user_id"));
         user.setSurname(resultSet.getString("surname"));
         user.setName(resultSet.getString("name"));
         user.setPassword(resultSet.getString("Password"));

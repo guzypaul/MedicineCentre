@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DoctorDaoImpl implements DoctorDao {
-    private static final String READ_ALL_DOCTOR_SQL = "SELECT doctors.id, doctors.qualification, " +
-            "doctors.rank, doctors.doctor_info FROM doctors";
+    private static final String READ_ALL_DOCTOR_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, doctors.rank," +
+            "users.id AS user_id, users.name, users.surname, users.password, users.email, users.phone, users.role " +
+            "FROM doctors INNER JOIN users ON doctors.doctor_info = users.id";
     private static final String READ_DOCTOR_BY_ID_SQL = "SELECT doctors.id, doctors.qualification, " +
             "doctors.rank, doctors.doctor_info FROM doctors WHERE doctors.id = ?";
     private static final String DELETE_DOCTOR_BY_ID_SQL = "DELETE FROM doctors WHERE doctors.id = ?";
@@ -85,7 +86,7 @@ public class DoctorDaoImpl implements DoctorDao {
     private void setDoctorEntity(Doctor entity, PreparedStatement preparedStatement) throws SQLException { //todo change method's name
         preparedStatement.setString(1, entity.getQualification());
         preparedStatement.setString(2, entity.getRank());
-        preparedStatement.setInt(3, entity.getDoctorInfo());
+        preparedStatement.setInt(3, entity.getDoctorInfo().getId());
     }
 
     public void setConnection(Connection connection) {

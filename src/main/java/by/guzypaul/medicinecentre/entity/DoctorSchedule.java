@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class DoctorSchedule implements Entity{
     private int id;
-    private int doctorId;
+    private Doctor doctor;
     private Time startTime;
     private Time endTime;
     private Date date;
@@ -15,17 +15,17 @@ public class DoctorSchedule implements Entity{
     public DoctorSchedule() {
     }
 
-    public DoctorSchedule(int doctorId, Time startTime, Time endTime, Date date, String info) {
-        this.doctorId = doctorId;
+    public DoctorSchedule(Doctor doctor, Time startTime, Time endTime, Date date, String info) {
+        this.doctor = doctor;
         this.startTime = startTime;
         this.endTime = endTime;
         this.date = date;
         this.info = info;
     }
 
-    public DoctorSchedule(int id, int doctorId, Time startTime, Time endTime, Date date, String info) {
+    public DoctorSchedule(int id, Doctor doctor, Time startTime, Time endTime, Date date, String info) {
         this.id = id;
-        this.doctorId = doctorId;
+        this.doctor = doctor;
         this.startTime = startTime;
         this.endTime = endTime;
         this.date = date;
@@ -40,12 +40,12 @@ public class DoctorSchedule implements Entity{
         this.id = id;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public Time getStartTime() {
@@ -85,19 +85,19 @@ public class DoctorSchedule implements Entity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DoctorSchedule that = (DoctorSchedule) o;
-        return id == that.id && doctorId == that.doctorId && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime) && Objects.equals(date, that.date) && Objects.equals(info, that.info);
+        return id == that.id && Objects.equals(doctor, that.doctor) && Objects.equals(startTime, that.startTime) && Objects.equals(endTime, that.endTime) && Objects.equals(date, that.date) && Objects.equals(info, that.info);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, doctorId, startTime, endTime, date, info);
+        return Objects.hash(id, doctor, startTime, endTime, date, info);
     }
 
     @Override
     public String toString() {
         return "DoctorSchedule{" +
                 "id=" + id +
-                ", doctorId=" + doctorId +
+                ", doctor=" + doctor +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", date=" + date +
