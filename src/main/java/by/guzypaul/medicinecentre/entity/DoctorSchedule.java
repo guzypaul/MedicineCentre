@@ -95,13 +95,13 @@ public class DoctorSchedule implements Entity{
 
     @Override
     public String toString() {
-        return "DoctorSchedule{" +
-                "id=" + id +
-                ", doctor=" + doctor +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", date=" + date +
-                ", info='" + info + '\'' +
-                '}';
+        return "DoctorSchedule {" +
+                "id=" + id + ",\n" +
+                "doctor=" + doctor + ",\n" +
+                "startTime=" + startTime + ",\n" +
+                "endTime=" + endTime + ",\n" +
+                "date=" + date + ",\n" +
+                "info = '" + info + '\'' +
+                '}' + "\n\n";
     }
 }

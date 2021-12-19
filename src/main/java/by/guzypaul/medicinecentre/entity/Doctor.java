@@ -71,11 +71,10 @@ public class Doctor implements Entity {
 
     @Override
     public String toString() {
-        return "Doctor{" +
-                "id=" + id +
-                ", qualification='" + qualification + '\'' +
-                ", rank='" + rank + '\'' +
-                ", doctorInfo=" + doctorInfo +
-                '}';
+        return "Doctor {" + "\n" +
+                "id=" + id + ",\n" +
+                "qualification='" + qualification + '\'' + ",\n" +
+                "rank='" + rank + '\'' + ",\n" +
+                "doctorInfo = " + doctorInfo + '}' ;
     }
 }

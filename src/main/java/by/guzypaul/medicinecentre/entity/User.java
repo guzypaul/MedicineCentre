@@ -104,7 +104,7 @@ public class User implements Entity{
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", Surname='" + Surname + '\'' +

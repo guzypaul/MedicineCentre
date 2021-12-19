@@ -8,13 +8,17 @@ import java.sql.SQLException;
 public class DaoAppointmentMapper {
     public Appointment mapAppointment (ResultSet resultSet) throws SQLException {
         Appointment appointment = new Appointment();
+        DaoUserMapper daoUserMapper = new DaoUserMapper();
+        DaoDoctorMapper daoDoctorMapper = new DaoDoctorMapper();
+        DaoProcedureMapper daoProcedureMapper = new DaoProcedureMapper();
+
         appointment.setId(resultSet.getInt("id"));
-        //appointment.setClientId(resultSet.getInt("client_id"));
-        //appointment.setDoctorId(resultSet.getInt("doctor_id"));
+        appointment.setUserClient(daoUserMapper.mapUser(resultSet));
+        appointment.setDoctor(daoDoctorMapper.mapDoctor(resultSet));
         appointment.setDate(resultSet.getDate("date"));
         appointment.setStartTime(resultSet.getTime("start_time"));
         appointment.setEndTime(resultSet.getTime("end_time"));
-        //appointment.setProcedureId(resultSet.getInt("procedure_id"));
+        appointment.setProcedure(daoProcedureMapper.mapProcedure(resultSet));
         appointment.setStatus(resultSet.getString("status"));
 
         return appointment;
