@@ -8,8 +8,10 @@ import java.sql.SQLException;
 public class DaoDoctorScheduleMapper {
     public DoctorSchedule mapDoctorSchedule (ResultSet resultSet) throws SQLException {
         DoctorSchedule doctorSchedule = new DoctorSchedule();
-        doctorSchedule.setId(resultSet.getInt("id"));
-        //doctorSchedule.setDoctorId(resultSet.getInt("doctor_id")); //todo
+        DaoDoctorMapper daoDoctorMapper = new DaoDoctorMapper();
+
+        doctorSchedule.setId(resultSet.getInt("doctor_schedules_id"));
+        doctorSchedule.setDoctor(daoDoctorMapper.mapDoctor(resultSet));
         doctorSchedule.setStartTime(resultSet.getTime("start_time"));
         doctorSchedule.setEndTime(resultSet.getTime("end_time"));
         doctorSchedule.setInfo(resultSet.getString("info"));
