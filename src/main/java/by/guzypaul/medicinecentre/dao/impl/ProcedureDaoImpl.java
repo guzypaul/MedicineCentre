@@ -67,7 +67,7 @@ public class ProcedureDaoImpl implements ProcedureDao {
     @Override
     public boolean create(Procedure entity) throws DaoException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PROCEDURE_BY_ID_SQL)) {
-            setProcedureEntity(entity, preparedStatement);
+            fillProcedureData(entity, preparedStatement);
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
@@ -77,14 +77,14 @@ public class ProcedureDaoImpl implements ProcedureDao {
     @Override
     public boolean update(Procedure entity) throws DaoException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PROCEDURE_BY_ID_SQL)) {
-            setProcedureEntity(entity, preparedStatement);
+            fillProcedureData(entity, preparedStatement);
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
-    private void setProcedureEntity(Procedure entity, PreparedStatement preparedStatement) throws SQLException { //todo change method's name
+    private void fillProcedureData(Procedure entity, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, entity.getName());
         preparedStatement.setString(2, entity.getDescription());
         preparedStatement.setInt(3, (int) entity.getDuration().toMinutes());

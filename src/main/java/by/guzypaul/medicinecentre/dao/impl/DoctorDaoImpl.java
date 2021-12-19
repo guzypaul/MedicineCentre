@@ -13,8 +13,9 @@ public class DoctorDaoImpl implements DoctorDao {
     private static final String READ_ALL_DOCTOR_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, doctors.rank," +
             "users.id AS user_id, users.name, users.surname, users.password, users.email, users.phone, users.role " +
             "FROM doctors INNER JOIN users ON doctors.doctor_info = users.id";
-    private static final String READ_DOCTOR_BY_ID_SQL = "SELECT doctors.id, doctors.qualification, " +
-            "doctors.rank, doctors.doctor_info FROM doctors WHERE doctors.id = ?";
+    private static final String READ_DOCTOR_BY_ID_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, " +
+            "doctors.rank, users.id AS user_id, users.name, users.surname, users.password, users.email, users.phone, " +
+            "users.role FROM doctors INNER JOIN users ON doctors.doctor_info = users.id WHERE doctors.id = ?";
     private static final String DELETE_DOCTOR_BY_ID_SQL = "DELETE FROM doctors WHERE doctors.id = ?";
     private static final String CREATE_DOCTOR_BY_ID_SQL = "INSERT INTO doctors (doctors.qualification, " +
             "doctors.rank, doctors.doctor_info) VALUES (?, ?, ?)";
@@ -65,7 +66,7 @@ public class DoctorDaoImpl implements DoctorDao {
     @Override
     public boolean create(Doctor entity) throws DaoException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_DOCTOR_BY_ID_SQL)) {
-            setDoctorEntity(entity, preparedStatement);
+            fillDoctorData(entity, preparedStatement);
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
@@ -75,7 +76,7 @@ public class DoctorDaoImpl implements DoctorDao {
     @Override
     public boolean update(Doctor entity) throws DaoException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DOCTOR_BY_ID_SQL)) {
-            setDoctorEntity(entity, preparedStatement);
+            fillDoctorData(entity, preparedStatement);
             preparedStatement.setInt(4, entity.getId());
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException throwables) {
@@ -83,7 +84,7 @@ public class DoctorDaoImpl implements DoctorDao {
         }
     }
 
-    private void setDoctorEntity(Doctor entity, PreparedStatement preparedStatement) throws SQLException { //todo change method's name
+    private void fillDoctorData(Doctor entity, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, entity.getQualification());
         preparedStatement.setString(2, entity.getRank());
         preparedStatement.setInt(3, entity.getDoctorInfo().getId());

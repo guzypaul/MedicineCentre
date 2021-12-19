@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
-    private static final String READ_ALL_DOCTOR_SCHEDULE_SQL = "SELECT doctor_schedules.id, " +
+    private static final String READ_ALL_DOCTOR_SCHEDULE_SQL = "SELECT doctor_schedules.id AS doctor_schedules_id, " +
             "doctor_schedules.doctor_id, doctor_schedules.start_time, doctor_schedules.end_time, " +
-            "doctor_schedules.info FROM doctor_schedules";
+            "doctor_schedules.info FROM doctor_schedules INNER JOIN doctor_schedules ON";
     private static final String READ_DOCTOR_SCHEDULE_BY_ID_SQL = "SELECT doctor_schedules.id, " +
             "doctor_schedules.doctor_id, doctor_schedules.start_time, doctor_schedules.end_time, " +
             "doctor_schedules.info FROM doctor_schedules WHERE doctor_schedules.id = ?";
@@ -68,7 +68,7 @@ public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
     @Override
     public boolean create(DoctorSchedule entity) throws DaoException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_DOCTOR_SCHEDULE_BY_ID_SQL)) {
-            setDoctorScheduleEntity(entity, preparedStatement);
+            fillDoctorScheduleData(entity, preparedStatement);
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException throwables) {
             throw new DaoException(throwables.getMessage());
@@ -78,7 +78,7 @@ public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
     @Override
     public boolean update(DoctorSchedule entity) throws DaoException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DOCTOR_SCHEDULE_BY_ID_SQL)) {
-            setDoctorScheduleEntity(entity, preparedStatement);
+            fillDoctorScheduleData(entity, preparedStatement);
             preparedStatement.setInt(5, entity.getId());
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException throwables) {
@@ -86,8 +86,8 @@ public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
         }
     }
 
-    private void setDoctorScheduleEntity(DoctorSchedule entity, PreparedStatement preparedStatement) throws SQLException { //todo change method's name
-        //preparedStatement.setInt(1, entity.getDoctorId()); //todo
+    private void fillDoctorScheduleData(DoctorSchedule entity, PreparedStatement preparedStatement) throws SQLException {
+        preparedStatement.setInt(1, entity.getDoctor().getId());
         preparedStatement.setTime(2, entity.getStartTime());
         preparedStatement.setTime(3, entity.getEndTime());
         preparedStatement.setString(4, entity.getInfo());
