@@ -12,7 +12,7 @@ public class DaoAppointmentMapper {
         DaoDoctorMapper daoDoctorMapper = new DaoDoctorMapper();
         DaoProcedureMapper daoProcedureMapper = new DaoProcedureMapper();
 
-        appointment.setId(resultSet.getInt("id"));
+        appointment.setId(resultSet.getInt("appointment_id"));
         appointment.setUserClient(daoUserMapper.mapUser(resultSet));
         appointment.setDoctor(daoDoctorMapper.mapDoctor(resultSet));
         appointment.setDate(resultSet.getDate("date"));

@@ -17,7 +17,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.Date;
 import java.sql.Time;
 
 public class AddAppointmentCommand implements Command {
@@ -43,8 +42,8 @@ public class AddAppointmentCommand implements Command {
 
         appointment.setStartTime(Time.valueOf(time));
         try {
-            String date = doctorScheduleService.readById(Integer.parseInt(scheduleId)).getDate().toString();
-            appointment.setDate(Date.valueOf(date));
+            //String date = doctorScheduleService.readById(Integer.parseInt(scheduleId)).getDate().toString();
+            //appointment.setDate(Date.valueOf(date));
             if (appointmentService.create(appointment)) {
                 session.setAttribute(ParameterAndAttribute.MESSAGE_FOR_USER, Message.SUCCESSFUL);
                 String page = request.getContextPath() + PagePath.TO_PERSONAL_PAGE;
