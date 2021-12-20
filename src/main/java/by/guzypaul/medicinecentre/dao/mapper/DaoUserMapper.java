@@ -10,9 +10,9 @@ public class DaoUserMapper {
         User user = new User();
         user.setId(resultSet.getInt("user_id"));
         user.setSurname(resultSet.getString("surname"));
-        user.setName(resultSet.getString("name"));
-        user.setPassword(resultSet.getString("Password"));
-        user.setEmail(resultSet.getString("email")); ;
+        user.setName(resultSet.getString("user_name"));
+        user.setPassword(resultSet.getString("password"));
+        user.setEmail(resultSet.getString("email"));
         user.setPhone(resultSet.getString("phone"));
         user.setRole(resultSet.getString("role"));
 

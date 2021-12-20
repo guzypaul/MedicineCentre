@@ -9,9 +9,9 @@ import java.time.Duration;
 public class DaoProcedureMapper {
     public Procedure mapProcedure (ResultSet resultSet) throws SQLException {
         Procedure procedure = new Procedure();
-        procedure.setId(resultSet.getInt("id"));
+        procedure.setId(resultSet.getInt("procedure_id"));
         procedure.setDescription(resultSet.getString("description"));
-        procedure.setName(resultSet.getString("name"));
+        procedure.setName(resultSet.getString("procedure_name"));
         procedure.setImageName(resultSet.getString("image_name"));
         procedure.setPrice(resultSet.getBigDecimal("price")) ;
         procedure.setDuration(Duration.ofMinutes(resultSet.getInt("duration")));

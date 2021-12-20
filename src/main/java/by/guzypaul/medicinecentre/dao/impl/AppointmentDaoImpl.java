@@ -11,20 +11,34 @@ import java.util.List;
 
 public class AppointmentDaoImpl implements AppointmentDao {
     private static final String READ_ALL_APPOINTMENT_SQL = "SELECT appointments.id AS appointment_id, " +
-            "appointments.client_id, appointments.doctor_id, appointments.date, appointments.start_time, " +
-            "appointments.end_time, appointments.procedure_id, appointments.status, " +
-            "procedures.id AS procedure_id, procedures.name, procedures.description, procedures.duration, " +
-            "procedures.price, procedures.image_name, " +
-            "doctors.id AS doctor_id, doctors.qualification, doctors.rank, " +
-            "users.id AS user_id, users.name, users.surname, users.password, users.email, users.phone, users.role " +
+            "appointments.date, appointments.start_time, appointments.end_time, appointments.status, " +
+            "procedures.id AS procedure_id, procedures.name AS procedure_name, procedures.description, " +
+            "procedures.duration, procedures.price, procedures.image_name," +
+            "doctors.id AS doctor_id, doctors.qualification, doctors.rank," +
+            "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
+            "users.role, " +
+            "client.id AS client_id, client.name AS client_name, client.surname AS client_surname, " +
+            "client.password AS client_password, client.email AS client_email, client.phone AS client_phone, " +
+            "client.role AS client_role " +
             "FROM appointments INNER JOIN procedures ON appointments.procedure_id = procedures.id " +
             "INNER JOIN doctors ON appointments.doctor_id = doctors.id " +
             "INNER JOIN users ON doctors.doctor_info = users.id " +
-            "INNER JOIN users ON appointments.client_id = users.id";
+            "INNER JOIN users AS client ON appointments.client_id = client.id";
 
-    private static final String READ_APPOINTMENT_BY_ID_SQL = "SELECT appointments.id, appointments.client_id, " +
-            "appointments.doctor_id, appointments.date, appointments.start_time, appointments.end_time," +
-            "appointments.procedure_id, appointments.status FROM appointments WHERE appointments.id = ?";
+    private static final String READ_APPOINTMENT_BY_ID_SQL = "SELECT appointments.id AS appointment_id, " +
+            "appointments.date, appointments.start_time, appointments.end_time, appointments.status, " +
+            "procedures.id AS procedure_id, procedures.name AS procedure_name, procedures.description, " +
+            "procedures.duration, procedures.price, procedures.image_name," +
+            "doctors.id AS doctor_id, doctors.qualification, doctors.rank," +
+            "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
+            "users.role, " +
+            "client.id AS client_id, client.name AS client_name, client.surname AS client_surname, " +
+            "client.password AS client_password, client.email AS client_email, client.phone AS client_phone, " +
+            "client.role AS client_role " +
+            "FROM appointments INNER JOIN procedures ON appointments.procedure_id = procedures.id " +
+            "INNER JOIN doctors ON appointments.doctor_id = doctors.id " +
+            "INNER JOIN users ON doctors.doctor_info = users.id " +
+            "INNER JOIN users AS client ON appointments.client_id = client.id WHERE appointments.id = ?";
     private static final String DELETE_APPOINTMENT_BY_ID_SQL = "DELETE FROM appointments WHERE appointments.id = ?";
     private static final String CREATE_APPOINTMENT_BY_ID_SQL = "INSERT INTO appointments (appointments.client_id, " +
             "appointments.doctor_id, appointments.date, appointments.start_time, appointments.end_time," +

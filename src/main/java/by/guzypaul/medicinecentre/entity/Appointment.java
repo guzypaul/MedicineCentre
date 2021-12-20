@@ -126,6 +126,6 @@ public class Appointment implements Entity {
                 ", endTime=" + endTime +
                 ", procedure=" + procedure +
                 ", status='" + status + '\'' +
-                '}';
+                '}' + "\n";
     }
 }

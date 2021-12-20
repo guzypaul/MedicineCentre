@@ -1,7 +1,7 @@
 package by.guzypaul.medicinecentre.controller;
 
 import by.guzypaul.medicinecentre.dao.exception.DaoException;
-import by.guzypaul.medicinecentre.dao.impl.UserDaoImpl;
+import by.guzypaul.medicinecentre.dao.impl.AppointmentDaoImpl;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,11 +14,11 @@ public class Main {
         properties.put("password", "1111");
         properties.put("serverTimezone","UTC");
 
-//        DoctorDaoImpl doctorDao = new DoctorDaoImpl();
-//        doctorDao.setConnection(DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine_centre", properties ));
-//        System.out.println(doctorDao.readAll());
+        /*DoctorDaoImpl doctorDao = new DoctorDaoImpl();
+        doctorDao.setConnection(DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine_centre", properties ));
+        System.out.println(doctorDao.readAll());*/
 
-        /*DoctorScheduleDaoImpl doctorScheduleDao = new DoctorScheduleDaoImpl();
+       /* DoctorScheduleDaoImpl doctorScheduleDao = new DoctorScheduleDaoImpl();
         doctorScheduleDao.setConnection(DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine_centre", properties ));
         System.out.println(doctorScheduleDao.readAll());*/
 
@@ -26,8 +26,12 @@ public class Main {
         procedureDao.setConnection(DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine_centre", properties ));
         System.out.println(procedureDao.readAll());*/
 
-        UserDaoImpl userDao = new UserDaoImpl();
+        /*UserDaoImpl userDao = new UserDaoImpl();
         userDao.setConnection(DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine_centre", properties ));
-        System.out.println(userDao.readAll());
+        System.out.println(userDao.readAll());*/
+
+        AppointmentDaoImpl appointmentDao = new AppointmentDaoImpl();
+        appointmentDao.setConnection(DriverManager.getConnection("jdbc:mysql://localhost:3306/medicine_centre", properties ));
+        System.out.println(appointmentDao.readAll());
     }
 }
