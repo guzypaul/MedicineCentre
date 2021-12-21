@@ -1,6 +1,9 @@
 package by.guzypaul.medicinecentre.dao.connection;
 
-import by.guzypaul.medicinecentre.dao.exception.DaoException;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.Map;
@@ -8,6 +11,7 @@ import java.util.Properties;
 import java.util.concurrent.Executor;
 
 public class ProxyConnection implements Connection {
+    private static final Logger LOGGER = LogManager.getRootLogger();
     private Connection connection;
 
     public ProxyConnection(Connection connection) {
@@ -26,8 +30,8 @@ public class ProxyConnection implements Connection {
     public void close() {
         try {
             ConnectionPool.getInstance().putBackConnection(this);
-        } catch (DaoException e) {
-            e.printStackTrace();
+        } catch (ConnectionPoolException e) {
+            LOGGER.log(Level.ERROR, e);
         }
     }
 

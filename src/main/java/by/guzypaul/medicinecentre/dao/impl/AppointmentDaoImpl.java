@@ -1,7 +1,7 @@
 package by.guzypaul.medicinecentre.dao.impl;
 
 import by.guzypaul.medicinecentre.dao.interfaces.AppointmentDao;
-import by.guzypaul.medicinecentre.dao.exception.DaoException;
+import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.mapper.DaoAppointmentMapper;
 import by.guzypaul.medicinecentre.entity.Appointment;
 

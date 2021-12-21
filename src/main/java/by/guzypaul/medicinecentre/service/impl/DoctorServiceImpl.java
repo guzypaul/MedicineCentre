@@ -1,6 +1,6 @@
 package by.guzypaul.medicinecentre.service.impl;
 
-import by.guzypaul.medicinecentre.dao.exception.DaoException;
+import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.interfaces.DoctorDao;
 import by.guzypaul.medicinecentre.entity.Doctor;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
