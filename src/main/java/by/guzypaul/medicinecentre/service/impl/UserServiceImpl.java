@@ -23,9 +23,7 @@ public class UserServiceImpl implements UserService {
     public List<User> readAll() throws ServiceException {
         logger.log(Level.DEBUG, "readAll");
         try {
-            List<User> users;
-            users = userDao.readAll();
-            return users;
+            return userDao.readAll();
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -35,9 +33,7 @@ public class UserServiceImpl implements UserService {
     public User readById(String id) throws ServiceException {
         logger.log(Level.DEBUG, "readById(), User id:" + id);
         try {
-            User user;
-            user = userDao.readById(Integer.parseInt(id));
-            return user;
+            return userDao.readById(Integer.parseInt(id));
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

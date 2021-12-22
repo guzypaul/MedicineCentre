@@ -10,9 +10,6 @@ public class ProcedureValidator {
     private static final String SPECIAL_CHAR_REGEX = "[.[^<>]]{1,1000}";
     private static final BigDecimal MAX_PRICE_VALUE = new BigDecimal("100000");
     private static final BigDecimal MIN_PRICE_VALUE = new BigDecimal("1");
-    /*private static final Pattern DURATION_REGEX = Pattern.compile("([-+]?)P(?:([-+]?[0-9]+)D)?" +
-                    "(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?",
-            Pattern.CASE_INSENSITIVE);*/
 
     public boolean validateProcedure(Procedure procedure) {
         return procedure != null && isValidName(procedure.getName())
@@ -20,7 +17,7 @@ public class ProcedureValidator {
                 && isValidDescription(procedure.getDescription());
     }
 
-    /*private boolean isValidDuration(Duration duration) {
+    /*private boolean isValidDuration(Duration duration) { //todo 5min<...<5Hours
         if (duration == null) {
             return false;
         }

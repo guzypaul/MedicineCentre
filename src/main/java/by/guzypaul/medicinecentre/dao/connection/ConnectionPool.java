@@ -61,12 +61,12 @@ public class ConnectionPool {
     public void initializeConnectionPool(int connectionsNumber) throws ConnectionPoolException, ConnectionPoolException {
         try {
             CONNECTION_LOCK.lock();
-
+            Class.forName(propertiesReader.readDriverName());
             for (int i = 0; i < connectionsNumber; i++) {
                 freeConnections.push(new ProxyConnection(DriverManager.getConnection(propertiesReader.readURL(),
                         propertiesReader.getProperties())));
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new ConnectionPoolException(e);
         } finally {
             CONNECTION_LOCK.unlock();

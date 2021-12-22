@@ -1,6 +1,7 @@
 package by.guzypaul.medicinecentre.service.impl;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
+import by.guzypaul.medicinecentre.dao.DaoFactory;
 import by.guzypaul.medicinecentre.dao.impl.ProcedureDaoImpl;
 import by.guzypaul.medicinecentre.dao.interfaces.AppointmentDao;
 import by.guzypaul.medicinecentre.entity.Appointment;
@@ -17,16 +18,14 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final AppointmentDao appointmentDao;
 
     public AppointmentServiceImpl(AppointmentDao appointmentDao, ProcedureDaoImpl procedureDao) {
-        this.appointmentDao = appointmentDao;
+        this.appointmentDao = DaoFactory.getInstance().getAppointmentDao();
     }
 
     @Override
     public List<Appointment> readAll() throws ServiceException {
         logger.log(Level.DEBUG, "readAll");
         try {
-            List<Appointment> appointments;
-            appointments = appointmentDao.readAll();
-            return appointments;
+            return appointmentDao.readAll();
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

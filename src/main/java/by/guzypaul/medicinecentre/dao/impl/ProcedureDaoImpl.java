@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProcedureDaoImpl implements ProcedureDao {
-    private static final String READ_ALL_PROCEDURE_SQL = "SELECT procedures.id AS procedure_id, procedures.name, " +
-            "procedures.description, procedures.duration, procedures.price, " +
+    private static final String READ_ALL_PROCEDURE_SQL = "SELECT procedures.id AS procedure_id, " +
+            "procedures.name AS procedure_name, procedures.description, procedures.duration, procedures.price, " +
             "procedures.image_name FROM procedures";
-    private static final String READ_PROCEDURE_BY_ID_SQL = "SELECT procedures.id AS procedure_id, procedures.name, " +
-            "procedures.description, procedures.duration, procedures.price, " +
+    private static final String READ_PROCEDURE_BY_ID_SQL = "SELECT procedures.id AS procedure_id, " +
+            "procedures.name AS procedure_name, procedures.description, procedures.duration, procedures.price, " +
             "procedures.image_name FROM procedures WHERE procedures.id = ?";
     private static final String DELETE_PROCEDURE_BY_ID_SQL = "DELETE FROM procedures WHERE procedures.id = ?";
     private static final String CREATE_PROCEDURE_BY_ID_SQL = "INSERT INTO procedures (procedures.name," +

@@ -23,9 +23,7 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     public List<DoctorSchedule> readAll() throws ServiceException {
         logger.log(Level.DEBUG, "readAll");
         try {
-            List<DoctorSchedule> doctorSchedules;
-            doctorSchedules = doctorScheduleDao.readAll();
-            return doctorSchedules;
+            return doctorScheduleDao.readAll();
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -35,9 +33,7 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     public DoctorSchedule readById(String id) throws ServiceException {
         logger.log(Level.DEBUG, "readById(), DoctorSchedule id:" + id);
         try {
-            DoctorSchedule doctorSchedule;
-            doctorSchedule = doctorScheduleDao.readById(Integer.parseInt(id));
-            return doctorSchedule;
+            return doctorScheduleDao.readById(Integer.parseInt(id));
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

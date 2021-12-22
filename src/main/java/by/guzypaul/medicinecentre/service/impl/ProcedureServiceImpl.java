@@ -15,6 +15,7 @@ import java.util.List;
 
 public class ProcedureServiceImpl implements ProcedureService {
     private static final Logger logger = LogManager.getLogger();
+    private static final String INVALID_PROCEDURE = "Invalid procedure!";
     private final ProcedureDao procedureDao;
     private final ProcedureValidator procedureValidator;
 
@@ -61,7 +62,7 @@ public class ProcedureServiceImpl implements ProcedureService {
                 return procedureDao.create(entity);
             }
 
-            throw new ServiceException("Invalid procedure!"); //todo constant
+            throw new ServiceException(INVALID_PROCEDURE);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -74,7 +75,7 @@ public class ProcedureServiceImpl implements ProcedureService {
             if(procedureValidator.validateProcedure(entity)) {
                 return procedureDao.update(entity);
             }
-            throw new ServiceException("Invalid procedure!"); //todo constant
+            throw new ServiceException(INVALID_PROCEDURE);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

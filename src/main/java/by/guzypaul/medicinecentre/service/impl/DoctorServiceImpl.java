@@ -23,9 +23,7 @@ public class DoctorServiceImpl implements DoctorService {
     public List<Doctor> readAll() throws ServiceException {
         logger.log(Level.DEBUG, "readAll");
         try {
-            List<Doctor> doctors;
-            doctors = doctorDao.readAll();
-            return doctors;
+            return doctorDao.readAll();
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -35,9 +33,7 @@ public class DoctorServiceImpl implements DoctorService {
     public Doctor readById(String id) throws ServiceException {
         logger.log(Level.DEBUG, "readById(), Doctor id:" + id);
         try {
-            Doctor doctor;
-            doctor = doctorDao.readById(Integer.parseInt(id));
-            return doctor;
+            return doctorDao.readById(Integer.parseInt(id));
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

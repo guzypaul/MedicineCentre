@@ -7,6 +7,7 @@ import java.util.Properties;
 public class DataBasePropertiesReader {
     private static final String URL = "C:\\Users\\skysnaker\\IdeaProjects\\MedicineCentre\\src\\main\\resources\\data_base.properties";
     private static final String URL_KEY = "url";
+    private static final String DRIVER_NAME = "driverName";
     private final Properties properties;
 
     public DataBasePropertiesReader() throws DataBasePropertiesReaderException {
@@ -25,5 +26,9 @@ public class DataBasePropertiesReader {
 
     public String readURL() {
         return properties.getProperty(URL_KEY);
+    }
+
+    public String readDriverName(){
+        return properties.getProperty(DRIVER_NAME);
     }
 }
