@@ -5,12 +5,12 @@ import by.guzypaul.medicinecentre.service.exception.ServiceException;
 
 import java.util.List;
 
-public interface BaseService<K, T extends Entity> {
+public interface BaseService<T extends Entity> {
     List<T> readAll() throws ServiceException;
 
-    T readById(K id) throws ServiceException;
+    T readById(String id) throws ServiceException;
 
-    boolean deleteById(K id) throws ServiceException;
+    boolean deleteById(String id) throws ServiceException;
 
     boolean create(T entity) throws ServiceException;
 

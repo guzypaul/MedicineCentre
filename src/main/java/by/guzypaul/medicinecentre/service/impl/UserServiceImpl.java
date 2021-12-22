@@ -32,11 +32,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User readById(Integer id) throws ServiceException {
+    public User readById(String id) throws ServiceException {
         logger.log(Level.DEBUG, "readById(), User id:" + id);
         try {
             User user;
-            user = userDao.readById(id);
+            user = userDao.readById(Integer.parseInt(id));
             return user;
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -44,10 +44,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteById(Integer id) throws ServiceException {
+    public boolean deleteById(String id) throws ServiceException {
         logger.log(Level.DEBUG, "delete User id:" + id);
         try {
-            return userDao.deleteById(id);
+            return userDao.deleteById(Integer.parseInt(id));
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

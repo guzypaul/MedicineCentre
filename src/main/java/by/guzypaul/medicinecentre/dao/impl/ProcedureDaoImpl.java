@@ -1,8 +1,10 @@
 package by.guzypaul.medicinecentre.dao.impl;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
-import by.guzypaul.medicinecentre.dao.mapper.DaoProcedureMapper;
+import by.guzypaul.medicinecentre.dao.connection.ConnectionPool;
+import by.guzypaul.medicinecentre.dao.connection.ConnectionPoolException;
 import by.guzypaul.medicinecentre.dao.interfaces.ProcedureDao;
+import by.guzypaul.medicinecentre.dao.mapper.DaoProcedureMapper;
 import by.guzypaul.medicinecentre.entity.Procedure;
 
 import java.sql.*;
@@ -24,11 +26,11 @@ public class ProcedureDaoImpl implements ProcedureDao {
             " description = ?, duration = ?, price = ?, image_name = ? " +
             "WHERE procedures.id = ?";
     private final DaoProcedureMapper daoProcedureMapper = new DaoProcedureMapper();
-    private Connection connection;
 
     @Override
     public List<Procedure> readAll() throws DaoException {
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(READ_ALL_PROCEDURE_SQL);
             List<Procedure> procedureList = new ArrayList<>();
             while (resultSet.next()) {
@@ -36,50 +38,54 @@ public class ProcedureDaoImpl implements ProcedureDao {
             }
 
             return procedureList;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public Procedure readById(Integer id) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(READ_PROCEDURE_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(READ_PROCEDURE_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             return daoProcedureMapper.mapProcedure(resultSet);
 
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean deleteById(Integer id) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PROCEDURE_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PROCEDURE_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean create(Procedure entity) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PROCEDURE_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PROCEDURE_BY_ID_SQL)) {
             fillProcedureData(entity, preparedStatement);
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean update(Procedure entity) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PROCEDURE_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PROCEDURE_BY_ID_SQL)) {
             fillProcedureData(entity, preparedStatement);
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
@@ -91,9 +97,5 @@ public class ProcedureDaoImpl implements ProcedureDao {
         preparedStatement.setBigDecimal(4, entity.getPrice());
         preparedStatement.setString(5, entity.getImageName());
         preparedStatement.setInt(6, entity.getId());
-    }
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
     }
 }

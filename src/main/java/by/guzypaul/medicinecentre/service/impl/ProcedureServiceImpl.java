@@ -1,6 +1,7 @@
 package by.guzypaul.medicinecentre.service.impl;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
+import by.guzypaul.medicinecentre.dao.DaoFactory;
 import by.guzypaul.medicinecentre.dao.interfaces.ProcedureDao;
 import by.guzypaul.medicinecentre.entity.Procedure;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
@@ -15,40 +16,38 @@ import java.util.List;
 public class ProcedureServiceImpl implements ProcedureService {
     private static final Logger logger = LogManager.getLogger();
     private final ProcedureDao procedureDao;
+    private final ProcedureValidator procedureValidator;
 
-    public ProcedureServiceImpl(ProcedureDao procedureDao) {
-        this.procedureDao = procedureDao;
+    public ProcedureServiceImpl() {
+        this.procedureDao = DaoFactory.getInstance().getProcedureDao();
+        this.procedureValidator = new ProcedureValidator();
     }
 
     @Override
     public List<Procedure> readAll() throws ServiceException {
         logger.log(Level.DEBUG, "readAll()");
         try {
-            List<Procedure> procedures;
-            procedures = procedureDao.readAll();
-            return procedures;
+            return procedureDao.readAll();
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
     }
 
     @Override
-    public Procedure readById(Integer id) throws ServiceException {
+    public Procedure readById(String id) throws ServiceException {
         logger.log(Level.DEBUG, "readById(), procedure id:" + id);
         try {
-            Procedure procedure;
-            procedure = procedureDao.readById(id);
-            return procedure;
+            return procedureDao.readById(Integer.parseInt(id));
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
     }
 
     @Override
-    public boolean deleteById(Integer id) throws ServiceException {
+    public boolean deleteById(String id) throws ServiceException {
         logger.log(Level.DEBUG, "deleteById(), procedure id:" + id);
         try {
-            return procedureDao.deleteById(id);
+            return procedureDao.deleteById(Integer.parseInt(id));
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -58,7 +57,11 @@ public class ProcedureServiceImpl implements ProcedureService {
     public boolean create(Procedure entity) throws ServiceException {
         logger.log(Level.DEBUG, "create() " + entity);
         try {
-            return procedureDao.create(entity);
+            if(procedureValidator.validateProcedure(entity)) {
+                return procedureDao.create(entity);
+            }
+
+            throw new ServiceException("Invalid procedure!"); //todo constant
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -68,32 +71,12 @@ public class ProcedureServiceImpl implements ProcedureService {
     public boolean update(Procedure entity) throws ServiceException {
         logger.log(Level.DEBUG, "update() " + entity);
         try {
-            return procedureDao.update(entity);
+            if(procedureValidator.validateProcedure(entity)) {
+                return procedureDao.update(entity);
+            }
+            throw new ServiceException("Invalid procedure!"); //todo constant
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
-    }
-
-    @Override
-    public boolean checkData(Procedure entity) {
-        boolean isValid = true;
-
-        if (!ProcedureValidator.isValidDuration(entity.getDuration())) {
-            isValid = false;
-        }
-        if (!ProcedureValidator.isValidName(entity.getName())) {
-            isValid = false;
-        }
-        if (!ProcedureValidator.isValidImageName(entity.getImageName())) {
-            isValid = false;
-        }
-        if (!ProcedureValidator.isValidPrice(entity.getPrice())) {
-            isValid = false;
-        }
-        if (!ProcedureValidator.isValidDescription(entity.getDescription())) {
-            isValid = false;
-        }
-
-        return isValid;
     }
 }

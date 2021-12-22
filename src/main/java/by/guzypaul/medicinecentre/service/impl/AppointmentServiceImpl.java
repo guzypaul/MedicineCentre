@@ -33,11 +33,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment readById(Integer id) throws ServiceException {
+    public Appointment readById(String id) throws ServiceException {
         logger.log(Level.DEBUG, "readById(), Appointment id:" + id);
         try {
             Appointment appointment;
-            appointment = appointmentDao.readById(id);
+            appointment = appointmentDao.readById(Integer.parseInt(id));
             return appointment;
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -45,10 +45,10 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public boolean deleteById(Integer id) throws ServiceException {
+    public boolean deleteById(String id) throws ServiceException {
         logger.log(Level.DEBUG, "delete Appointment id:" + id);
         try {
-            return appointmentDao.deleteById(id);
+            return appointmentDao.deleteById(Integer.parseInt(id));
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

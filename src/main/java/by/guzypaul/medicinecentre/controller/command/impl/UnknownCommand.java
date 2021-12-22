@@ -1,7 +1,6 @@
 package by.guzypaul.medicinecentre.controller.command.impl;
 
 import by.guzypaul.medicinecentre.controller.command.Command;
-import by.guzypaul.medicinecentre.controller.command.PagePath;
 import by.guzypaul.medicinecentre.controller.command.Router;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

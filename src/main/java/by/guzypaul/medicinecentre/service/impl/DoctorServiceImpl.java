@@ -32,11 +32,11 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public Doctor readById(Integer id) throws ServiceException {
+    public Doctor readById(String id) throws ServiceException {
         logger.log(Level.DEBUG, "readById(), Doctor id:" + id);
         try {
             Doctor doctor;
-            doctor = doctorDao.readById(id);
+            doctor = doctorDao.readById(Integer.parseInt(id));
             return doctor;
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -44,10 +44,10 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public boolean deleteById(Integer id) throws ServiceException {
+    public boolean deleteById(String id) throws ServiceException {
         logger.log(Level.DEBUG, "delete Doctor id:" + id);
         try {
-            return doctorDao.deleteById(id);
+            return doctorDao.deleteById(Integer.parseInt(id));
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
