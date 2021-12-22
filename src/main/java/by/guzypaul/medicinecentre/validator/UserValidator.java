@@ -1,5 +1,6 @@
 package by.guzypaul.medicinecentre.validator;
 
+import by.guzypaul.medicinecentre.entity.User;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +13,10 @@ public class UserValidator {
     private static final String EMAIL_REGEX = "\\w+@\\p{Alpha}+\\.\\p{Alpha}{2,}";
     private static final String NAME_REGEX = "[\\p{Alpha}А-Яа-я\\s-]{1,15}";
     private static final String PASSWORD_REGEX = "[a-zA-Z\\d]{1,15}";
+
+    public boolean validateUser(User user) {
+        return user != null;
+    }
 
     public static boolean isValidName(String name) {
         logger.log(Level.DEBUG, "name: " + name);

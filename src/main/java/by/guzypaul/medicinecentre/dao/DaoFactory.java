@@ -27,9 +27,7 @@ public class DaoFactory {
         return procedureDao;
     }
 
-    public UserDao getUserDao() {
-        return userDao;
-    }
+    public UserDao getUserDao() {return userDao; }
 
     public DoctorDao getDoctorDao() {
         return doctorDao;

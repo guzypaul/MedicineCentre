@@ -1,6 +1,8 @@
 package by.guzypaul.medicinecentre.dao.impl;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
+import by.guzypaul.medicinecentre.dao.connection.ConnectionPool;
+import by.guzypaul.medicinecentre.dao.connection.ConnectionPoolException;
 import by.guzypaul.medicinecentre.dao.mapper.DaoUserMapper;
 import by.guzypaul.medicinecentre.dao.interfaces.UserDao;
 import by.guzypaul.medicinecentre.entity.User;
@@ -25,11 +27,11 @@ public class UserDaoImpl implements UserDao {
             "WHERE users.id = ?";
 
     private final DaoUserMapper daoUserMapper = new DaoUserMapper();
-    private Connection connection;
 
     @Override
     public List<User> readAll() throws DaoException {
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(READ_ALL_USER_SQL);
             List<User> userList = new ArrayList<>();
             while (resultSet.next()) {
@@ -37,51 +39,58 @@ public class UserDaoImpl implements UserDao {
             }
 
             return userList;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public User readById(Integer id) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(READ_USER_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(READ_USER_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            return daoUserMapper.mapUser(resultSet);
 
-        } catch (SQLException throwables) {
+            return daoUserMapper.mapUser(resultSet);
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean deleteById(Integer id) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
+
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean create(User entity) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_USER_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_USER_BY_ID_SQL)) {
             fillUserData(entity, preparedStatement);
+
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean update(User entity) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_BY_ID_SQL)) {
             fillUserData(entity, preparedStatement);
             preparedStatement.setInt(7, entity.getId());
+
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
@@ -93,9 +102,5 @@ public class UserDaoImpl implements UserDao {
         preparedStatement.setString(4, entity.getEmail());
         preparedStatement.setString(5, entity.getPhone());
         preparedStatement.setString(6, entity.getRole());
-    }
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
     }
 }

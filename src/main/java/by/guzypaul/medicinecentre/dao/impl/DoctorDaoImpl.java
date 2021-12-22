@@ -1,6 +1,8 @@
 package by.guzypaul.medicinecentre.dao.impl;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
+import by.guzypaul.medicinecentre.dao.connection.ConnectionPool;
+import by.guzypaul.medicinecentre.dao.connection.ConnectionPoolException;
 import by.guzypaul.medicinecentre.dao.mapper.DaoDoctorMapper;
 import by.guzypaul.medicinecentre.dao.interfaces.DoctorDao;
 import by.guzypaul.medicinecentre.entity.Doctor;
@@ -23,11 +25,11 @@ public class DoctorDaoImpl implements DoctorDao {
             " rank = ?, doctor_info = ? WHERE doctors.id = ?";
 
     private final DaoDoctorMapper daoDoctorMapper = new DaoDoctorMapper();
-    private Connection connection;
 
     @Override
     public List<Doctor> readAll() throws DaoException {
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(READ_ALL_DOCTOR_SQL);
             List<Doctor> doctorList = new ArrayList<>();
             while (resultSet.next()) {
@@ -35,51 +37,58 @@ public class DoctorDaoImpl implements DoctorDao {
             }
 
             return doctorList;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public Doctor readById(Integer id) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(READ_DOCTOR_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(READ_DOCTOR_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            return daoDoctorMapper.mapDoctor(resultSet);
 
-        } catch (SQLException throwables) {
+            return daoDoctorMapper.mapDoctor(resultSet);
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean deleteById(Integer id) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_DOCTOR_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_DOCTOR_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
+
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean create(Doctor entity) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_DOCTOR_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_DOCTOR_BY_ID_SQL)) {
             fillDoctorData(entity, preparedStatement);
+
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean update(Doctor entity) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DOCTOR_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DOCTOR_BY_ID_SQL)) {
             fillDoctorData(entity, preparedStatement);
+
             preparedStatement.setInt(4, entity.getId());
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
@@ -88,9 +97,5 @@ public class DoctorDaoImpl implements DoctorDao {
         preparedStatement.setString(1, entity.getQualification());
         preparedStatement.setString(2, entity.getRank());
         preparedStatement.setInt(3, entity.getDoctorInfo().getId());
-    }
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
     }
 }

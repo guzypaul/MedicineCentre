@@ -1,5 +1,7 @@
 package by.guzypaul.medicinecentre.dao.impl;
 
+import by.guzypaul.medicinecentre.dao.connection.ConnectionPool;
+import by.guzypaul.medicinecentre.dao.connection.ConnectionPoolException;
 import by.guzypaul.medicinecentre.dao.interfaces.AppointmentDao;
 import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.mapper.DaoAppointmentMapper;
@@ -49,11 +51,11 @@ public class AppointmentDaoImpl implements AppointmentDao {
             "WHERE appointments.id = ?";
 
     private final DaoAppointmentMapper daoAppointmentMapper = new DaoAppointmentMapper();
-    private Connection connection;
 
     @Override
     public List<Appointment> readAll() throws DaoException {
-        try (Statement statement = connection.createStatement()) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(READ_ALL_APPOINTMENT_SQL);
             List<Appointment> appointmentList = new ArrayList<>();
             while (resultSet.next()) {
@@ -61,51 +63,58 @@ public class AppointmentDaoImpl implements AppointmentDao {
             }
 
             return appointmentList;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public Appointment readById(Integer id) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(READ_APPOINTMENT_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(READ_APPOINTMENT_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            return daoAppointmentMapper.mapAppointment(resultSet);
 
-        } catch (SQLException throwables) {
+            return daoAppointmentMapper.mapAppointment(resultSet);
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean deleteById(Integer id) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_APPOINTMENT_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_APPOINTMENT_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
+
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean create(Appointment entity) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_APPOINTMENT_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_APPOINTMENT_BY_ID_SQL)) {
             fillAppointmentData(entity, preparedStatement);
+
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
 
     @Override
     public boolean update(Appointment entity) throws DaoException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_APPOINTMENT_BY_ID_SQL)) {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_APPOINTMENT_BY_ID_SQL)) {
             fillAppointmentData(entity, preparedStatement);
             preparedStatement.setInt(8, entity.getId());
+
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }
     }
@@ -118,10 +127,5 @@ public class AppointmentDaoImpl implements AppointmentDao {
         preparedStatement.setTime(5, entity.getEndTime());
         preparedStatement.setInt(6, entity.getProcedure().getId());
         preparedStatement.setString(7, entity.getStatus());
-
-    }
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
     }
 }
