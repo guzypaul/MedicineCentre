@@ -33,7 +33,7 @@ public enum CommandFactory {
         return Arrays.stream(CommandFactory.values())
                 .filter(currentCommand -> currentCommand.getCommandName().toUpperCase().equals(command.toUpperCase()))
                 .findFirst()
-                .map(CommandFactory::getCommand)//todo remeber & understand
+                .map(CommandFactory::getCommand)
                 .orElseThrow(() -> new CommandException("Invalid command"));
     }
 }

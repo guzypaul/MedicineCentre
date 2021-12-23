@@ -1,48 +1,47 @@
 package by.guzypaul.medicinecentre.validator;
 
 import by.guzypaul.medicinecentre.entity.User;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Arrays;
 
 public class UserValidator {
-    public static final Logger logger = LogManager.getLogger();
+    private enum Role {
+        ADMIN, USER, MODERATOR
+    }
+
     private static final String EMAIL_REGEX = "\\w+@\\p{Alpha}+\\.\\p{Alpha}{2,}";
-    private static final String NAME_REGEX = "[\\p{Alpha}А-Яа-я\\s-]{1,15}";
-    private static final String PASSWORD_REGEX = "[a-zA-Z\\d]{1,15}";
 
     public boolean validateUser(User user) {
-        return user != null;
+        return user != null && isValidName(user.getName())
+                && isValidSurname(user.getSurname())
+                && isValidEmail(user.getEmail())
+                && isValidPassword(user.getPassword())
+                && isValidPhone(user.getPhone())
+                && isValidRole(user.getRole());
     }
 
-    public static boolean isValidName(String name) {
-        logger.log(Level.DEBUG, "name: " + name);
-        if (name == null || name.isEmpty()) {
-            return false;
-        }
-        return name.matches(NAME_REGEX);
+    public boolean isValidName(String name) {
+        return name != null && name.length() >= 2 && name.length() <= 30;
     }
 
-    public static boolean isValidEmail(String email) {
-        logger.log(Level.DEBUG, "email: " + email);
-        boolean isValid = true;
-        if (!email.isEmpty()) {
-            Pattern pattern = Pattern.compile(EMAIL_REGEX);
-            Matcher matcher = pattern.matcher(email);
-            isValid = matcher.matches();
-        } else {
-            isValid = false;
-        }
-        return isValid;
+    public boolean isValidSurname(String surname) {
+        return surname != null && surname.length() >= 2 && surname.length() <= 30;
     }
 
-    public static boolean isValidPassword(String password) {
-        if (password == null || password.isEmpty()) {
-            return false;
-        }
-        return password.matches(PASSWORD_REGEX);
+    public boolean isValidEmail(String email) {
+        return email != null && !email.isEmpty() && email.length() <= 45 && email.matches(EMAIL_REGEX);
+    }
+
+    public boolean isValidPassword(String password) {
+        return password != null && !password.isEmpty() && password.length() >= 4 && password.length() <= 60;
+    }
+
+    public boolean isValidPhone(String phone) {
+        return phone != null && !phone.isEmpty() && phone.length() <= 15;
+    }
+
+    public boolean isValidRole(String role) {
+        return role != null && Arrays.stream(UserValidator.Role.values())   //todo check
+                .anyMatch(currentRole -> currentRole.toString().toUpperCase().equals(role.toUpperCase()));
     }
 }

@@ -27,6 +27,5 @@ public class Main {
 
         /*AppointmentDaoImpl appointmentDao = new AppointmentDaoImpl();
         System.out.println(appointmentDao.readAll());*/
-
     }
 }
