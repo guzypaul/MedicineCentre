@@ -30,7 +30,7 @@ public class Controller extends HttpServlet {
             } else {
                 resp.sendRedirect(req.getContextPath() + router.getPagePath());
             }
-        } catch (CommandException e) {
+        } catch (CommandException | NumberFormatException e) {
             logger.log(Level.ERROR, e);
         }
     }

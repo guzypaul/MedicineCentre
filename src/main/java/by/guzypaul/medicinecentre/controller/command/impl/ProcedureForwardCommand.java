@@ -9,18 +9,18 @@ import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class ProcedurePageForwardCommand implements Command {
+public class ProcedureForwardCommand implements Command {
     private final ProcedureService procedureService;
 
-    public ProcedurePageForwardCommand() {
+    public ProcedureForwardCommand() {
         procedureService = ServiceFactory.getInstance().getProcedureService();
     }
 
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         try {
-            request.setAttribute("procedureList", procedureService.readAll());
-            return new Router("/jsp/procedures.jsp", Router.Type.FORWARD);
+            request.setAttribute("procedure", procedureService.readById(request.getParameter("procedureId")));
+            return new Router("/jsp/procedure_page.jsp", Router.Type.FORWARD);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
