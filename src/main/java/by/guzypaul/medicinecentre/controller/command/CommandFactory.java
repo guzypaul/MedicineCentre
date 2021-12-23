@@ -28,7 +28,7 @@ public enum CommandFactory {
 
     public static Command findCommand(HttpServletRequest request) throws CommandException {
         String command = request.getParameter("command");
-        if(command == null) {
+        if (command == null) {
             throw new CommandException("Command is null");
         }
 
