@@ -122,7 +122,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
     private void fillAppointmentData(Appointment entity, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setInt(1, entity.getUserClient().getId());
         preparedStatement.setInt(2, entity.getDoctor().getId());
-        preparedStatement.setDate(3, (Date) entity.getDate());
+        preparedStatement.setDate(3, Date.valueOf(entity.getDate()));
         preparedStatement.setTime(4, entity.getStartTime());
         preparedStatement.setTime(5, entity.getEndTime());
         preparedStatement.setInt(6, entity.getProcedure().getId());

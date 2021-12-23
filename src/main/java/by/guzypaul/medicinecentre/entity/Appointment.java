@@ -1,14 +1,14 @@
 package by.guzypaul.medicinecentre.entity;
 
 import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Appointment implements Entity {
     private int id;
     private User userClient;
     private Doctor doctor;
-    private Date date;
+    private LocalDate date;
     private Time startTime;
     private Time endTime;
     private Procedure procedure;
@@ -17,7 +17,7 @@ public class Appointment implements Entity {
     public Appointment() {
     }
 
-    public Appointment(User userClient, Doctor doctor, Date date, Time startTime, Time endTime, Procedure procedure, String status) {
+    public Appointment(User userClient, Doctor doctor, LocalDate date, Time startTime, Time endTime, Procedure procedure, String status) {
         this.userClient = userClient;
         this.doctor = doctor;
         this.date = date;
@@ -27,7 +27,7 @@ public class Appointment implements Entity {
         this.status = status;
     }
 
-    public Appointment(int id, User userClient, Doctor doctor, Date date, Time startTime, Time endTime, Procedure procedure, String status) {
+    public Appointment(int id, User userClient, Doctor doctor, LocalDate date, Time startTime, Time endTime, Procedure procedure, String status) {
         this.id = id;
         this.userClient = userClient;
         this.doctor = doctor;
@@ -70,11 +70,11 @@ public class Appointment implements Entity {
         this.procedure = procedure;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

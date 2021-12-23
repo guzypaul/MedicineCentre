@@ -2,14 +2,10 @@ package by.guzypaul.medicinecentre.validator;
 
 import by.guzypaul.medicinecentre.entity.User;
 
-import java.util.Arrays;
-
 public class UserValidator {
-    private enum Role {
-        ADMIN, USER, MODERATOR
-    }
 
-    private static final String EMAIL_REGEX = "\\w+@\\p{Alpha}+\\.\\p{Alpha}{2,}";
+    private static final String EMAIL_REGEX = "^([а-яa-z0-9_-]+\\.)*[а-яa-z0-9_-]+@[а-яa-z0-9_-]" +
+            "+(\\.[а-яa-z0-9_-]+)*\\.[а-яa-z]{2,6}$";
 
     public boolean validateUser(User user) {
         return user != null && isValidName(user.getName())
@@ -20,28 +16,27 @@ public class UserValidator {
                 && isValidRole(user.getRole());
     }
 
-    public boolean isValidName(String name) {
+    private boolean isValidName(String name) {
         return name != null && name.length() >= 2 && name.length() <= 30;
     }
 
-    public boolean isValidSurname(String surname) {
+    private boolean isValidSurname(String surname) {
         return surname != null && surname.length() >= 2 && surname.length() <= 30;
     }
 
-    public boolean isValidEmail(String email) {
-        return email != null && !email.isEmpty() && email.length() <= 45 && email.matches(EMAIL_REGEX);
+    private boolean isValidEmail(String email) {
+        return email != null && email.matches(EMAIL_REGEX);
     }
 
-    public boolean isValidPassword(String password) {
-        return password != null && !password.isEmpty() && password.length() >= 4 && password.length() <= 60;
+    private boolean isValidPassword(String password) {
+        return password != null && password.length() >= 4 && password.length() <= 60;
     }
 
-    public boolean isValidPhone(String phone) {
+    private boolean isValidPhone(String phone) {
         return phone != null && !phone.isEmpty() && phone.length() <= 15;
     }
 
-    public boolean isValidRole(String role) {
-        return role != null && Arrays.stream(UserValidator.Role.values())   //todo check
-                .anyMatch(currentRole -> currentRole.toString().toUpperCase().equals(role.toUpperCase()));
+    private boolean isValidRole(String role) {
+        return role != null && !role.isEmpty() && role.length() <= 25;
     }
 }

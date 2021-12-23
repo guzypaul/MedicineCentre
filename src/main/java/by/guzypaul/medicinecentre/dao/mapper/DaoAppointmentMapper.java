@@ -16,7 +16,7 @@ public class DaoAppointmentMapper {
         appointment.setId(resultSet.getInt("appointment_id"));
         appointment.setUserClient(daoClientMapper.mapClient(resultSet));
         appointment.setDoctor(daoDoctorMapper.mapDoctor(resultSet));
-        appointment.setDate(resultSet.getDate("date"));
+        appointment.setDate(resultSet.getDate("date").toLocalDate());
         appointment.setStartTime(resultSet.getTime("start_time"));
         appointment.setEndTime(resultSet.getTime("end_time"));
         appointment.setProcedure(daoProcedureMapper.mapProcedure(resultSet));

@@ -7,7 +7,7 @@ import java.time.Duration;
 
 public class ProcedureValidator {
     private static final String NAME_REGEX = "([\\p{Alpha}А-Яа-я]{1,15}[\\s-]?){0,9}";
-    private static final String IMAGE_NAME_REGEX = "[\\p{Alpha}А-Яа-я-_]{1,15}\\.jpg";
+    private static final String IMAGE_NAME_REGEX = ".+([.](jpg|gif|png|bmp))";
     private static final String DESCRIPTION_REGEX = "[.[^<>]]{1,1000}";
     private static final BigDecimal MAX_PRICE_VALUE = new BigDecimal("100000");
     private static final BigDecimal MIN_PRICE_VALUE = new BigDecimal("1");
@@ -30,14 +30,14 @@ public class ProcedureValidator {
     }
 
     private boolean isValidName(String text) {
-        return text != null && !text.isEmpty() && text.matches(NAME_REGEX);
+        return text != null && text.matches(NAME_REGEX);
     }
 
     private boolean isValidImageName(String text) {
-        return text != null && !text.isEmpty() && text.matches(IMAGE_NAME_REGEX);
+        return text != null &&  text.matches(IMAGE_NAME_REGEX);
     }
 
     private boolean isValidDescription(String text) {
-        return text != null && !text.isEmpty() && text.matches(DESCRIPTION_REGEX);
+        return text != null && text.matches(DESCRIPTION_REGEX);
     }
 }
