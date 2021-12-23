@@ -10,7 +10,6 @@ public enum CommandFactory {
     PROCEDURE_LIST(new ProcedureListForwardCommand(), "procedures"),
     PROCEDURE_PAGE(new ProcedureForwardCommand(), "procedure_page");
 
-
     private final Command command;
     private final String commandName;
 
