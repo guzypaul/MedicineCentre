@@ -12,19 +12,20 @@
     <c:import url="header.jsp"/>
     <main>
         <div class="container-fluid">
+            <div class="col-xl-2">
+                <h1 class="procedures">Procedures:</h1>
+            </div>
             <div class="row">
-                <div class="col-xl-2">
-                    <h1 class="procedures">Procedures</h1>
-                </div>
-                <div class="col-xl-1">
+                <div class="col-xl-3">
                     <c:forEach items="${procedureList}" var="procedure">
-                        <a href="${procedurePage}${procedure.id}"><p><c:out value="${procedure.name}"/></p></a>
+                        <c:out value="${procedure.name}"/>
+                        <a href="${procedurePage}${procedure.id}">
                         <img src="${imgPath}${procedure.imageName}" class="img-fluid"
-                             alt="<c:out value="${procedure.name}"/>">
+                             alt="<c:out value="${procedure.name}"/>"></a></p>
                     </c:forEach>
                 </div>
             </div>
         </div>
     </main>
-    </body>
-</html>
+    <c:import url="footer.jsp"/>
+

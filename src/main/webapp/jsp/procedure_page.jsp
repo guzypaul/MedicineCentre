@@ -13,13 +13,14 @@
     <main>
         <div class="container-fluid">
             <h1><c:out value="${procedure.name}"/></h1>
+            <img src="${imgPath}${procedure.imageName}" class="img-fluid"
+                 alt="<c:out value="${procedure.name}"/>">
             <br/>
             <h4>Описание: <c:out value="${procedure.description}"/></h4><br/>
             <h4>Длительность: <c:out value="${procedure.duration}"/></h4><br/>
             <h4>Стоимость: <c:out value="${procedure.price}"/></h4><br/>
         </div>
     </main>
-    </body>
-</html>
+    <c:import url="footer.jsp"/>
 
 
