@@ -2,15 +2,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:url var="procedurePage" value="/controller?command=procedure_page&procedureId="/>
+<c:url var="cssFilePath" value="/css/style.css"/>
+<c:url var="imgPath" value="/download/"/>
+
 <html>
-    <head>
-        <title><c:out value="${procedure.name}"/></title>
-    </head>
-    <body>
-        <h1><c:out value="${procedure.name}"/></h1>
-        <br/>
-        <h4>Описание: <c:out value="${procedure.description}"/></h4><br/>
-        <h4>Длительность: <c:out value="${procedure.duration}"/></h4><br/>
-        <h4>Стоимость: <c:out value="${procedure.price}"/></h4><br/>
+<head>
+    <title><c:out value="${procedure.name}"/></title>
+    <c:import url="header.jsp"/>
+    <main>
+        <div class="container-fluid">
+            <h1><c:out value="${procedure.name}"/></h1>
+            <br/>
+            <h4>Описание: <c:out value="${procedure.description}"/></h4><br/>
+            <h4>Длительность: <c:out value="${procedure.duration}"/></h4><br/>
+            <h4>Стоимость: <c:out value="${procedure.price}"/></h4><br/>
+        </div>
+    </main>
     </body>
 </html>
+
+
