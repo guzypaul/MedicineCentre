@@ -7,6 +7,7 @@ import by.guzypaul.medicinecentre.entity.User;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.UserService;
 import by.guzypaul.medicinecentre.validator.UserValidator;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
 
@@ -51,6 +52,7 @@ public class UserServiceImpl implements UserService {
     public boolean create(User entity) throws ServiceException {
         try {
             if (userValidator.validateUser(entity)) {
+                entity.setPassword(BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()));
                 return userDao.create(entity);
             }
             throw new ServiceException(INVALID_USER);

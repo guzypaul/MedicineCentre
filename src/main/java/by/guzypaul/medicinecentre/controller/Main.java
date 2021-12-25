@@ -22,11 +22,10 @@ public class Main {
       /*  ProcedureDaoImpl procedureDao = new ProcedureDaoImpl();
         System.out.println(procedureDao.readAll());*/
 
-        /*UserDaoImpl userDao = new UserDaoImpl();
-        System.out.println(userDao.readAll());*/
 
         /*AppointmentDaoImpl appointmentDao = new AppointmentDaoImpl();
         System.out.println(appointmentDao.readAll());*/
+
 
     }
 }

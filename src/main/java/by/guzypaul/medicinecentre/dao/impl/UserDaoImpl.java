@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-    private static final String READ_ALL_USER_SQL = "SELECT users.id AS user_id, users.name, " +
+    private static final String READ_ALL_USER_SQL = "SELECT users.id AS user_id, users.name AS user_name, " +
             "users.surname, users.password, users.email, " +
             "users.phone, users.role FROM users";
-    private static final String READ_USER_BY_ID_SQL = "SELECT users.id, users.name, " +
+    private static final String READ_USER_BY_ID_SQL = "SELECT users.id, users.name AS user_name, " +
             "users.surname, users.password, users.email, " +
             "users.phone, users.role FROM users WHERE users.id = ?";
     private static final String DELETE_USER_BY_ID_SQL = "DELETE FROM users WHERE users.id = ?";

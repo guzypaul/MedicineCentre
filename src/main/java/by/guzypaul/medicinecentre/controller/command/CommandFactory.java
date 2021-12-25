@@ -1,14 +1,18 @@
 package by.guzypaul.medicinecentre.controller.command;
 
-import by.guzypaul.medicinecentre.controller.command.impl.ProcedureForwardCommand;
-import by.guzypaul.medicinecentre.controller.command.impl.ProcedureListForwardCommand;
+import by.guzypaul.medicinecentre.controller.command.impl.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 public enum CommandFactory {
     PROCEDURE_LIST(new ProcedureListForwardCommand(), "procedures"),
-    PROCEDURE_PAGE(new ProcedureForwardCommand(), "procedure_page");
+    PROCEDURE_PAGE(new ProcedureForwardCommand(), "procedure_page"),
+    CONTACTS(new ContactsForwardCommand(), "contacts"),
+    ABOUT_US(new AboutUsCommand(), "about_us"),
+    AUTHORIZATION_PAGE(new AuthorizationPageCommand(),"authorization_page"),
+    REGISTRATION_PAGE(new RegistrationPageCommand(), "registration_page");
+
 
     private final Command command;
     private final String commandName;

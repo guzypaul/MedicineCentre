@@ -4,12 +4,17 @@
 
 <c:url var="cssFilePath" value="/css/style.css"/>
 <c:url var="procedureListPath" value="/controller?command=procedures"/>
+<c:url var="procedurePage" value="/controller?command=procedure_page&procedureId="/>
+<c:url var="contacts" value="/controller?command=contacts"/>
+<c:url var="aboutUs" value="/controller?command=about_us"/>
+<c:url var="registrationPage" value="/controller?command=registration_page"/>
+<c:url var="authorizationPage" value="/controller?command=authorization_page"/>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="${cssFilePath}"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="${cssFilePath}"/>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -28,25 +33,22 @@
                     <a class="nav-link active" aria-current="page" href="${procedureListPath}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link active" href="${contacts}">Contacts</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
+
                 <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
+                    <a class="nav-link active" href="${aboutUs}">About Us</a>
                 </li>
+                <span class="registration-indents">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="${registrationPage}">Registration</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="${authorizationPage}">SIGN IN</a>
+                        </li>
+                    </ul>
+                </span>
             </ul>
         </div>
     </div>
