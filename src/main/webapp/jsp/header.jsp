@@ -4,6 +4,7 @@
 
 <c:url var="cssFilePath" value="/css/style.css"/>
 <c:url var="procedureListPath" value="/controller?command=procedures"/>
+<c:url var="doctorListPath" value="/controller?command=doctors"/>
 <c:url var="procedurePage" value="/controller?command=procedure_page&procedureId="/>
 <c:url var="contacts" value="/controller?command=contacts"/>
 <c:url var="aboutUs" value="/controller?command=about_us"/>
@@ -16,7 +17,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="${cssFilePath}"/>
 </head>
-<body>
+<body class="body">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -30,12 +31,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${procedureListPath}">Home</a>
+                    <a class="nav-link active" aria-current="page" href="${procedureListPath}">Procedures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="${doctorListPath}">Doctors</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="${contacts}">Contacts</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link active" href="${aboutUs}">About Us</a>
                 </li>
