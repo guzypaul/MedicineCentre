@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:url var="procedurePage" value="/controller?command=procedure_page&procedureId="/>
 <c:url var="cssFilePath" value="/css/style.css"/>
 <c:url var="imgPath" value="/download/"/>
 
