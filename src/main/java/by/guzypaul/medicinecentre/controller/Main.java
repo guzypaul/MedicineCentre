@@ -16,7 +16,7 @@ public class Main {
         /*DoctorDaoImpl doctorDao = new DoctorDaoImpl();
         System.out.println(doctorDao.readAll());*/
 
-       /* DoctorScheduleDaoImpl doctorScheduleDao = new DoctorScheduleDaoImpl();
+        /*DoctorScheduleDaoImpl doctorScheduleDao = new DoctorScheduleDaoImpl();
         System.out.println(doctorScheduleDao.readAll());*/
 
       /*  ProcedureDaoImpl procedureDao = new ProcedureDaoImpl();
