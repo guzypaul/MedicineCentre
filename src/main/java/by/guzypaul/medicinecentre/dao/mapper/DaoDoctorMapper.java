@@ -13,6 +13,7 @@ public class DaoDoctorMapper {
         doctor.setQualification(resultSet.getString("qualification"));
         doctor.setRank(resultSet.getString("rank"));
         doctor.setDoctorInfo(daoUserMapper.mapUser(resultSet));
+        doctor.setPhotoName(resultSet.getString("photo_name"));
 
         return doctor;
     }

@@ -16,7 +16,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
             "appointments.date, appointments.start_time, appointments.end_time, appointments.status, " +
             "procedures.id AS procedure_id, procedures.name AS procedure_name, procedures.description, " +
             "procedures.duration, procedures.price, procedures.image_name," +
-            "doctors.id AS doctor_id, doctors.qualification, doctors.rank," +
+            "doctors.id AS doctor_id, doctors.qualification, doctors.rank, doctors.photo_name, " +
             "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
             "users.role, " +
             "client.id AS client_id, client.name AS client_name, client.surname AS client_surname, " +
@@ -31,7 +31,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
             "appointments.date, appointments.start_time, appointments.end_time, appointments.status, " +
             "procedures.id AS procedure_id, procedures.name AS procedure_name, procedures.description, " +
             "procedures.duration, procedures.price, procedures.image_name," +
-            "doctors.id AS doctor_id, doctors.qualification, doctors.rank," +
+            "doctors.id AS doctor_id, doctors.qualification, doctors.rank, doctors.photo_name, " +
             "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
             "users.role, " +
             "client.id AS client_id, client.name AS client_name, client.surname AS client_surname, " +

@@ -14,15 +14,15 @@ import java.util.List;
 public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
     private static final String READ_ALL_DOCTOR_SCHEDULE_SQL = "SELECT doctor_schedules.id AS doctor_schedules_id, " +
             "doctor_schedules.start_time, doctor_schedules.end_time, " +
-            "doctor_schedules.info, doctors.id AS doctor_id, doctors.qualification, doctors.rank, " +
-            "users.id AS user_id, users.name, users.surname, users.password, users.email, users.phone, users.role " +
+            "doctor_schedules.info, doctors.id AS doctor_id, doctors.qualification, doctors.rank, doctors.photo_name, " +
+            "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, users.role " +
             "FROM doctor_schedules INNER JOIN doctors ON doctor_schedules.doctor_id = doctors.id INNER JOIN " +
             "users ON doctors.doctor_info = users.id";
 
     private static final String READ_DOCTOR_SCHEDULE_BY_ID_SQL = "SELECT doctor_schedules.id AS doctor_schedules_id, " +
             "doctor_schedules.start_time, doctor_schedules.end_time," +
-            "doctor_schedules.info, doctors.id AS doctor_id, doctors.qualification, doctors.rank, " +
-            "users.id AS user_id, users.name, users.surname, users.password, users.email, users.phone, users.role " +
+            "doctor_schedules.info, doctors.id AS doctor_id, doctors.qualification, doctors.rank, doctors.photo_name, " +
+            "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, users.role " +
             "FROM doctor_schedules INNER JOIN doctors ON doctor_schedules.doctor_id = doctors.id INNER JOIN " +
             "users ON doctors.doctor_info = users.id WHERE doctor_schedules.id = ? ";
     private static final String DELETE_DOCTOR_SCHEDULE_BY_ID_SQL = "DELETE FROM doctor_schedules " +

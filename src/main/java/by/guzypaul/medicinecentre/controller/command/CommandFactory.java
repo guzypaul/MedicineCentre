@@ -11,7 +11,9 @@ public enum CommandFactory {
     CONTACTS(new ContactsForwardCommand(), "contacts"),
     ABOUT_US(new AboutUsCommand(), "about_us"),
     AUTHORIZATION_PAGE(new AuthorizationPageCommand(),"authorization_page"),
-    REGISTRATION_PAGE(new RegistrationPageCommand(), "registration_page");
+    REGISTRATION_PAGE(new RegistrationPageCommand(), "registration_page"),
+    DOCTOR_LIST(new DoctorListForwardCommand(), "doctors"),
+    DOCTOR_PAGE(new DoctorForwardCommand(), "doctor_page");
 
 
     private final Command command;

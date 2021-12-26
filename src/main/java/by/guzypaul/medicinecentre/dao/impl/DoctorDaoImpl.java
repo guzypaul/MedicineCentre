@@ -12,17 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DoctorDaoImpl implements DoctorDao {
-    private static final String READ_ALL_DOCTOR_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, doctors.rank," +
-            "users.id AS user_id, users.name, users.surname, users.password, users.email, users.phone, users.role " +
+    private static final String READ_ALL_DOCTOR_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, " +
+            "doctors.rank, doctors.photo_name, " +
+            "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
+            "users.role " +
             "FROM doctors INNER JOIN users ON doctors.doctor_info = users.id";
     private static final String READ_DOCTOR_BY_ID_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, " +
-            "doctors.rank, users.id AS user_id, users.name, users.surname, users.password, users.email, users.phone, " +
+            "doctors.rank, doctors.photo_name, " +
+            "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
             "users.role FROM doctors INNER JOIN users ON doctors.doctor_info = users.id WHERE doctors.id = ?";
     private static final String DELETE_DOCTOR_BY_ID_SQL = "DELETE FROM doctors WHERE doctors.id = ?";
     private static final String CREATE_DOCTOR_BY_ID_SQL = "INSERT INTO doctors (doctors.qualification, " +
-            "doctors.rank, doctors.doctor_info) VALUES (?, ?, ?)";
+            "doctors.rank, doctors.doctor_info, doctors.photo_name) VALUES (?, ?, ?, ?)";
     private static final String UPDATE_DOCTOR_BY_ID_SQL = "UPDATE doctors SET qualification = ?," +
-            " rank = ?, doctor_info = ? WHERE doctors.id = ?";
+            " rank = ?, doctor_info = ?, doctors.photo_name = ? WHERE doctors.id = ?";
 
     private final DaoDoctorMapper daoDoctorMapper = new DaoDoctorMapper();
 
@@ -86,7 +89,7 @@ public class DoctorDaoImpl implements DoctorDao {
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DOCTOR_BY_ID_SQL)) {
             fillDoctorData(entity, preparedStatement);
 
-            preparedStatement.setInt(4, entity.getId());
+            preparedStatement.setInt(5, entity.getId());
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
@@ -97,5 +100,6 @@ public class DoctorDaoImpl implements DoctorDao {
         preparedStatement.setString(1, entity.getQualification());
         preparedStatement.setString(2, entity.getRank());
         preparedStatement.setInt(3, entity.getDoctorInfo().getId());
+        preparedStatement.setString(4, entity.getPhotoName());
     }
 }

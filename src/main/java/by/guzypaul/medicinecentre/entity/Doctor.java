@@ -7,21 +7,32 @@ public class Doctor implements Entity {
     private String qualification;
     private String rank;
     private User doctorInfo;
+    private String photoName;
 
     public Doctor() {
     }
 
-    public Doctor(String qualification, String rank, User doctorInfo) {
+    public Doctor(String qualification, String rank, User doctorInfo, String photoName) {
         this.qualification = qualification;
         this.rank = rank;
         this.doctorInfo = doctorInfo;
+        this.photoName = photoName;
     }
 
-    public Doctor(int id, String qualification, String rank, User doctorInfo) {
+    public Doctor(int id, String qualification, String rank, User doctorInfo, String photoName) {
         this.id = id;
         this.qualification = qualification;
         this.rank = rank;
         this.doctorInfo = doctorInfo;
+        this.photoName = photoName;
+    }
+
+    public String getPhotoName() {
+        return photoName;
+    }
+
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
     }
 
     public int getId() {
@@ -61,20 +72,22 @@ public class Doctor implements Entity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return id == doctor.id && Objects.equals(qualification, doctor.qualification) && Objects.equals(rank, doctor.rank) && Objects.equals(doctorInfo, doctor.doctorInfo);
+        return id == doctor.id && Objects.equals(qualification, doctor.qualification) && Objects.equals(rank, doctor.rank) && Objects.equals(doctorInfo, doctor.doctorInfo) && Objects.equals(photoName, doctor.photoName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, qualification, rank, doctorInfo);
+        return Objects.hash(id, qualification, rank, doctorInfo, photoName);
     }
 
     @Override
     public String toString() {
-        return "Doctor {" + "\n" +
-                "id=" + id + ",\n" +
-                "qualification='" + qualification + '\'' + ",\n" +
-                "rank='" + rank + '\'' + ",\n" +
-                "doctorInfo = " + doctorInfo + '}' ;
+        return "Doctor{" +
+                "id=" + id +
+                ", qualification='" + qualification + '\'' +
+                ", rank='" + rank + '\'' +
+                ", doctorInfo=" + doctorInfo +
+                ", photoName='" + photoName + '\'' +
+                '}';
     }
 }
