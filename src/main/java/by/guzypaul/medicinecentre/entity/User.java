@@ -5,7 +5,7 @@ import java.util.Objects;
 public class User implements Entity{
     private int id;
     private String name;
-    private String Surname;
+    private String surname;
     private String email;
     private String password;
     private String phone;
@@ -16,7 +16,7 @@ public class User implements Entity{
 
     public User(String name, String surname, String email, String password, String phone, String role) {
         this.name = name;
-        Surname = surname;
+        this.surname = surname;
         this.email = email;
         this.password = password;
         this.phone = phone;
@@ -26,7 +26,7 @@ public class User implements Entity{
     public User(int id, String name, String surname, String email, String password, String phone, String role) {
         this.id = id;
         this.name = name;
-        Surname = surname;
+        this.surname = surname;
         this.email = email;
         this.password = password;
         this.phone = phone;
@@ -50,11 +50,11 @@ public class User implements Entity{
     }
 
     public String getSurname() {
-        return Surname;
+        return surname;
     }
 
     public void setSurname(String surname) {
-        Surname = surname;
+        this.surname = surname;
     }
 
     public String getEmail() {
@@ -94,12 +94,12 @@ public class User implements Entity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(name, user.name) && Objects.equals(Surname, user.Surname) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(phone, user.phone) && Objects.equals(role, user.role);
+        return id == user.id && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(phone, user.phone) && Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, Surname, email, password, phone, role);
+        return Objects.hash(id, name, surname, email, password, phone, role);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class User implements Entity{
         return "User {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", Surname='" + Surname + '\'' +
+                ", Surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +

@@ -10,12 +10,13 @@ import by.guzypaul.medicinecentre.entity.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
     private static final String READ_ALL_USER_SQL = "SELECT users.id AS user_id, users.name AS user_name, " +
             "users.surname, users.password, users.email, " +
             "users.phone, users.role FROM users";
-    private static final String READ_USER_BY_ID_SQL = "SELECT users.id, users.name AS user_name, " +
+    private static final String READ_USER_BY_ID_SQL = "SELECT users.id AS user_id, users.name AS user_name, " +
             "users.surname, users.password, users.email, " +
             "users.phone, users.role FROM users WHERE users.id = ?";
     private static final String DELETE_USER_BY_ID_SQL = "DELETE FROM users WHERE users.id = ?";
@@ -25,6 +26,9 @@ public class UserDaoImpl implements UserDao {
     private static final String UPDATE_USER_BY_ID_SQL = "UPDATE users SET name = ?," +
             " surname = ?, password = ?, email = ?, phone = ?, role = ? " +
             "WHERE users.id = ?";
+    private static final String READ_USER_BY_EMAIL_SQL = "SELECT users.id AS user_id, users.name AS user_name, " +
+            "users.surname, users.password, users.email, " +
+            "users.phone, users.role FROM users WHERE users.email = ?";
 
     private final DaoUserMapper daoUserMapper = new DaoUserMapper();
 
@@ -39,8 +43,8 @@ public class UserDaoImpl implements UserDao {
             }
 
             return userList;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e);
         }
     }
 
@@ -53,10 +57,28 @@ public class UserDaoImpl implements UserDao {
             resultSet.next();
 
             return daoUserMapper.mapUser(resultSet);
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e);
         }
     }
+
+    @Override
+    public Optional<User> readByEmail(String email) throws DaoException {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(READ_USER_BY_EMAIL_SQL)) {
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return Optional.of(daoUserMapper.mapUser(resultSet));
+            }
+
+            return Optional.empty();
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e);
+        }
+    }
+
 
     @Override
     public boolean deleteById(Integer id) throws DaoException {
@@ -77,8 +99,8 @@ public class UserDaoImpl implements UserDao {
             fillUserData(entity, preparedStatement);
 
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e);
         }
     }
 
@@ -90,8 +112,8 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setInt(7, entity.getId());
 
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e);
         }
     }
 

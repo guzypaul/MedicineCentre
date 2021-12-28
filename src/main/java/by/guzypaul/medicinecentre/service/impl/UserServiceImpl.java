@@ -10,6 +10,7 @@ import by.guzypaul.medicinecentre.validator.UserValidator;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
     private static final String INVALID_USER = "Invalid user!";
@@ -40,6 +41,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<User> readByEmail(String email) throws ServiceException {
+        try {
+            return userDao.readByEmail(email);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public boolean deleteById(String id) throws ServiceException {
         try {
             return userDao.deleteById(Integer.parseInt(id));
@@ -51,11 +61,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean create(User entity) throws ServiceException {
         try {
-            if (userValidator.validateUser(entity)) {
+            if (userValidator.validateUser(entity)) { //todo && DuplicationChecker
                 entity.setPassword(BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()));
                 return userDao.create(entity);
             }
-            throw new ServiceException(INVALID_USER);
+
+            return false;
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
