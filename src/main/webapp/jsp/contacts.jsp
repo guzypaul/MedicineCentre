@@ -7,7 +7,7 @@
 <head>
     <title>Contacts</title>
     <c:import url="header.jsp"/>
-    <div>
+    <div class="container-fluid">
         <h1>CONTACTS</h1>
         <h3>г. Минск, Независимости, 58А
             Call-центр(запись на прием):
