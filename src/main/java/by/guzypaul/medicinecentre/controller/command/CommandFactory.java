@@ -13,7 +13,10 @@ public enum CommandFactory {
     AUTHORIZATION_PAGE(new AuthorizationPageCommand(),"authorization_page"),
     REGISTRATION_PAGE(new RegistrationPageCommand(), "registration_page"),
     DOCTOR_LIST(new DoctorListForwardCommand(), "doctors"),
-    DOCTOR_PAGE(new DoctorForwardCommand(), "doctor_page");
+    DOCTOR_PAGE(new DoctorForwardCommand(), "doctor_page"),
+    REGISTRATION(new RegistrationCommand(), "registration"),
+    AUTHORIZATION(new AuthorizationCommand(), "authorization"),
+    LOGOUT(new LogoutCommand(), "logout");
 
 
     private final Command command;

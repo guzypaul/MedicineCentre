@@ -19,7 +19,7 @@
                 <div class="col-xl-6">
                     <c:forEach items="${doctorList}" var="doctor">
                         <p><a href="${doctorPage}${doctor.id}">
-                            <img src="${photoPath}${doctor.photoName}" class="img-fluid"
+                            <img src="${photoPath}${doctor.photoName}" class="img-fluid doctor-img"
                                  alt="<c:out value="${doctor.doctorInfo.name}
                                  ${doctor.doctorInfo.surname}"/>"></a></p>
                         <div><p><c:out value="${doctor.qualification}"/></p>

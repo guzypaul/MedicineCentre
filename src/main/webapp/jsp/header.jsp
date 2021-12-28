@@ -10,6 +10,7 @@
 <c:url var="aboutUs" value="/controller?command=about_us"/>
 <c:url var="registrationPage" value="/controller?command=registration_page"/>
 <c:url var="authorizationPage" value="/controller?command=authorization_page"/>
+<c:url var="logoutCommand" value="/controller?command=logout"/>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +18,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="${cssFilePath}"/>
 </head>
-<body class="body">
+<body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -42,7 +43,8 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="${aboutUs}">About Us</a>
                 </li>
-                <span class="registration-indents">
+                <c:if test="${role == 'guest'}">
+                   <span class="registration-indents">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" href="${registrationPage}">Registration</a>
@@ -52,6 +54,16 @@
                         </li>
                     </ul>
                 </span>
+                </c:if>
+                <c:if test="${role != 'guest'}">
+                   <span class="registration-indents">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="${logoutCommand}">Logout</a>
+                        </li>
+                    </ul>
+                </span>
+                </c:if>
             </ul>
         </div>
     </div>
