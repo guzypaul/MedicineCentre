@@ -9,6 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 public class RegistrationPageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
-        return new Router("/jsp/registration.jsp", Router.Type.FORWARD);
+        return new Router("/jsp/registration_page.jsp", Router.Type.FORWARD);
     }
 }
