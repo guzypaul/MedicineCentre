@@ -11,6 +11,24 @@
     <title>Procedures</title>
     <c:import url="header.jsp"/>
     <main>
+        <c:if test="${isUserAuthorized == true}">
+            <div class="container-fluid alert-indents">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Authorization is successfully!</strong> You can make appointments now.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            <% request.getSession().removeAttribute("isUserAuthorized"); %>
+        </c:if>
+        <c:if test="${isUserLogout == true}">
+            <div class="container-fluid alert-indents">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>You logout successfully!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            <% request.getSession().removeAttribute("isUserLogout"); %>
+        </c:if>
         <div class="container-fluid">
             <div class="col-xl-2">
                 <h1 class="procedures">Procedures:</h1>
