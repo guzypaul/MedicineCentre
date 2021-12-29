@@ -34,7 +34,6 @@
                 <h1 class="procedures">Procedures:</h1>
             </div>
             <div class="row">
-               <%-- <div class="col-xl-3">--%>
                     <c:forEach items="${procedureList}" var="procedure">
                         <div class="col-lg-4">
                             <c:out value="${procedure.name}"/>

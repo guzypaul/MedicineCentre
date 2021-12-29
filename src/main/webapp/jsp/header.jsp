@@ -11,6 +11,7 @@
 <c:url var="registrationPage" value="/controller?command=registration_page"/>
 <c:url var="authorizationPage" value="/controller?command=authorization_page"/>
 <c:url var="logoutCommand" value="/controller?command=logout"/>
+<c:url var="profilePageCommand" value="/controller?command=profile_page"/>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,6 +60,9 @@
                 <c:if test="${role != 'guest'}">
                    <span class="registration-indents">
                     <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="${profilePageCommand}">PERSONAL AREA</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="${logoutCommand}">Logout</a>
                         </li>
