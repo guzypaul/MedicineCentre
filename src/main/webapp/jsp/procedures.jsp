@@ -34,14 +34,15 @@
                 <h1 class="procedures">Procedures:</h1>
             </div>
             <div class="row">
-                <div class="col-xl-3">
+               <%-- <div class="col-xl-3">--%>
                     <c:forEach items="${procedureList}" var="procedure">
-                        <c:out value="${procedure.name}"/>
-                        <a href="${procedurePage}${procedure.id}">
-                        <img src="${imgPath}${procedure.imageName}" class="img-fluid"
-                             alt="<c:out value="${procedure.name}"/>"></a></p>
+                        <div class="col-lg-4">
+                            <c:out value="${procedure.name}"/>
+                            <a href="${procedurePage}${procedure.id}">
+                                <img src="${imgPath}${procedure.imageName}" class="img-fluid"
+                                     alt="<c:out value="${procedure.name}"/>"></a></p>
+                        </div>
                     </c:forEach>
-                </div>
             </div>
         </div>
     </main>

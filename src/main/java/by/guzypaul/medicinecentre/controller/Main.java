@@ -3,9 +3,7 @@ package by.guzypaul.medicinecentre.controller;
 import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPool;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPoolException;
-import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
-import by.guzypaul.medicinecentre.service.interfaces.UserService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -29,8 +27,8 @@ public class Main {
         /*AppointmentDaoImpl appointmentDao = new AppointmentDaoImpl();
         System.out.println(appointmentDao.readAll());*/
 
-        UserService userService = ServiceFactory.getInstance().getUserService();
-        System.out.println(userService.readByEmail("useafef@gmail.com"));
+       /* UserService userService = ServiceFactory.getInstance().getUserService();
+        System.out.println(userService.readByEmail("useafef@gmail.com"));*/
 
 
     }

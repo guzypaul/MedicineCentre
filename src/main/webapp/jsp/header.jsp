@@ -40,20 +40,21 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="${contacts}">Contacts</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="${aboutUs}">About Us</a>
-                </li>
+                <span class="navbar-indents">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="${aboutUs}">About Us</a>
+                    </li>
+                </span>
                 <c:if test="${role == 'guest'}">
-                   <span class="registration-indents">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" href="${registrationPage}">Registration</a>
+                            <a class="nav-link active"
+                               href="${registrationPage}">Registration</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="${authorizationPage}">SIGN IN</a>
                         </li>
                     </ul>
-                </span>
                 </c:if>
                 <c:if test="${role != 'guest'}">
                    <span class="registration-indents">

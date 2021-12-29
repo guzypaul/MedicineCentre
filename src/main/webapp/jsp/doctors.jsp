@@ -16,19 +16,20 @@
                 <h1>Doctors:</h1>
             </div>
             <div class="row">
-                <div class="col-xl-6">
-                    <c:forEach items="${doctorList}" var="doctor">
+                <br>
+                <c:forEach items="${doctorList}" var="doctor">
+                    <div class="col-lg-4">
                         <p><a href="${doctorPage}${doctor.id}">
-                            <img src="${photoPath}${doctor.photoName}" class="img-fluid doctor-img"
+                            <img src="${photoPath}${doctor.photoName}" class="img-fluid doctor-small-photo"
                                  alt="<c:out value="${doctor.doctorInfo.name}
                                  ${doctor.doctorInfo.surname}"/>"></a></p>
-                        <div><p><c:out value="${doctor.qualification}"/></p>
-                            <p><c:out value="${doctor.doctorInfo.name}${doctor.doctorInfo.surname}"/></p>
+                        <div><p><h3><c:out value="${doctor.qualification}"/></h3></p>
+                            <p><c:out value="${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}"/></p>
                             <p><c:out value="rank: ${doctor.rank}"/></p>
                         </div>
-                        <br>
-                    </c:forEach>
-                </div>
+                    </div>
+                    <br>
+                </c:forEach>
             </div>
         </div>
     </main>

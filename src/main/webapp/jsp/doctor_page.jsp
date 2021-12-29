@@ -11,11 +11,12 @@
     <c:import url="header.jsp"/>
     <main>
         <div class="container-fluid">
-            <img src="${photoPath}${doctor.photoName}" class="img-fluid"
+            <br>
+            <img src="${photoPath}${doctor.photoName}" class="img-fluid doctor-normal-photo"
                  alt="<c:out value="${doctor.doctorInfo.name}
-                                 ${doctor.doctorInfo.surname}"/>"></a></p>
-            <p>
-            <h2><c:out value="${doctor.doctorInfo.name}${doctor.doctorInfo.surname}"/></h2>
+                                 ${doctor.doctorInfo.surname}"/>">
+            <h2><c:out value="${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}"/></h2>
+            <br>
             <h4>Qualification: <c:out value="${doctor.qualification}"/></h4><br/>
             <h4><c:out value="rank: ${doctor.rank}"/></h4><br/>
             <h4><c:out value="email: ${doctor.doctorInfo.email}"/></h4><br/>

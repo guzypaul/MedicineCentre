@@ -11,8 +11,8 @@
     height: 30vh;
 }
 
-.registration-indents {
-    padding-left: 10vh;
+.navbar-indents {
+    padding-right: 70vh;
 }
 
 body {
@@ -30,8 +30,11 @@ body {
     margin-top: 60px;
 }
 
-.doctor-img {
-    height: 35vh;
-    max-width: 40vh;
+.doctor-small-photo {
+    height: 25vh;
+}
+
+.doctor-normal-photo {
+    height: 45vh;
 }
 
