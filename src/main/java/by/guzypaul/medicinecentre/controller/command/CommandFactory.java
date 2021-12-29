@@ -17,7 +17,8 @@ public enum CommandFactory {
     REGISTRATION(new RegistrationCommand(), "registration"),
     AUTHORIZATION(new AuthorizationCommand(), "authorization"),
     LOGOUT(new LogoutCommand(), "logout"),
-    ERROR_PAGE(new ErrorPageCommand(), "error_page");
+    ERROR_PAGE(new ErrorPageCommand(), "error_page"),
+    PROFILE_PAGE(new ProfilePageCommand(), "profile_page");
 
 
     private final Command command;
