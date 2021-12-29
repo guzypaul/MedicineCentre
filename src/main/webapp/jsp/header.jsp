@@ -40,11 +40,11 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="${contacts}">Contacts</a>
                 </li>
-                <span class="navbar-indents">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="${aboutUs}">About Us</a>
-                    </li>
-                </span>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="${aboutUs}">About Us</a>
+                </li>
+                <span class="navbar-indents"></span>
                 <c:if test="${role == 'guest'}">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
