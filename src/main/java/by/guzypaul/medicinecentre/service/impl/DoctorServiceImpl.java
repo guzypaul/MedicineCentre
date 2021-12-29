@@ -9,6 +9,7 @@ import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
 import by.guzypaul.medicinecentre.validator.DoctorValidator;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DoctorServiceImpl implements DoctorService {
     private static final String INVALID_DOCTOR = "Invalid doctor!";
@@ -31,7 +32,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public Doctor readById(String id) throws ServiceException {
+    public Optional<Doctor> readById(String id) throws ServiceException {
         try {
             return doctorDao.readById(Integer.parseInt(id));
         } catch (DaoException e) {
