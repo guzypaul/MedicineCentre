@@ -32,7 +32,7 @@ public class Controller extends HttpServlet {
             }
         } catch (CommandException | NumberFormatException e) {
             logger.log(Level.ERROR, e);
-            resp.sendRedirect(req.getContextPath() + "/controller?command=error_page"); //todo error_page.jsp
+            resp.sendRedirect(req.getContextPath() + "/controller?command=error_page");
         }
     }
 

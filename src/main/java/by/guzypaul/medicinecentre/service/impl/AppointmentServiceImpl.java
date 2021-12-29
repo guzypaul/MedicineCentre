@@ -9,6 +9,7 @@ import by.guzypaul.medicinecentre.service.interfaces.AppointmentService;
 import by.guzypaul.medicinecentre.validator.AppointmentValidator;
 
 import java.util.List;
+import java.util.Optional;
 
 public class AppointmentServiceImpl implements AppointmentService {
     private static final String INVALID_APPOINTMENT = "Invalid appointment!";
@@ -30,7 +31,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment readById(String id) throws ServiceException {
+    public Optional<Appointment> readById(String id) throws ServiceException {
         try {
             return appointmentDao.readById(Integer.parseInt(id));
         } catch (DaoException e) {

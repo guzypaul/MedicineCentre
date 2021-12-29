@@ -1,15 +1,16 @@
 package by.guzypaul.medicinecentre.dao.impl;
 
+import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPool;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPoolException;
 import by.guzypaul.medicinecentre.dao.interfaces.AppointmentDao;
-import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.mapper.DaoAppointmentMapper;
 import by.guzypaul.medicinecentre.entity.Appointment;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class AppointmentDaoImpl implements AppointmentDao {
     private static final String READ_ALL_APPOINTMENT_SQL = "SELECT appointments.id AS appointment_id, " +
@@ -69,14 +70,17 @@ public class AppointmentDaoImpl implements AppointmentDao {
     }
 
     @Override
-    public Appointment readById(Integer id) throws DaoException {
+    public Optional<Appointment> readById(Integer id) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(READ_APPOINTMENT_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
 
-            return daoAppointmentMapper.mapAppointment(resultSet);
+            if (resultSet.next()) {
+                return Optional.of(daoAppointmentMapper.mapAppointment(resultSet));
+            }
+
+            return Optional.empty();
         } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }

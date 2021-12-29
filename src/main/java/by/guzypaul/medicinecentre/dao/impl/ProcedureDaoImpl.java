@@ -10,6 +10,7 @@ import by.guzypaul.medicinecentre.entity.Procedure;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ProcedureDaoImpl implements ProcedureDao {
     private static final String READ_ALL_PROCEDURE_SQL = "SELECT procedures.id AS procedure_id, " +
@@ -44,14 +45,17 @@ public class ProcedureDaoImpl implements ProcedureDao {
     }
 
     @Override
-    public Procedure readById(Integer id) throws DaoException {
+    public Optional<Procedure> readById(Integer id) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(READ_PROCEDURE_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            return daoProcedureMapper.mapProcedure(resultSet);
 
+            if (resultSet.next()) {
+                return Optional.of(daoProcedureMapper.mapProcedure(resultSet));
+            }
+
+            return Optional.empty();
         } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }

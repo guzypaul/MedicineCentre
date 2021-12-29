@@ -19,7 +19,7 @@ public class DoctorForwardCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         try {
-            request.setAttribute("doctor", doctorService.readById(request.getParameter("doctorId")));
+            request.setAttribute("doctor", doctorService.readById(request.getParameter("doctorId")).get()); //todo check isPresent
             return new Router("/jsp/doctor_page.jsp", Router.Type.FORWARD);
         } catch (ServiceException e) {
             throw new CommandException(e);

@@ -10,6 +10,7 @@ import by.guzypaul.medicinecentre.entity.DoctorSchedule;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
     private static final String READ_ALL_DOCTOR_SCHEDULE_SQL = "SELECT doctor_schedules.id AS doctor_schedules_id, " +
@@ -52,14 +53,17 @@ public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
     }
 
     @Override
-    public DoctorSchedule readById(Integer id) throws DaoException {
+    public Optional<DoctorSchedule> readById(Integer id) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(READ_DOCTOR_SCHEDULE_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
 
-            return daoDoctorScheduleMapper.mapDoctorSchedule(resultSet);
+            if (resultSet.next()) {
+                return Optional.of(daoDoctorScheduleMapper.mapDoctorSchedule(resultSet));
+            }
+
+            return Optional.empty();
         } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }

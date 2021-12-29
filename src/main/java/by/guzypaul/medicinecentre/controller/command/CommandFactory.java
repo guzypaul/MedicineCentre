@@ -16,7 +16,8 @@ public enum CommandFactory {
     DOCTOR_PAGE(new DoctorForwardCommand(), "doctor_page"),
     REGISTRATION(new RegistrationCommand(), "registration"),
     AUTHORIZATION(new AuthorizationCommand(), "authorization"),
-    LOGOUT(new LogoutCommand(), "logout");
+    LOGOUT(new LogoutCommand(), "logout"),
+    ERROR_PAGE(new ErrorPageCommand(), "error_page");
 
 
     private final Command command;

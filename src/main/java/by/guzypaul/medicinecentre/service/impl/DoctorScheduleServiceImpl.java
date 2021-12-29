@@ -9,6 +9,7 @@ import by.guzypaul.medicinecentre.service.interfaces.DoctorScheduleService;
 import by.guzypaul.medicinecentre.validator.DoctorScheduleValidator;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     private static final String INVALID_DOCTOR_SCHEDULE = "Invalid doctor schedule!";
@@ -30,7 +31,7 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     }
 
     @Override
-    public DoctorSchedule readById(String id) throws ServiceException {
+    public Optional<DoctorSchedule> readById(String id) throws ServiceException {
         try {
             return doctorScheduleDao.readById(Integer.parseInt(id));
         } catch (DaoException e) {

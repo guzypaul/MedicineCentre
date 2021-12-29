@@ -19,7 +19,7 @@ public class ProcedureForwardCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         try {
-            request.setAttribute("procedure", procedureService.readById(request.getParameter("procedureId")));
+            request.setAttribute("procedure", procedureService.readById(request.getParameter("procedureId")).get()); //todo isPresent
             return new Router("/jsp/procedure_page.jsp", Router.Type.FORWARD);
         } catch (ServiceException e) {
             throw new CommandException(e);

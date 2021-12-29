@@ -3,13 +3,14 @@ package by.guzypaul.medicinecentre.dao.impl;
 import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPool;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPoolException;
-import by.guzypaul.medicinecentre.dao.mapper.DaoDoctorMapper;
 import by.guzypaul.medicinecentre.dao.interfaces.DoctorDao;
+import by.guzypaul.medicinecentre.dao.mapper.DaoDoctorMapper;
 import by.guzypaul.medicinecentre.entity.Doctor;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class DoctorDaoImpl implements DoctorDao {
     private static final String READ_ALL_DOCTOR_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, " +
@@ -46,14 +47,17 @@ public class DoctorDaoImpl implements DoctorDao {
     }
 
     @Override
-    public Doctor readById(Integer id) throws DaoException {
+    public Optional<Doctor> readById(Integer id) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(READ_DOCTOR_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
 
-            return daoDoctorMapper.mapDoctor(resultSet);
+            if (resultSet.next()) {
+                return Optional.of(daoDoctorMapper.mapDoctor(resultSet));
+            }
+
+            return Optional.empty();
         } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
         }

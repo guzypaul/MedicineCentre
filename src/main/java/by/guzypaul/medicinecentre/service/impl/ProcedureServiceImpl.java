@@ -9,6 +9,7 @@ import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
 import by.guzypaul.medicinecentre.validator.ProcedureValidator;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProcedureServiceImpl implements ProcedureService {
     private static final String INVALID_PROCEDURE = "Invalid procedure!";
@@ -30,7 +31,7 @@ public class ProcedureServiceImpl implements ProcedureService {
     }
 
     @Override
-    public Procedure readById(String id) throws ServiceException {
+    public Optional<Procedure> readById(String id) throws ServiceException {
         try {
             return procedureDao.readById(Integer.parseInt(id));
         } catch (DaoException e) {

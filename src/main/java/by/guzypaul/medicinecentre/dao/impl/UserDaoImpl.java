@@ -3,8 +3,8 @@ package by.guzypaul.medicinecentre.dao.impl;
 import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPool;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPoolException;
-import by.guzypaul.medicinecentre.dao.mapper.DaoUserMapper;
 import by.guzypaul.medicinecentre.dao.interfaces.UserDao;
+import by.guzypaul.medicinecentre.dao.mapper.DaoUserMapper;
 import by.guzypaul.medicinecentre.entity.User;
 
 import java.sql.*;
@@ -29,6 +29,9 @@ public class UserDaoImpl implements UserDao {
     private static final String READ_USER_BY_EMAIL_SQL = "SELECT users.id AS user_id, users.name AS user_name, " +
             "users.surname, users.password, users.email, " +
             "users.phone, users.role FROM users WHERE users.email = ?";
+    private static final String READ_USER_BY_PHONE_SQL = "SELECT users.id AS user_id, users.name AS user_name, " +
+            "users.surname, users.password, users.email, " +
+            "users.phone, users.role FROM users WHERE users.phone = ?";
 
     private final DaoUserMapper daoUserMapper = new DaoUserMapper();
 
@@ -49,14 +52,17 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User readById(Integer id) throws DaoException {
+    public Optional<User> readById(Integer id) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(READ_USER_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
 
-            return daoUserMapper.mapUser(resultSet);
+            if (resultSet.next()) {
+                return Optional.of(daoUserMapper.mapUser(resultSet));
+            }
+
+            return Optional.empty();
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException(e);
         }
@@ -64,7 +70,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> readByEmail(String email) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection(); //todo
              PreparedStatement preparedStatement = connection.prepareStatement(READ_USER_BY_EMAIL_SQL)) {
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -79,6 +85,22 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    @Override
+    public Optional<User> readByPhone(String phone) throws DaoException {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection(); //todo
+             PreparedStatement preparedStatement = connection.prepareStatement(READ_USER_BY_PHONE_SQL)){
+            preparedStatement.setString(1, phone);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return Optional.of(daoUserMapper.mapUser(resultSet));
+            }
+
+            return Optional.empty();
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e);
+        }
+    }
 
     @Override
     public boolean deleteById(Integer id) throws DaoException {

@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface UserDao extends BaseDao<Integer, User>{
     Optional<User> readByEmail(String email) throws DaoException;
+
+    Optional<User> readByPhone(String phone) throws DaoException;
 }
