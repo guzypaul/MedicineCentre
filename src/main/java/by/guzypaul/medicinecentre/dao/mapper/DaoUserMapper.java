@@ -1,5 +1,6 @@
 package by.guzypaul.medicinecentre.dao.mapper;
 
+import by.guzypaul.medicinecentre.entity.Role;
 import by.guzypaul.medicinecentre.entity.User;
 
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ public class DaoUserMapper {
         user.setPassword(resultSet.getString("password"));
         user.setEmail(resultSet.getString("email"));
         user.setPhone(resultSet.getString("phone"));
-        user.setRole(resultSet.getString("role"));
+        user.setRole(Role.valueOf(resultSet.getString("role"))); //todo check Role.valueOf
 
         return user;
     }

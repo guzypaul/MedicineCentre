@@ -46,7 +46,7 @@
                     <a class="nav-link active" href="${aboutUs}">About Us</a>
                 </li>
                 <span class="navbar-indents"></span>
-                <c:if test="${role == 'guest'}">
+                <c:if test="${role == 'GUEST'}">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active"
@@ -57,8 +57,7 @@
                         </li>
                     </ul>
                 </c:if>
-                <c:if test="${role != 'guest'}">
-                   <span class="registration-indents">
+                <c:if test="${role != 'GUEST'}">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" href="${profilePageCommand}">PERSONAL AREA</a>
@@ -67,7 +66,6 @@
                             <a class="nav-link active" href="${logoutCommand}">Logout</a>
                         </li>
                     </ul>
-                </span>
                 </c:if>
             </ul>
         </div>

@@ -10,7 +10,7 @@ public class LogoutCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         request.getSession().setAttribute("isUserLogout", true);
-        request.getSession().setAttribute("role", "guest");
+        request.getSession().setAttribute("role", "GUEST");
         request.getSession().removeAttribute("userId");
         return new Router("/controller?command=procedures", Router.Type.REDIRECT);
     }

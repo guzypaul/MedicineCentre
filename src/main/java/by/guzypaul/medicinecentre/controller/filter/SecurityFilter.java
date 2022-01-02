@@ -16,7 +16,7 @@ public class SecurityFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         if (httpServletRequest.getSession().getAttribute("role") == null) {
-            httpServletRequest.getSession().setAttribute("role", "guest");
+            httpServletRequest.getSession().setAttribute("role", "GUEST");
         }
 
         filterChain.doFilter(servletRequest, servletResponse);

@@ -3,6 +3,7 @@ package by.guzypaul.medicinecentre.controller.command.impl;
 import by.guzypaul.medicinecentre.controller.command.Command;
 import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
+import by.guzypaul.medicinecentre.entity.Role;
 import by.guzypaul.medicinecentre.entity.User;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
@@ -35,7 +36,7 @@ public class RegistrationCommand implements Command {
                 return new Router("/controller?command=registration_page", Router.Type.REDIRECT);
             }
 
-            User user = new User(name, surname, email, password, phone, "USER");
+            User user = new User(name, surname, email, password, phone, Role.USER);
 
             boolean isUserRegistered = userService.create(user);
 

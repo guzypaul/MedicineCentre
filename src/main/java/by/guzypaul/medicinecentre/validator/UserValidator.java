@@ -1,5 +1,6 @@
 package by.guzypaul.medicinecentre.validator;
 
+import by.guzypaul.medicinecentre.entity.Role;
 import by.guzypaul.medicinecentre.entity.User;
 
 public class UserValidator {
@@ -36,7 +37,11 @@ public class UserValidator {
         return phone != null && !phone.isEmpty() && phone.length() <= 15;
     }
 
-    private boolean isValidRole(String role) {
-        return role != null && !role.isEmpty() && role.length() <= 25;
+    private boolean isValidRole(Role role) {
+        return role != null;
+                /*&& Arrays.stream(Role.values())
+                .filter(currentRole -> currentRole.equals(role))
+                .findFirst()
+                .orElse(false);*/ // todo && Role.findRoleByName(role)
     }
 }

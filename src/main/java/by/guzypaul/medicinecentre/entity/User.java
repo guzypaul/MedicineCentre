@@ -2,19 +2,19 @@ package by.guzypaul.medicinecentre.entity;
 
 import java.util.Objects;
 
-public class User implements Entity{
+public class User implements Entity {
     private int id;
     private String name;
     private String surname;
     private String email;
     private String password;
     private String phone;
-    private String role;
+    private Role role;
 
     public User() {
     }
 
-    public User(String name, String surname, String email, String password, String phone, String role) {
+    public User(String name, String surname, String email, String password, String phone, Role role) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -23,7 +23,7 @@ public class User implements Entity{
         this.role = role;
     }
 
-    public User(int id, String name, String surname, String email, String password, String phone, String role) {
+    public User(int id, String name, String surname, String email, String password, String phone, Role role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -81,11 +81,11 @@ public class User implements Entity{
         this.phone = phone;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -94,7 +94,7 @@ public class User implements Entity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(phone, user.phone) && Objects.equals(role, user.role);
+        return id == user.id && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(phone, user.phone) && role == user.role;
     }
 
     @Override
@@ -104,14 +104,14 @@ public class User implements Entity{
 
     @Override
     public String toString() {
-        return "User {" +
+        return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", Surname='" + surname + '\'' +
+                ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
-                ", role='" + role + '\'' +
-                '}'  + "\n" ;
+                ", role=" + role +
+                '}';
     }
 }
