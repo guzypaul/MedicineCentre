@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public enum Role {
     ADMIN,
-    GUEST,
     MODERATOR,
     USER,
     DOCTOR;

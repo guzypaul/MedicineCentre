@@ -38,4 +38,8 @@ body {
     height: 45vh;
 }
 
+.button_right_position {
+    position:absolute;
+    right:0;
+}
 

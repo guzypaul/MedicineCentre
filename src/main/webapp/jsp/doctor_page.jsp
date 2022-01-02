@@ -12,14 +12,20 @@
     <main>
         <div class="container-fluid">
             <br>
-            <img src="${photoPath}${doctor.photoName}" class="img-fluid doctor-normal-photo"
-                 alt="<c:out value="${doctor.doctorInfo.name}
+            <div class="row">
+                <div class="col-lg-4">
+                    <img src="${photoPath}${doctor.photoName}" class="img-fluid doctor-normal-photo"
+                         alt="<c:out value="${doctor.doctorInfo.name}
                                  ${doctor.doctorInfo.surname}"/>">
-            <h2><c:out value="${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}"/></h2>
-            <br>
-            <h4>Qualification: <c:out value="${doctor.qualification}"/></h4><br/>
-            <h4><c:out value="rank: ${doctor.rank}"/></h4><br/>
-            <h4><c:out value="email: ${doctor.doctorInfo.email}"/></h4><br/>
+                </div>
+                <div class="col-lg-8">
+                    <h2><c:out value="${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}"/></h2>
+                    <br>
+                    <h4>Qualification: <c:out value="${doctor.qualification}"/></h4><br/>
+                    <h4><c:out value="rank: ${doctor.rank}"/></h4><br/>
+                    <h4><c:out value="email: ${doctor.doctorInfo.email}"/></h4><br/>
+                </div>
+            </div>
         </div>
     </main>
     <c:import url="footer.jsp"/>

@@ -45,28 +45,28 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="${aboutUs}">About Us</a>
                 </li>
-                <span class="navbar-indents"></span>
-                <c:if test="${role == 'GUEST'}">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active"
-                               href="${registrationPage}">Registration</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="${authorizationPage}">SIGN IN</a>
-                        </li>
-                    </ul>
-                </c:if>
-                <c:if test="${role != 'GUEST'}">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="${profilePageCommand}">PERSONAL AREA</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="${logoutCommand}">Logout</a>
-                        </li>
-                    </ul>
-                </c:if>
+                <div class="button_right_position">
+                    <c:if test="${role == 'GUEST'}">
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="${registrationPage}">Registration</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="${authorizationPage}">SIGN IN</a>
+                            </li>
+                        </ul>
+                    </c:if>
+                    <c:if test="${role != 'GUEST'}">
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="${profilePageCommand}">PERSONAL AREA</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="${logoutCommand}">Logout</a>
+                            </li>
+                        </ul>
+                    </c:if>
+                </div>
             </ul>
         </div>
     </div>
