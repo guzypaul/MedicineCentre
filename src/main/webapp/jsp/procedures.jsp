@@ -37,8 +37,8 @@
                     <c:forEach items="${procedureList}" var="procedure">
                         <div class="col-lg-4">
                             <c:out value="${procedure.name}"/>
-                            <a href="${procedurePage}${procedure.id}">
-                                <img src="${imgPath}${procedure.imageName}" class="img-fluid"
+                            <p><a href="${procedurePage}${procedure.id}">
+                                <img src="${imgPath}${procedure.imageName}" class="img-fluid procedure-img"
                                      alt="<c:out value="${procedure.name}"/>"></a></p>
                         </div>
                     </c:forEach>

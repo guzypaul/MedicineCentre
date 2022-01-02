@@ -12,7 +12,7 @@
     <main>
         <div class="container-fluid">
             <h1><c:out value="${procedure.name}"/></h1>
-            <img src="${imgPath}${procedure.imageName}" class="img-fluid"
+            <img src="${imgPath}${procedure.imageName}" class="img-fluid procedure-big-img"
                  alt="<c:out value="${procedure.name}"/>">
             <br/>
             <h4>Описание: <c:out value="${procedure.description}"/></h4><br/>

@@ -7,7 +7,19 @@
 }
 
 .procedure-img {
-    height: 30vh;
+    height: 25vh;
+}
+
+.procedure-big-img {
+    height: 45vh;
+}
+
+.alert-indents {
+    margin-top: 10px;
+}
+
+.registration-inputs {
+    margin-top: 60px;
 }
 
 .navbar-indents {
@@ -19,14 +31,6 @@ body {
     min-height: 100%;
     display: grid;
     grid-template-rows: auto 1fr auto;
-}
-
-.alert-indents {
-    margin-top: 10px;
-}
-
-.registration-inputs {
-    margin-top: 60px;
 }
 
 .doctor-small-photo {
