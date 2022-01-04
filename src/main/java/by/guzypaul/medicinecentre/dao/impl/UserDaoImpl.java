@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> readByEmail(String email) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().acquireConnection(); //todo
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection(); //todo вынести повторяющийся код в отдельный приватный метод
              PreparedStatement preparedStatement = connection.prepareStatement(READ_USER_BY_EMAIL_SQL)) {
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -87,7 +87,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> readByPhone(String phone) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().acquireConnection(); //todo
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection(); //todo вынести повторяющийся код в отдельный приватный метод
              PreparedStatement preparedStatement = connection.prepareStatement(READ_USER_BY_PHONE_SQL)){
             preparedStatement.setString(1, phone);
             ResultSet resultSet = preparedStatement.executeQuery();

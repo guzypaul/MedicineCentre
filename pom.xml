@@ -15,7 +15,6 @@
         <mysql.connector.version>8.0.19</mysql.connector.version>
     </properties>
 
-
     <dependencies>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -55,5 +54,4 @@
             <version>0.4</version>
         </dependency>
     </dependencies>
-
 </project>

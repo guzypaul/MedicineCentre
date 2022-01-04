@@ -6,6 +6,9 @@
 <c:url var="cssFilePath" value="/css/style.css"/>
 <c:url var="imgPath" value="/download/"/>
 
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="languages.locale"/>
+
 <html>
 <head>
     <title>Procedures</title>
@@ -31,12 +34,13 @@
         </c:if>
         <div class="container-fluid">
             <div class="col-xl-2">
-                <h1 class="procedures">Procedures:</h1>
+                <h1 class="procedures"><fmt:message key="procedures"/>:</h1>
+                <br>
             </div>
             <div class="row">
                     <c:forEach items="${procedureList}" var="procedure">
                         <div class="col-lg-4">
-                            <c:out value="${procedure.name}"/>
+                            <h2><c:out value="${procedure.name}"/></h2>
                             <p><a href="${procedurePage}${procedure.id}">
                                 <img src="${imgPath}${procedure.imageName}" class="img-fluid procedure-img"
                                      alt="<c:out value="${procedure.name}"/>"></a></p>

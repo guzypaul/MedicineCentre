@@ -31,6 +31,15 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    public List<Appointment> readByDoctorId(String id) throws ServiceException {
+        try {
+            return appointmentDao.readByDoctorId(Integer.parseInt(id));
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public Optional<Appointment> readById(String id) throws ServiceException {
         try {
             return appointmentDao.readById(Integer.parseInt(id));

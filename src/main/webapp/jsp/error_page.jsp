@@ -11,9 +11,19 @@
         <h1>ERROR!</h1>
         <br>
         <div>
-            <h2>Sorry, something went wrong!</h2>
-            <h7>One tip: try to find out another clinic.</h7>
-            <h7>Maybe it will be better for you health.</h7>
+            <c:choose>
+                <c:when test="${!empty errorMessage}">
+                    <h2>
+                        <c:out value="${errorMessage}"/>
+                    </h2>
+                    <% request.getSession().removeAttribute("errorMessage"); %>
+                </c:when>
+                <c:when test="${empty errorMessage}">
+                    <h2>Something went wrong!</h2>
+                </c:when>
+            </c:choose>
+            <h5>One tip: try to find out another clinic.</h5>
+            <h5>Maybe it will be better for you health.</h5>
         </div>
     </div>
 <c:import url="footer.jsp"/>

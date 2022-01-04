@@ -12,6 +12,10 @@
 <c:url var="authorizationPage" value="/controller?command=authorization_page"/>
 <c:url var="logoutCommand" value="/controller?command=logout"/>
 <c:url var="profilePageCommand" value="/controller?command=profile_page"/>
+<c:url var="changeLanguage" value="/controller?command=change_language"/>
+
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="languages.locale"/>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,6 +49,14 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="${aboutUs}">About Us</a>
                 </li>
+                <li class="nav-item">
+                    <form action="${changeLanguage}" method="post">
+                        <select name="language" onchange="submit()" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option value="ru_RU" ${locale == 'ru_RU' ? 'selected' : ''}>RU</option>
+                            <option value="en_US" ${locale == 'en_US' ? 'selected' : ''}>EN</option>
+                        </select>
+                    </form>
+                </li>
                 <div class="button_right_position">
                     <c:if test="${role == 'GUEST'}">
                         <ul class="navbar-nav mb-2 mb-lg-0">
@@ -62,7 +74,9 @@
                                 <a class="nav-link active" href="${profilePageCommand}">PERSONAL AREA</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="${logoutCommand}">Logout</a>
+                                <form action="${logoutCommand}" method="post">
+                                    <button type="submit" class="btn btn-warning">Logout</button>
+                                </form>
                             </li>
                         </ul>
                     </c:if>

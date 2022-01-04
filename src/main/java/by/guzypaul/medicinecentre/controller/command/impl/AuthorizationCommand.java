@@ -34,7 +34,7 @@ public class AuthorizationCommand implements Command {
             Optional<User> userOptional = userService.readByEmail(email);
             if (userOptional.isPresent() && BCrypt.checkpw(password, userOptional.get().getPassword())) {
                 request.getSession().setAttribute("userId", userOptional.get().getId());
-                request.getSession().setAttribute("role", userOptional.get().getRole());
+                request.getSession().setAttribute("role", userOptional.get().getRole().toString());
                 request.getSession().setAttribute("isUserAuthorized", true);
                 return new Router("/controller?command=procedures", Router.Type.REDIRECT);
             } else {

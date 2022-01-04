@@ -11,6 +11,7 @@
     <div class="container-fluid">
         <h1>WELCOME ${role} in your PERSONAL AREA!</h1>
         <div>
+            <h3>My appointments:</h3>
 
         </div>
     </div>

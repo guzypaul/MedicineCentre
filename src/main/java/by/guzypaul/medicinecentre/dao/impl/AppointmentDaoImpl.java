@@ -42,6 +42,20 @@ public class AppointmentDaoImpl implements AppointmentDao {
             "INNER JOIN doctors ON appointments.doctor_id = doctors.id " +
             "INNER JOIN users ON doctors.doctor_info = users.id " +
             "INNER JOIN users AS client ON appointments.client_id = client.id WHERE appointments.id = ?";
+    private static final String READ_APPOINTMENT_BY_DOCTOR_ID_SQL = "SELECT appointments.id AS appointment_id, " +
+            "appointments.date, appointments.start_time, appointments.end_time, appointments.status, " +
+            "procedures.id AS procedure_id, procedures.name AS procedure_name, procedures.description, " +
+            "procedures.duration, procedures.price, procedures.image_name," +
+            "doctors.id AS doctor_id, doctors.qualification, doctors.rank, doctors.photo_name, " +
+            "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
+            "users.role, " +
+            "client.id AS client_id, client.name AS client_name, client.surname AS client_surname, " +
+            "client.password AS client_password, client.email AS client_email, client.phone AS client_phone, " +
+            "client.role AS client_role " +
+            "FROM appointments INNER JOIN procedures ON appointments.procedure_id = procedures.id " +
+            "INNER JOIN doctors ON appointments.doctor_id = doctors.id " +
+            "INNER JOIN users ON doctors.doctor_info = users.id " +
+            "INNER JOIN users AS client ON appointments.client_id = client.id WHERE doctors.id = ?";
     private static final String DELETE_APPOINTMENT_BY_ID_SQL = "DELETE FROM appointments WHERE appointments.id = ?";
     private static final String CREATE_APPOINTMENT_BY_ID_SQL = "INSERT INTO appointments (appointments.client_id, " +
             "appointments.doctor_id, appointments.date, appointments.start_time, appointments.end_time," +
@@ -58,6 +72,25 @@ public class AppointmentDaoImpl implements AppointmentDao {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(READ_ALL_APPOINTMENT_SQL);
+            List<Appointment> appointmentList = new ArrayList<>();
+            while (resultSet.next()) {
+                appointmentList.add(daoAppointmentMapper.mapAppointment(resultSet));
+            }
+
+            return appointmentList;
+        } catch (SQLException | ConnectionPoolException throwables) {
+            throw new DaoException(throwables.getMessage());
+        }
+    }
+
+    @Override
+    public List<Appointment> readByDoctorId(Integer id) throws DaoException {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             Statement statement = connection.createStatement()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(READ_APPOINTMENT_BY_DOCTOR_ID_SQL);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
             List<Appointment> appointmentList = new ArrayList<>();
             while (resultSet.next()) {
                 appointmentList.add(daoAppointmentMapper.mapAppointment(resultSet));

@@ -1,5 +1,6 @@
 package by.guzypaul.medicinecentre.controller;
 
+import by.guzypaul.medicinecentre.controller.command.Command;
 import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.CommandFactory;
 import by.guzypaul.medicinecentre.controller.command.Router;
@@ -24,21 +25,21 @@ public class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            Router router = CommandFactory.findCommand(req).execute(req);
-            if (router.getType() == Router.Type.FORWARD) {
-                req.getRequestDispatcher(router.getPagePath()).forward(req, resp);
-            } else {
-                resp.sendRedirect(req.getContextPath() + router.getPagePath());
-            }
-        } catch (CommandException | NumberFormatException e) {
-            logger.log(Level.ERROR, e);
-            resp.sendRedirect(req.getContextPath() + "/controller?command=error_page");
+            handleRequest(req, resp, CommandFactory.findCommand(req, CommandFactory.MethodType.GET));
+        } catch (CommandException e) {
+            req.getSession().setAttribute("errorMessage", e.getMessage());
+            handleRequest(req, resp, CommandFactory.ERROR_PAGE.getCommand());
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        try {
+            handleRequest(req, resp, CommandFactory.findCommand(req, CommandFactory.MethodType.POST));
+        } catch (CommandException e) {
+            req.getSession().setAttribute("errorMessage", e.getMessage());
+            handleRequest(req, resp, CommandFactory.ERROR_PAGE.getCommand());
+        }
     }
 
     @Override
@@ -56,6 +57,21 @@ public class Controller extends HttpServlet {
             ConnectionPool.getInstance().initializeConnectionPool(2);
         } catch (ConnectionPoolException e) {
             logger.log(Level.ERROR, e);
+        }
+    }
+
+    private void handleRequest(HttpServletRequest req, HttpServletResponse resp, Command command) throws ServletException, IOException {
+        try {
+            Router router = command.execute(req);
+            if (router.getType() == Router.Type.FORWARD) {
+                req.getRequestDispatcher(router.getPagePath()).forward(req, resp);
+            } else {
+                resp.sendRedirect(req.getContextPath() + router.getPagePath());
+            }
+        } catch (CommandException | NumberFormatException e) {
+            logger.log(Level.ERROR, e);
+            req.getSession().setAttribute("errorMessage", e.getMessage());
+            resp.sendRedirect(req.getContextPath() + "/controller?command=error_page");
         }
     }
 }

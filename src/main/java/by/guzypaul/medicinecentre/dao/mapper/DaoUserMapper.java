@@ -15,7 +15,7 @@ public class DaoUserMapper {
         user.setPassword(resultSet.getString("password"));
         user.setEmail(resultSet.getString("email"));
         user.setPhone(resultSet.getString("phone"));
-        user.setRole(Role.valueOf(resultSet.getString("role"))); //todo check Role.valueOf
+        user.setRole(Role.valueOf(resultSet.getString("role").toUpperCase()));
 
         return user;
     }

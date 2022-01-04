@@ -39,9 +39,5 @@ public class UserValidator {
 
     private boolean isValidRole(Role role) {
         return role != null;
-                /*&& Arrays.stream(Role.values())
-                .filter(currentRole -> currentRole.equals(role))
-                .findFirst()
-                .orElse(false);*/ // todo && Role.findRoleByName(role)
     }
 }
