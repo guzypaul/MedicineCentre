@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public enum Languages {
     ENGLISH("en_US"),
+    BELARUS("be_BY"),
     RUSSIAN("ru_RU");
 
     private final String localeName;
