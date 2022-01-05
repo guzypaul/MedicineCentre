@@ -49,6 +49,15 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="${aboutUs}">About Us</a>
                 </li>
+                <li class="nav-item"></li>
+                    <form action="${changeLanguage}" method="post">
+                        <select name="language" onchange="submit()" class="form-select form-select-sm"
+                                aria-label=".form-select-sm example">
+                            <option value="ru_RU" ${locale == 'ru_RU' ? 'selected' : ''}>RU</option>
+                            <option value="en_US" ${locale == 'en_US' ? 'selected' : ''}>EN</option>
+                        </select>
+                    </form>
+                </li>
                 <div class="button_right_position">
                     <c:if test="${role == 'GUEST'}">
                         <ul class="navbar-nav mb-2 mb-lg-0">
@@ -57,15 +66,6 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="${authorizationPage}">SIGN IN</a>
-                            </li>
-                            <li>
-                                <form action="${changeLanguage}" method="post">
-                                    <select name="language" onchange="submit()" class="form-select form-select-sm"
-                                            aria-label=".form-select-sm example">
-                                        <option value="ru_RU" ${locale == 'ru_RU' ? 'selected' : ''}>RU</option>
-                                        <option value="en_US" ${locale == 'en_US' ? 'selected' : ''}>EN</option>
-                                    </select>
-                                </form>
                             </li>
                         </ul>
                     </c:if>
@@ -77,15 +77,6 @@
                             <li class="nav-item">
                                 <form action="${logoutCommand}" method="post">
                                     <button type="submit" class="btn btn-warning">Logout</button>
-                                </form>
-                            </li>
-                            <li>
-                                <form action="${changeLanguage}" method="post">
-                                    <select name="language" onchange="submit()" class="form-select form-select-sm language-indents"
-                                            aria-label=".form-select-sm example">
-                                        <option value="ru_RU" ${locale == 'ru_RU' ? 'selected' : ''}>RU</option>
-                                        <option value="en_US" ${locale == 'en_US' ? 'selected' : ''}>EN</option>
-                                    </select>
                                 </form>
                             </li>
                         </ul>
