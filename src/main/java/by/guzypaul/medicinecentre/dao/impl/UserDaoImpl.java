@@ -70,36 +70,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> readByEmail(String email) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().acquireConnection(); //todo вынести повторяющийся код в отдельный приватный метод
-             PreparedStatement preparedStatement = connection.prepareStatement(READ_USER_BY_EMAIL_SQL)) {
-            preparedStatement.setString(1, email);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                return Optional.of(daoUserMapper.mapUser(resultSet));
-            }
-
-            return Optional.empty();
-        } catch (SQLException | ConnectionPoolException e) {
-            throw new DaoException(e);
-        }
+        return readByItem(email, READ_USER_BY_EMAIL_SQL);
     }
 
     @Override
     public Optional<User> readByPhone(String phone) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().acquireConnection(); //todo вынести повторяющийся код в отдельный приватный метод
-             PreparedStatement preparedStatement = connection.prepareStatement(READ_USER_BY_PHONE_SQL)){
-            preparedStatement.setString(1, phone);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                return Optional.of(daoUserMapper.mapUser(resultSet));
-            }
-
-            return Optional.empty();
-        } catch (SQLException | ConnectionPoolException e) {
-            throw new DaoException(e);
-        }
+        return readByItem(phone, READ_USER_BY_PHONE_SQL);
     }
 
     @Override
@@ -134,6 +110,22 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setInt(7, entity.getId());
 
             return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    private Optional<User> readByItem(String item, String SQL) throws DaoException {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)){
+            preparedStatement.setString(1, item);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return Optional.of(daoUserMapper.mapUser(resultSet));
+            }
+
+            return Optional.empty();
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException(e);
         }
