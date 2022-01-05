@@ -22,7 +22,7 @@
                     <h2>Something went wrong!</h2>
                 </c:when>
             </c:choose>
-            <h5>One tip: try to find out another clinic.</h5>
+            <h5>Try to find out another clinic.</h5>
             <h5>Maybe it will be better for you health.</h5>
         </div>
     </div>

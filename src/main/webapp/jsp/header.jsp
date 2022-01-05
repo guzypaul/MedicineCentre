@@ -55,6 +55,7 @@
                                 aria-label=".form-select-sm example">
                             <option value="ru_RU" ${locale == 'ru_RU' ? 'selected' : ''}>RU</option>
                             <option value="en_US" ${locale == 'en_US' ? 'selected' : ''}>EN</option>
+                            <option value="be_BY" ${locale == 'be_BY_US' ? 'selected' : ''}>BY</option>
                         </select>
                     </form>
                 </li>
