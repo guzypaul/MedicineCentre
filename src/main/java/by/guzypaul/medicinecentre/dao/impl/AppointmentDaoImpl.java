@@ -56,6 +56,20 @@ public class AppointmentDaoImpl implements AppointmentDao {
             "INNER JOIN doctors ON appointments.doctor_id = doctors.id " +
             "INNER JOIN users ON doctors.doctor_info = users.id " +
             "INNER JOIN users AS client ON appointments.client_id = client.id WHERE doctors.id = ?";
+    private static final String READ_APPOINTMENT_BY_CLIENT_ID_SQL = "SELECT appointments.id AS appointment_id, " +
+            "appointments.date, appointments.start_time, appointments.end_time, appointments.status, " +
+            "procedures.id AS procedure_id, procedures.name AS procedure_name, procedures.description, " +
+            "procedures.duration, procedures.price, procedures.image_name," +
+            "doctors.id AS doctor_id, doctors.qualification, doctors.rank, doctors.photo_name, " +
+            "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
+            "users.role, " +
+            "client.id AS client_id, client.name AS client_name, client.surname AS client_surname, " +
+            "client.password AS client_password, client.email AS client_email, client.phone AS client_phone, " +
+            "client.role AS client_role " +
+            "FROM appointments INNER JOIN procedures ON appointments.procedure_id = procedures.id " +
+            "INNER JOIN doctors ON appointments.doctor_id = doctors.id " +
+            "INNER JOIN users ON doctors.doctor_info = users.id " +
+            "INNER JOIN users AS client ON appointments.client_id = client.id WHERE client.id = ?";
     private static final String DELETE_APPOINTMENT_BY_ID_SQL = "DELETE FROM appointments WHERE appointments.id = ?";
     private static final String CREATE_APPOINTMENT_BY_ID_SQL = "INSERT INTO appointments (appointments.client_id, " +
             "appointments.doctor_id, appointments.date, appointments.start_time, appointments.end_time," +
@@ -78,28 +92,19 @@ public class AppointmentDaoImpl implements AppointmentDao {
             }
 
             return appointmentList;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
     @Override
-    public List<Appointment> readByDoctorId(Integer id) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
-             Statement statement = connection.createStatement()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(READ_APPOINTMENT_BY_DOCTOR_ID_SQL);
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+    public List<Appointment> readByDoctorId(Integer doctorId) throws DaoException {
+        return readBySomeId(doctorId, READ_APPOINTMENT_BY_DOCTOR_ID_SQL);
+    }
 
-            List<Appointment> appointmentList = new ArrayList<>();
-            while (resultSet.next()) {
-                appointmentList.add(daoAppointmentMapper.mapAppointment(resultSet));
-            }
-
-            return appointmentList;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
-        }
+    @Override
+    public List<Appointment> readByClientId(Integer clientId) throws DaoException {
+        return readBySomeId(clientId, READ_APPOINTMENT_BY_CLIENT_ID_SQL);
     }
 
     @Override
@@ -114,8 +119,8 @@ public class AppointmentDaoImpl implements AppointmentDao {
             }
 
             return Optional.empty();
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -126,8 +131,8 @@ public class AppointmentDaoImpl implements AppointmentDao {
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -138,8 +143,8 @@ public class AppointmentDaoImpl implements AppointmentDao {
             fillAppointmentData(entity, preparedStatement);
 
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -151,8 +156,25 @@ public class AppointmentDaoImpl implements AppointmentDao {
             preparedStatement.setInt(8, entity.getId());
 
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
+        }
+    }
+
+    private List<Appointment> readBySomeId(Integer someId, String SQL) throws DaoException {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, someId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            List<Appointment> appointmentList = new ArrayList<>();
+            while (resultSet.next()) {
+                appointmentList.add(daoAppointmentMapper.mapAppointment(resultSet));
+            }
+
+            return appointmentList;
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 

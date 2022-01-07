@@ -41,6 +41,15 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
+    public Optional<Doctor> readByUserId(String id) throws ServiceException {
+        try {
+            return doctorDao.readByUserId(Integer.parseInt(id));
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public boolean deleteById(String id) throws ServiceException {
         try {
             return doctorDao.deleteById(Integer.parseInt(id));

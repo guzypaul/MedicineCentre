@@ -8,4 +8,6 @@ import java.util.List;
 public interface AppointmentService extends BaseService<Appointment> {
 
     List<Appointment> readByDoctorId(String id) throws ServiceException;
+
+    List<Appointment> readByClientId(String clientId) throws ServiceException;
 }

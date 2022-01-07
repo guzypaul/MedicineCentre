@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface AppointmentDao extends BaseDao<Integer, Appointment>{
     List<Appointment> readByDoctorId(Integer id) throws DaoException;
+
+    List<Appointment> readByClientId(Integer clientId) throws DaoException;
 }

@@ -15,7 +15,7 @@ public class Main {
         Connection connection = ConnectionPool.getInstance().acquireConnection();
 
         /*DoctorDaoImpl doctorDao = new DoctorDaoImpl();
-        System.out.println(doctorDao.readAll());*/
+        System.out.println(doctorDao.readByUserId(2));*/
 
         /*DoctorScheduleDaoImpl doctorScheduleDao = new DoctorScheduleDaoImpl();
         System.out.println(doctorScheduleDao.readByDoctorId(5));*/
@@ -23,13 +23,10 @@ public class Main {
       /*  ProcedureDaoImpl procedureDao = new ProcedureDaoImpl();
         System.out.println(procedureDao.readAll());*/
 
-
         /*AppointmentDaoImpl appointmentDao = new AppointmentDaoImpl();
-        System.out.println(appointmentDao.readAll());*/
+        System.out.println(appointmentDao.readByDoctorId(8));*/
 
        /* UserService userService = ServiceFactory.getInstance().getUserService();
         System.out.println(userService.readByEmail("useafef@gmail.com"));*/
-
-
     }
 }

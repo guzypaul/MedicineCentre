@@ -22,6 +22,10 @@ public class DoctorDaoImpl implements DoctorDao {
             "doctors.rank, doctors.photo_name, " +
             "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
             "users.role FROM doctors INNER JOIN users ON doctors.doctor_info = users.id WHERE doctors.id = ?";
+    private static final String READ_DOCTOR_BY_USER_ID_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, " +
+            "doctors.rank, doctors.photo_name, " +
+            "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
+            "users.role FROM doctors INNER JOIN users ON doctors.doctor_info = users.id WHERE users.id = ?";
     private static final String DELETE_DOCTOR_BY_ID_SQL = "DELETE FROM doctors WHERE doctors.id = ?";
     private static final String CREATE_DOCTOR_BY_ID_SQL = "INSERT INTO doctors (doctors.qualification, " +
             "doctors.rank, doctors.doctor_info, doctors.photo_name) VALUES (?, ?, ?, ?)";
@@ -41,26 +45,19 @@ public class DoctorDaoImpl implements DoctorDao {
             }
 
             return doctorList;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
     @Override
     public Optional<Doctor> readById(Integer id) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(READ_DOCTOR_BY_ID_SQL)) {
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        return readBySomeId(id, READ_DOCTOR_BY_ID_SQL);
+    }
 
-            if (resultSet.next()) {
-                return Optional.of(daoDoctorMapper.mapDoctor(resultSet));
-            }
-
-            return Optional.empty();
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
-        }
+    @Override
+    public Optional<Doctor> readByUserId(Integer userId) throws DaoException {
+        return readBySomeId(userId, READ_DOCTOR_BY_USER_ID_SQL);
     }
 
     @Override
@@ -70,8 +67,8 @@ public class DoctorDaoImpl implements DoctorDao {
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -82,8 +79,8 @@ public class DoctorDaoImpl implements DoctorDao {
             fillDoctorData(entity, preparedStatement);
 
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -95,8 +92,24 @@ public class DoctorDaoImpl implements DoctorDao {
 
             preparedStatement.setInt(5, entity.getId());
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
+        }
+    }
+
+    private Optional<Doctor> readBySomeId(Integer someId, String SQL) throws DaoException {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, someId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return Optional.of(daoDoctorMapper.mapDoctor(resultSet));
+            }
+
+            return Optional.empty();
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
