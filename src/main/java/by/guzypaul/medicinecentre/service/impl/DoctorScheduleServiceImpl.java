@@ -40,6 +40,15 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     }
 
     @Override
+    public Optional<DoctorSchedule> readByDoctorId(String id) throws ServiceException {
+        try {
+            return doctorScheduleDao.readByDoctorId(Integer.parseInt(id));
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public boolean deleteById(String id) throws ServiceException {
         try {
             return doctorScheduleDao.deleteById(Integer.parseInt(id));

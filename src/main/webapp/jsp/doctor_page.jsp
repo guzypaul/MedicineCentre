@@ -24,6 +24,10 @@
                     <h4>Qualification: <c:out value="${doctor.qualification}"/></h4><br/>
                     <h4><c:out value="rank: ${doctor.rank}"/></h4><br/>
                     <h4><c:out value="email: ${doctor.doctorInfo.email}"/></h4><br/>
+                    <h3>Schedule of doctor</h3>
+                    <h4>Start time: <c:out value="${schedule.startTime}"/></h4></h4>
+                    <h4>End time: <c:out value="${schedule.endTime}"/></h4></h4>
+                    <h4>Days: <c:out value="${schedule.info}"/></h4></h4>
                 </div>
             </div>
         </div>
