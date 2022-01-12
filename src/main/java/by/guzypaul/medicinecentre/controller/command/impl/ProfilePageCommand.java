@@ -3,7 +3,9 @@ package by.guzypaul.medicinecentre.controller.command.impl;
 import by.guzypaul.medicinecentre.controller.command.Command;
 import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
-import by.guzypaul.medicinecentre.entity.*;
+import by.guzypaul.medicinecentre.entity.Doctor;
+import by.guzypaul.medicinecentre.entity.DoctorSchedule;
+import by.guzypaul.medicinecentre.entity.User;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.AppointmentService;
@@ -12,7 +14,6 @@ import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
 import by.guzypaul.medicinecentre.service.interfaces.UserService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Optional;
 
 public class ProfilePageCommand implements Command {
@@ -37,19 +38,10 @@ public class ProfilePageCommand implements Command {
 
             if (role.toUpperCase() == "DOCTOR") {
                 Optional<Doctor> doctorOptional = doctorService.readByUserId(userId);
-                String doctorId = String.valueOf(doctorOptional.get().getId()) ;
+                String doctorId = String.valueOf(doctorOptional.get().getId());
                 Optional<DoctorSchedule> doctorScheduleOptional = doctorScheduleService.readByDoctorId(doctorId);
-                List<Appointment> appointmentListForDoctor = appointmentService.readByDoctorId(doctorId);
                 request.setAttribute("doctor", doctorOptional.get());
                 request.setAttribute("schedule", doctorScheduleOptional.get());
-                request.setAttribute("appointmentList", appointmentListForDoctor);
-            } else if (role.toUpperCase() == "USER") {
-                List<Appointment> appointmentListForClient = appointmentService.readByClientId(userId);
-                request.setAttribute("appointmentList", appointmentListForClient);
-            } else if (role.toUpperCase() == "MODERATOR") {
-                //todo setAttribute for MODERATOR
-            } else if (role.toUpperCase() == "ADMIN") {
-                //todo setAttribute for admin
             }
 
             if (userOptional.isPresent()) {

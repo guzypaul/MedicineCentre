@@ -42,7 +42,22 @@
             </c:if>
             <c:if test="${role == 'USER'}">
                 <div class="col-lg-4">
-                    <a href="#" class="btn btn-primary active">My appointments</a>
+                    <a href="${appointments}" class="btn btn-primary active">My appointments</a>
+                </div>
+            </c:if>
+            <c:if test="${role == 'MODERATOR'}">
+                <div class="col-lg-4">
+                    <a href="${appointments}" class="btn btn-primary active">Appointments</a>
+                    <a href="#" class="btn btn-primary active">Clients</a>
+                    <a href="#" class="btn btn-primary active">Doctors</a>
+                </div>
+            </c:if>
+            <c:if test="${role == 'ADMIN'}">
+                <div class="col-lg-4">
+                    <a href="${appointments}" class="btn btn-primary active">Appointments</a>
+                    <a href="#" class="btn btn-primary active">Clients</a>
+                    <a href="#" class="btn btn-primary active">Doctors</a>
+                    <a href="#" class="btn btn-primary active">Procedures</a>
                 </div>
             </c:if>
         </div>
