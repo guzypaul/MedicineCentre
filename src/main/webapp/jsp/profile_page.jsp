@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:url var="photoPath" value="/photo/"/>
+<c:url var="appointments" value="/controller?command=appointments"/>
 
 <html>
 <head>
@@ -36,7 +37,7 @@
                                  ${doctor.doctorInfo.surname}"/>">
                 </div>
                 <div class="col-lg-4">
-                    <a href="#" class="btn btn-primary active" aria-current="page">My appointments</a>
+                    <a href="${appointments}" class="btn btn-primary active" aria-current="page">My appointments</a>
                 </div>
             </c:if>
             <c:if test="${role == 'USER'}">
