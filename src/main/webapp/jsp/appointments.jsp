@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:url var="changeAppointment" value="/controller?command=change_appointment"/>
+<c:url var="deleteAppointment" value="/controller?command=delete_appointment"/>
+
 
 <html>
 <head>
@@ -135,6 +138,8 @@
                             <td><c:out value="${appointment.doctor.qualification}"/></td>
                             <td><c:out value="${appointment.doctor.rank}"/></td>
                             <td><c:out value="${appointment.status}"/></td>
+                            <td><a href="${change}" class="btn btn-primary active">Change</a></td>
+                            <td><a href="${delete}" class="btn btn-primary active">Delete</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>

@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:url var="changeUser" value="/controller?command=change_user"/>
+<c:url var="deleteUser" value="/controller?command=delete_user"/>
 
 <html>
 <head>
@@ -31,6 +33,8 @@
                             <td><c:out value="${user.email}"/></td>
                             <td><c:out value="${user.phone}"/></td>
                             <td><c:out value="${user.role}"/></td>
+                            <td><a href="${changeUser}" class="btn btn-primary active">Change</a></td>
+                            <td><a href="${deleteUser}" class="btn btn-primary active">Delete</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
