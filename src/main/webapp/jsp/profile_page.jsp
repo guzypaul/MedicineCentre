@@ -4,6 +4,7 @@
 
 <c:url var="photoPath" value="/photo/"/>
 <c:url var="appointments" value="/controller?command=appointments"/>
+<c:url var="clients" value="/controller?command=clients"/>
 
 <html>
 <head>
@@ -45,19 +46,10 @@
                     <a href="${appointments}" class="btn btn-primary active">My appointments</a>
                 </div>
             </c:if>
-            <c:if test="${role == 'MODERATOR'}">
+            <c:if test="${role == 'MODERATOR' || role == 'ADMIN'}">
                 <div class="col-lg-4">
                     <a href="${appointments}" class="btn btn-primary active">Appointments</a>
-                    <a href="#" class="btn btn-primary active">Clients</a>
-                    <a href="#" class="btn btn-primary active">Doctors</a>
-                </div>
-            </c:if>
-            <c:if test="${role == 'ADMIN'}">
-                <div class="col-lg-4">
-                    <a href="${appointments}" class="btn btn-primary active">Appointments</a>
-                    <a href="#" class="btn btn-primary active">Clients</a>
-                    <a href="#" class="btn btn-primary active">Doctors</a>
-                    <a href="#" class="btn btn-primary active">Procedures</a>
+                    <a href="${clients}" class="btn btn-primary active">Clients</a>
                 </div>
             </c:if>
         </div>

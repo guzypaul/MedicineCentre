@@ -22,7 +22,8 @@ public enum CommandFactory {
     ERROR_PAGE(new ErrorPageCommand(), "error_page", GET),
     PROFILE_PAGE(new ProfilePageCommand(), "profile_page", GET),
     CHANGE_LANGUAGE(new ChangeLanguageCommand(), "change_language", POST),
-    APPOINTMENT_LIST(new AppointmentListCommand(),"appointments", GET);
+    APPOINTMENT_LIST(new AppointmentListCommand(),"appointments", GET),
+    CLIENT_LIST(new ClientsListCommand(), "clients", GET);
 
     private final Command command;
     private final String commandName;

@@ -21,9 +21,13 @@
                 <div class="col-lg-8">
                     <h2><c:out value="${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}"/></h2>
                     <br>
-                    <h4>Qualification: <c:out value="${doctor.qualification}"/></h4><br/>
-                    <h4>Rank: <c:out value="${doctor.rank}"/></h4><br/>
-                    <h4>Email: <c:out value="${doctor.doctorInfo.email}"/></h4><br/>
+                    <h4>Qualification: <c:out value="${doctor.qualification}"/></h4>
+                    <h4>Rank: <c:out value="${doctor.rank}"/></h4>
+                    <h4>Email: <c:out value="${doctor.doctorInfo.email}"/></h4>
+                    <c:if test="${role == 'MODERATOR' || role == 'ADMIN'}">
+                        <h4>Phone number: <c:out value="${doctor.doctorInfo.phone}"/></h4>
+                    </c:if>
+                    <br/>
                     <h3>Schedule of doctor</h3>
                     <h4>Start time: <c:out value="${schedule.startTime}"/></h4>
                     <h4>End time: <c:out value="${schedule.endTime}"/></h4>

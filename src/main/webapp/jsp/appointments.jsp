@@ -83,7 +83,7 @@
                     </tbody>
                 </table>
             </c:if>
-            <c:if test="${role == 'MODERATOR'}">
+            <c:if test="${role == 'MODERATOR' || role == 'ADMIN'}">
                 <h1>AppointmentList</h1>
                 <table class="table table-striped table-hover">
                     <thead>

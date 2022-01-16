@@ -5,24 +5,20 @@ import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
 import by.guzypaul.medicinecentre.entity.Appointment;
 import by.guzypaul.medicinecentre.entity.Doctor;
-import by.guzypaul.medicinecentre.entity.User;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.AppointmentService;
 import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
-import by.guzypaul.medicinecentre.service.interfaces.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
 public class AppointmentListCommand implements Command {
-    private final UserService userService;
     private final DoctorService doctorService;
     private final AppointmentService appointmentService;
 
     public AppointmentListCommand() {
-        userService = ServiceFactory.getInstance().getUserService();
         doctorService = ServiceFactory.getInstance().getDoctorService();
         appointmentService = ServiceFactory.getInstance().getAppointmentService();
     }
@@ -32,7 +28,6 @@ public class AppointmentListCommand implements Command {
         try {
             String role = String.valueOf(request.getSession().getAttribute("role"));
             String userId = request.getSession().getAttribute("userId").toString();
-            Optional<User> userOptional = userService.readById(userId);
 
             if (role.toUpperCase() == "DOCTOR") {
                 Optional<Doctor> doctorOptional = doctorService.readByUserId(userId);
@@ -42,7 +37,7 @@ public class AppointmentListCommand implements Command {
             } else if (role.toUpperCase() == "USER") {
                 List<Appointment> appointmentListForClient = appointmentService.readByClientId(userId);
                 request.setAttribute("appointmentList", appointmentListForClient);
-            } else if (role.toUpperCase() == "MODERATOR") {
+            } else if (role.toUpperCase() == "MODERATOR" || role.toUpperCase() == "ADMIN") {
                 List<Appointment> appointmentList = appointmentService.readAll();
                 request.setAttribute("appointmentList", appointmentList);
             }
