@@ -40,7 +40,7 @@
                     <br>
                     <div>
                         <label for="password">Password</label>
-                        <input id="password" class="form-control" tabindex="2" placeholder="Password" type="password" name="password" value=""/><br>
+                        <input id="password" class="form-control" tabindex="2" placeholder="Password" type="password" name="password"/><br>
                     </div>
                     <br>
                     <div>
