@@ -11,10 +11,10 @@ import by.guzypaul.medicinecentre.service.interfaces.AppointmentService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
-public class DeleteAppointmentCommand implements Command {
+public class ChangeAppointmentPageCommand implements Command {
     private final AppointmentService appointmentService;
 
-    public DeleteAppointmentCommand() {
+    public ChangeAppointmentPageCommand() {
         appointmentService = ServiceFactory.getInstance().getAppointmentService();
     }
 
@@ -23,9 +23,10 @@ public class DeleteAppointmentCommand implements Command {
         try {
             String appointmentId = request.getParameter("appointmentId");
             Optional<Appointment> optionalAppointment = appointmentService.readById(appointmentId);
+
             if (optionalAppointment.isPresent()) {
-                appointmentService.deleteById(appointmentId);
-                return new Router("/jsp/appointments.jsp", Router.Type.REDIRECT);
+                request.setAttribute("appointment", optionalAppointment.get());
+                return new Router("/jsp/change_appointment.jsp", Router.Type.FORWARD);
             }
 
             throw new CommandException("Invalid appointment");

@@ -24,6 +24,7 @@ public enum CommandFactory {
     CHANGE_LANGUAGE(new ChangeLanguageCommand(), "change_language", POST),
     APPOINTMENT_LIST(new AppointmentListCommand(),"appointments", GET),
     CLIENT_LIST(new ClientsListCommand(), "clients", GET),
+    CHANGE_APPOINTMENT_PAGE(new ChangeAppointmentPageCommand(), "change_appointment_page", GET),
     CHANGE_APPOINTMENT(new ChangeAppointmentCommand(), "change_appointment", POST),
     DELETE_APPOINTMENT(new DeleteAppointmentCommand(), "delete_appointment", POST),
     CHANGE_USER(new ChangeUserInfoCommand(), "change_user", POST),
