@@ -34,8 +34,8 @@
             <form class="registration-inputs" action="${changeAppointment}" method="post">
                 <div class="container-fluid">
                     <div>
-                        <label for="appointmentId">Appointment Id</label>
-                        <input disabled id="appointmentId" class="form-control" value="${appointment.id}" type="hidden"
+                        <label for="appointmentId">Appointment Id ${appointment.id}</label>
+                        <input id="appointmentId" class="form-control" value="${appointment.id}" type="hidden"
                                name="appointmentId"/>
                     </div>
                     <br>

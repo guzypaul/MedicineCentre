@@ -58,7 +58,7 @@ public class ChangeAppointmentCommand implements Command {
 
             Optional<Appointment> appointmentOptional = appointmentService.readById(appointmentId);
             Optional<User> userClientOptional = userService.readById(clientId);
-            Optional<Doctor> doctorOptional = doctorService.readByUserId(doctorId);
+            Optional<Doctor> doctorOptional = doctorService.readById(doctorId);
             Optional<Procedure> procedureOptional = procedureService.readById(procedureId);
 
             if (appointmentOptional.isPresent() && userClientOptional.isPresent()
