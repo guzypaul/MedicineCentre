@@ -36,7 +36,7 @@ public class AuthorizationCommand implements Command {
                 request.getSession().setAttribute("userId", userOptional.get().getId());
                 request.getSession().setAttribute("role", userOptional.get().getRole().toString());
                 request.getSession().setAttribute("isUserAuthorized", true);
-                return new Router("/controller?command=profile_page", Router.Type.REDIRECT);
+                return new Router("/controller?command=procedures", Router.Type.REDIRECT);
             } else {
                 request.getSession().setAttribute("isUserAuthorized", false);
                 return new Router("/controller?command=authorization_page", Router.Type.REDIRECT);

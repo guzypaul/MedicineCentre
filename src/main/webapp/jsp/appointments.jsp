@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:url var="changeAppointmentPage" value="/controller?command=change_appointment_page&appointmentId="/>
-<c:url var="deleteAppointment" value="/controller?command=delete_appointment&appointmentId="/>
+<c:url var="deleteAppointment" value="/controller?command=delete_appointment_page&appointmentId="/>
 
 
 <html>

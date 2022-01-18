@@ -14,7 +14,7 @@
     <title>Procedures</title>
     <c:import url="header.jsp"/>
     <main>
-        <c:if test="${isUserAuthorized == true}">
+        <c:if test="${isUserAuthorized == true && role == 'USER'}">
             <div class="container-fluid alert-indents">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>Authorization is successfully!</strong> You can make appointments now.
