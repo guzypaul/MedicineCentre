@@ -12,6 +12,11 @@ public class DoctorValidator {
                 && userValidator.validateUser(doctor.getDoctorInfo());
     }
 
+    public boolean validateDoctorForUpdating(Doctor doctor) {
+        return doctor != null && isValidQualification(doctor.getQualification())
+                && isValidRank(doctor.getRank());
+    }
+
     private boolean isValidQualification(String qualification) {
         return qualification != null && qualification.length() <= 30;
     }

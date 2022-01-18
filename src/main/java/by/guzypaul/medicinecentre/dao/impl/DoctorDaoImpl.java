@@ -29,8 +29,8 @@ public class DoctorDaoImpl implements DoctorDao {
     private static final String DELETE_DOCTOR_BY_ID_SQL = "DELETE FROM doctors WHERE doctors.id = ?";
     private static final String CREATE_DOCTOR_BY_ID_SQL = "INSERT INTO doctors (doctors.qualification, " +
             "doctors.rank, doctors.doctor_info, doctors.photo_name) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE_DOCTOR_BY_ID_SQL = "UPDATE doctors SET qualification = ?," +
-            " rank = ?, doctor_info = ?, doctors.photo_name = ? WHERE doctors.id = ?";
+    private static final String UPDATE_DOCTOR_BY_ID_SQL = "UPDATE doctors SET doctors.qualification = ?," +
+            " doctors.rank = ?, doctors.photo_name = ? WHERE doctors.id = ?";
 
     private final DaoDoctorMapper daoDoctorMapper = new DaoDoctorMapper();
 
@@ -76,7 +76,10 @@ public class DoctorDaoImpl implements DoctorDao {
     public boolean create(Doctor entity) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(CREATE_DOCTOR_BY_ID_SQL)) {
-            fillDoctorData(entity, preparedStatement);
+            preparedStatement.setString(1, entity.getQualification());
+            preparedStatement.setString(2, entity.getRank());
+            preparedStatement.setInt(3, entity.getDoctorInfo().getId());
+            preparedStatement.setString(4, entity.getPhotoName());
 
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException | ConnectionPoolException e) {
@@ -88,9 +91,11 @@ public class DoctorDaoImpl implements DoctorDao {
     public boolean update(Doctor entity) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DOCTOR_BY_ID_SQL)) {
-            fillDoctorData(entity, preparedStatement);
+            preparedStatement.setString(1, entity.getQualification());
+            preparedStatement.setString(2, entity.getRank());
+            preparedStatement.setString(3, entity.getPhotoName());
+            preparedStatement.setInt(4, entity.getId());
 
-            preparedStatement.setInt(5, entity.getId());
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException(e.getMessage());
@@ -111,12 +116,5 @@ public class DoctorDaoImpl implements DoctorDao {
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException(e.getMessage());
         }
-    }
-
-    private void fillDoctorData(Doctor entity, PreparedStatement preparedStatement) throws SQLException {
-        preparedStatement.setString(1, entity.getQualification());
-        preparedStatement.setString(2, entity.getRank());
-        preparedStatement.setInt(3, entity.getDoctorInfo().getId());
-        preparedStatement.setString(4, entity.getPhotoName());
     }
 }

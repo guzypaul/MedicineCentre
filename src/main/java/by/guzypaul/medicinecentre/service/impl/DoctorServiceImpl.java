@@ -73,7 +73,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public boolean update(Doctor entity) throws ServiceException {
         try {
-            if(doctorValidator.validateDoctor(entity)) {
+            if(doctorValidator.validateDoctorForUpdating(entity)) {
                 return doctorDao.update(entity);
             }
             throw new ServiceException(INVALID_DOCTOR);

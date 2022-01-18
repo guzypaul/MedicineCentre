@@ -4,6 +4,7 @@
 
 <c:url var="cssFilePath" value="/css/style.css"/>
 <c:url var="photoPath" value="/photo/"/>
+<c:url var="changeDoctor" value="/controller?command=change_doctor_page&doctorId="/>
 
 <html>
 <head>
@@ -17,6 +18,10 @@
                     <img src="${photoPath}${doctor.photoName}" class="img-fluid doctor-normal-photo"
                          alt="<c:out value="${doctor.doctorInfo.name}
                                  ${doctor.doctorInfo.surname}"/>">
+                    <br>
+                    <c:if test="${role == 'MODERATOR' || role == 'ADMIN'}">
+                        <a href="${changeDoctor}<c:out value="${doctor.id}"/>" class="btn btn-primary active">Change doctor information</a>
+                    </c:if>
                 </div>
                 <div class="col-lg-8">
                     <h2><c:out value="${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}"/></h2>

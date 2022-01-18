@@ -27,6 +27,13 @@ public class Doctor implements Entity {
         this.photoName = photoName;
     }
 
+    public Doctor(int id, String qualification, String rank, String photoName) {
+        this.id = id;
+        this.qualification = qualification;
+        this.rank = rank;
+        this.photoName = photoName;
+    }
+
     public String getPhotoName() {
         return photoName;
     }
