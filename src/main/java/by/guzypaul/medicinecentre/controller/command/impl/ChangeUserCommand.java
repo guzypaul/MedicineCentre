@@ -35,18 +35,21 @@ public class ChangeUserCommand implements Command {
                     || email == null || email.isEmpty()
                     || phone == null || phone.isEmpty()
                     || role == null || role.isEmpty()) {
-                return new Router("/controller?command=change_user", Router.Type.REDIRECT);
+                return new Router("/controller?command=change_user_page", Router.Type.REDIRECT);
             }
 
             Optional<User> userOptional = userService.readById(userId);
 
             if (userOptional.isPresent()) {
                 User user = new User(Integer.parseInt(userId), name, surname, email, phone, Role.valueOf(role));
-
                 userService.update(user);
+
+                if (request.getSession().getAttribute("role") == "USER") {
+                    return new Router("/controller?command=profile_page", Router.Type.REDIRECT);
+                }
                 return new Router("/controller?command=users", Router.Type.REDIRECT);
             } else {
-                return new Router("/controller?command=change_user", Router.Type.REDIRECT);
+                return new Router("/controller?command=change_user_page", Router.Type.REDIRECT);
             }
 
         } catch (ServiceException e) {

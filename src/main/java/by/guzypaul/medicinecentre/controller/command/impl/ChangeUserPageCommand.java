@@ -26,7 +26,7 @@ public class ChangeUserPageCommand implements Command {
 
             if  (userOptional.isPresent()) {
                 request.setAttribute("user", userOptional.get());
-                return new Router("/jsp/change_user.jsp", Router.Type.FORWARD);
+                return new Router("/jsp/change_user_page.jsp", Router.Type.FORWARD);
             }
 
             throw new CommandException("Invalid user");

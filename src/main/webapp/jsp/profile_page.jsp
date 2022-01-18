@@ -4,8 +4,8 @@
 
 <c:url var="photoPath" value="/photo/"/>
 <c:url var="appointments" value="/controller?command=appointments"/>
-<c:url var="clients" value="/controller?command=clients"/>
-<c:url var="changeUser" value="/controller?command=change_user&userId="/>
+<c:url var="users" value="/controller?command=users"/>
+<c:url var="changeUser" value="/controller?command=change_user_page&userId="/>
 
 <html>
 <head>
@@ -51,7 +51,7 @@
             <c:if test="${role == 'MODERATOR' || role == 'ADMIN'}">
                 <div class="col-lg-4">
                     <a href="${appointments}" class="btn btn-primary active">Appointments</a>
-                    <a href="${clients}" class="btn btn-primary active">Clients</a>
+                    <a href="${users}" class="btn btn-primary active">Clients</a>
                 </div>
             </c:if>
         </div>

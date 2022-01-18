@@ -11,10 +11,10 @@ import by.guzypaul.medicinecentre.service.interfaces.UserService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-public class UsersListCommand implements Command {
+public class UserListCommand implements Command {
     private final UserService userService;
 
-    public UsersListCommand() {
+    public UserListCommand() {
         userService = ServiceFactory.getInstance().getUserService();
     }
 
