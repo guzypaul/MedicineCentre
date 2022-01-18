@@ -9,7 +9,6 @@ import java.io.IOException;
 public class CommandAccessFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
@@ -28,6 +27,5 @@ public class CommandAccessFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 }
