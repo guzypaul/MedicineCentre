@@ -5,6 +5,7 @@
 <c:url var="photoPath" value="/photo/"/>
 <c:url var="appointments" value="/controller?command=appointments"/>
 <c:url var="clients" value="/controller?command=clients"/>
+<c:url var="changeUser" value="/controller?command=change_user&userId="/>
 
 <html>
 <head>
@@ -44,6 +45,7 @@
             <c:if test="${role == 'USER'}">
                 <div class="col-lg-4">
                     <a href="${appointments}" class="btn btn-primary active">My appointments</a>
+                    <a href="${changeUser}<c:out value="${user.id}"/>" class="btn btn-primary active">Change my information</a>
                 </div>
             </c:if>
             <c:if test="${role == 'MODERATOR' || role == 'ADMIN'}">

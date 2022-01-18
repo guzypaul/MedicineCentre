@@ -23,12 +23,15 @@ public enum CommandFactory {
     PROFILE_PAGE(new ProfilePageCommand(), "profile_page", GET),
     CHANGE_LANGUAGE(new ChangeLanguageCommand(), "change_language", POST),
     APPOINTMENT_LIST(new AppointmentListCommand(),"appointments", GET),
-    CLIENT_LIST(new ClientsListCommand(), "clients", GET),
+    CLIENT_LIST(new UsersListCommand(), "clients", GET),
     CHANGE_APPOINTMENT_PAGE(new ChangeAppointmentPageCommand(), "change_appointment_page", GET),
     CHANGE_APPOINTMENT(new ChangeAppointmentCommand(), "change_appointment", POST),
+    DELETE_APPOINTMENT_PAGE (new DeleteAppointmentPageCommand(), "delete_appointment_page", GET),
     DELETE_APPOINTMENT(new DeleteAppointmentCommand(), "delete_appointment", POST),
-    CHANGE_USER(new ChangeUserInfoCommand(), "change_user", POST),
-    DELETE_USER(new DeleteUserCommand(), "delete_user", POST);
+
+    CHANGE_USER_PAGE(new ChangeUserPageCommand(),"change_user", GET),
+
+    CHANGE_USER(new ChangeUserCommand(), "change_user", POST);
 
     private final Command command;
     private final String commandName;
