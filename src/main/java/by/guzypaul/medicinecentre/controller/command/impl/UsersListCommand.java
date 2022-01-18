@@ -11,10 +11,10 @@ import by.guzypaul.medicinecentre.service.interfaces.UserService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-public class ClientsListCommand implements Command {
+public class UsersListCommand implements Command {
     private final UserService userService;
 
-    public ClientsListCommand() {
+    public UsersListCommand() {
         userService = ServiceFactory.getInstance().getUserService();
     }
 
@@ -24,7 +24,7 @@ public class ClientsListCommand implements Command {
             List<User> userList = userService.readAll();
             request.setAttribute("userList", userList);
 
-            return new Router("/jsp/clients.jsp", Router.Type.FORWARD);
+            return new Router("/jsp/users.jsp", Router.Type.FORWARD);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
