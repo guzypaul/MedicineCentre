@@ -17,6 +17,14 @@ public class UserValidator {
                 && isValidRole(user.getRole());
     }
 
+    public boolean validateUserForUpdating(User user) {
+        return user != null && isValidName(user.getName())
+                && isValidSurname(user.getSurname())
+                && isValidEmail(user.getEmail())
+                && isValidPhone(user.getPhone())
+                && isValidRole(user.getRole());
+    }
+
     private boolean isValidName(String name) {
         return name != null && name.length() >= 2 && name.length() <= 30;
     }

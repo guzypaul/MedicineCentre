@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean update(User entity) throws ServiceException {
         try {
-            if (userValidator.validateUser(entity)) {
+            if (userValidator.validateUserForUpdating(entity)) {
                 return userDao.update(entity);
             }
             throw new ServiceException(INVALID_USER);

@@ -28,9 +28,7 @@ public enum CommandFactory {
     CHANGE_APPOINTMENT(new ChangeAppointmentCommand(), "change_appointment", POST),
     DELETE_APPOINTMENT_PAGE (new DeleteAppointmentPageCommand(), "delete_appointment_page", GET),
     DELETE_APPOINTMENT(new DeleteAppointmentCommand(), "delete_appointment", POST),
-
     CHANGE_USER_PAGE(new ChangeUserPageCommand(),"change_user", GET),
-
     CHANGE_USER(new ChangeUserCommand(), "change_user", POST);
 
     private final Command command;

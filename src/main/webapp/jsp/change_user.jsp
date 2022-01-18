@@ -33,40 +33,27 @@
                     <br>
                     <div>
                         <label for="phone">Phone number</label>
-                        <input id="phone" class="form-control" tabindex="5" value="${user.phone}" type="text"
+                        <input id="phone" class="form-control" tabindex="3" value="${user.phone}" type="text"
                                name="phone"/>
                     </div>
                     <br>
                     <div>
                         <label for="email">E-mail</label>
-                        <input id="email" class="form-control" tabindex="3" value="${user.email}"
+                        <input id="email" class="form-control" tabindex="4" value="${user.email}"
                                type="text" name="email"/>
                     </div>
                     <br>
                     <c:if test="${role == 'ADMIN' || role == 'MODERATOR'}">
                         <div>
-                            <label for="clientPassword">Client password</label>
-                            <input disabled id="clientPassword" class="form-control" value="${user.password}"
-                                   type="password"/>
-                            <input class="form-control" value="${user.password}"
-                                   type="hidden" name="password"/>
-                        </div>
-                        <br>
-                        <div>
                             <label for="role">Role</label>
-                            <input id="role" class="form-control" tabindex="6" value="${user.role}"
+                            <input id="role" class="form-control" tabindex="5" value="${user.role}"
                                    type="text" name="role"/>
                         </div>
                         <br>
                     </c:if>
                     <c:if test="${role == 'USER'}">
                         <div>
-                            <label for="password">Password</label>
-                            <input id="password" class="form-control" tabindex="4" value="${user.password}"
-                                   type="text" name="password"/>
-                        </div>
-                        <div>
-                            <input class="form-control"  value="${user.role}"
+                            <input class="form-control" value="${user.role}"
                                    type="hidden" name="role"/>
                         </div>
                         <br>

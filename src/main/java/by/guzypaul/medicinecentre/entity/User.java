@@ -33,6 +33,15 @@ public class User implements Entity {
         this.role = role;
     }
 
+    public User(int id, String name, String surname, String email, String phone, Role role) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.phone = phone;
+        this.role = role;
+    }
+
     public int getId() {
         return id;
     }
