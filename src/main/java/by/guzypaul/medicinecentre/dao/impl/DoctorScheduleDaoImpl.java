@@ -37,8 +37,8 @@ public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
     private static final String CREATE_DOCTOR_SCHEDULE_BY_ID_SQL = "INSERT INTO doctor_schedules " +
             "(doctor_schedules.doctor_id, doctor_schedules.start_time, doctor_schedules.end_time, " +
             "doctor_schedules.info) " + "VALUES (?, ?, ?, ?)";
-    private static final String UPDATE_DOCTOR_SCHEDULE_BY_ID_SQL = "UPDATE doctor_schedules SET doctor_id = ?," +
-            " start_time = ?, end_time = ?, info = ? WHERE doctor_schedules.id = ?";
+    private static final String UPDATE_DOCTOR_SCHEDULE_BY_ID_SQL = "UPDATE doctor_schedules SET " +
+            "start_time = ?, end_time = ?, info = ? WHERE doctor_schedules.id = ?";
 
     private final DaoDoctorScheduleMapper daoDoctorScheduleMapper = new DaoDoctorScheduleMapper();
 
@@ -53,8 +53,8 @@ public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
             }
 
             return doctorScheduleList;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -75,8 +75,8 @@ public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -84,11 +84,14 @@ public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
     public boolean create(DoctorSchedule entity) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(CREATE_DOCTOR_SCHEDULE_BY_ID_SQL)) {
-            fillDoctorScheduleData(entity, preparedStatement);
+            preparedStatement.setInt(1, entity.getDoctor().getId());
+            preparedStatement.setTime(2, entity.getStartTime());
+            preparedStatement.setTime(3, entity.getEndTime());
+            preparedStatement.setString(4, entity.getInfo());
 
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -96,12 +99,14 @@ public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
     public boolean update(DoctorSchedule entity) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DOCTOR_SCHEDULE_BY_ID_SQL)) {
-            fillDoctorScheduleData(entity, preparedStatement);
-            preparedStatement.setInt(5, entity.getId());
+            preparedStatement.setTime(1, entity.getStartTime());
+            preparedStatement.setTime(2, entity.getEndTime());
+            preparedStatement.setString(3, entity.getInfo());
+            preparedStatement.setInt(4, entity.getId());
 
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -116,15 +121,8 @@ public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
             }
 
             return Optional.empty();
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
-    }
-
-    private void fillDoctorScheduleData(DoctorSchedule entity, PreparedStatement preparedStatement) throws SQLException {
-        preparedStatement.setInt(1, entity.getDoctor().getId());
-        preparedStatement.setTime(2, entity.getStartTime());
-        preparedStatement.setTime(3, entity.getEndTime());
-        preparedStatement.setString(4, entity.getInfo());
     }
 }

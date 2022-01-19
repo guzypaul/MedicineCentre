@@ -5,6 +5,7 @@
 <c:url var="cssFilePath" value="/css/style.css"/>
 <c:url var="photoPath" value="/photo/"/>
 <c:url var="changeDoctor" value="/controller?command=change_doctor_page&doctorId="/>
+<c:url var="changeDoctorSchedule" value="/controller?command=change_doctor_schedule_page&doctorScheduleId="/>
 
 <html>
 <head>
@@ -19,8 +20,9 @@
                          alt="<c:out value="${doctor.doctorInfo.name}
                                  ${doctor.doctorInfo.surname}"/>">
                     <br>
-                    <c:if test="${role == 'MODERATOR' || role == 'ADMIN'}">
+                    <c:if test="${role == 'ADMIN'}">
                         <a href="${changeDoctor}<c:out value="${doctor.id}"/>" class="btn btn-primary active">Change doctor information</a>
+                        <a href="${changeDoctorSchedule}<c:out value="${schedule.id}"/>" class="btn btn-primary active">Change doctor schedule</a>
                     </c:if>
                 </div>
                 <div class="col-lg-8">

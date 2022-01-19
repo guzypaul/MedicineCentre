@@ -31,7 +31,9 @@ public enum CommandFactory {
     CHANGE_USER_PAGE(new ChangeUserPageCommand(),"change_user_page", GET),
     CHANGE_USER(new ChangeUserCommand(), "change_user", POST),
     CHANGE_DOCTOR_PAGE(new ChangeDoctorPageCommand(), "change_doctor_page", GET),
-    CHANGE_DOCTOR(new ChangeDoctorCommand(), "change_doctor", POST);
+    CHANGE_DOCTOR(new ChangeDoctorCommand(), "change_doctor", POST),
+    CHANGE_DOCTOR_SCHEDULE_PAGE(new ChangeDoctorSchedulePageCommand(), "change_doctor_schedule_page", GET),
+    CHANGE_DOCTOR_SCHEDULE(new ChangeDoctorScheduleCommand(), "change_doctor_schedule", POST);
 
     private final Command command;
     private final String commandName;

@@ -17,6 +17,12 @@ public class DoctorScheduleValidator {
                 && isValidInfo(doctorSchedule.getInfo());
     }
 
+    public boolean validateDoctorScheduleForUpdating(DoctorSchedule doctorSchedule) {
+        return doctorSchedule != null && isValidStartTime(doctorSchedule.getStartTime())
+                && isValidEndTime(doctorSchedule.getEndTime())
+                && isValidInfo(doctorSchedule.getInfo());
+    }
+
     private boolean isValidInfo(String text) {
         return text != null && text.matches(INFO);
     }

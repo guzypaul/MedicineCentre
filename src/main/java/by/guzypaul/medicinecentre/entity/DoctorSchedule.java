@@ -28,6 +28,13 @@ public class DoctorSchedule implements Entity{
         this.info = info;
     }
 
+    public DoctorSchedule(int id, Time startTime, Time endTime, String info) {
+        this.id = id;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.info = info;
+    }
+
     public int getId() {
         return id;
     }

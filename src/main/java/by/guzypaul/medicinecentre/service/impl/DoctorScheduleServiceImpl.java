@@ -72,7 +72,7 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     @Override
     public boolean update(DoctorSchedule entity) throws ServiceException {
         try {
-            if (doctorScheduleValidator.validateDoctorSchedule(entity)) {
+            if (doctorScheduleValidator.validateDoctorScheduleForUpdating(entity)) {
                 return doctorScheduleDao.update(entity);
             }
             throw new ServiceException(INVALID_DOCTOR_SCHEDULE);
