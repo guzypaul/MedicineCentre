@@ -21,7 +21,7 @@
                     <br>
                     <div>
                         <label for="qualification">Qualification</label>
-                        <input id="qualification" class="form-control" tabindex="2" value="${doctor.qualification}" type="text"
+                        <input id="qualification" class="form-control" tabindex="1" value="${doctor.qualification}" type="text"
                                name="qualification"/>
                     </div>
                     <br>
@@ -33,7 +33,7 @@
                     <br>
                     <div>
                         <label for="photoName">Photo name</label>
-                        <input id="photoName" class="form-control" tabindex="2" value="${doctor.photoName}" type="text"
+                        <input id="photoName" class="form-control" tabindex="3" value="${doctor.photoName}" type="text"
                                name="photoName"/>
                     </div>
                     <br>

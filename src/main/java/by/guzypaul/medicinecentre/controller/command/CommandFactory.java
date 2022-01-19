@@ -35,7 +35,11 @@ public enum CommandFactory {
     CHANGE_DOCTOR_SCHEDULE_PAGE(new ChangeDoctorSchedulePageCommand(), "change_doctor_schedule_page", GET),
     CHANGE_DOCTOR_SCHEDULE(new ChangeDoctorScheduleCommand(), "change_doctor_schedule", POST),
     DELETE_DOCTOR_AND_SCHEDULE_PAGE(new DeleteDoctorAndSchedulePageCommand(), "delete_doctor_and_schedule_page", GET),
-    DELETE_DOCTOR_AND_SCHEDULE(new DeleteDoctorAndScheduleCommand(), "delete_doctor_and_schedule", POST);
+    DELETE_DOCTOR_AND_SCHEDULE(new DeleteDoctorAndScheduleCommand(), "delete_doctor_and_schedule", POST),
+    CHANGE_PROCEDURE_PAGE(new ChangeProcedurePageCommand(), "change_procedure_page", GET),
+    CHANGE_PROCEDURE(new ChangeProcedureCommand(), "change_procedure", POST),
+    DELETE_PROCEDURE_PAGE(new DeleteProcedurePageCommand(), "delete_procedure_page", GET),
+    DELETE_PROCEDURE(new DeleteProcedureCommand(), "delete_procedure", POST);
 
     private final Command command;
     private final String commandName;

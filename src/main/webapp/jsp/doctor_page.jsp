@@ -22,9 +22,10 @@
                                  ${doctor.doctorInfo.surname}"/>">
                     <br>
                     <c:if test="${role == 'ADMIN'}">
-                        <a href="${changeDoctor}<c:out value="${doctor.id}"/>" class="btn btn-primary active">Change doctor information</a>
-                        <a href="${changeDoctorSchedule}<c:out value="${schedule.id}"/>" class="btn btn-primary active">Change doctor schedule</a>
-                        <a href="${deleteDoctorAndSchedule}<c:out value="${doctor.id}"/>" class="btn btn-danger active">Delete doctor with his schedule!</a>
+                        <br>
+                        <a href="${changeDoctor}<c:out value="${doctor.id}"/>" class="btn btn-primary active">Change doctor information</a><br>
+                        <a href="${changeDoctorSchedule}<c:out value="${schedule.id}"/>" class="btn btn-primary active">Change doctor schedule</a><br>
+                        <a href="${deleteDoctorAndSchedule}<c:out value="${doctor.id}"/>" class="btn btn-danger active">Delete doctor with his schedule!</a><br>
                     </c:if>
                 </div>
                 <div class="col-lg-8">
