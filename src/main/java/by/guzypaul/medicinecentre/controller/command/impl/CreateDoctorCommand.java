@@ -56,11 +56,14 @@ public class CreateDoctorCommand implements Command {
                 userService.update(userDoctor);
                 Doctor doctor = new Doctor(qualification, rank, userDoctor, photoName);
                 doctorService.create(doctor);
-                Doctor newCreatedDoctor = doctorService.readByUserId(userId).get();
-                DoctorSchedule doctorSchedule = new DoctorSchedule(newCreatedDoctor, Time.valueOf(startTime), Time.valueOf(endTime), info);
-                doctorScheduleService.create(doctorSchedule);
+                if (doctorService.readByUserId(userId).isPresent()) {
+                    Doctor newCreatedDoctor = doctorService.readByUserId(userId).get();
+                    DoctorSchedule doctorSchedule = new DoctorSchedule(newCreatedDoctor, Time.valueOf(startTime), Time.valueOf(endTime), info);
+                    doctorScheduleService.create(doctorSchedule);
 
-                return new Router("/controller?command=doctor_page&doctorId=" + newCreatedDoctor.getId(), Router.Type.REDIRECT);
+                    return new Router("/controller?command=doctor_page&doctorId=" + newCreatedDoctor.getId(), Router.Type.REDIRECT);
+                }
+                throw new CommandException("Doctor creating was crashed!");
             }else {
 
                 return new Router("/controller?command=create_doctor_page", Router.Type.REDIRECT);

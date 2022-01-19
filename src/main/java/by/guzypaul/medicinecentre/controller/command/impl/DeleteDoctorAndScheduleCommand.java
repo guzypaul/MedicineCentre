@@ -44,7 +44,7 @@ public class DeleteDoctorAndScheduleCommand implements Command {
                 user.setRole(Role.USER);
                 userService.update(user);
 
-                return new Router("/jsp/doctors.jsp", Router.Type.REDIRECT);
+                return new Router("/controller?command=doctors", Router.Type.REDIRECT);
             }
 
             throw new CommandException("Invalid doctor or schedule, or user!");
