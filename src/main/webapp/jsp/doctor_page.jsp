@@ -6,6 +6,7 @@
 <c:url var="photoPath" value="/photo/"/>
 <c:url var="changeDoctor" value="/controller?command=change_doctor_page&doctorId="/>
 <c:url var="changeDoctorSchedule" value="/controller?command=change_doctor_schedule_page&doctorScheduleId="/>
+<c:url var="deleteDoctorAndSchedule" value="/controller?command=delete_doctor_and_schedule_page&doctorId="/>
 
 <html>
 <head>
@@ -23,6 +24,7 @@
                     <c:if test="${role == 'ADMIN'}">
                         <a href="${changeDoctor}<c:out value="${doctor.id}"/>" class="btn btn-primary active">Change doctor information</a>
                         <a href="${changeDoctorSchedule}<c:out value="${schedule.id}"/>" class="btn btn-primary active">Change doctor schedule</a>
+                        <a href="${deleteDoctorAndSchedule}<c:out value="${doctor.id}"/>" class="btn btn-danger active">Delete doctor with his schedule!</a>
                     </c:if>
                 </div>
                 <div class="col-lg-8">

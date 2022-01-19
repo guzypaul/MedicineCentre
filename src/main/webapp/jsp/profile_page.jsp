@@ -51,7 +51,7 @@
             <c:if test="${role == 'MODERATOR' || role == 'ADMIN'}">
                 <div class="col-lg-4">
                     <a href="${appointments}" class="btn btn-primary active">Appointments</a>
-                    <a href="${users}" class="btn btn-primary active">Clients</a>
+                    <a href="${users}" class="btn btn-primary active">Users</a>
                 </div>
             </c:if>
         </div>
