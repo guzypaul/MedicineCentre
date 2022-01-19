@@ -5,6 +5,7 @@ import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
 import by.guzypaul.medicinecentre.entity.Doctor;
 import by.guzypaul.medicinecentre.entity.DoctorSchedule;
+import by.guzypaul.medicinecentre.entity.Role;
 import by.guzypaul.medicinecentre.entity.User;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
@@ -39,7 +40,9 @@ public class DeleteDoctorAndScheduleCommand implements Command {
             if (doctorOptional.isPresent() && doctorScheduleOptional.isPresent() && userOptional.isPresent()) {
                 doctorScheduleService.deleteById(doctorScheduleId);                     //todo transaction!!!
                 doctorService.deleteById(doctorId);
-                userService.deleteById(userId);
+                User user = userOptional.get();
+                user.setRole(Role.USER);
+                userService.update(user);
 
                 return new Router("/jsp/doctors.jsp", Router.Type.REDIRECT);
             }

@@ -5,6 +5,7 @@
 <c:url var="doctorPage" value="/controller?command=doctor_page&doctorId="/>
 <c:url var="cssFilePath" value="/css/style.css"/>
 <c:url var="photoPath" value="/photo/"/>
+<c:url var="createDoctor" value="/controller?command=create_doctor_page"/>
 
 <html>
 <head>
@@ -23,13 +24,20 @@
                             <img src="${photoPath}${doctor.photoName}" class="img-fluid doctor-small-photo"
                                  alt="<c:out value="${doctor.doctorInfo.name}
                                  ${doctor.doctorInfo.surname}"/>"></a></p>
-                        <div><p><h3><c:out value="${doctor.qualification}"/></h3></p>
+                        <div><p>
+                            <h3><c:out value="${doctor.qualification}"/></h3></p>
                             <p><c:out value="${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}"/></p>
                             <p><c:out value="rank: ${doctor.rank}"/></p>
                         </div>
+                        <br>
                     </div>
-                    <br>
                 </c:forEach>
+                <c:if test="${role == 'ADMIN'}">
+                    <div class="col-lg-4">
+                        <br>
+                        <a href="${createDoctor}" class="btn btn-primary active">Create doctor</a><br>
+                    </div>
+                </c:if>
             </div>
         </div>
     </main>

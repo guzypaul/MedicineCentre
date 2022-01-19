@@ -29,12 +29,12 @@
                     <br>
                     <div>
                         <label for="surname">Surname</label>
-                        <input id="surname" class="form-control" tabindex="3" placeholder="Surname" type="text" name="surname"/>
+                        <input id="surname" class="form-control" tabindex="2" placeholder="Surname" type="text" name="surname"/>
                     </div>
                     <br>
                     <div>
                         <label for="phone-number">Phone number</label>
-                        <input id="phone-number" class="form-control" tabindex="5" placeholder="Phone number" type="tel" name="phone"/>
+                        <input id="phone-number" class="form-control" tabindex="3" placeholder="Phone number" type="tel" name="phone"/>
                     </div>
                     <br>
                     <div>
@@ -44,7 +44,7 @@
                     <br>
                     <div>
                         <label for="password">Password</label>
-                        <input id="password" class="form-control" tabindex="2" placeholder="Password" type="password" name="password" value=""/><br>
+                        <input id="password" class="form-control" tabindex="5" placeholder="Password" type="password" name="password" value=""/><br>
                     </div>
                     <br>
                     <div>
