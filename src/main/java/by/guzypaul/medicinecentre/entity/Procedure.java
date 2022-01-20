@@ -1,7 +1,6 @@
 package by.guzypaul.medicinecentre.entity;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.util.Objects;
 
 public class Procedure implements Entity{
@@ -10,12 +9,12 @@ public class Procedure implements Entity{
     private String imageName;
     private BigDecimal price;
     private String description;
-    private Duration duration;
+    private int duration;
 
     public Procedure() {
     }
 
-    public Procedure(String name, String imageName, BigDecimal price, String description, Duration duration) {
+    public Procedure(String name, String imageName, BigDecimal price, String description, int duration) {
         this.name = name;
         this.imageName = imageName;
         this.price = price;
@@ -23,7 +22,7 @@ public class Procedure implements Entity{
         this.duration = duration;
     }
 
-    public Procedure(int id, String name, String imageName, BigDecimal price, String description, Duration duration) {
+    public Procedure(int id, String name, String imageName, BigDecimal price, String description, int duration) {
         this.id = id;
         this.name = name;
         this.imageName = imageName;
@@ -72,11 +71,11 @@ public class Procedure implements Entity{
         this.description = description;
     }
 
-    public Duration getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 

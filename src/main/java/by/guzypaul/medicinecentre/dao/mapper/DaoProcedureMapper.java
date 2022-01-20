@@ -4,7 +4,6 @@ import by.guzypaul.medicinecentre.entity.Procedure;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Duration;
 
 public class DaoProcedureMapper {
     public Procedure mapProcedure (ResultSet resultSet) throws SQLException {
@@ -14,7 +13,7 @@ public class DaoProcedureMapper {
         procedure.setName(resultSet.getString("procedure_name"));
         procedure.setImageName(resultSet.getString("image_name"));
         procedure.setPrice(resultSet.getBigDecimal("price")) ;
-        procedure.setDuration(Duration.ofMinutes(resultSet.getInt("duration")));
+        procedure.setDuration(resultSet.getInt("duration"));
 
         return procedure;
     }

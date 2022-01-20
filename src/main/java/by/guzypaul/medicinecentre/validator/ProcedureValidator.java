@@ -3,7 +3,6 @@ package by.guzypaul.medicinecentre.validator;
 import by.guzypaul.medicinecentre.entity.Procedure;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 
 public class ProcedureValidator {
     private static final String NAME_REGEX = "([\\p{Alpha}А-Яа-я]{1,15}[\\s-]?){0,9}";
@@ -11,8 +10,8 @@ public class ProcedureValidator {
     private static final String DESCRIPTION_REGEX = "[.[^<>]]{1,1000}";
     private static final BigDecimal MAX_PRICE_VALUE = new BigDecimal("100000");
     private static final BigDecimal MIN_PRICE_VALUE = new BigDecimal("1");
-    private static final Duration MAX_DURATION = Duration.ofHours(10);
-    private static final Duration MIN_DURATION = Duration.ofMinutes(5);
+    private static final int MAX_DURATION = 480;
+    private static final int MIN_DURATION = 5;
 
     public boolean validateProcedure(Procedure procedure) {
         return procedure != null && isValidName(procedure.getName())
@@ -21,8 +20,8 @@ public class ProcedureValidator {
                 && isValidDescription(procedure.getDescription());
     }
 
-    private boolean isValidDuration(Duration duration) {
-        return duration != null && duration.compareTo(MAX_DURATION) < 1 && duration.compareTo(MIN_DURATION) > -1;
+    private boolean isValidDuration(int duration) {
+        return duration < MAX_DURATION && duration > MIN_DURATION;
     }
 
     private boolean isValidPrice(BigDecimal price) {
