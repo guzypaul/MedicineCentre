@@ -10,7 +10,6 @@ import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.util.Optional;
 
 public class ChangeProcedureCommand implements Command {
@@ -43,7 +42,7 @@ public class ChangeProcedureCommand implements Command {
 
             if (procedureOptional.isPresent()) {
                 Procedure procedure = new Procedure(Integer.parseInt(procedureId), name, imageName,
-                        BigDecimal.valueOf(Long.parseLong(price)), description, Duration.parse(duration));
+                        BigDecimal.valueOf(Double.parseDouble(price)), description, Integer.parseInt(duration));
                 procedureService.update(procedure);
 
                 return new Router("/controller?command=procedure_page&procedureId=" + procedureId, Router.Type.REDIRECT);

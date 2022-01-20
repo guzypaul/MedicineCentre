@@ -88,6 +88,7 @@ public class ProcedureDaoImpl implements ProcedureDao {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PROCEDURE_BY_ID_SQL)) {
             fillProcedureData(entity, preparedStatement);
+            preparedStatement.setInt(6, entity.getId());
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException | ConnectionPoolException throwables) {
             throw new DaoException(throwables.getMessage());
@@ -97,9 +98,8 @@ public class ProcedureDaoImpl implements ProcedureDao {
     private void fillProcedureData(Procedure entity, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, entity.getName());
         preparedStatement.setString(2, entity.getDescription());
-        preparedStatement.setInt(3, (int) entity.getDuration().toMinutes());
+        preparedStatement.setInt(3, entity.getDuration());
         preparedStatement.setBigDecimal(4, entity.getPrice());
         preparedStatement.setString(5, entity.getImageName());
-        preparedStatement.setInt(6, entity.getId());
     }
 }

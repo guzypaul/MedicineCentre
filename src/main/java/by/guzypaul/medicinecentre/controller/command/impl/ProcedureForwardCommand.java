@@ -22,6 +22,7 @@ public class ProcedureForwardCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
         try {
             Optional<Procedure> procedureOptional = procedureService.readById(request.getParameter("procedureId"));
+
             if(procedureOptional.isPresent()){
                 request.setAttribute("procedure", procedureOptional.get());
                 return new Router("/jsp/procedure_page.jsp", Router.Type.FORWARD);
