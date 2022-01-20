@@ -19,9 +19,9 @@
                     <img src="${imgPath}${procedure.imageName}" class="img-fluid procedure-big-img"
                          alt="<c:out value="${procedure.name}"/>">
                     <br/>
-                    <h4>Описание: <c:out value="${procedure.description}"/></h4><br/>
-                    <h4>Длительность: <c:out value="${procedure.duration}"/></h4><br/>
-                    <h4>Стоимость: <c:out value="${procedure.price}"/></h4><br/>
+                    <h4>Description: <c:out value="${procedure.description}"/></h4><br/>
+                    <h4>Duration: <c:out value="${procedure.duration}"/> minutes</h4><br/>
+                    <h4>Price: <c:out value="${procedure.price}"/></h4><br/>
                 </div>
             </div>
             <c:if test="${role == 'ADMIN'}">

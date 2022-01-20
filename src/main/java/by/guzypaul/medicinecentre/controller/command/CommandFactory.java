@@ -41,7 +41,10 @@ public enum CommandFactory {
     DELETE_PROCEDURE_PAGE(new DeleteProcedurePageCommand(), "delete_procedure_page", GET),
     DELETE_PROCEDURE(new DeleteProcedureCommand(), "delete_procedure", POST),
     CREATE_DOCTOR_PAGE(new CreateDoctorPageCommand(), "create_doctor_page", GET),
-    CREATE_DOCTOR(new CreateDoctorCommand(), "create_doctor", POST);
+    CREATE_DOCTOR(new CreateDoctorCommand(), "create_doctor", POST),
+    CREATE_PROCEDURE_PAGE(new CreateProcedurePageCommand(), "create_procedure_page", GET),
+    CREATE_PROCEDURE(new CreateProcedureCommand(), "create_procedure", POST);
+
 
     private final Command command;
     private final String commandName;

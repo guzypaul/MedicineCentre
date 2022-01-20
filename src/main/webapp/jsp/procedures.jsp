@@ -5,6 +5,7 @@
 <c:url var="procedurePage" value="/controller?command=procedure_page&procedureId="/>
 <c:url var="cssFilePath" value="/css/style.css"/>
 <c:url var="imgPath" value="/download/"/>
+<c:url var="addProcedure" value="/controller?command=create_procedure_page"/>
 
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:setBundle basename="languages.locale"/>
@@ -38,14 +39,22 @@
                 <br>
             </div>
             <div class="row">
-                    <c:forEach items="${procedureList}" var="procedure">
-                        <div class="col-lg-4">
-                            <h2><c:out value="${procedure.name}"/></h2>
-                            <p><a href="${procedurePage}${procedure.id}">
-                                <img src="${imgPath}${procedure.imageName}" class="img-fluid procedure-img"
-                                     alt="<c:out value="${procedure.name}"/>"></a></p>
-                        </div>
-                    </c:forEach>
+                <c:forEach items="${procedureList}" var="procedure">
+                    <div class="col-lg-4">
+                        <h2><c:out value="${procedure.name}"/></h2>
+                        <p><a href="${procedurePage}${procedure.id}">
+                            <img src="${imgPath}${procedure.imageName}" class="img-fluid procedure-img"
+                                 alt="<c:out value="${procedure.name}"/>"></a></p>
+                    </div>
+                    <br>
+                </c:forEach>
+                <c:if test="${role == 'ADMIN'}">
+                    <div class="col-lg-4">
+                        <br>
+                        <br>
+                        <a href="${addProcedure}" class="btn btn-primary active">Add procedure</a><br>
+                    </div>
+                </c:if>
             </div>
         </div>
     </main>

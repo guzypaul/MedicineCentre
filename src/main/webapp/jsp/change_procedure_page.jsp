@@ -26,13 +26,13 @@
                     </div>
                     <br>
                     <div>
-                        <label for="imageName">Image name</label>
+                        <label for="imageName">Image name (.jpg/.gif/.png/.bmp)</label>
                         <input id="imageName" class="form-control" tabindex="2" value="${procedure.imageName}" type="text"
                                name="imageName"/>
                     </div>
                     <br>
                     <div>
-                        <label for="price">price</label>
+                        <label for="price">Price $</label>
                         <input id="price" class="form-control" tabindex="3" value="${procedure.price}" type="text"
                                name="price"/>
                     </div>
@@ -44,7 +44,7 @@
                      </div>
                      <br>
                      <div>
-                         <label for="duration">Duration</label>
+                         <label for="duration">Duration (minutes)</label>
                          <input id="duration" class="form-control" tabindex="5" value="${procedure.duration}" type="text"
                                 name="duration"/>
                      </div>
