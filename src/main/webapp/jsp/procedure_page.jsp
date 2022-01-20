@@ -6,6 +6,7 @@
 <c:url var="imgPath" value="/download/"/>
 <c:url var="changeProcedure" value="/controller?command=change_procedure_page&procedureId="/>
 <c:url var="deleteProcedure" value="/controller?command=delete_procedure_page&procedureId="/>
+<c:url var="makeAppointment" value="/controller?command=create_appointment_page&procedureId="/>
 
 <html>
 <head>
@@ -37,6 +38,18 @@
                         <li>
                             <a href="${deleteProcedure}<c:out value="${procedure.id}"/>" class="btn btn-danger active">Delete
                                 procedure!</a>
+                        </li>
+                    </ul>
+                </div>
+            </c:if>
+            <c:if test="${role == 'USER'}">
+                <div class="col-lg-4">
+                    <br>
+                    <br>
+                    <ul>
+                        <li>
+                            <a href="${makeAppointment}<c:out value="${procedure.id}"/>" class="btn btn-primary active">Make
+                                appointment</a>
                         </li>
                     </ul>
                 </div>

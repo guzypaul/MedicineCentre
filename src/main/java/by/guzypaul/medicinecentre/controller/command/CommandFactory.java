@@ -43,8 +43,9 @@ public enum CommandFactory {
     CREATE_DOCTOR_PAGE(new CreateDoctorPageCommand(), "create_doctor_page", GET),
     CREATE_DOCTOR(new CreateDoctorCommand(), "create_doctor", POST),
     CREATE_PROCEDURE_PAGE(new CreateProcedurePageCommand(), "create_procedure_page", GET),
-    CREATE_PROCEDURE(new CreateProcedureCommand(), "create_procedure", POST);
-
+    CREATE_PROCEDURE(new CreateProcedureCommand(), "create_procedure", POST),
+    CREATE_APPOINTMENT_PAGE(new CreateAppointmentPageCommand(), "create_appointment_page", GET),
+    CREATE_APPOINTMENT(new CreateAppointmentCommand(), "create_appointment", POST);
 
     private final Command command;
     private final String commandName;
