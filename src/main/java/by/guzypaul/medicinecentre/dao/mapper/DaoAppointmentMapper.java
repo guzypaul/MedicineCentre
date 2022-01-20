@@ -9,7 +9,6 @@ public class DaoAppointmentMapper {
     public Appointment mapAppointment (ResultSet resultSet) throws SQLException {
         Appointment appointment = new Appointment();
         DaoClientMapper daoClientMapper = new DaoClientMapper();
-        DaoUserMapper daoUserMapper = new DaoUserMapper();
         DaoDoctorMapper daoDoctorMapper = new DaoDoctorMapper();
         DaoProcedureMapper daoProcedureMapper = new DaoProcedureMapper();
 

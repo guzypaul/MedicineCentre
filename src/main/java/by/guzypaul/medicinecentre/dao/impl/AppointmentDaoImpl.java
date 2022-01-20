@@ -16,7 +16,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
     private static final String READ_ALL_APPOINTMENT_SQL = "SELECT appointments.id AS appointment_id, " +
             "appointments.date, appointments.start_time, appointments.end_time, appointments.status, " +
             "procedures.id AS procedure_id, procedures.name AS procedure_name, procedures.description, " +
-            "procedures.duration, procedures.price, procedures.image_name," +
+            "procedures.duration, procedures.price, procedures.image_name, procedures.doctor_qualification, " +
             "doctors.id AS doctor_id, doctors.qualification, doctors.rank, doctors.photo_name, " +
             "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
             "users.role, " +
@@ -31,7 +31,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
     private static final String READ_APPOINTMENT_BY_ID_SQL = "SELECT appointments.id AS appointment_id, " +
             "appointments.date, appointments.start_time, appointments.end_time, appointments.status, " +
             "procedures.id AS procedure_id, procedures.name AS procedure_name, procedures.description, " +
-            "procedures.duration, procedures.price, procedures.image_name," +
+            "procedures.duration, procedures.price, procedures.image_name, procedures.doctor_qualification, " +
             "doctors.id AS doctor_id, doctors.qualification, doctors.rank, doctors.photo_name, " +
             "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
             "users.role, " +
@@ -45,7 +45,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
     private static final String READ_APPOINTMENT_BY_DOCTOR_ID_SQL = "SELECT appointments.id AS appointment_id, " +
             "appointments.date, appointments.start_time, appointments.end_time, appointments.status, " +
             "procedures.id AS procedure_id, procedures.name AS procedure_name, procedures.description, " +
-            "procedures.duration, procedures.price, procedures.image_name," +
+            "procedures.duration, procedures.price, procedures.image_name, procedures.doctor_qualification, " +
             "doctors.id AS doctor_id, doctors.qualification, doctors.rank, doctors.photo_name, " +
             "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
             "users.role, " +
@@ -59,7 +59,7 @@ public class AppointmentDaoImpl implements AppointmentDao {
     private static final String READ_APPOINTMENT_BY_CLIENT_ID_SQL = "SELECT appointments.id AS appointment_id, " +
             "appointments.date, appointments.start_time, appointments.end_time, appointments.status, " +
             "procedures.id AS procedure_id, procedures.name AS procedure_name, procedures.description, " +
-            "procedures.duration, procedures.price, procedures.image_name," +
+            "procedures.duration, procedures.price, procedures.image_name, procedures.doctor_qualification, " +
             "doctors.id AS doctor_id, doctors.qualification, doctors.rank, doctors.photo_name, " +
             "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
             "users.role, " +
