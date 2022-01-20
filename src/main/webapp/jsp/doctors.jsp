@@ -35,7 +35,8 @@
                 <c:if test="${role == 'ADMIN'}">
                     <div class="col-lg-4">
                         <br>
-                        <a href="${createDoctor}" class="btn btn-primary active">Create doctor</a><br>
+                        <br>
+                        <a href="${createDoctor}" class="btn btn-primary active">Add doctor</a><br>
                     </div>
                 </c:if>
             </div>
