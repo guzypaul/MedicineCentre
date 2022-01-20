@@ -50,6 +50,12 @@
                      </div>
                      <br>
                     <div>
+                        <label for="doctorQualification">Doctor qualification</label>
+                        <input id="doctorQualification" class="form-control" tabindex="7" value="${procedure.doctorQualification}"
+                               type="text" name="doctorQualification"/>
+                    </div>
+                    <br>
+                    <div>
                         <button type="submit" class="btn btn-warning">CHANGE</button>
                     </div>
                 </div>

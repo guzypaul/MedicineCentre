@@ -14,6 +14,7 @@ public class DaoProcedureMapper {
         procedure.setImageName(resultSet.getString("image_name"));
         procedure.setPrice(resultSet.getBigDecimal("price")) ;
         procedure.setDuration(resultSet.getInt("duration"));
+        procedure.setDoctorQualification(resultSet.getString("doctor_qualification"));
 
         return procedure;
     }

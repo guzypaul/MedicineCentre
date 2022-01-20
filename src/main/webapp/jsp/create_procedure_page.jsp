@@ -39,6 +39,11 @@
                     </div>
                     <br>
                     <div>
+                        <label for="doctorQualification">Doctor qualification</label>
+                        <input id="doctorQualification" class="form-control" tabindex="6" placeholder="Doctor qualification" type="text" name="doctorQualification"/>
+                    </div>
+                    <br>
+                    <div>
                         <button type="submit" class="btn btn-warning">Create</button>
                     </div>
                 </div>

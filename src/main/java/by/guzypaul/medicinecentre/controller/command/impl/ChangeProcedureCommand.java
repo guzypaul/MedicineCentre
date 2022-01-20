@@ -28,13 +28,15 @@ public class ChangeProcedureCommand implements Command {
             String price = request.getParameter("price");
             String description = request.getParameter("description");
             String duration = request.getParameter("duration");
+            String doctorQualification = request.getParameter("doctorQualification");
 
             if (procedureId == null || procedureId.isEmpty()
                     || name == null || name.isEmpty()
                     || imageName == null || imageName.isEmpty()
                     || price == null || price.isEmpty()
                     || description == null || description.isEmpty()
-                    || duration == null || duration.isEmpty()) {
+                    || duration == null || duration.isEmpty()
+                    || doctorQualification == null || doctorQualification.isEmpty()) {
                 return new Router("/controller?command=change_procedure_page", Router.Type.REDIRECT);
             }
 
@@ -42,7 +44,8 @@ public class ChangeProcedureCommand implements Command {
 
             if (procedureOptional.isPresent()) {
                 Procedure procedure = new Procedure(Integer.parseInt(procedureId), name, imageName,
-                        BigDecimal.valueOf(Double.parseDouble(price)), description, Integer.parseInt(duration));
+                        BigDecimal.valueOf(Double.parseDouble(price)), description, Integer.parseInt(duration),
+                        doctorQualification);
                 procedureService.update(procedure);
 
                 return new Router("/controller?command=procedure_page&procedureId=" + procedureId, Router.Type.REDIRECT);

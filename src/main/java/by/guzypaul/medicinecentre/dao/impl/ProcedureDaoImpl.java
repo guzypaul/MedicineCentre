@@ -15,16 +15,16 @@ import java.util.Optional;
 public class ProcedureDaoImpl implements ProcedureDao {
     private static final String READ_ALL_PROCEDURE_SQL = "SELECT procedures.id AS procedure_id, " +
             "procedures.name AS procedure_name, procedures.description, procedures.duration, procedures.price, " +
-            "procedures.image_name FROM procedures";
+            "procedures.image_name, procedures.doctor_qualification FROM procedures";
     private static final String READ_PROCEDURE_BY_ID_SQL = "SELECT procedures.id AS procedure_id, " +
             "procedures.name AS procedure_name, procedures.description, procedures.duration, procedures.price, " +
-            "procedures.image_name FROM procedures WHERE procedures.id = ?";
+            "procedures.image_name, procedures.doctor_qualification FROM procedures WHERE procedures.id = ?";
     private static final String DELETE_PROCEDURE_BY_ID_SQL = "DELETE FROM procedures WHERE procedures.id = ?";
     private static final String CREATE_PROCEDURE_BY_ID_SQL = "INSERT INTO procedures (procedures.name," +
-            " procedures.description, procedures.duration, procedures.price, procedures.image_name) " +
-            "VALUES (?, ?, ?, ?, ?)";
+            " procedures.description, procedures.duration, procedures.price, procedures.image_name, " +
+            "procedures.doctor_qualification) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_PROCEDURE_BY_ID_SQL = "UPDATE procedures SET name = ?," +
-            " description = ?, duration = ?, price = ?, image_name = ? " +
+            " description = ?, duration = ?, price = ?, image_name = ?, doctor_qualification = ? " +
             "WHERE procedures.id = ?";
     private final DaoProcedureMapper daoProcedureMapper = new DaoProcedureMapper();
 
@@ -90,7 +90,7 @@ public class ProcedureDaoImpl implements ProcedureDao {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PROCEDURE_BY_ID_SQL)) {
             fillProcedureData(entity, preparedStatement);
-            preparedStatement.setInt(6, entity.getId());
+            preparedStatement.setInt(7, entity.getId());
 
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException | ConnectionPoolException e) {
@@ -104,5 +104,6 @@ public class ProcedureDaoImpl implements ProcedureDao {
         preparedStatement.setInt(3, entity.getDuration());
         preparedStatement.setBigDecimal(4, entity.getPrice());
         preparedStatement.setString(5, entity.getImageName());
+        preparedStatement.setString(6, entity.getDoctorQualification());
     }
 }

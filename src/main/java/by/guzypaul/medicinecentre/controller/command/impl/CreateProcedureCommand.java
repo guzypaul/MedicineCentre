@@ -26,16 +26,19 @@ public class CreateProcedureCommand implements Command {
             String price = request.getParameter("price");
             String description = request.getParameter("description");
             String duration = request.getParameter("duration");
+            String doctorQualification = request.getParameter("doctorQualification");
 
             if (name == null || name.isEmpty()
                     || imageName == null || imageName.isEmpty()
                     || price == null || price.isEmpty()
                     || description == null || description.isEmpty()
-                    || duration == null || duration.isEmpty()) {
+                    || duration == null || duration.isEmpty()
+                    || doctorQualification == null || doctorQualification.isEmpty()) {
                 return new Router("/controller?command=create_procedure_page", Router.Type.REDIRECT);
             }
 
-            Procedure procedure = new Procedure(name, imageName, BigDecimal.valueOf(Double.parseDouble(price)), description, Integer.parseInt(duration));
+            Procedure procedure = new Procedure(name, imageName, BigDecimal.valueOf(Double.parseDouble(price)),
+                    description, Integer.parseInt(duration), doctorQualification);
 
             boolean isUserCreated = procedureService.create(procedure);
 
