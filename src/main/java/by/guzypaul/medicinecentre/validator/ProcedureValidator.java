@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 
 public class ProcedureValidator {
     private static final String NAME_REGEX = "([\\p{Alpha}А-Яа-я]{1,15}[\\s-]?){0,9}";
-    private static final String IMAGE_NAME_REGEX = ".+([.](jpg|gif|png|bmp))";
     private static final String DESCRIPTION_REGEX = "[.[^<>]]{1,1000}";
     private static final BigDecimal MAX_PRICE_VALUE = new BigDecimal("100000");
     private static final BigDecimal MIN_PRICE_VALUE = new BigDecimal("1");
@@ -16,7 +15,7 @@ public class ProcedureValidator {
     public boolean validateProcedure(Procedure procedure) {
         return procedure != null && isValidName(procedure.getName())
                 && isValidDuration(procedure.getDuration())
-                && isValidImageName(procedure.getImageName()) && isValidPrice(procedure.getPrice())
+                && isValidPrice(procedure.getPrice())
                 && isValidDescription(procedure.getDescription());
     }
 
@@ -30,10 +29,6 @@ public class ProcedureValidator {
 
     private boolean isValidName(String text) {
         return text != null && text.matches(NAME_REGEX);
-    }
-
-    private boolean isValidImageName(String text) {
-        return text != null &&  text.matches(IMAGE_NAME_REGEX);
     }
 
     private boolean isValidDescription(String text) {

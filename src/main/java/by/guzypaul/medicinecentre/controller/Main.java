@@ -28,7 +28,5 @@ public class Main {
 
        /* UserService userService = ServiceFactory.getInstance().getUserService();
         System.out.println(userService.readByEmail("useafef@gmail.com"));*/
-
-
     }
 }

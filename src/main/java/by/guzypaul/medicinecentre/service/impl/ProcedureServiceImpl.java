@@ -51,10 +51,10 @@ public class ProcedureServiceImpl implements ProcedureService {
     @Override
     public boolean create(Procedure entity) throws ServiceException {
         try {
-            //if (procedureValidator.validateProcedure(entity)) {
+            if (procedureValidator.validateProcedure(entity)) {
                 return procedureDao.create(entity);
-           // }
-            //throw new ServiceException(INVALID_PROCEDURE);
+            }
+            throw new ServiceException(INVALID_PROCEDURE);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -63,10 +63,10 @@ public class ProcedureServiceImpl implements ProcedureService {
     @Override
     public boolean update(Procedure entity) throws ServiceException {
         try {
-            //if (procedureValidator.validateProcedure(entity)) {
+            if (procedureValidator.validateProcedure(entity)) {
                 return procedureDao.update(entity);
-            //}
-            //throw new ServiceException(INVALID_PROCEDURE);
+            }
+            throw new ServiceException(INVALID_PROCEDURE);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

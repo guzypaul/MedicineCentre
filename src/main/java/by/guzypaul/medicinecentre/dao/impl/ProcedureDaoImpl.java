@@ -39,8 +39,8 @@ public class ProcedureDaoImpl implements ProcedureDao {
             }
 
             return procedureList;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -56,8 +56,8 @@ public class ProcedureDaoImpl implements ProcedureDao {
             }
 
             return Optional.empty();
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -66,9 +66,10 @@ public class ProcedureDaoImpl implements ProcedureDao {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PROCEDURE_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
+
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -77,9 +78,10 @@ public class ProcedureDaoImpl implements ProcedureDao {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PROCEDURE_BY_ID_SQL)) {
             fillProcedureData(entity, preparedStatement);
+
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
@@ -89,9 +91,10 @@ public class ProcedureDaoImpl implements ProcedureDao {
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PROCEDURE_BY_ID_SQL)) {
             fillProcedureData(entity, preparedStatement);
             preparedStatement.setInt(6, entity.getId());
+
             return preparedStatement.executeUpdate() == 1;
-        } catch (SQLException | ConnectionPoolException throwables) {
-            throw new DaoException(throwables.getMessage());
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
         }
     }
 
