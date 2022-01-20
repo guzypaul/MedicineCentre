@@ -26,7 +26,7 @@ public class DeleteProcedureCommand implements Command {
 
             if (procedureOptional.isPresent()) {
                 procedureService.deleteById(procedureId);
-                return new Router("/jsp/procedures.jsp", Router.Type.REDIRECT);
+                return new Router("/controller?command=procedures", Router.Type.REDIRECT);
             }
 
             throw new CommandException("Invalid procedure!");

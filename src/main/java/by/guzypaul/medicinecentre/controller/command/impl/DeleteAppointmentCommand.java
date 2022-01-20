@@ -25,7 +25,7 @@ public class DeleteAppointmentCommand implements Command {
             Optional<Appointment> optionalAppointment = appointmentService.readById(appointmentId);
             if (optionalAppointment.isPresent()) {
                 appointmentService.deleteById(appointmentId);
-                return new Router("/jsp/appointments.jsp", Router.Type.REDIRECT);
+                return new Router("/controller?command=appointments", Router.Type.REDIRECT);
             }
 
             throw new CommandException("Invalid appointment");
