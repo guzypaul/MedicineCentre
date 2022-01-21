@@ -10,22 +10,44 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+/**
+ * The type Proxy connection.
+ * @author Guziy Paul
+ */
 public class ProxyConnection implements Connection {
     private static final Logger LOGGER = LogManager.getRootLogger();
     private Connection connection;
 
+    /**
+     * Instantiates a new Proxy connection.
+     *
+     * @param connection the connection
+     */
     public ProxyConnection(Connection connection) {
         this.connection = connection;
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public Connection getConnection() {
         return connection;
     }
 
+    /**
+     * Sets connection.
+     *
+     * @param connection the connection
+     */
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
 
+    /**
+     * Method returns connections to pool
+     */
     @Override
     public void close() {
         try {

@@ -12,6 +12,11 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Object that contains all created connections and manages them.
+ *
+ *  @author Guziy Paul
+ */
 public class ConnectionPool {
     private static final AtomicBoolean INSTANCE_CREATED = new AtomicBoolean(false);
     private static final String CONNECTION_IS_NULL_ENTER_MESSAGE = "Connection cannot be null";
@@ -34,14 +39,29 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Gets free connections size.
+     *
+     * @return the free connections size
+     */
     public int getFreeConnectionsSize() {
         return freeConnections.size();
     }
 
+    /**
+     * Gets busy connections size.
+     *
+     * @return the busy connections size
+     */
     public int getBusyConnectionsSize() {
         return busyConnections.size();
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static ConnectionPool getInstance() throws ConnectionPoolException {
         if (!INSTANCE_CREATED.get()) {
             try {
@@ -58,6 +78,12 @@ public class ConnectionPool {
         return instance;
     }
 
+    /**
+     * Initialize connection pool.
+     *
+     * @param connectionsNumber the connections number
+     * @throws ConnectionPoolException the connection pool exception
+     */
     public void initializeConnectionPool(int connectionsNumber) throws ConnectionPoolException, ConnectionPoolException {
         try {
             CONNECTION_LOCK.lock();
@@ -73,6 +99,12 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Acquire connection.
+     *
+     * @return the connection
+     * @throws ConnectionPoolException the connection pool exception
+     */
     public Connection acquireConnection() throws ConnectionPoolException {
         try {
             CONNECTION_LOCK.lock();
@@ -92,6 +124,12 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Put back connection.
+     *
+     * @param connection the connection
+     * @throws ConnectionPoolException the connection pool exception
+     */
     public void putBackConnection(Connection connection) throws ConnectionPoolException {
         if (connection == null) {
             throw new ConnectionPoolException(CONNECTION_IS_NULL_ENTER_MESSAGE);
@@ -112,6 +150,11 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Close connections.
+     *
+     * @throws ConnectionPoolException the connection pool exception
+     */
     public void closeConnections() throws ConnectionPoolException {
         try {
             CONNECTION_LOCK.lock();
