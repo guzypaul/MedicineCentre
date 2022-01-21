@@ -32,6 +32,15 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
+    public List<Doctor> readByQualification(String qualification) throws ServiceException {
+        try {
+            return doctorDao.readByQualification(qualification);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public Optional<Doctor> readById(String id) throws ServiceException {
         try {
             return doctorDao.readById(Integer.parseInt(id));

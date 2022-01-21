@@ -18,6 +18,10 @@ public class DoctorDaoImpl implements DoctorDao {
             "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
             "users.role " +
             "FROM doctors INNER JOIN users ON doctors.doctor_info = users.id";
+    private static final String READ_DOCTOR_BY_QUALIFICATION_SQL = "SELECT doctors.id AS doctor_id, " +
+            "doctors.qualification, doctors.rank, doctors.photo_name, " +
+            "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
+            "users.role FROM doctors INNER JOIN users ON doctors.doctor_info = users.id WHERE doctors.qualification = ?";
     private static final String READ_DOCTOR_BY_ID_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, " +
             "doctors.rank, doctors.photo_name, " +
             "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
@@ -39,6 +43,24 @@ public class DoctorDaoImpl implements DoctorDao {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(READ_ALL_DOCTOR_SQL);
+            List<Doctor> doctorList = new ArrayList<>();
+            while (resultSet.next()) {
+                doctorList.add(daoDoctorMapper.mapDoctor(resultSet));
+            }
+
+            return doctorList;
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Doctor> readByQualification(String qualification) throws DaoException {
+        try (Connection connection = ConnectionPool.getInstance().acquireConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(READ_DOCTOR_BY_QUALIFICATION_SQL)) {
+            preparedStatement.setString(1, qualification);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
             List<Doctor> doctorList = new ArrayList<>();
             while (resultSet.next()) {
                 doctorList.add(daoDoctorMapper.mapDoctor(resultSet));
