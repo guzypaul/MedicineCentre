@@ -3,6 +3,7 @@ package by.guzypaul.medicinecentre.controller.command.impl;
 import by.guzypaul.medicinecentre.controller.command.Command;
 import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
+import by.guzypaul.medicinecentre.entity.Role;
 import by.guzypaul.medicinecentre.entity.User;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
@@ -26,6 +27,8 @@ public class ChangeUserPageCommand implements Command {
 
             if  (userOptional.isPresent()) {
                 request.setAttribute("user", userOptional.get());
+                request.setAttribute("roleList", Role.values());
+
                 return new Router("/jsp/change_user_page.jsp", Router.Type.FORWARD);
             }
 

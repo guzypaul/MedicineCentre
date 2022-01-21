@@ -53,11 +53,13 @@
                     </div>
                     <br>
                     <c:if test="${role == 'ADMIN' || role == 'MODERATOR'}">
-                        <div>
-                            <label for="role">Role</label>
-                            <input id="role" class="form-control" tabindex="5" value="${user.role}"
-                                   type="text" name="role"/>
-                        </div>
+                        <label for="role">Role</label>
+                        <select id="role" class="form-select" aria-label="Disabled select example" name="role">
+                            <option selected>Choose role!</option>
+                            <c:forEach items="${roleList}" var="userRole">
+                                <option value="${userRole}">${userRole}</option>
+                            </c:forEach>
+                        </select>
                         <br>
                     </c:if>
                     <c:if test="${role == 'USER'}">
