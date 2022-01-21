@@ -33,6 +33,24 @@
             </div>
             <% request.getSession().removeAttribute("isUserLogout"); %>
         </c:if>
+        <c:if test="${isProcedureCreated == true}">
+            <div class="container-fluid alert-indents">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>The procedure was added!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            <% request.getSession().removeAttribute("isProcedureCreated"); %>
+        </c:if>
+        <c:if test="${isProcedureDeleted == true}">
+            <div class="container-fluid alert-indents">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>The procedure was deleted!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            <% request.getSession().removeAttribute("isProcedureDeleted"); %>
+        </c:if>
         <div class="container-fluid">
             <div class="col-xl-2">
                 <h1 class="procedures"><fmt:message key="procedures"/>:</h1>

@@ -30,6 +30,8 @@ public class ChangeDoctorCommand implements Command {
                     || qualification == null || qualification.isEmpty()
                     || rank == null || rank.isEmpty()
                     || photoName == null || photoName.isEmpty()) {
+                request.getSession().setAttribute("isDoctorChanged", false);
+
                 return new Router("/controller?command=change_doctor_page", Router.Type.REDIRECT);
             }
 
@@ -38,9 +40,12 @@ public class ChangeDoctorCommand implements Command {
             if (doctorOptional.isPresent()) {
                 Doctor doctor = new Doctor(Integer.parseInt(doctorId), qualification, rank, photoName);
                 doctorService.update(doctor);
+                request.getSession().setAttribute("isDoctorChanged", true);
 
                 return new Router("/controller?command=doctor_page&doctorId=" + doctorId, Router.Type.REDIRECT);
             } else {
+                request.getSession().setAttribute("isDoctorChanged", false);
+
                 return new Router("/controller?command=change_doctor_page", Router.Type.REDIRECT);
             }
 

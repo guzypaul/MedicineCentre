@@ -10,6 +10,33 @@
 <head>
     <title>AppointmentList</title>
     <c:import url="header.jsp"/>
+    <c:if test="${isAppointmentChanged == true}">
+        <div class="container-fluid alert-indents">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>The appointment was changed!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+            <% request.getSession().removeAttribute("isAppointmentChanged"); %>
+    </c:if>
+    <c:if test="${isAppointmentCreated == true}">
+    <div class="container-fluid alert-indents">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>The appointment was added!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+            <% request.getSession().removeAttribute("isAppointmentCreated"); %>
+    </c:if>
+    <c:if test="${isAppointmentDeleted == true}">
+    <div class="container-fluid alert-indents">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>The appointment was deleted!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+            <% request.getSession().removeAttribute("isAppointmentDeleted"); %>
+    </c:if>
     <div class="container-fluid">
         <c:if test="${appointmentList == null}">
             <h3>No appointments</h3>
@@ -138,8 +165,10 @@
                             <td><c:out value="${appointment.doctor.qualification}"/></td>
                             <td><c:out value="${appointment.doctor.rank}"/></td>
                             <td><c:out value="${appointment.status}"/></td>
-                            <td><a href="${changeAppointmentPage}${appointment.id}" class="btn btn-primary active">Change</a></td>
-                            <td><a href="${deleteAppointment}${appointment.id}" class="btn btn-primary active">Delete</a></td>
+                            <td><a href="${changeAppointmentPage}${appointment.id}" class="btn btn-primary active">Change</a>
+                            </td>
+                            <td><a href="${deleteAppointment}${appointment.id}"
+                                   class="btn btn-primary active">Delete</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>

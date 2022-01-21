@@ -52,6 +52,7 @@ public class ChangeAppointmentCommand implements Command {
                     || endTime == null || endTime.isEmpty()
                     || procedureId == null || procedureId.isEmpty()
                     || status == null || status.isEmpty()) {
+                request.getSession().setAttribute("isAppointmentChanged", false);
                 return new Router("/controller?command=change_appointment_page", Router.Type.REDIRECT);
             }
 
@@ -66,8 +67,10 @@ public class ChangeAppointmentCommand implements Command {
                         doctorOptional.get(), LocalDate.parse(date), Time.valueOf(startTime), Time.valueOf(endTime),
                         procedureOptional.get(), status);
                 appointmentService.update(appointment);
+                request.getSession().setAttribute("isAppointmentChanged", true);
                 return new Router("/controller?command=appointments", Router.Type.REDIRECT);
             } else {
+                request.getSession().setAttribute("isAppointmentChanged", false);
                 return new Router("/controller?command=change_appointment_page", Router.Type.REDIRECT);
             }
         } catch (ServiceException e) {

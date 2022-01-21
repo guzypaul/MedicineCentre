@@ -37,6 +37,8 @@ public class ChangeProcedureCommand implements Command {
                     || description == null || description.isEmpty()
                     || duration == null || duration.isEmpty()
                     || doctorQualification == null || doctorQualification.isEmpty()) {
+                request.getSession().setAttribute("isProcedureChanged", false);
+
                 return new Router("/controller?command=change_procedure_page", Router.Type.REDIRECT);
             }
 
@@ -47,9 +49,12 @@ public class ChangeProcedureCommand implements Command {
                         BigDecimal.valueOf(Double.parseDouble(price)), description, Integer.parseInt(duration),
                         doctorQualification);
                 procedureService.update(procedure);
+                request.getSession().setAttribute("isProcedureChanged", true);
 
                 return new Router("/controller?command=procedure_page&procedureId=" + procedureId, Router.Type.REDIRECT);
             } else {
+                request.getSession().setAttribute("isProcedureChanged", false);
+
                 return new Router("/controller?command=change_procedure_page", Router.Type.REDIRECT);
             }
 

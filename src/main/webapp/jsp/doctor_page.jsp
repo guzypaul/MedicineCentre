@@ -12,6 +12,33 @@
 <head>
     <title><c:out value="${doctor.doctorInfo.name}${doctor.doctorInfo.surname}"/></title>
     <c:import url="header.jsp"/>
+    <c:if test="${isDoctorChanged == true}">
+    <div class="container-fluid alert-indents">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Doctor information was updated!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+            <% request.getSession().removeAttribute("isDoctorChanged"); %>
+    </c:if>
+    <c:if test="${isScheduleChanged == true}">
+    <div class="container-fluid alert-indents">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Schedule was updated!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+            <% request.getSession().removeAttribute("isScheduleChanged"); %>
+    </c:if>
+    <c:if test="${isDoctorCreated == true}">
+    <div class="container-fluid alert-indents">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>The doctor was added!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+        <% request.getSession().removeAttribute("isDoctorCreated"); %>
+    </c:if>
     <main>
         <div class="container-fluid">
             <br>

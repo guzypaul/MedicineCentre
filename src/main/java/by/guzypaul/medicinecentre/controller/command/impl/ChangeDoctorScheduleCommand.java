@@ -32,6 +32,8 @@ public class ChangeDoctorScheduleCommand implements Command {
                     || startTime == null || startTime.isEmpty()
                     || endTime == null || endTime.isEmpty()
                     || info == null || info.isEmpty()) {
+                request.getSession().setAttribute("isScheduleChanged", false);
+
                 return new Router("/controller?command=change_doctor_schedule_page", Router.Type.REDIRECT);
             }
 
@@ -41,9 +43,12 @@ public class ChangeDoctorScheduleCommand implements Command {
                 DoctorSchedule doctorSchedule = new DoctorSchedule(Integer.parseInt(doctorScheduleId),
                         Time.valueOf(startTime), Time.valueOf(endTime), info);
                 doctorScheduleService.update(doctorSchedule);
+                request.getSession().setAttribute("isScheduleChanged", true);
 
                 return new Router("/controller?command=doctor_page&doctorId=" + doctorId, Router.Type.REDIRECT);
             } else {
+                request.getSession().setAttribute("isScheduleChanged", false);
+
                 return new Router("/controller?command=change_doctor_schedule_page", Router.Type.REDIRECT);
             }
 

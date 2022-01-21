@@ -11,6 +11,15 @@
 <head>
     <title>Profile</title>
     <c:import url="header.jsp"/>
+    <c:if test="${isUserChanged == true}">
+    <div class="container-fluid alert-indents">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Your information was updated!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+            <% request.getSession().removeAttribute("isUserChanged"); %>
+    </c:if>
     <div class="container-fluid">
         <h1>WELCOME in your PERSONAL AREA with ${role} rights !</h1>
         <br>

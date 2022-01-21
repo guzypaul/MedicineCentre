@@ -25,6 +25,8 @@ public class DeleteAppointmentCommand implements Command {
             Optional<Appointment> optionalAppointment = appointmentService.readById(appointmentId);
             if (optionalAppointment.isPresent()) {
                 appointmentService.deleteById(appointmentId);
+                request.getSession().setAttribute("isAppointmentDeleted", true);
+
                 return new Router("/controller?command=appointments", Router.Type.REDIRECT);
             }
 

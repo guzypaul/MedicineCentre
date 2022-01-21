@@ -34,6 +34,8 @@ public class CreateProcedureCommand implements Command {
                     || description == null || description.isEmpty()
                     || duration == null || duration.isEmpty()
                     || doctorQualification == null || doctorQualification.isEmpty()) {
+                request.getSession().setAttribute("isProcedureCreated", false);
+
                 return new Router("/controller?command=create_procedure_page", Router.Type.REDIRECT);
             }
 
@@ -43,8 +45,12 @@ public class CreateProcedureCommand implements Command {
             boolean isUserCreated = procedureService.create(procedure);
 
             if (isUserCreated) {
+                request.getSession().setAttribute("isProcedureCreated", true);
+
                 return new Router("/controller?command=procedures", Router.Type.REDIRECT);
             } else {
+                request.getSession().setAttribute("isProcedureCreated", false);
+
                 return new Router("/controller?command=create_procedure_page", Router.Type.REDIRECT);
             }
         } catch (ServiceException e) {

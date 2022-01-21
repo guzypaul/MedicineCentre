@@ -49,6 +49,8 @@ public class CreateAppointmentCommand implements Command {
                     || startTimeAsString == null || startTimeAsString.isEmpty()
                     || procedureId == null || procedureId.isEmpty()
                     || status == null || status.isEmpty()) {
+                request.getSession().setAttribute("isAppointmentCreated", false);
+
                 return new Router("/controller?command=create_appointment_page", Router.Type.REDIRECT);
             }
 
@@ -65,9 +67,12 @@ public class CreateAppointmentCommand implements Command {
                         doctorOptional.get(), LocalDate.parse(date), startTime, endTime,
                         procedureOptional.get(), status);
                 appointmentService.create(appointment);
+                request.getSession().setAttribute("isAppointmentCreated", true);
 
                 return new Router("/controller?command=appointments", Router.Type.REDIRECT);
             } else {
+                request.getSession().setAttribute("isAppointmentCreated", false);
+
                 return new Router("/controller?command=create_appointment_page", Router.Type.REDIRECT);
             }
         } catch (ServiceException e) {

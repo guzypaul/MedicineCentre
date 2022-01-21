@@ -35,6 +35,8 @@ public class ChangeUserCommand implements Command {
                     || email == null || email.isEmpty()
                     || phone == null || phone.isEmpty()
                     || role == null || role.isEmpty()) {
+                request.getSession().setAttribute("isUserChanged", false);
+
                 return new Router("/controller?command=change_user_page", Router.Type.REDIRECT);
             }
 
@@ -45,10 +47,16 @@ public class ChangeUserCommand implements Command {
                 userService.update(user);
 
                 if (request.getSession().getAttribute("role") == "USER") {
+                    request.getSession().setAttribute("isUserChanged", true);
+
                     return new Router("/controller?command=profile_page", Router.Type.REDIRECT);
                 }
+                request.getSession().setAttribute("isUserChanged", true);
+
                 return new Router("/controller?command=users", Router.Type.REDIRECT);
             } else {
+                request.getSession().setAttribute("isUserChanged", false);
+
                 return new Router("/controller?command=change_user_page", Router.Type.REDIRECT);
             }
 

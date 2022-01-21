@@ -26,6 +26,8 @@ public class DeleteProcedureCommand implements Command {
 
             if (procedureOptional.isPresent()) {
                 procedureService.deleteById(procedureId);
+                request.getSession().setAttribute("isProcedureDeleted", true);
+
                 return new Router("/controller?command=procedures", Router.Type.REDIRECT);
             }
 

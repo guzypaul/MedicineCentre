@@ -2,8 +2,20 @@
     color: #4e830e;
 }
 
+.mode {
+    color: #f86d07;
+}
+
 .navbar-color {
     background-color: #e7690d!important;
+}
+
+.navbar-user-color {
+    background-color: #0d7ae7 !important;
+}
+
+.navbar-admin-color {
+    background-color: #090909 !important;
 }
 
 .procedure-img {

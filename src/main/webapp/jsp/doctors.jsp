@@ -11,6 +11,15 @@
 <head>
     <title>Doctors</title>
     <c:import url="header.jsp"/>
+    <c:if test="${isDoctorAndScheduleDeleted == true}">
+    <div class="container-fluid alert-indents">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>The doctor and his schedule were deleted!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+            <% request.getSession().removeAttribute("isDoctorAndScheduleDeleted"); %>
+    </c:if>
     <main>
         <div class="container-fluid">
             <div class="col-xl-2">

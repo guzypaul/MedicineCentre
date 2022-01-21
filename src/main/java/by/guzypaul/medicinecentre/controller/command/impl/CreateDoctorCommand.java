@@ -46,6 +46,8 @@ public class CreateDoctorCommand implements Command {
                     || startTime == null || startTime.isEmpty()
                     || endTime == null || endTime.isEmpty()
                     || info == null || info.isEmpty()) {
+                request.getSession().setAttribute("isDoctorCreated", false);
+
                 return new Router("/controller?command=create_doctor_page", Router.Type.REDIRECT);
             }
 
@@ -60,11 +62,13 @@ public class CreateDoctorCommand implements Command {
                     Doctor newCreatedDoctor = doctorService.readByUserId(userId).get();
                     DoctorSchedule doctorSchedule = new DoctorSchedule(newCreatedDoctor, Time.valueOf(startTime), Time.valueOf(endTime), info);
                     doctorScheduleService.create(doctorSchedule);
+                    request.getSession().setAttribute("isDoctorCreated", true);
 
                     return new Router("/controller?command=doctor_page&doctorId=" + newCreatedDoctor.getId(), Router.Type.REDIRECT);
                 }
                 throw new CommandException("Doctor creating was crashed!");
             }else {
+                request.getSession().setAttribute("isDoctorCreated", false);
 
                 return new Router("/controller?command=create_doctor_page", Router.Type.REDIRECT);
             }

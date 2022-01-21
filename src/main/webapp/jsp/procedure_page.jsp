@@ -12,6 +12,15 @@
 <head>
     <title><c:out value="${procedure.name}"/></title>
     <c:import url="header.jsp"/>
+    <c:if test="${isProcedureChanged == true}">
+    <div class="container-fluid alert-indents">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>The Procedure was updated!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+            <% request.getSession().removeAttribute("isProcedureChanged"); %>
+    </c:if>
     <main>
         <div class="row">
             <div class="col-lg-8">

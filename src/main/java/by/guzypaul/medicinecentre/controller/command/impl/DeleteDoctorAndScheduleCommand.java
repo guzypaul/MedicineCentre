@@ -43,6 +43,7 @@ public class DeleteDoctorAndScheduleCommand implements Command {
                 User user = userOptional.get();
                 user.setRole(Role.USER);
                 userService.update(user);
+                request.getSession().setAttribute("isDoctorAndScheduleDeleted", true);
 
                 return new Router("/controller?command=doctors", Router.Type.REDIRECT);
             }

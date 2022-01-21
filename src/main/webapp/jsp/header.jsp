@@ -27,63 +27,76 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-color">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="${procedureListPath}">StartUP CLINIC</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${procedureListPath}">Procedures</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${doctorListPath}">Doctors</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="${contacts}">Contacts</a>
-                </li>
+    <c:if test="${role == 'ADMIN' || role == 'MODERATOR'}">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-admin-color-color">
+    </c:if>
+    <c:if test="${role == 'USER' || role == 'DOCTOR'}">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-user-color">
+    </c:if>
+    <c:if test="${role == 'GUEST'}">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-color">
+    </c:if>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="${procedureListPath}">StartUP CLINIC</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="${procedureListPath}">Procedures</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="${doctorListPath}">Doctors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="${contacts}">Contacts</a>
+                        </li>
 
-                <li class="nav-item">
-                    <a class="nav-link active" href="${aboutUs}">About Us</a>
-                </li>
-                <li class="nav-item"></li>
-                    <form action="${changeLanguage}" method="post">
-                        <select name="language" onchange="submit()" class="form-select form-select-sm"
-                                aria-label=".form-select-sm example">
-                            <option value="en_US" ${locale == 'en_US' ? 'selected' : ''}>EN</option>
-                            <option value="de_DE" ${locale == 'de_DE' ? 'selected' : ''}>DE</option>
-                            <option value="fr_FR" ${locale == 'fr_FR' ? 'selected' : ''}>FR</option>
-                        </select>
-                    </form>
-                </li>
-                <div class="button_right_position">
-                    <c:if test="${role == 'GUEST'}">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="${aboutUs}">About Us</a>
+                        </li>
+                        <li class="nav-item"></li>
+                        <form action="${changeLanguage}" method="post">
+                            <select name="language" onchange="submit()" class="form-select form-select-sm"
+                                    aria-label=".form-select-sm example">
+                                <option value="en_US" ${locale == 'en_US' ? 'selected' : ''}>EN</option>
+                                <option value="de_DE" ${locale == 'de_DE' ? 'selected' : ''}>DE</option>
+                                <option value="fr_FR" ${locale == 'fr_FR' ? 'selected' : ''}>FR</option>
+                            </select>
+                        </form>
+                        </li>
+                        <c:if test="${role == 'ADMIN' || role == 'MODERATOR'}">
                             <li class="nav-item">
-                                <a class="nav-link active" href="${registrationPage}">Registration</a>
+                                <a class="nav-link active"><span class="mode">"""${role}_MODE"""</span></a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="${authorizationPage}">SIGN IN</a>
-                            </li>
-                        </ul>
-                    </c:if>
-                    <c:if test="${role != 'GUEST'}">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="${profilePageCommand}">PERSONAL AREA</a>
-                            </li>
-                            <li class="nav-item">
-                                <form action="${logoutCommand}" method="post">
-                                    <button type="submit" class="btn btn-warning">Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </c:if>
+                        </c:if>
+                        <div class="button_right_position">
+                            <c:if test="${role == 'GUEST'}">
+                                <ul class="navbar-nav mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="${registrationPage}">Registration</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="${authorizationPage}">SIGN IN</a>
+                                    </li>
+                                </ul>
+                            </c:if>
+                            <c:if test="${role != 'GUEST'}">
+                                <ul class="navbar-nav mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="${profilePageCommand}">PERSONAL AREA</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <form action="${logoutCommand}" method="post">
+                                            <button type="submit" class="btn btn-warning">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </c:if>
+                        </div>
+                    </ul>
                 </div>
-            </ul>
-        </div>
-    </div>
+            </div>
 </nav>

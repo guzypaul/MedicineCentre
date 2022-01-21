@@ -8,6 +8,15 @@
 <head>
     <title>Change user</title>
     <c:import url="header.jsp"/>
+    <c:if test="${isUserChanged == false}">
+    <div class="container-fluid alert-indents">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Invalid data!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+            <% request.getSession().removeAttribute("isUserChanged"); %>
+    </c:if>
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
