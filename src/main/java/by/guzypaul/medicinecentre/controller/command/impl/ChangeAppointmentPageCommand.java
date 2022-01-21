@@ -4,6 +4,7 @@ import by.guzypaul.medicinecentre.controller.command.Command;
 import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
 import by.guzypaul.medicinecentre.entity.Appointment;
+import by.guzypaul.medicinecentre.entity.AppointmentStatus;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.AppointmentService;
@@ -26,6 +27,7 @@ public class ChangeAppointmentPageCommand implements Command {
 
             if (optionalAppointment.isPresent()) {
                 request.setAttribute("appointment", optionalAppointment.get());
+                request.setAttribute("statusList", AppointmentStatus.values());
                 return new Router("/jsp/change_appointment.jsp", Router.Type.FORWARD);
             }
 

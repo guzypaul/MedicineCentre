@@ -3,6 +3,7 @@ package by.guzypaul.medicinecentre.controller.command.impl;
 import by.guzypaul.medicinecentre.controller.command.Command;
 import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
+import by.guzypaul.medicinecentre.entity.AppointmentStatus;
 import by.guzypaul.medicinecentre.entity.Doctor;
 import by.guzypaul.medicinecentre.entity.Procedure;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
@@ -35,6 +36,7 @@ public class CreateAppointmentPageCommand implements Command {
                 request.setAttribute("doctorList", doctorList);
                 request.setAttribute("procedureId", procedureId);
                 request.setAttribute("procedureName", procedureOptional.get().getName());
+                request.setAttribute("status", AppointmentStatus.CLAIMED);
                 return new Router("/jsp/create_appointment_page.jsp", Router.Type.FORWARD);
             }
 

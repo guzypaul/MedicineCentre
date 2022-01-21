@@ -24,50 +24,51 @@
                 <div class="container-fluid">
                     <div>
                         <label for="appointmentId">Appointment Id ${appointment.id}</label>
-                        <input id="appointmentId" class="form-control" value="${appointment.id}" type="hidden"
-                               name="appointmentId"/>
+                        <input id="appointmentId" class="form-control" value="${appointment.id}"
+                               type="hidden" name="appointmentId"/>
                     </div>
-                    <br>
                     <div>
-                        <label for="clientId">Client Id</label>
-                        <input id="clientId" class="form-control" tabindex="1" value="${appointment.userClient.id}"
-                               type="text" name="clientId"/>
+                        <label for="clientId">Client Id ${appointment.userClient.id}</label>
+                        <input id="clientId" class="form-control" value="${appointment.userClient.id}"
+                               type="hidden" name="clientId"/>
                     </div>
-                    <br>
                     <div>
-                        <label for="doctorId">Doctor Id</label>
-                        <input id="doctorId" class="form-control" tabindex="2" value="${appointment.doctor.id}"
-                               type="text" name="doctorId"/>
+                        <label for="doctorId">Doctor Id ${appointment.doctor.id}</label>
+                        <input id="doctorId" class="form-control" value="${appointment.doctor.id}"
+                               type="hidden" name="doctorId"/>
+                    </div>
+                    <div>
+                        <label for="procedureId">Procedure id ${appointment.procedure.id}</label>
+                        <input id="procedureId" class="form-control" value="${appointment.procedure.id}"
+                               type="hidden" name="procedureId"/>
                     </div>
                     <br>
                     <div>
                         <label for="date">Date</label>
-                        <input id="date" class="form-control" tabindex="3" value="${appointment.date}" type="text"
+                        <input id="date" class="form-control" tabindex="1" value="${appointment.date}" type="text"
                                name="date"/>
                     </div>
                     <br>
                     <div>
                         <label for="startTime">Start time</label>
-                        <input id="startTime" class="form-control" tabindex="4" value="${appointment.startTime}"
+                        <input id="startTime" class="form-control" tabindex="2" value="${appointment.startTime}"
                                type="text" name="startTime"/>
                     </div>
                     <br>
                     <div>
                         <label for="endTime">End time</label>
-                        <input id="endTime" class="form-control" tabindex="5" value="${appointment.endTime}" type="text"
+                        <input id="endTime" class="form-control" tabindex="3" value="${appointment.endTime}" type="text"
                                name="endTime"/>
                     </div>
                     <br>
                     <div>
-                        <label for="procedureId">Procedure id</label>
-                        <input id="procedureId" class="form-control" tabindex="6" value="${appointment.procedure.id}"
-                               type="text" name="procedureId"/>
-                    </div>
-                    <br>
-                    <div>
                         <label for="status">Status</label>
-                        <input id="status" class="form-control" tabindex="7" value="${appointment.status}" type="text"
-                               name="status"/>
+                        <select id="status" class="form-select" aria-label="Disabled select example" name="status">
+                            <option selected>${appointment.status}</option>
+                            <c:forEach items="${statusList}" var="appointmentStatus">
+                                <option value="${appointmentStatus}">${appointmentStatus}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                     <br>
                     <div>

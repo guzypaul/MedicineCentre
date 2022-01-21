@@ -56,7 +56,7 @@
                         <div>
                             <input class="form-control" value="${userId}" type="hidden" name="userId"/>
                             <input class="form-control" value="${procedureId}" type="hidden" name="procedureId"/>
-                            <input class="form-control" value="CLAIMED" type="hidden" name="status"/>
+                            <input class="form-control" value="${status}" type="hidden" name="status"/>
                         </div>
                         <br>
                         <div>
