@@ -8,6 +8,9 @@
 <head>
   <title>Create doctor</title>
   <c:import url="header.jsp"/>
+  <div class="container-fluid">
+    <h2>Add new doctor</h2>
+  </div>
   <div class="row">
     <div class="col-lg-4"></div>
     <div class="col-lg-4">

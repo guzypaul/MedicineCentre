@@ -3,19 +3,24 @@ package by.guzypaul.medicinecentre.controller.command.impl;
 import by.guzypaul.medicinecentre.controller.command.Command;
 import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
+import by.guzypaul.medicinecentre.entity.Doctor;
 import by.guzypaul.medicinecentre.entity.Procedure;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
+import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
 import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
 
 public class CreateAppointmentPageCommand implements Command {
     private final ProcedureService procedureService;
+    private final DoctorService doctorService;
 
     public CreateAppointmentPageCommand() {
         procedureService = ServiceFactory.getInstance().getProcedureService();
+        doctorService = ServiceFactory.getInstance().getDoctorService();
     }
 
     @Override
@@ -25,7 +30,11 @@ public class CreateAppointmentPageCommand implements Command {
             Optional<Procedure> procedureOptional = procedureService.readById(procedureId);
 
             if  (procedureOptional.isPresent()) {
+                String doctorQualification = procedureOptional.get().getDoctorQualification();
+                List<Doctor> doctorList = doctorService.readByQualification(doctorQualification);
+                request.setAttribute("doctorList", doctorList);
                 request.setAttribute("procedureId", procedureId);
+                request.setAttribute("procedureName", procedureOptional.get().getName());
                 return new Router("/jsp/create_appointment_page.jsp", Router.Type.FORWARD);
             }
 

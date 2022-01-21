@@ -23,6 +23,11 @@
                         <input id="imageName" class="form-control" tabindex="2" placeholder="Image name" type="text" name="imageName"/>
                     </div>
                     <br>
+                    <div class="mb-3">
+                        <label for="formFileSm" class="form-label">Picture</label>
+                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                    </div>
+                    <br>
                     <div>
                         <label for="price">Price $</label>
                         <input id="price" class="form-control" tabindex="3" placeholder="Price" type="text" name="price"/>
