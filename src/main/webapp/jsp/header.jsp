@@ -53,9 +53,9 @@
                     <form action="${changeLanguage}" method="post">
                         <select name="language" onchange="submit()" class="form-select form-select-sm"
                                 aria-label=".form-select-sm example">
-                            <option value="ru_RU" ${locale == 'ru_RU' ? 'selected' : ''}>RU</option>
                             <option value="en_US" ${locale == 'en_US' ? 'selected' : ''}>EN</option>
-                            <option value="be_BY" ${locale == 'be_BY_US' ? 'selected' : ''}>BY</option>
+                            <option value="de_DE" ${locale == 'de_DE' ? 'selected' : ''}>DE</option>
+                            <option value="fr_FR" ${locale == 'fr_FR' ? 'selected' : ''}>FR</option>
                         </select>
                     </form>
                 </li>
