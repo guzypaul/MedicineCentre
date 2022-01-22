@@ -51,8 +51,8 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-5"></div>
+                    <div class="col-lg-2">
                         <div>
                             <input class="form-control" value="${userId}" type="hidden" name="userId"/>
                             <input class="form-control" value="${procedureId}" type="hidden" name="procedureId"/>
@@ -61,14 +61,12 @@
                         <br>
                         <div>
                             <label for="date">Date</label>
-                            <input id="date" class="form-control" tabindex="2" placeholder="yyyy-mm-dd" type="text"
-                                   name="date"/>
+                            <input id="date" class="form-control" type="date" name="date">
                         </div>
                         <br>
                         <div>
                             <label for="startTime">Start time</label>
-                            <input id="startTime" class="form-control" tabindex="3" placeholder="hh:mm:ss" type="text"
-                                   name="startTime"/>
+                            <input id="startTime" class="form-control" type="time" name="startTime">
                         </div>
                         <br>
                         <div>

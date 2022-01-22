@@ -61,7 +61,7 @@ public class CreateAppointmentCommand implements Command {
             if (userClientOptional.isPresent() && doctorOptional.isPresent() && procedureOptional.isPresent()) {
                 Procedure procedure = procedureOptional.get();
                 int duration = procedure.getDuration();
-                Time startTime = Time.valueOf(startTimeAsString);
+                Time startTime = Time.valueOf(LocalTime.parse(startTimeAsString));
                 Time endTime = Time.valueOf(LocalTime.parse(startTimeAsString).plusMinutes(duration));
                 Appointment appointment = new Appointment(userClientOptional.get(),
                         doctorOptional.get(), LocalDate.parse(date), startTime, endTime,
