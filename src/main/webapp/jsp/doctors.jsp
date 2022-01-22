@@ -14,7 +14,7 @@
     <c:if test="${isDoctorAndScheduleDeleted == true}">
     <div class="container-fluid alert-indents">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>The doctor and his schedule were deleted!</strong>
+            <strong>The doctor page and his schedule were deleted! Also ROLE was changed to USER!</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>

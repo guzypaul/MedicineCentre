@@ -38,11 +38,9 @@ public class DeleteDoctorAndScheduleCommand implements Command {
             Optional<User> userOptional = userService.readById(userId);
 
             if (doctorOptional.isPresent() && doctorScheduleOptional.isPresent() && userOptional.isPresent()) {
-                doctorScheduleService.deleteById(doctorScheduleId);                     //todo transaction!!!
-                doctorService.deleteById(doctorId);
                 User user = userOptional.get();
                 user.setRole(Role.USER);
-                userService.update(user);
+                doctorService.deleteDoctorWithScheduleAndChangeUserRole(doctorId, doctorScheduleId, user);
                 request.getSession().setAttribute("isDoctorAndScheduleDeleted", true);
 
                 return new Router("/controller?command=doctors", Router.Type.REDIRECT);

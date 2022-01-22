@@ -111,14 +111,15 @@ public class UserDaoImpl implements UserDao {
     public boolean update(User entity) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_BY_ID_SQL)) {
-            preparedStatement.setString(1, entity.getName());
+            fillDataForUserUpdate(preparedStatement, entity);
+            /*preparedStatement.setString(1, entity.getName());
             preparedStatement.setString(2, entity.getSurname());
             preparedStatement.setString(3, entity.getEmail());
             preparedStatement.setString(4, entity.getPhone());
             preparedStatement.setString(5, entity.getRole().toString());
-            preparedStatement.setInt(6, entity.getId());
+            preparedStatement.setInt(6, entity.getId());*/
 
-            return preparedStatement.executeUpdate() == 1;
+            return fillDataForUserUpdate(preparedStatement, entity).executeUpdate() == 1;
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException(e);
         }
@@ -136,6 +137,22 @@ public class UserDaoImpl implements UserDao {
 
             return Optional.empty();
         } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public PreparedStatement fillDataForUserUpdate (PreparedStatement preparedStatement, User entity) throws DaoException {
+        try {
+            preparedStatement.setString(1, entity.getName());
+            preparedStatement.setString(2, entity.getSurname());
+            preparedStatement.setString(3, entity.getEmail());
+            preparedStatement.setString(4, entity.getPhone());
+            preparedStatement.setString(5, entity.getRole().toString());
+            preparedStatement.setInt(6, entity.getId());
+
+            return preparedStatement;
+        } catch (SQLException e) {
             throw new DaoException(e);
         }
     }

@@ -1,11 +1,13 @@
 package by.guzypaul.medicinecentre.dao.impl;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
+import by.guzypaul.medicinecentre.dao.DaoFactory;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPool;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPoolException;
 import by.guzypaul.medicinecentre.dao.interfaces.DoctorDao;
 import by.guzypaul.medicinecentre.dao.mapper.DaoDoctorMapper;
 import by.guzypaul.medicinecentre.entity.Doctor;
+import by.guzypaul.medicinecentre.entity.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class DoctorDaoImpl implements DoctorDao {
+    //private final UserDao userDao = DaoFactory.getInstance().getUserDao(); // todo check OK?
+
     private static final String READ_ALL_DOCTOR_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, " +
             "doctors.rank, doctors.photo_name, " +
             "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
@@ -31,6 +35,11 @@ public class DoctorDaoImpl implements DoctorDao {
             "users.id AS user_id, users.name AS user_name, users.surname, users.password, users.email, users.phone, " +
             "users.role FROM doctors INNER JOIN users ON doctors.doctor_info = users.id WHERE users.id = ?";
     private static final String DELETE_DOCTOR_BY_ID_SQL = "DELETE FROM doctors WHERE doctors.id = ?";
+    private static final String DELETE_DOCTOR_SCHEDULE_BY_ID_SQL = "DELETE FROM doctor_schedules " +
+            "WHERE doctor_schedules.id = ?";
+    private static final String UPDATE_USER_BY_ID_SQL = "UPDATE users SET name = ?," +
+            " surname = ?, email = ?, phone = ?, role = ? " +
+            "WHERE users.id = ?";
     private static final String CREATE_DOCTOR_BY_ID_SQL = "INSERT INTO doctors (doctors.qualification, " +
             "doctors.rank, doctors.doctor_info, doctors.photo_name) VALUES (?, ?, ?, ?)";
     private static final String UPDATE_DOCTOR_BY_ID_SQL = "UPDATE doctors SET doctors.qualification = ?," +
@@ -86,11 +95,61 @@ public class DoctorDaoImpl implements DoctorDao {
     public boolean deleteById(Integer id) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_DOCTOR_BY_ID_SQL)) {
+
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void deleteDoctorWithScheduleAndChangeUserRole(Integer doctorId, Integer scheduleId, User user) throws DaoException {
+        Connection connection = null;
+        try {
+            connection = ConnectionPool.getInstance().acquireConnection();
+            PreparedStatement preparedStatement1 = connection.prepareStatement(DELETE_DOCTOR_SCHEDULE_BY_ID_SQL);
+            PreparedStatement preparedStatement2 = connection.prepareStatement(DELETE_DOCTOR_BY_ID_SQL);
+            PreparedStatement preparedStatement3 = connection.prepareStatement(UPDATE_USER_BY_ID_SQL);
+
+            connection.setAutoCommit(false);
+
+            preparedStatement1.setInt(1, scheduleId);
+
+            preparedStatement2.setInt(1, doctorId);
+
+            preparedStatement3 = DaoFactory.getInstance().getUserDao().fillDataForUserUpdate(preparedStatement3, user);
+
+           /* preparedStatement3.setString(1, user.getName());
+            preparedStatement3.setString(2, user.getSurname());
+            preparedStatement3.setString(3, user.getEmail());
+            preparedStatement3.setString(4, user.getPhone());
+            preparedStatement3.setString(5, user.getRole().toString());
+            preparedStatement3.setInt(6, user.getId());*/
+
+            preparedStatement1.executeUpdate();
+            preparedStatement2.executeUpdate();
+            preparedStatement3.executeUpdate();
+
+            connection.commit();
+        } catch (SQLException | ConnectionPoolException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new DaoException(ex.getMessage());
+            }
+
+            throw new DaoException(e.getMessage());
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.setAutoCommit(true);
+                    connection.close();
+                } catch (SQLException e) {
+                    throw new DaoException(e.getMessage());
+                }
+            }
         }
     }
 

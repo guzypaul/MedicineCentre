@@ -4,6 +4,7 @@ import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.DaoFactory;
 import by.guzypaul.medicinecentre.dao.interfaces.DoctorDao;
 import by.guzypaul.medicinecentre.entity.Doctor;
+import by.guzypaul.medicinecentre.entity.User;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
 import by.guzypaul.medicinecentre.validator.DoctorValidator;
@@ -62,6 +63,15 @@ public class DoctorServiceImpl implements DoctorService {
     public boolean deleteById(String id) throws ServiceException {
         try {
             return doctorDao.deleteById(Integer.parseInt(id));
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void deleteDoctorWithScheduleAndChangeUserRole(String doctorId, String scheduleId, User user) throws ServiceException {
+        try {
+            doctorDao.deleteDoctorWithScheduleAndChangeUserRole(Integer.parseInt(doctorId), Integer.parseInt(scheduleId), user);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
