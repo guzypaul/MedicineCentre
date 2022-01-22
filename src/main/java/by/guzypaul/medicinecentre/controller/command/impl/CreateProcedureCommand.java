@@ -8,8 +8,15 @@ import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.util.stream.Collectors;
 
 public class CreateProcedureCommand implements Command {
     private final ProcedureService procedureService;
@@ -22,14 +29,12 @@ public class CreateProcedureCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
         try {
             String name = request.getParameter("name");
-            String imageName = request.getParameter("imageName");
             String price = request.getParameter("price");
             String description = request.getParameter("description");
             String duration = request.getParameter("duration");
             String doctorQualification = request.getParameter("doctorQualification");
 
             if (name == null || name.isEmpty()
-                    || imageName == null || imageName.isEmpty()
                     || price == null || price.isEmpty()
                     || description == null || description.isEmpty()
                     || duration == null || duration.isEmpty()
@@ -39,8 +44,23 @@ public class CreateProcedureCommand implements Command {
                 return new Router("/controller?command=create_procedure_page", Router.Type.REDIRECT);
             }
 
-            Procedure procedure = new Procedure(name, imageName, BigDecimal.valueOf(Double.parseDouble(price)),
+            Procedure procedure = new Procedure(name, BigDecimal.valueOf(Double.parseDouble(price)),
                     description, Integer.parseInt(duration), doctorQualification);
+
+            for (Part part : request.getParts()) {
+                if (part.getName().equals("procedure-picture")) {
+                    InputStream inputStream = part.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(inputStream);
+                    new BufferedReader(isr)
+                            .lines()
+                            .collect(Collectors.joining("\n"));
+                    if (!part.getSubmittedFileName().isEmpty()) {
+                        String pictureName = "procedure_" + procedure.getName() + "_" + part.getSubmittedFileName();
+                        procedure.setImageName(pictureName);
+                        part.write(pictureName);
+                    }
+                }
+            }
 
             boolean isUserCreated = procedureService.create(procedure);
 
@@ -53,7 +73,7 @@ public class CreateProcedureCommand implements Command {
 
                 return new Router("/controller?command=create_procedure_page", Router.Type.REDIRECT);
             }
-        } catch (ServiceException e) {
+        } catch (ServiceException | IOException | ServletException e) {
             throw new CommandException(e);
         }
     }

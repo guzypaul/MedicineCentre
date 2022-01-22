@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import java.io.IOException;
 
 
 @WebServlet("/controller")
+@MultipartConfig(location = "C:\\Users\\skysnaker\\IdeaProjects\\MedicineCentre\\target\\MedicineCentre-1.0-SNAPSHOT\\download")
 public class Controller extends HttpServlet {
     private static final Logger logger = LogManager.getRootLogger();
 

@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:url var="cssFilePath" value="/css/style.css"/>
-<c:url var="photoPath" value="/photo/"/>
+<c:url var="photoPath" value="/download/"/>
 <c:url var="changeDoctor" value="/controller?command=change_doctor_page&doctorId="/>
 <c:url var="changeDoctorSchedule" value="/controller?command=change_doctor_schedule_page&doctorScheduleId="/>
 <c:url var="deleteDoctorAndSchedule" value="/controller?command=delete_doctor_and_schedule_page&doctorId="/>

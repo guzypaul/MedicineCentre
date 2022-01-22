@@ -20,21 +20,16 @@
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-            <form class="registration-inputs" action="${createProcedure}" method="post">
+            <form class="registration-inputs" action="${createProcedure}" method="post" enctype="multipart/form-data">
                 <div class="container-fluid">
                     <div>
                         <label for="name">Name</label>
                         <input id="name" class="form-control" tabindex="1" placeholder="Name" type="text" name="name"/>
                     </div>
                     <br>
-                    <div>
-                        <label for="imageName">Image name (.jpg/.gif/.png/.bmp)</label>
-                        <input id="imageName" class="form-control" tabindex="2" placeholder="Image name" type="text" name="imageName"/>
-                    </div>
-                    <br>
                     <div class="mb-3">
                         <label for="formFileSm" class="form-label">Picture</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" name="procedure-picture">
                     </div>
                     <br>
                     <div>

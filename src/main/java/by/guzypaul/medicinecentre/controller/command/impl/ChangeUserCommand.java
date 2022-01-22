@@ -42,8 +42,8 @@ public class ChangeUserCommand implements Command {
 
             Optional<User> userOptional = userService.readById(userId);
 
-            if (userOptional.isPresent()) {
-                User user = new User(Integer.parseInt(userId), name, surname, email, phone, Role.valueOf(role));
+            if (userOptional.isPresent()) { //todo get user id from session and check
+                User user = new User(Integer.parseInt(userId), name, surname, email, phone, Role.valueOf(role)); //todo findRole to if
                 userService.update(user);
 
                 if (request.getSession().getAttribute("role") == "USER") {
