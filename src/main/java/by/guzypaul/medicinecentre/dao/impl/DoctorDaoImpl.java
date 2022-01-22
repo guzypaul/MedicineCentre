@@ -105,7 +105,7 @@ public class DoctorDaoImpl implements DoctorDao {
 
     @Override
     public void deleteDoctorWithScheduleAndChangeUserRole(Integer doctorId, Integer scheduleId, User user) throws DaoException {
-        Connection connection = null;
+        Connection connection = null; //TODO check!
         try {
             connection = ConnectionPool.getInstance().acquireConnection();
             PreparedStatement preparedStatement1 = connection.prepareStatement(DELETE_DOCTOR_SCHEDULE_BY_ID_SQL);
