@@ -54,7 +54,7 @@ public class CreateDoctorCommand implements Command {
             Optional<User> userOptional = userService.readById(userId);
             if (userOptional.isPresent()) {
                 User userDoctor = userOptional.get();
-                userDoctor.setRole(Role.DOCTOR);                                                        //todo transaction!!!
+                userDoctor.setRole(Role.DOCTOR);                                                        
                 userService.update(userDoctor);
                 Doctor doctor = new Doctor(qualification, rank, userDoctor, photoName);
                 doctorService.create(doctor);
