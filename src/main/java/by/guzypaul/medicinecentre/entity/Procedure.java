@@ -34,6 +34,14 @@ public class Procedure implements Entity{
         this.doctorQualification = doctorQualification;
     }
 
+    public Procedure(String name, BigDecimal price, String description, int duration, String doctorQualification) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.duration = duration;
+        this.doctorQualification = doctorQualification;
+    }
+
     public int getId() {
         return id;
     }
