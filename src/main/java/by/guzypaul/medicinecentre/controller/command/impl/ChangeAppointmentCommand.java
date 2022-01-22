@@ -17,6 +17,7 @@ import by.guzypaul.medicinecentre.service.interfaces.UserService;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 
 public class ChangeAppointmentCommand implements Command {
@@ -39,8 +40,7 @@ public class ChangeAppointmentCommand implements Command {
             String clientId = request.getParameter("clientId");
             String doctorId = request.getParameter("doctorId");
             String date = request.getParameter("date");
-            String startTime = request.getParameter("startTime");
-            String endTime = request.getParameter("endTime");
+            String startTimeAsString = request.getParameter("startTime");
             String procedureId = request.getParameter("procedureId");
             String status = request.getParameter("status");
 
@@ -48,8 +48,7 @@ public class ChangeAppointmentCommand implements Command {
                     || clientId == null || clientId.isEmpty()
                     || doctorId == null || doctorId.isEmpty()
                     || date == null || date.isEmpty()
-                    || startTime == null || startTime.isEmpty()
-                    || endTime == null || endTime.isEmpty()
+                    || startTimeAsString == null || startTimeAsString.isEmpty()
                     || procedureId == null || procedureId.isEmpty()
                     || status == null || status.isEmpty()) {
                 request.getSession().setAttribute("isAppointmentChanged", false);
@@ -63,8 +62,13 @@ public class ChangeAppointmentCommand implements Command {
 
             if (appointmentOptional.isPresent() && userClientOptional.isPresent()
                     && doctorOptional.isPresent() && procedureOptional.isPresent()) {
+                Procedure procedure = procedureOptional.get();
+                int duration = procedure.getDuration();
+                Time startTime = Time.valueOf(LocalTime.parse(startTimeAsString));
+                Time endTime = Time.valueOf(LocalTime.parse(startTimeAsString).plusMinutes(duration));
+
                 Appointment appointment = new Appointment(Integer.parseInt(appointmentId), userClientOptional.get(),
-                        doctorOptional.get(), LocalDate.parse(date), Time.valueOf(startTime), Time.valueOf(endTime),
+                        doctorOptional.get(), LocalDate.parse(date), startTime, endTime,
                         procedureOptional.get(), status);
                 appointmentService.update(appointment);
                 request.getSession().setAttribute("isAppointmentChanged", true);
