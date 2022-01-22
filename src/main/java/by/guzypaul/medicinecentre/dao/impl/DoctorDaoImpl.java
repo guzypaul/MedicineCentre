@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class DoctorDaoImpl implements DoctorDao {
-    //private final UserDao userDao = DaoFactory.getInstance().getUserDao(); // todo check OK?
 
     private static final String READ_ALL_DOCTOR_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, " +
             "doctors.rank, doctors.photo_name, " +
