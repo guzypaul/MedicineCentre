@@ -121,13 +121,6 @@ public class DoctorDaoImpl implements DoctorDao {
 
             preparedStatement3 = DaoFactory.getInstance().getUserDao().fillDataForUserUpdate(preparedStatement3, user);
 
-           /* preparedStatement3.setString(1, user.getName());
-            preparedStatement3.setString(2, user.getSurname());
-            preparedStatement3.setString(3, user.getEmail());
-            preparedStatement3.setString(4, user.getPhone());
-            preparedStatement3.setString(5, user.getRole().toString());
-            preparedStatement3.setInt(6, user.getId());*/
-
             preparedStatement1.executeUpdate();
             preparedStatement2.executeUpdate();
             preparedStatement3.executeUpdate();

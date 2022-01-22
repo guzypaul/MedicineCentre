@@ -112,12 +112,6 @@ public class UserDaoImpl implements UserDao {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_BY_ID_SQL)) {
             fillDataForUserUpdate(preparedStatement, entity);
-            /*preparedStatement.setString(1, entity.getName());
-            preparedStatement.setString(2, entity.getSurname());
-            preparedStatement.setString(3, entity.getEmail());
-            preparedStatement.setString(4, entity.getPhone());
-            preparedStatement.setString(5, entity.getRole().toString());
-            preparedStatement.setInt(6, entity.getId());*/
 
             return fillDataForUserUpdate(preparedStatement, entity).executeUpdate() == 1;
         } catch (SQLException | ConnectionPoolException e) {

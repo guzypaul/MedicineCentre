@@ -55,7 +55,7 @@
                     <c:if test="${role == 'ADMIN' || role == 'MODERATOR'}">
                         <label for="role">Role</label>
                         <select id="role" class="form-select" aria-label="Disabled select example" name="role">
-                            <option selected>Choose role!</option>
+                            <option selected>${user.role}</option>
                             <c:forEach items="${roleList}" var="userRole">
                                 <option value="${userRole}">${userRole}</option>
                             </c:forEach>
