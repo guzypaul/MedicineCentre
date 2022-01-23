@@ -65,16 +65,16 @@ public class ChangeDoctorCommand implements Command {
                     }
                 }
 
-                doctorService.update(doctor);
-                request.getSession().setAttribute("isDoctorChanged", true);
-
-                return new Router("/controller?command=doctor_page&doctorId=" + doctorId, Router.Type.REDIRECT);
+                boolean isDoctorChanged = doctorService.update(doctor);
+                if (isDoctorChanged) {
+                    request.getSession().setAttribute("isDoctorChanged", true);
+                    return new Router("/controller?command=doctor_page&doctorId=" + doctorId, Router.Type.REDIRECT);
+                }
+                throw new CommandException("Doctor updating was crashed!");
             } else {
                 request.getSession().setAttribute("isDoctorChanged", false);
-
                 return new Router("/controller?command=change_doctor_page", Router.Type.REDIRECT);
             }
-
         } catch (ServiceException | IOException | ServletException e) {
             throw new CommandException(e);
         }

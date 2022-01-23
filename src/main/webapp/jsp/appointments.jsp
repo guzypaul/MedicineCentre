@@ -4,6 +4,8 @@
 
 <c:url var="changeAppointmentPage" value="/controller?command=change_appointment_page&appointmentId="/>
 <c:url var="deleteAppointment" value="/controller?command=delete_appointment_page&appointmentId="/>
+<c:url var="doctorPage" value="/controller?command=doctor_page&doctorId="/>
+<c:url var="procedurePage" value="/controller?command=procedure_page&procedureId="/>
 
 
 <html>
@@ -119,25 +121,14 @@
                     <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Client Id</th>
-                        <th scope="col">Doctor Id</th>
                         <th scope="col">Date</th>
                         <th scope="col">Start Time</th>
                         <th scope="col">End Time</th>
-                        <th scope="col">Procedure Id</th>
-                        <th scope="col">Procedure name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">Client Name</th>
-                        <th scope="col">Client Surname</th>
+                        <th scope="col">Procedure</th>
+                        <th scope="col">Client</th>
                         <th scope="col">Client e-mail</th>
                         <th scope="col">Client phone number</th>
-                        <th scope="col">Doctor Name</th>
-                        <th scope="col">Doctor Surname</th>
-                        <th scope="col">Doctor e-mail</th>
-                        <th scope="col">Doctor phone number</th>
-                        <th scope="col">Doctor qualification</th>
-                        <th scope="col">Doctor rank</th>
+                        <th scope="col">Doctor</th>
                         <th scope="col">Status</th>
                     </tr>
                     </thead>
@@ -145,28 +136,16 @@
                     <c:forEach items="${appointmentList}" var="appointment">
                         <tr>
                             <th scope="row"><c:out value="${appointment.id}"/></th>
-                            <td><c:out value="${appointment.userClient.id}"/></td>
-                            <td><c:out value="${appointment.doctor.id}"/></td>
                             <td><c:out value="${appointment.date}"/></td>
                             <td><c:out value="${appointment.startTime}"/></td>
                             <td><c:out value="${appointment.endTime}"/></td>
-                            <td><c:out value="${appointment.procedure.id}"/></td>
-                            <td><c:out value="${appointment.procedure.name}"/></td>
-                            <td><c:out value="${appointment.procedure.price}"/></td>
-                            <td><c:out value="${appointment.procedure.duration}"/></td>
-                            <td><c:out value="${appointment.userClient.name}"/></td>
-                            <td><c:out value="${appointment.userClient.surname}"/></td>
+                            <td><a href="<c:out value="${procedurePage}${appointment.procedure.id}"/>"><c:out value="${appointment.procedure.name}"/></a></td>
+                            <td><c:out value="${appointment.userClient.name} ${appointment.userClient.surname}"/></td>
                             <td><c:out value="${appointment.userClient.email}"/></td>
                             <td><c:out value="${appointment.userClient.phone}"/></td>
-                            <td><c:out value="${appointment.doctor.doctorInfo.name}"/></td>
-                            <td><c:out value="${appointment.doctor.doctorInfo.surname}"/></td>
-                            <td><c:out value="${appointment.doctor.doctorInfo.email}"/></td>
-                            <td><c:out value="${appointment.doctor.doctorInfo.phone}"/></td>
-                            <td><c:out value="${appointment.doctor.qualification}"/></td>
-                            <td><c:out value="${appointment.doctor.rank}"/></td>
+                            <td><a href="<c:out value="${doctorPage}${appointment.doctor.id}"/>"><c:out value="${appointment.doctor.doctorInfo.name} ${appointment.doctor.doctorInfo.surname}"/></a></td>
                             <td><c:out value="${appointment.status}"/></td>
-                            <td><a href="${changeAppointmentPage}${appointment.id}" class="btn btn-primary active">Change</a>
-                            </td>
+                            <td><a href="${changeAppointmentPage}${appointment.id}" class="btn btn-primary active">Change</a></td>
                             <td><a href="${deleteAppointment}${appointment.id}"
                                    class="btn btn-primary active">Delete</a></td>
                         </tr>

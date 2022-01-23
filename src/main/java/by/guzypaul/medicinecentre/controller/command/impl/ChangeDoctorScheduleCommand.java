@@ -42,16 +42,17 @@ public class ChangeDoctorScheduleCommand implements Command {
             if (doctorScheduleOptional.isPresent()) {
                 DoctorSchedule doctorSchedule = new DoctorSchedule(Integer.parseInt(doctorScheduleId),
                         Time.valueOf(startTime), Time.valueOf(endTime), info);
-                doctorScheduleService.update(doctorSchedule);
-                request.getSession().setAttribute("isScheduleChanged", true);
+                boolean isScheduleUpdated = doctorScheduleService.update(doctorSchedule);
 
-                return new Router("/controller?command=doctor_page&doctorId=" + doctorId, Router.Type.REDIRECT);
-            } else {
-                request.getSession().setAttribute("isScheduleChanged", false);
-
-                return new Router("/controller?command=change_doctor_schedule_page", Router.Type.REDIRECT);
+                if (isScheduleUpdated) {
+                    request.getSession().setAttribute("isScheduleChanged", true);
+                    return new Router("/controller?command=doctor_page&doctorId=" + doctorId, Router.Type.REDIRECT);
+                } else {
+                    request.getSession().setAttribute("isScheduleChanged", false);
+                    return new Router("/controller?command=change_doctor_schedule_page", Router.Type.REDIRECT);
+                }
             }
-
+            throw new CommandException("Invalid data!");
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

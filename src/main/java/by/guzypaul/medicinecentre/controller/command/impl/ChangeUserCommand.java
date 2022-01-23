@@ -56,10 +56,8 @@ public class ChangeUserCommand implements Command {
                 return new Router("/controller?command=users", Router.Type.REDIRECT);
             } else {
                 request.getSession().setAttribute("isUserChanged", false);
-
                 return new Router("/controller?command=change_user_page", Router.Type.REDIRECT);
             }
-
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
