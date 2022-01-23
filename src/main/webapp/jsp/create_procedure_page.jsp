@@ -1,3 +1,5 @@
+<%@ page import="java.awt.image.PixelGrabber" %>
+<%@ page import="by.guzypaul.medicinecentre.entity.Qualification" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -48,8 +50,12 @@
                     </div>
                     <br>
                     <div>
-                        <label for="doctorQualification">Doctor qualification</label>
-                        <input id="doctorQualification" class="form-control" tabindex="6" placeholder="Doctor qualification" type="text" name="doctorQualification"/>
+                        <label for="qualification">Doctor qualification</label>
+                        <select id="qualification" class="form-select" aria-label="Disabled select example" name="doctorQualification">
+                            <c:forEach items="${qualificationList}" var="doctorQualification">
+                                <option value="${doctorQualification}">${doctorQualification}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                     <br>
                     <div>

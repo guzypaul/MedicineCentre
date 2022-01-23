@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-            <form class="registration-inputs" action="${changeProcedure}" method="post">
+            <form class="registration-inputs" action="${changeProcedure}" method="post" enctype="multipart/form-data">
                 <div class="container-fluid">
                     <div>
                         <label for="procedureId">Procedure id=${procedure.id}</label>
@@ -37,8 +37,10 @@
                     </div>
                     <br>
                     <div class="mb-3">
-                        <label for="formFileSm" class="form-label">Picture (don't choose anything if you not needed)</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file" name="procedure-picture">
+                        <label for="formFileSm" class="form-label">Picture (don't choose anything if you not
+                            needed)</label>
+                        <input class="form-control form-control-sm" id="formFileSm" type="file"
+                               name="procedure-picture">
                     </div>
                     <br>
                     <div>
@@ -47,22 +49,30 @@
                                name="price"/>
                     </div>
                     <br>
-                     <div>
-                         <label for="description">Description</label>
-                         <input id="description" class="form-control" tabindex="4" value="${procedure.description}" type="text"
-                                name="description"/>
-                     </div>
-                     <br>
-                     <div>
-                         <label for="duration">Duration (minutes)</label>
-                         <input id="duration" class="form-control" tabindex="5" value="${procedure.duration}" type="text"
-                                name="duration"/>
-                     </div>
-                     <br>
                     <div>
-                        <label for="doctorQualification">Doctor qualification</label>
-                        <input id="doctorQualification" class="form-control" tabindex="7" value="${procedure.doctorQualification}"
-                               type="text" name="doctorQualification"/>
+                        <label for="description">Description</label>
+                        <input id="description" class="form-control" tabindex="4" value="${procedure.description}"
+                               type="text"
+                               name="description"/>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="duration">Duration (minutes)</label>
+                        <input id="duration" class="form-control" tabindex="5" value="${procedure.duration}" type="text"
+                               name="duration"/>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="qualification">Doctor qualification</label>
+                        <select id="qualification" class="form-select" aria-label="Disabled select example"
+                                name="doctorQualification">
+                            <option selected>${procedure.doctorQualification}</option>
+                            <c:forEach items="${qualificationList}" var="doctorQualification">
+                                <c:if test="${doctorQualification != procedure.doctorQualification}">
+                                    <option value="${doctorQualification}">${doctorQualification}</option>
+                                </c:if>
+                            </c:forEach>
+                        </select>
                     </div>
                     <br>
                     <div>
