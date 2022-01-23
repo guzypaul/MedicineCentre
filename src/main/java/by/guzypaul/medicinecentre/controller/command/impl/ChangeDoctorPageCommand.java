@@ -4,11 +4,14 @@ import by.guzypaul.medicinecentre.controller.command.Command;
 import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
 import by.guzypaul.medicinecentre.entity.Doctor;
+import by.guzypaul.medicinecentre.entity.Qualification;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class ChangeDoctorPageCommand implements Command {
@@ -25,6 +28,12 @@ public class ChangeDoctorPageCommand implements Command {
             Optional<Doctor> doctorOptional = doctorService.readById(doctorId);
 
             if  (doctorOptional.isPresent()) {
+                List<String> qualificationList = new ArrayList<>();
+                for (Qualification qualification : Qualification.values()) {
+                    String qualificationName = qualification.getQualificationName();
+                    qualificationList.add(qualificationName);
+                }
+                request.setAttribute("qualificationList", qualificationList);
                 request.setAttribute("doctor", doctorOptional.get());
                 return new Router("/jsp/change_doctor_page.jsp", Router.Type.FORWARD);
             }

@@ -23,12 +23,15 @@
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-            <form class="registration-inputs" action="${createDoctor}" method="post">
+            <form class="registration-inputs" action="${createDoctor}" method="post" enctype="multipart/form-data">
                 <div class="container-fluid">
                     <div>
                         <label for="qualification">Qualification</label>
-                        <input id="qualification" class="form-control" tabindex="1" placeholder="Qualification"
-                               type="text" name="qualification"/>
+                        <select id="qualification" class="form-select" aria-label="Disabled select example" name="qualification">
+                            <c:forEach items="${qualificationList}" var="doctorQualification">
+                                <option value="${doctorQualification}">${doctorQualification}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                     <br>
                     <div>
@@ -48,15 +51,13 @@
                     </div>
                     <br>
                     <div>
-                        <label for="startTime">Start time (hh:mm:ss)</label>
-                        <input id="startTime" class="form-control" tabindex="5" placeholder="Start time" type="text"
-                               name="startTime"/>
+                        <label for="startTime">Start time</label>
+                        <input id="startTime" class="form-control" type="time" name="startTime">
                     </div>
                     <br>
                     <div>
-                        <label for="endTime">End time (hh:mm:ss)</label>
-                        <input id="endTime" class="form-control" tabindex="6" placeholder="End time" type="text"
-                               name="endTime"/>
+                        <label for="endTime">End time</label>
+                        <input id="endTime" class="form-control" type="time" name="endTime"/>
                     </div>
                     <br>
                     <div>

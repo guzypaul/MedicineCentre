@@ -20,18 +20,28 @@
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-            <form class="registration-inputs" action="${changeDoctor}" method="post">
+            <form class="registration-inputs" action="${changeDoctor}" method="post" enctype="multipart/form-data">
                 <div class="container-fluid">
                     <div>
-                        <label for="doctorId">Doctor id=${doctor.id} ${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}</label>
+                        <label for="doctorId">Doctor
+                            id=${doctor.id} ${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}</label>
                         <input id="doctorId" class="form-control" value="${doctor.id}" type="hidden"
                                name="doctorId"/>
+                        <input id="photoName" class="form-control" value="${doctor.photoName}" type="hidden"
+                               name="photoName"/>
                     </div>
                     <br>
                     <div>
-                        <label for="qualification">Qualification</label>
-                        <input id="qualification" class="form-control" tabindex="1" value="${doctor.qualification}" type="text"
-                               name="qualification"/>
+                        <label for="qualification">Doctor qualification</label>
+                        <select id="qualification" class="form-select" aria-label="Disabled select example"
+                                name="qualification">
+                            <option selected>${doctor.qualification}</option>
+                            <c:forEach items="${qualificationList}" var="doctorQualification">
+                                <c:if test="${doctorQualification != doctor.qualification}">
+                                    <option value="${doctorQualification}">${doctorQualification}</option>
+                                </c:if>
+                            </c:forEach>
+                        </select>
                     </div>
                     <br>
                     <div>
@@ -40,10 +50,11 @@
                                name="rank"/>
                     </div>
                     <br>
-                    <div>
-                        <label for="photoName">Photo name</label>
-                        <input id="photoName" class="form-control" tabindex="3" value="${doctor.photoName}" type="text"
-                               name="photoName"/>
+                    <div class="mb-3">
+                        <label for="formFileSm" class="form-label">Photo (don't choose anything if you not
+                            needed)</label>
+                        <input class="form-control form-control-sm" id="formFileSm" type="file"
+                               name="doctor-picture">
                     </div>
                     <br>
                     <div>

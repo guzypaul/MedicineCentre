@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -81,7 +82,8 @@ public class CreateDoctorCommand implements Command {
                 doctorService.create(doctor);
                 if (doctorService.readByUserId(userId).isPresent()) {
                     Doctor newCreatedDoctor = doctorService.readByUserId(userId).get();
-                    DoctorSchedule doctorSchedule = new DoctorSchedule(newCreatedDoctor, Time.valueOf(startTime), Time.valueOf(endTime), info);
+                    DoctorSchedule doctorSchedule = new DoctorSchedule(newCreatedDoctor,
+                            Time.valueOf(LocalTime.parse(startTime)), Time.valueOf(LocalTime.parse(endTime)), info);
                     doctorScheduleService.create(doctorSchedule);
                     request.getSession().setAttribute("isDoctorCreated", true);
 

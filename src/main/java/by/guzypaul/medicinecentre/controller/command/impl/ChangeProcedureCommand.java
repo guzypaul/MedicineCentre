@@ -63,7 +63,8 @@ public class ChangeProcedureCommand implements Command {
                         new BufferedReader(isr)
                                 .lines()
                                 .collect(Collectors.joining("\n"));
-                        if (!part.getSubmittedFileName().isEmpty()) {
+                        if (!part.getSubmittedFileName().isEmpty()
+                                && ("procedure_" + procedure.getName() + "_" + part.getSubmittedFileName()) != currentImageName) {
                             String pictureName = "procedure_" + procedure.getName() + "_" + part.getSubmittedFileName();
                             procedure.setImageName(pictureName);
                             part.write(pictureName);
