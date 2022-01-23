@@ -37,7 +37,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-color">
     </c:if>
             <div class="container-fluid">
-                <a class="navbar-brand" href="${procedureListPath}">StartUP CLINIC</a>
+                <a class="navbar-brand" href="${procedureListPath}"><fmt:message key="startup.clinic"/></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -45,25 +45,25 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="${procedureListPath}">Procedures</a>
+                            <a class="nav-link active" aria-current="page" href="${procedureListPath}"><fmt:message key="procedures"/></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="${doctorListPath}">Doctors</a>
+                            <a class="nav-link active" aria-current="page" href="${doctorListPath}"><fmt:message key="doctors"/></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="${contacts}">Contacts</a>
+                            <a class="nav-link active" href="${contacts}"><fmt:message key="contacts"/></a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="${aboutUs}">About Us</a>
+                            <a class="nav-link active" href="${aboutUs}"><fmt:message key="about.us"/></a>
                         </li>
                         <li class="nav-item"></li>
                         <form action="${changeLanguage}" method="post">
                             <select name="language" onchange="submit()" class="form-select form-select-sm"
                                     aria-label=".form-select-sm example">
                                 <option value="en_US" ${locale == 'en_US' ? 'selected' : ''}>EN</option>
-                                <option value="de_DE" ${locale == 'de_DE' ? 'selected' : ''}>DE</option>
-                                <option value="fr_FR" ${locale == 'fr_FR' ? 'selected' : ''}>FR</option>
+                                <option value="ar_US" ${locale == 'ar_US' ? 'selected' : ''}>AR</option>
+                                <option value="zh_CN" ${locale == 'zh_CN' ? 'selected' : ''}>ZH</option>
                             </select>
                         </form>
                         </li>
@@ -76,21 +76,21 @@
                             <c:if test="${role == 'GUEST'}">
                                 <ul class="navbar-nav mb-2 mb-lg-0">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="${registrationPage}">Registration</a>
+                                        <a class="nav-link active" href="${registrationPage}"><fmt:message key="registration"/></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="${authorizationPage}">SIGN IN</a>
+                                        <a class="nav-link active" href="${authorizationPage}"><fmt:message key="sign.in"/></a>
                                     </li>
                                 </ul>
                             </c:if>
                             <c:if test="${role != 'GUEST'}">
                                 <ul class="navbar-nav mb-2 mb-lg-0">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="${profilePageCommand}">PERSONAL AREA</a>
+                                        <a class="nav-link active" href="${profilePageCommand}"><fmt:message key="personal.area"/></a>
                                     </li>
                                     <li class="nav-item">
                                         <form action="${logoutCommand}" method="post">
-                                            <button type="submit" class="btn btn-warning">Logout</button>
+                                            <button type="submit" class="btn btn-warning"><fmt:message key="logout"/></button>
                                         </form>
                                     </li>
                                 </ul>

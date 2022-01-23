@@ -12,13 +12,13 @@
 
 <html>
 <head>
-    <title>Procedures</title>
+    <title><fmt:message key="procedures"/></title>
     <c:import url="header.jsp"/>
     <main>
         <c:if test="${isUserAuthorized == true && role == 'USER'}">
             <div class="container-fluid alert-indents">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Authorization is successfully!</strong> You can make appointments now.
+                    <strong><fmt:message key="authorization.is.successfully"/></strong> <fmt:message key="you.can.make.appointments.now"/>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
@@ -27,7 +27,7 @@
         <c:if test="${isUserLogout == true}">
             <div class="container-fluid alert-indents">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>You logout successfully!</strong>
+                    <strong><fmt:message key="you.logout.successfully"/></strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
@@ -52,8 +52,8 @@
             <% request.getSession().removeAttribute("isProcedureDeleted"); %>
         </c:if>
         <div class="container-fluid">
-            <div class="col-xl-2">
-                <h1 class="procedures"><fmt:message key="procedures"/>:</h1>
+            <div class="col-lg-12">
+                <h2 class="procedures"><fmt:message key="procedures"/>:</h2>
                 <br>
             </div>
             <div class="row">

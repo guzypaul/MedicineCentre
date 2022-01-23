@@ -7,14 +7,17 @@
 <c:url var="contacts" value="/controller?command=contacts"/>
 <c:url var="aboutUs" value="/controller?command=about_us"/>
 
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="languages.locale"/>
+
 <div class="container">
   <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="${procedureListPath}" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="${contacts}" class="nav-link px-2 text-muted">Contacts</a></li>
-      <li class="nav-item"><a href="${aboutUs}" class="nav-link px-2 text-muted">About Us</a></li>
+      <li class="nav-item"><a href="${procedureListPath}" class="nav-link px-2 text-muted"><fmt:message key="home"/></a></li>
+      <li class="nav-item"><a href="${contacts}" class="nav-link px-2 text-muted"><fmt:message key="contacts"/></a></li>
+      <li class="nav-item"><a href="${aboutUs}" class="nav-link px-2 text-muted"><fmt:message key="about.us"/></a></li>
     </ul>
-    <p class="text-center text-muted">&copy; 2022 StartUP CLINIC</p>
+    <p class="text-center text-muted">&copy; 2022 <fmt:message key="startup.clinic"/></p>
   </footer>
 </div>
 </body>
