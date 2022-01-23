@@ -32,14 +32,12 @@
                     <br>
                     <div>
                         <label for="startTime">Start time</label>
-                        <input id="startTime" class="form-control" tabindex="1" value="${doctorSchedule.startTime}" type="text"
-                               name="startTime"/>
+                        <input id="startTime" class="form-control" value="${doctorSchedule.startTime}" type="time" name="startTime">
                     </div>
                     <br>
                     <div>
                         <label for="endTime">End time</label>
-                        <input id="endTime" class="form-control" tabindex="2" value="${doctorSchedule.endTime}" type="text"
-                               name="endTime"/>
+                        <input id="endTime" class="form-control" value="${doctorSchedule.endTime}" type="time" name="endTime"/>
                     </div>
                     <br>
                     <div>

@@ -44,13 +44,13 @@
                     </div>
                     <br>
                     <div>
-                        <label for="date">Date (has been set ${appointment.date}</label>
-                        <input id="date" class="form-control" type="date" name="date">
+                        <label for="date">Date</label>
+                        <input id="date" class="form-control" value="${appointment.date}" type="date" name="date">
                     </div>
                     <br>
                     <div>
-                        <label for="startTime" >Start time (has been set ${appointment.startTime})</label>
-                        <input id="startTime" class="form-control" type="time" name="startTime" >
+                        <label for="startTime">Start time</label>
+                        <input id="startTime" class="form-control" value="${appointment.startTime}" type="time" name="startTime" >
                     </div>
                     <br>
                     <div>

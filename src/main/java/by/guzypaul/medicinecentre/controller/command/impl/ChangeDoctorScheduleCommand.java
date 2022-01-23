@@ -10,6 +10,7 @@ import by.guzypaul.medicinecentre.service.interfaces.DoctorScheduleService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Optional;
 
 public class ChangeDoctorScheduleCommand implements Command {
@@ -41,7 +42,7 @@ public class ChangeDoctorScheduleCommand implements Command {
 
             if (doctorScheduleOptional.isPresent()) {
                 DoctorSchedule doctorSchedule = new DoctorSchedule(Integer.parseInt(doctorScheduleId),
-                        Time.valueOf(startTime), Time.valueOf(endTime), info);
+                        Time.valueOf(LocalTime.parse(startTime)), Time.valueOf(LocalTime.parse(endTime)), info);
                 boolean isScheduleUpdated = doctorScheduleService.update(doctorSchedule);
 
                 if (isScheduleUpdated) {
