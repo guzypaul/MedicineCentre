@@ -42,10 +42,9 @@
                                name="userId"/>
                     </div>
                     <br>
-                    <div>
-                        <label for="photoName">Photo name</label>
-                        <input id="photoName" class="form-control" tabindex="4" placeholder="Photo name" type="text"
-                               name="photoName"/>
+                    <div class="mb-3">
+                        <label for="formFileSm" class="form-label">Picture</label>
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" name="doctor-picture">
                     </div>
                     <br>
                     <div>

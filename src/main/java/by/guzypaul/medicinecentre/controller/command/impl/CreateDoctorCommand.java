@@ -13,9 +13,16 @@ import by.guzypaul.medicinecentre.service.interfaces.DoctorScheduleService;
 import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
 import by.guzypaul.medicinecentre.service.interfaces.UserService;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Time;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class CreateDoctorCommand implements Command {
     private final DoctorService doctorService;
@@ -34,7 +41,6 @@ public class CreateDoctorCommand implements Command {
             String qualification = request.getParameter("qualification");
             String rank = request.getParameter("rank");
             String userId = request.getParameter("userId");
-            String photoName = request.getParameter("photoName");
             String startTime = request.getParameter("startTime");
             String endTime = request.getParameter("endTime");
             String info = request.getParameter("info");
@@ -42,7 +48,6 @@ public class CreateDoctorCommand implements Command {
             if (qualification == null || qualification.isEmpty()
                     || rank == null || rank.isEmpty()
                     || userId == null || userId.isEmpty()
-                    || photoName == null || photoName.isEmpty()
                     || startTime == null || startTime.isEmpty()
                     || endTime == null || endTime.isEmpty()
                     || info == null || info.isEmpty()) {
@@ -56,7 +61,23 @@ public class CreateDoctorCommand implements Command {
                 User userDoctor = userOptional.get();
                 userDoctor.setRole(Role.DOCTOR);                                                        
                 userService.update(userDoctor);
-                Doctor doctor = new Doctor(qualification, rank, userDoctor, photoName);
+                Doctor doctor = new Doctor(qualification, rank, userDoctor);
+
+                for (Part part : request.getParts()) {
+                    if (part.getName().equals("doctor-picture")) {
+                        InputStream inputStream = part.getInputStream();
+                        InputStreamReader isr = new InputStreamReader(inputStream);
+                        new BufferedReader(isr)
+                                .lines()
+                                .collect(Collectors.joining("\n"));
+                        if (!part.getSubmittedFileName().isEmpty()) {
+                            String pictureName = "doctor_" + doctor.getQualification() + "_" + part.getSubmittedFileName();
+                            doctor.setPhotoName(pictureName);
+                            part.write(pictureName);
+                        }
+                    }
+                }
+
                 doctorService.create(doctor);
                 if (doctorService.readByUserId(userId).isPresent()) {
                     Doctor newCreatedDoctor = doctorService.readByUserId(userId).get();
@@ -72,7 +93,7 @@ public class CreateDoctorCommand implements Command {
 
                 return new Router("/controller?command=create_doctor_page", Router.Type.REDIRECT);
             }
-        } catch (ServiceException e) {
+        } catch (ServiceException | IOException | ServletException e) {
             throw new CommandException(e);
         }
     }

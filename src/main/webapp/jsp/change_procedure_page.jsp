@@ -26,6 +26,8 @@
                         <label for="procedureId">Procedure id=${procedure.id}</label>
                         <input id="procedureId" class="form-control" value="${procedure.id}" type="hidden"
                                name="procedureId"/>
+                        <input class="form-control" value="${procedure.imageName}" type="hidden"
+                               name="currentImageName"/>
                     </div>
                     <br>
                     <div>
@@ -34,10 +36,9 @@
                                name="name"/>
                     </div>
                     <br>
-                    <div>
-                        <label for="imageName">Image name (.jpg/.gif/.png/.bmp)</label>
-                        <input id="imageName" class="form-control" tabindex="2" value="${procedure.imageName}" type="text"
-                               name="imageName"/>
+                    <div class="mb-3">
+                        <label for="formFileSm" class="form-label">Picture (don't choose anything if you not needed)</label>
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" name="procedure-picture">
                     </div>
                     <br>
                     <div>
