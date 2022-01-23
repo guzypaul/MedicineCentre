@@ -23,9 +23,7 @@
             <form class="registration-inputs" action="${changeUser}" method="post">
                 <div class="container-fluid">
                     <div>
-                        <label for="userID">User Id ${user.id}</label>
-                        <input id="userID" class="form-control" value="${user.id}" type="hidden"
-                               name="userId"/>
+                        <input class="form-control" value="${user.id}" type="hidden" name="userId"/>
                     </div>
                     <br>
                     <div>

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:url var="photoPath" value="/photo/"/>
+<c:url var="photoPath" value="/download/"/>
 <c:url var="appointments" value="/controller?command=appointments"/>
 <c:url var="users" value="/controller?command=users"/>
 <c:url var="changeUser" value="/controller?command=change_user_page&userId="/>
