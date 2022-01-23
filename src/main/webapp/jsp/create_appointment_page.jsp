@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:url var="photoPath" value="/photo/"/>
+<c:url var="photoPath" value="/download/"/>
 <c:url var="createAppointment" value="/controller?command=create_appointment"/>
 <c:url var="doctorPage" value="/controller?command=doctor_page&doctorId="/>
 

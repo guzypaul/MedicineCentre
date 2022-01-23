@@ -30,7 +30,7 @@
                 <c:forEach items="${doctorList}" var="doctor">
                     <div class="col-lg-4">
                         <p><a href="${doctorPage}${doctor.id}">
-                            <img src="${photoPath}doctor_${doctor.photoName}" class="img-fluid doctor-small-photo"
+                            <img src="${photoPath}${doctor.photoName}" class="img-fluid doctor-small-photo"
                                  alt="<c:out value="${doctor.doctorInfo.name}
                                  ${doctor.doctorInfo.surname}"/>"></a></p>
                         <div><p>
