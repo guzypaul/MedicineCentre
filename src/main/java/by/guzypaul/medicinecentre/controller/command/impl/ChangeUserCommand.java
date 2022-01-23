@@ -40,10 +40,19 @@ public class ChangeUserCommand implements Command {
                 return new Router("/controller?command=change_user_page", Router.Type.REDIRECT);
             }
 
+            String currentRole = request.getSession().getAttribute("role").toString();
+            String currentId = request.getSession().getAttribute("userId").toString();
+
+            if (currentRole == "USER" ) {
+                if ((!userId.equals(currentId) || !role.equals(currentRole))) {
+                    throw new CommandException("Attempted Unauthorized Access!");
+                }
+            }
+
             Optional<User> userOptional = userService.readById(userId);
 
-            if (userOptional.isPresent()) { //todo get user id from session and check
-                User user = new User(Integer.parseInt(userId), name, surname, email, phone, Role.valueOf(role)); //todo findRole to if
+            if (userOptional.isPresent()) {
+                User user = new User(Integer.parseInt(userId), name, surname, email, phone, Role.valueOf(role));
                 userService.update(user);
 
                 if (request.getSession().getAttribute("role") == "USER") {
