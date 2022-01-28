@@ -25,6 +25,15 @@ public class ChangeDoctorPageCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
         try {
             String doctorId = request.getParameter("doctorId");
+
+            if (doctorId == null) { //todo example
+                doctorId = request.getSession().getAttribute("doctorId").toString();
+                request.removeAttribute("doctorId");
+                if (doctorId == null) {
+                    throw new CommandException("Unknown doctor!");
+                }
+            }
+
             Optional<Doctor> doctorOptional = doctorService.readById(doctorId);
 
             if  (doctorOptional.isPresent()) {
