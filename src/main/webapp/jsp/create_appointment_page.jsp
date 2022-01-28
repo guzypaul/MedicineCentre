@@ -6,14 +6,17 @@
 <c:url var="createAppointment" value="/controller?command=create_appointment"/>
 <c:url var="doctorPage" value="/controller?command=doctor_page&doctorId="/>
 
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="languages.locale"/>
+
 <html>
 <head>
-    <title>Make appointment</title>
+    <title><fmt:message key="make"/> <fmt:message key="appointment"/></title>
     <c:import url="header.jsp"/>
     <c:if test="${isAppointmentCreated == false}">
     <div class="container-fluid alert-indents">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Invalid data!</strong>
+            <strong><fmt:message key="invalid.data"/></strong> <fmt:message key="try.again"/>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
@@ -21,7 +24,7 @@
     </c:if>
     <div>
         <h1>${procedureName}</h1>
-        <h2>Choose doctor please!</h2>
+        <h2><fmt:message key="choose.doctor.please"/></h2>
     </div>
     <div class="row">
         <form class="registration-inputs" action="${createAppointment}" method="post">
@@ -41,8 +44,8 @@
                                             ${doctor.doctorInfo.surname}"/>"></p>
                                 <div>
                                     <h5><c:out value="${doctor.qualification}"/></h5>
-                                    <h5><c:out value="rank: ${doctor.rank}"/></h5>
-                                    <h5><a href="${doctorPage}${doctor.id}">See more info</a></h5>
+                                    <h5><fmt:message key="rank"/><c:out value="${doctor.rank}"/></h5>
+                                    <h5><a href="${doctorPage}${doctor.id}"><fmt:message key="see.more.info"/></a></h5>
                                 </div>
                                 <br>
                             </div>
@@ -60,17 +63,17 @@
                         </div>
                         <br>
                         <div>
-                            <label for="date">Date</label>
+                            <label for="date"><fmt:message key="date"/></label>
                             <input id="date" class="form-control" type="date" name="date">
                         </div>
                         <br>
                         <div>
-                            <label for="startTime">Start time</label>
+                            <label for="startTime"><fmt:message key="start.time"/></label>
                             <input id="startTime" class="form-control" type="time" name="startTime">
                         </div>
                         <br>
                         <div>
-                            <button type="submit" class="btn btn-warning">Make appointment</button>
+                            <button type="submit" class="btn btn-warning"><fmt:message key="make"/> <fmt:message key="appointment"/></button>
                         </div>
                     </div>
                 </div>

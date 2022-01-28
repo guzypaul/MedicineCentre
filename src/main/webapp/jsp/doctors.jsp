@@ -9,7 +9,7 @@
 
 <html>
 <head>
-    <title>Doctors</title>
+    <title><fmt:message key="doctors"/></title>
     <c:import url="header.jsp"/>
     <c:if test="${isDoctorAndScheduleDeleted == true}">
     <div class="container-fluid alert-indents">
@@ -24,7 +24,7 @@
     <main>
         <div class="container-fluid">
             <div class="col-xl-2">
-                <h1>Doctors:</h1>
+                <h1><fmt:message key="doctors"/>:</h1>
             </div>
             <div class="row">
                 <br>
@@ -37,7 +37,7 @@
                         <div><p>
                             <h3><c:out value="${doctor.qualification}"/></h3></p>
                             <p><c:out value="${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}"/></p>
-                            <p><c:out value="rank: ${doctor.rank}"/></p>
+                            <p><fmt:message key="rank"/>: <c:out value="${doctor.rank}"/></p>
                         </div>
                         <br>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="col-lg-4">
                         <br>
                         <br>
-                        <a href="${createDoctor}" class="btn btn-primary active">Add doctor</a><br>
+                        <a href="${createDoctor}" class="btn btn-primary active"><fmt:message key="add"/> <fmt:message key="doctor"/></a><br>
                     </div>
                 </c:if>
             </div>

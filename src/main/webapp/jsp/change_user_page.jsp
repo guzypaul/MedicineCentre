@@ -4,14 +4,17 @@
 
 <c:url var="changeUser" value="/controller?command=change_user"/>
 
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="languages.locale"/>
+
 <html>
 <head>
-    <title>Change user</title>
+    <title><fmt:message key="change"/> <fmt:message key="user"/></title>
     <c:import url="header.jsp"/>
     <c:if test="${isUserChanged == false}">
     <div class="container-fluid alert-indents">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Invalid data!</strong>
+            <strong><fmt:message key="invalid.data"/></strong> <fmt:message key="try.again"/>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
@@ -27,32 +30,32 @@
                     </div>
                     <br>
                     <div>
-                        <label for="name">Name</label>
+                        <label for="name"><fmt:message key="name"/></label>
                         <input id="name" class="form-control" tabindex="1" value="${user.name}" type="text"
                                name="name"/>
                     </div>
                     <br>
                     <div>
-                        <label for="surname">Surname</label>
+                        <label for="surname"><fmt:message key="surname"/></label>
                         <input id="surname" class="form-control" tabindex="2" value="${user.surname}" type="text"
                                name="surname"/>
                     </div>
                     <br>
                     <div>
-                        <label for="phone">Phone number</label>
+                        <label for="phone"><fmt:message key="phone.number"/></label>
                         <input id="phone" class="form-control" tabindex="3" value="${user.phone}" type="text"
                                name="phone"/>
                     </div>
                     <br>
                     <div>
-                        <label for="email">E-mail</label>
+                        <label for="email"><fmt:message key="email"/></label>
                         <input id="email" class="form-control" tabindex="4" value="${user.email}"
                                type="text" name="email"/>
                     </div>
                     <br>
                     <c:if test="${role == 'ADMIN' || role == 'MODERATOR'}">
                         <div>
-                            <label for="role">Role</label>
+                            <label for="role"><fmt:message key="role"/></label>
                             <select id="role" class="form-select" aria-label="Disabled select example" name="role">
                                 <option selected>${user.role}</option>
                                 <c:forEach items="${roleList}" var="userRole">
@@ -72,7 +75,7 @@
                         <br>
                     </c:if>
                     <div>
-                        <button type="submit" class="btn btn-warning">CHANGE</button>
+                        <button type="submit" class="btn btn-warning"><fmt:message key="change"/></button>
                     </div>
                 </div>
             </form>

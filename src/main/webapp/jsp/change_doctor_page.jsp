@@ -4,14 +4,17 @@
 
 <c:url var="changeDoctor" value="/controller?command=change_doctor"/>
 
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="languages.locale"/>
+
 <html>
 <head>
-    <title>Change user</title>
+    <title><fmt:message key="change"/> <fmt:message key="user"/></title>
     <c:import url="header.jsp"/>
     <c:if test="${isDoctorChanged == false}">
     <div class="container-fluid alert-indents">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Invalid data!</strong> Try again.
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong><fmt:message key="invalid.data"/></strong> <fmt:message key="try.again"/>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
@@ -32,7 +35,7 @@
                     </div>
                     <br>
                     <div>
-                        <label for="qualification">Doctor qualification</label>
+                        <label for="qualification"><fmt:message key="doctor"/> <fmt:message key="qualification"/></label>
                         <select id="qualification" class="form-select" aria-label="Disabled select example"
                                 name="qualification">
                             <option selected>${doctor.qualification}</option>
@@ -45,20 +48,19 @@
                     </div>
                     <br>
                     <div>
-                        <label for="rank">Rank</label>
+                        <label for="rank"><fmt:message key="rank"/></label>
                         <input id="rank" class="form-control" tabindex="2" value="${doctor.rank}" type="text"
                                name="rank"/>
                     </div>
                     <br>
                     <div class="mb-3">
-                        <label for="formFileSm" class="form-label">Photo (don't choose anything if you not
-                            needed)</label>
+                        <label for="formFileSm" class="form-label"><fmt:message key="photo.don't.choose.anything.if.you.not.needed"/></label>
                         <input class="form-control form-control-sm" id="formFileSm" type="file"
                                name="doctor-picture">
                     </div>
                     <br>
                     <div>
-                        <button type="submit" class="btn btn-warning">CHANGE</button>
+                        <button type="submit" class="btn btn-warning"><fmt:message key="change"/></button>
                     </div>
                 </div>
             </form>

@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="languages.locale"/>
 
 <html>
 <head>
@@ -31,6 +33,7 @@
             <p>Суббота:</p>
             <p>с 8:00 до 21:00</p>
             <p>Воскресенье:</p>
+            <p>с 8:00 до 21:00</p>
         </h3>
     </div>
 <c:import url="footer.jsp"/>

@@ -4,19 +4,22 @@
 
 <c:url var="deleteAppointment" value="/controller?command=delete_appointment"/>
 
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="languages.locale"/>
+
 <html>
 <head>
-    <title>Delete appointment</title>
+    <title><fmt:message key="delete"/> <fmt:message key="appointment"/></title>
     <c:import url="header.jsp"/>
     <div class="container-fluid">
         <form action="${deleteAppointment}" method="post">
             <div>
-                <label for="appointmentId">Are you sure that you want to delete appointment with id= ${appointmentId}?</label>
+                <label for="appointmentId"><fmt:message key="are.you.sure.that.you.want.to.delete.appointment.with.id"/>= ${appointmentId}?</label>
                 <input id="appointmentId" class="form-control" value="${appointmentId}" type="hidden"
                        name="appointmentId"/>
             </div>
             <div>
-                <button type="submit" class="btn btn-warning">DELETE</button>
+                <button type="submit" class="btn btn-warning"><fmt:message key="delete"/></button>
             </div>
         </form>
     </div>

@@ -8,6 +8,9 @@
 <c:url var="deleteProcedure" value="/controller?command=delete_procedure_page&procedureId="/>
 <c:url var="makeAppointment" value="/controller?command=create_appointment_page&procedureId="/>
 
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="languages.locale"/>
+
 <html>
 <head>
     <title><c:out value="${procedure.name}"/></title>

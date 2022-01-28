@@ -8,6 +8,9 @@
 <c:url var="changeDoctorSchedule" value="/controller?command=change_doctor_schedule_page&doctorScheduleId="/>
 <c:url var="deleteDoctorAndSchedule" value="/controller?command=delete_doctor_and_schedule_page&doctorId="/>
 
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="languages.locale"/>
+
 <html>
 <head>
     <title><c:out value="${doctor.doctorInfo.name}${doctor.doctorInfo.surname}"/></title>

@@ -70,7 +70,7 @@
                     <div class="col-lg-4">
                         <br>
                         <br>
-                        <a href="${addProcedure}" class="btn btn-primary active">Add procedure</a><br>
+                        <a href="${addProcedure}" class="btn btn-primary active"><fmt:message key="add"/> <fmt:message key="procedure"/></a><br>
                     </div>
                 </c:if>
             </div>
