@@ -15,7 +15,7 @@
     <c:if test="${isProcedureChanged == true}">
     <div class="container-fluid alert-indents">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>The Procedure was updated!</strong>
+            <strong><fmt:message key="the.procedure.was.updated"/></strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
@@ -29,9 +29,9 @@
                     <img src="${imgPath}${procedure.imageName}" class="img-fluid procedure-big-img"
                          alt="<c:out value="${procedure.name}"/>">
                     <br/>
-                    <h4>Description: <c:out value="${procedure.description}"/></h4><br/>
-                    <h4>Duration: <c:out value="${procedure.duration}"/> minutes</h4><br/>
-                    <h4>Price: <c:out value="${procedure.price}"/></h4><br/>
+                    <h4><fmt:message key="description"/>: <c:out value="${procedure.description}"/></h4><br/>
+                    <h4><fmt:message key="duration"/>: <c:out value="${procedure.duration}"/> minutes</h4><br/>
+                    <h4><fmt:message key="price"/>: <c:out value="${procedure.price}"/></h4><br/>
                 </div>
             </div>
             <c:if test="${role == 'ADMIN'}">
