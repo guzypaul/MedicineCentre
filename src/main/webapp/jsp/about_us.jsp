@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:url var="photoPath" value="/download/"/>
+
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:setBundle basename="languages.locale"/>
 
@@ -12,27 +14,35 @@
     <div class="container-fluid">
         <h1><fmt:message key="about.us"/></h1>
         <div>
-            <h4><p>Что выделяет нас среди других?</p>
-                <p> “StartUP CLINIC” – медицинский центр качественной и ответственной медицины. У нас вы можете получить
-                консультации специалистов многих направлений, пройти обследования, сдать анализы, получить хирургическую
-                помощь и, если надо, остаться под наблюдением врача в комфортной современной палате временного
-                пребывания со
-                всеми удобствами и доступом в оборудованную кухню-столовую. Мы также можем предложить помощь маленьким
-                пациентам — у нас есть педиатры, детские хирурги, ЛОР-врачи. Женщинам могут быть особенно интересны
-                такие
-                направления как косметология, пластическая хирургия, где высокие медицинские стандарты стоят на службе у
-                красоты.</p>
-                <p> Наша команда докторов, подобранная с особой тщательностью, — это профессионалы высокой квалификации с
-                уникальным для нашей страны опытом, авторитетом в своей области, научными степенями. Наш персонал —
-                медицинские работники с большим стажем, дружелюбные и внимательные к каждому пациенту.</p>
-                <p> В “StartUP CLINIC” создана особая атмосфера — уважительного и эмпатичного отношения к пациентам. Нам
-                важен
-                психологический комфорт наших посетителей — этому служит все в центре: от позитивного, внимательного
-                персонала до спокойного, сдержанного дизайна. Один из символов, используемых в оформлении центра, —
-                “Витрувианский человек” Леонардо да Винчи как образ идеального человека, тела — как предмета искусства.</p>
-                <p> “StartUP CLINIC” способна удовлетворить потребности современного человека в качественной, инновационной,
-                комфортной приватной медицине. Приходите, чтобы почувствовать все преимущества такого взгляда на
-                медицину!</p>
+            <h4>
+                <p>     “StartUP CLINIC” is a not-for-profit, fully united system of care
+                    serving the northwest Georgia region. The Dalton-based flagship of the system, Hamilton Medical
+                    Center, is a 255-bed regional acute-care hospital that offers major medical, surgical and diagnostic
+                    services, including award-winning, accredited stroke and chest pain centers.</p>
+                <p>     Known for its advanced care and personalized service, Hamilton Health Care System offers innovative
+                    treatment options in state-of-the-art facilities while maintaining a compassionate, friendly, and
+                    tranquil healing environment.</p>
+                <p>     “StartUP CLINIC” History
+                    In the winter of 1919, an influenza epidemic swept the world. For north Georgia residents, the trip
+                    to Chattanooga for health care services was long and difficult at best. Under the listing for
+                    “Hospitals,” the Dalton city directory stated three simple words: “We need one.”</p>
+                <p>     In the type of cooperative partnership that would be repeated time and again in the years to come,
+                    the area’s largest employers, local doctors, and area citizens came together to fill a community
+                    need. Crown Cotton Mills, Elk Mills, and several physicians donated property and funds for a new
+                    $75,000 hospital. Individuals and organizations furnished rooms.</p>
+                <div>
+                    <img src="${photoPath}hospital-1921.jpg" class="img-fluid"
+                         alt="hospital-1921.jpg"/>
+                </div>
+                <p>     The long-awaited Hamilton Memorial Hospital, named for Crown Cotton Mills founder George W.
+                    Hamilton, Sr., was dedicated May 12, 1921, on National Hospital Day. It remained there until 1956
+                    when Hamilton relocated from downtown Dalton to its present-day location on Memorial Drive.</p>
+                <p>     Throughout the subsequent decades, Hamilton has grown in size and sophistication to become, not only
+                    a source of pride for the region but a reputable, regional healthcare system offering advanced
+                    facilities, equipment, and programming to the growing communities it serves.</p>
+                <p>     Today, Hamilton Health Care System is still making history. It has thrived through challenging and
+                    unpredictable shifts in the healthcare environment without losing sight of its charitable mission to
+                    advance the quality and dignity of life for all residents.</p>
             </h4>
         </div>
     </div>

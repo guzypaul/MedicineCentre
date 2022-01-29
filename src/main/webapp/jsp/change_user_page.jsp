@@ -13,7 +13,7 @@
     <c:import url="header.jsp"/>
     <c:if test="${isUserChanged == false}">
     <div class="container-fluid alert-indents">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong><fmt:message key="invalid.data"/></strong> <fmt:message key="try.again"/>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
