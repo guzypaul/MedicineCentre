@@ -7,12 +7,12 @@
 
 <html>
 <head>
-    <title>ClientList</title>
+    <title><fmt:message key="client"/> <fmt:message key="list"/></title>
     <c:import url="header.jsp"/>
     <c:if test="${isUserChanged == true}">
     <div class="container-fluid alert-indents">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>The user was updated!</strong>
+            <strong><fmt:message key="the.user.was.updated"/>!</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
@@ -24,12 +24,12 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Surname</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Phone number</th>
-                        <th scope="col">Role</th>
+                        <th scope="col"><fmt:message key="id"/></th>
+                        <th scope="col"><fmt:message key="name"/></th>
+                        <th scope="col"><fmt:message key="surname"/></th>
+                        <th scope="col"><fmt:message key="email"/></th>
+                        <th scope="col"><fmt:message key="phone.number"/></th>
+                        <th scope="col"><fmt:message key="role"/></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,7 +41,7 @@
                             <td><c:out value="${user.email}"/></td>
                             <td><c:out value="${user.phone}"/></td>
                             <td><c:out value="${user.role}"/></td>
-                            <td><a href="${changeUser}${user.id}" class="btn btn-primary active">Change</a></td>
+                            <td><a href="${changeUser}${user.id}" class="btn btn-primary active"><fmt:message key="change"/></a></td>
                         </tr>
                     </c:forEach>
                     </tbody>

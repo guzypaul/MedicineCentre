@@ -7,6 +7,9 @@
 <c:url var="photoPath" value="/download/"/>
 <c:url var="createDoctor" value="/controller?command=create_doctor_page"/>
 
+<fmt:setLocale value="${locale}" scope="session"/>
+<fmt:setBundle basename="languages.locale"/>
+
 <html>
 <head>
     <title><fmt:message key="doctors"/></title>

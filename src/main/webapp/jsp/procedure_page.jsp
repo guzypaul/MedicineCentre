@@ -43,13 +43,13 @@
                     <br>
                     <ul>
                         <li>
-                            <a href="${changeProcedure}<c:out value="${procedure.id}"/>" class="btn btn-primary active">Change
-                                procedure</a>
+                            <a href="${changeProcedure}<c:out value="${procedure.id}"/>" class="btn btn-primary active">
+                                <fmt:message key="change"/> <fmt:message key="procedure"/></a>
                         </li>
                         <br>
                         <li>
-                            <a href="${deleteProcedure}<c:out value="${procedure.id}"/>" class="btn btn-danger active">Delete
-                                procedure!</a>
+                            <a href="${deleteProcedure}<c:out value="${procedure.id}"/>" class="btn btn-danger active">
+                                <fmt:message key="delete"/> <fmt:message key="procedure"/>!</a>
                         </li>
                     </ul>
                 </div>
@@ -60,8 +60,8 @@
                     <br>
                     <ul>
                         <li>
-                            <a href="${makeAppointment}<c:out value="${procedure.id}"/>" class="btn btn-primary active">Make
-                                appointment</a>
+                            <a href="${makeAppointment}<c:out value="${procedure.id}"/>" class="btn btn-primary active">
+                                <fmt:message key="make"/> <fmt:message key="appointment"/></a>
                         </li>
                     </ul>
                 </div>

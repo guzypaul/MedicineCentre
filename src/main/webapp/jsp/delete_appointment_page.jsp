@@ -14,7 +14,7 @@
     <div class="container-fluid">
         <form action="${deleteAppointment}" method="post">
             <div>
-                <label for="appointmentId"><fmt:message key="are.you.sure.that.you.want.to.delete.appointment.with.id"/>= ${appointmentId}?</label>
+                <label for="appointmentId"><fmt:message key="are.you.sure.that.you.want.to.delete"/> <fmt:message key="appointment"/> (<fmt:message key="id"/>= ${appointmentId}?</label>
                 <input id="appointmentId" class="form-control" value="${appointmentId}" type="hidden"
                        name="appointmentId"/>
             </div>
