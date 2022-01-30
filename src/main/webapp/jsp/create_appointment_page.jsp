@@ -44,7 +44,7 @@
                                             ${doctor.doctorInfo.surname}"/>"></p>
                                 <div>
                                     <h5><c:out value="${doctor.qualification}"/></h5>
-                                    <h5><fmt:message key="rank"/><c:out value="${doctor.rank}"/></h5>
+                                    <h5><fmt:message key="rank"/>: <c:out value="${doctor.rank}"/></h5>
                                     <h5><a href="${doctorPage}${doctor.id}"><fmt:message key="see.more.info"/></a></h5>
                                 </div>
                                 <br>
