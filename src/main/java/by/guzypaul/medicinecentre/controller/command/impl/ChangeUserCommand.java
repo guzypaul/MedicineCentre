@@ -36,6 +36,7 @@ public class ChangeUserCommand implements Command {
                     || phone == null || phone.isEmpty()
                     || role == null || role.isEmpty()) {
                 request.getSession().setAttribute("isUserChanged", false);
+                request.getSession().setAttribute("userId", userId);
 
                 return new Router("/controller?command=change_user_page", Router.Type.REDIRECT);
             }
@@ -49,6 +50,13 @@ public class ChangeUserCommand implements Command {
                 }
             }
 
+            if (!String.valueOf(userService.readByEmail(email).get().getId()).equals(userId)) {
+                throw new CommandException("User with such e-mail already exist!");
+            }
+
+            if (!String.valueOf(userService.readByPhone(phone).get().getId()).equals(userId)) {
+                throw new CommandException("User with such phone number already exist!");
+            }
             Optional<User> userOptional = userService.readById(userId);
 
             if (userOptional.isPresent()) {

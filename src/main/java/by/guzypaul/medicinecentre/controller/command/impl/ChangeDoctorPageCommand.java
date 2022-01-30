@@ -26,7 +26,7 @@ public class ChangeDoctorPageCommand implements Command {
         try {
             String doctorId = request.getParameter("doctorId");
 
-            if (doctorId == null) { //todo example
+            if (doctorId == null) {
                 doctorId = request.getSession().getAttribute("doctorId").toString();
                 request.removeAttribute("doctorId");
                 if (doctorId == null) {

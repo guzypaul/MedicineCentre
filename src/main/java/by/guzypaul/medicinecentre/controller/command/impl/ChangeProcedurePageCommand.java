@@ -25,9 +25,18 @@ public class ChangeProcedurePageCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
         try {
             String procedureId = request.getParameter("procedureId");
+
+            if (procedureId == null) {
+                procedureId = request.getSession().getAttribute("procedureId").toString();
+                request.removeAttribute("procedureId");
+                if (procedureId == null) {
+                    throw new CommandException("Unknown procedure!");
+                }
+            }
+
             Optional<Procedure> procedureOptional = procedureService.readById(procedureId);
 
-            if  (procedureOptional.isPresent()) {
+            if (procedureOptional.isPresent()) {
                 request.setAttribute("procedure", procedureOptional.get());
 
                 List<String> qualificationList = new ArrayList<>();

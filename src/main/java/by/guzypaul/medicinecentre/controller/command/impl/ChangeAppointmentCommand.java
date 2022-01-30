@@ -52,6 +52,8 @@ public class ChangeAppointmentCommand implements Command {
                     || procedureId == null || procedureId.isEmpty()
                     || status == null || status.isEmpty()) {
                 request.getSession().setAttribute("isAppointmentChanged", false);
+                request.getSession().setAttribute("appointmentId", appointmentId);
+
                 return new Router("/controller?command=change_appointment_page", Router.Type.REDIRECT);
             }
 

@@ -30,7 +30,7 @@ public class CreateAppointmentPageCommand implements Command {
             String procedureId = request.getParameter("procedureId");
             Optional<Procedure> procedureOptional = procedureService.readById(procedureId);
 
-            if  (procedureOptional.isPresent()) {
+            if (procedureOptional.isPresent()) {
                 String doctorQualification = procedureOptional.get().getDoctorQualification();
                 List<Doctor> doctorList = doctorService.readByQualification(doctorQualification);
                 request.setAttribute("doctorList", doctorList);

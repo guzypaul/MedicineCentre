@@ -23,9 +23,18 @@ public class ChangeUserPageCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
         try {
             String userId = request.getParameter("userId");
+
+            if (userId == null) {
+                userId = request.getSession().getAttribute("userId").toString();
+                request.removeAttribute("userId");
+                if (userId == null) {
+                    throw new CommandException("Unknown user!");
+                }
+            }
+
             Optional<User> userOptional = userService.readById(userId);
 
-            if  (userOptional.isPresent()) {
+            if (userOptional.isPresent()) {
                 request.setAttribute("user", userOptional.get());
                 request.setAttribute("roleList", Role.values());
 

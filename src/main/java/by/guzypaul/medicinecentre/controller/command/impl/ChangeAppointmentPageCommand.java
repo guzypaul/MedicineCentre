@@ -23,6 +23,15 @@ public class ChangeAppointmentPageCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
         try {
             String appointmentId = request.getParameter("appointmentId");
+
+            if (appointmentId == null) {
+                appointmentId = request.getSession().getAttribute("appointmentId").toString();
+                request.removeAttribute("appointmentId");
+                if (appointmentId == null) {
+                    throw new CommandException("Unknown appointment!");
+                }
+            }
+
             Optional<Appointment> optionalAppointment = appointmentService.readById(appointmentId);
 
             if (optionalAppointment.isPresent()) {

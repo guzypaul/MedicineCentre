@@ -45,6 +45,7 @@ public class ChangeProcedureCommand implements Command {
                     || duration == null || duration.isEmpty()
                     || doctorQualification == null || doctorQualification.isEmpty()) {
                 request.getSession().setAttribute("isProcedureChanged", false);
+                request.getSession().setAttribute("procedureId", procedureId);
 
                 return new Router("/controller?command=change_procedure_page", Router.Type.REDIRECT);
             }

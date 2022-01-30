@@ -34,6 +34,7 @@ public class ChangeDoctorScheduleCommand implements Command {
                     || endTime == null || endTime.isEmpty()
                     || info == null || info.isEmpty()) {
                 request.getSession().setAttribute("isScheduleChanged", false);
+                request.getSession().setAttribute("doctorScheduleId", doctorScheduleId);
 
                 return new Router("/controller?command=change_doctor_schedule_page", Router.Type.REDIRECT);
             }

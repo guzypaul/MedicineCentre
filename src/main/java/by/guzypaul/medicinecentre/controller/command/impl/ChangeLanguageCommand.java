@@ -12,7 +12,7 @@ public class ChangeLanguageCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
         String language = request.getParameter("language");
 
-        if(language != null && !language.isEmpty() && Languages.isValidLanguage(language)) {
+        if (language != null && !language.isEmpty() && Languages.isValidLanguage(language)) {
             request.getSession().setAttribute("locale", language);
             return new Router(PageFinder.findLastPage(request), Router.Type.REDIRECT);
         }

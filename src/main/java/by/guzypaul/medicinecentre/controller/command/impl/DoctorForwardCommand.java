@@ -28,7 +28,7 @@ public class DoctorForwardCommand implements Command {
             Optional<Doctor> doctorOptional = doctorService.readById(request.getParameter("doctorId"));
             Optional<DoctorSchedule> doctorSchedule = doctorScheduleService.readByDoctorId(request.getParameter("doctorId"));
 
-            if(doctorOptional.isPresent()){
+            if (doctorOptional.isPresent()) {
                 request.setAttribute("doctor", doctorOptional.get());
                 request.setAttribute("schedule", doctorSchedule.get());
                 return new Router("/jsp/doctor_page.jsp", Router.Type.FORWARD);

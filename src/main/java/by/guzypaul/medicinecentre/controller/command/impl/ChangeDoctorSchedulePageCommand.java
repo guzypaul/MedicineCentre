@@ -22,6 +22,14 @@ public class ChangeDoctorSchedulePageCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
         try {
             String doctorScheduleId = request.getParameter("doctorScheduleId");
+
+            if (doctorScheduleId == null) {
+                doctorScheduleId = request.getSession().getAttribute("doctorScheduleId").toString();
+                request.removeAttribute("doctorScheduleId");
+                if (doctorScheduleId == null) {
+                    throw new CommandException("Unknown doctor schedule!");
+                }
+            }
             Optional<DoctorSchedule> doctorScheduleOptional = doctorScheduleService.readById(doctorScheduleId);
 
             if  (doctorScheduleOptional.isPresent()) {

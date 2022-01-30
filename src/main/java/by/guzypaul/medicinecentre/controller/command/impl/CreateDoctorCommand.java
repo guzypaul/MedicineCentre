@@ -60,7 +60,7 @@ public class CreateDoctorCommand implements Command {
             Optional<User> userOptional = userService.readById(userId);
             if (userOptional.isPresent()) {
                 User userDoctor = userOptional.get();
-                userDoctor.setRole(Role.DOCTOR);                                                        
+                userDoctor.setRole(Role.DOCTOR);
                 userService.update(userDoctor);
                 Doctor doctor = new Doctor(qualification, rank, userDoctor);
 
@@ -90,7 +90,7 @@ public class CreateDoctorCommand implements Command {
                     return new Router("/controller?command=doctor_page&doctorId=" + newCreatedDoctor.getId(), Router.Type.REDIRECT);
                 }
                 throw new CommandException("Doctor creating was crashed!");
-            }else {
+            } else {
                 request.getSession().setAttribute("isDoctorCreated", false);
 
                 return new Router("/controller?command=create_doctor_page", Router.Type.REDIRECT);

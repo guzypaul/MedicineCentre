@@ -39,7 +39,7 @@ public class ChangeDoctorCommand implements Command {
                     || currentPhotoName == null || currentPhotoName.isEmpty()) {
                 request.getSession().setAttribute("isDoctorChanged", false);
 
-                request.getSession().setAttribute("doctorId", doctorId); //todo example
+                request.getSession().setAttribute("doctorId", doctorId);
 
                 return new Router("/controller?command=change_doctor_page", Router.Type.REDIRECT);
             }

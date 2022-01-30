@@ -51,7 +51,7 @@ public class CreateAppointmentCommand implements Command {
                     || status == null || status.isEmpty()) {
                 request.getSession().setAttribute("isAppointmentCreated", false);
 
-                return new Router("/controller?command=create_appointment_page", Router.Type.REDIRECT);
+                throw new CommandException("Return on previous page and fill all fields please!");
             }
 
             Optional<User> userClientOptional = userService.readById(userId);
@@ -72,12 +72,10 @@ public class CreateAppointmentCommand implements Command {
 
                 return new Router("/controller?command=appointments", Router.Type.REDIRECT);
             } else {
-                request.getSession().setAttribute("isAppointmentCreated", false);
-
-                return new Router("/controller?command=create_appointment_page", Router.Type.REDIRECT);
+                throw new CommandException("Return and fill all fields correctly please!");
             }
         } catch (ServiceException e) {
-            throw new CommandException(e);
+            throw new CommandException("Return and fill all fields correctly please!");
         }
     }
 }
