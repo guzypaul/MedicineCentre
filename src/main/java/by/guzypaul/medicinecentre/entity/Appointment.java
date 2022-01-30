@@ -4,6 +4,9 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+ * The type Appointment.
+ */
 public class Appointment implements Entity {
     private int id;
     private User userClient;
@@ -14,9 +17,23 @@ public class Appointment implements Entity {
     private Procedure procedure;
     private String status;
 
+    /**
+     * Instantiates a new Appointment.
+     */
     public Appointment() {
     }
 
+    /**
+     * Instantiates a new Appointment.
+     *
+     * @param userClient the user client
+     * @param doctor     the doctor
+     * @param date       the date
+     * @param startTime  the start time
+     * @param endTime    the end time
+     * @param procedure  the procedure
+     * @param status     the status
+     */
     public Appointment(User userClient, Doctor doctor, LocalDate date, Time startTime, Time endTime, Procedure procedure, String status) {
         this.userClient = userClient;
         this.doctor = doctor;
@@ -27,6 +44,18 @@ public class Appointment implements Entity {
         this.status = status;
     }
 
+    /**
+     * Instantiates a new Appointment.
+     *
+     * @param id         the id
+     * @param userClient the user client
+     * @param doctor     the doctor
+     * @param date       the date
+     * @param startTime  the start time
+     * @param endTime    the end time
+     * @param procedure  the procedure
+     * @param status     the status
+     */
     public Appointment(int id, User userClient, Doctor doctor, LocalDate date, Time startTime, Time endTime, Procedure procedure, String status) {
         this.id = id;
         this.userClient = userClient;
@@ -38,66 +67,146 @@ public class Appointment implements Entity {
         this.status = status;
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets user client.
+     *
+     * @return the user client
+     */
     public User getUserClient() {
         return userClient;
     }
 
+    /**
+     * Sets user client.
+     *
+     * @param userClient the user client
+     */
     public void setUserClient(User userClient) {
         this.userClient = userClient;
     }
 
+    /**
+     * Gets doctor.
+     *
+     * @return the doctor
+     */
     public Doctor getDoctor() {
         return doctor;
     }
 
+    /**
+     * Sets doctor.
+     *
+     * @param doctor the doctor
+     */
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
 
+    /**
+     * Gets procedure.
+     *
+     * @return the procedure
+     */
     public Procedure getProcedure() {
         return procedure;
     }
 
+    /**
+     * Sets procedure.
+     *
+     * @param procedure the procedure
+     */
     public void setProcedure(Procedure procedure) {
         this.procedure = procedure;
     }
 
+    /**
+     * Gets date.
+     *
+     * @return the date
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Sets date.
+     *
+     * @param date the date
+     */
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
+    /**
+     * Gets start time.
+     *
+     * @return the start time
+     */
     public Time getStartTime() {
         return startTime;
     }
 
+    /**
+     * Sets start time.
+     *
+     * @param startTime the start time
+     */
     public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 
+    /**
+     * Gets end time.
+     *
+     * @return the end time
+     */
     public Time getEndTime() {
         return endTime;
     }
 
+    /**
+     * Sets end time.
+     *
+     * @param endTime the end time
+     */
     public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
 
+    /**
+     * Gets status.
+     *
+     * @return the status
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Sets status.
+     *
+     * @param status the status
+     */
     public void setStatus(String status) {
         this.status = status;
     }

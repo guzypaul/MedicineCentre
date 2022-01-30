@@ -2,6 +2,9 @@ package by.guzypaul.medicinecentre.entity;
 
 import java.util.Objects;
 
+/**
+ * The type Doctor.
+ */
 public class Doctor implements Entity {
     private int id;
     private String qualification;
@@ -9,9 +12,20 @@ public class Doctor implements Entity {
     private User doctorInfo;
     private String photoName;
 
+    /**
+     * Instantiates a new Doctor.
+     */
     public Doctor() {
     }
 
+    /**
+     * Instantiates a new Doctor.
+     *
+     * @param qualification the qualification
+     * @param rank          the rank
+     * @param doctorInfo    the doctor info
+     * @param photoName     the photo name
+     */
     public Doctor(String qualification, String rank, User doctorInfo, String photoName) {
         this.qualification = qualification;
         this.rank = rank;
@@ -19,6 +33,15 @@ public class Doctor implements Entity {
         this.photoName = photoName;
     }
 
+    /**
+     * Instantiates a new Doctor.
+     *
+     * @param id            the id
+     * @param qualification the qualification
+     * @param rank          the rank
+     * @param doctorInfo    the doctor info
+     * @param photoName     the photo name
+     */
     public Doctor(int id, String qualification, String rank, User doctorInfo, String photoName) {
         this.id = id;
         this.qualification = qualification;
@@ -27,6 +50,14 @@ public class Doctor implements Entity {
         this.photoName = photoName;
     }
 
+    /**
+     * Instantiates a new Doctor.
+     *
+     * @param id            the id
+     * @param qualification the qualification
+     * @param rank          the rank
+     * @param photoName     the photo name
+     */
     public Doctor(int id, String qualification, String rank, String photoName) {
         this.id = id;
         this.qualification = qualification;
@@ -34,42 +65,91 @@ public class Doctor implements Entity {
         this.photoName = photoName;
     }
 
+    /**
+     * Instantiates a new Doctor.
+     *
+     * @param qualification the qualification
+     * @param rank          the rank
+     * @param doctorInfo    the doctor info
+     */
     public Doctor(String qualification, String rank, User doctorInfo) {
         this.qualification = qualification;
         this.rank = rank;
         this.doctorInfo = doctorInfo;
     }
 
+    /**
+     * Instantiates a new Doctor.
+     *
+     * @param id            the id
+     * @param qualification the qualification
+     * @param rank          the rank
+     */
     public Doctor(int id, String qualification, String rank) {
         this.id = id;
         this.qualification = qualification;
         this.rank = rank;
     }
 
+    /**
+     * Gets photo name.
+     *
+     * @return the photo name
+     */
     public String getPhotoName() {
         return photoName;
     }
 
+    /**
+     * Sets photo name.
+     *
+     * @param photoName the photo name
+     */
     public void setPhotoName(String photoName) {
         this.photoName = photoName;
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets qualification.
+     *
+     * @return the qualification
+     */
     public String getQualification() {
         return qualification;
     }
 
+    /**
+     * Sets qualification.
+     *
+     * @param qualification the qualification
+     */
     public void setQualification(String qualification) {
         this.qualification = qualification;
     }
 
+    /**
+     * Gets rank.
+     *
+     * @return the rank
+     */
     public String getRank() {
         return rank;
     }
