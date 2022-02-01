@@ -26,22 +26,26 @@
             <form class="registration-inputs" action="${changeAppointment}" method="post">
                 <div class="container-fluid">
                     <div>
-                        <label for="appointmentId"> <fmt:message key="appointment"/>  <fmt:message key="id"/> ${appointment.id}</label>
+                        <label for="appointmentId"> <fmt:message key="appointment"/> <fmt:message
+                                key="id"/> ${appointment.id}</label>
                         <input id="appointmentId" class="form-control" value="${appointment.id}"
                                type="hidden" name="appointmentId"/>
                     </div>
                     <div>
-                        <label for="clientId"> <fmt:message key="client"/>  <fmt:message key="id"/> ${appointment.userClient.id}</label>
+                        <label for="clientId"> <fmt:message key="client"/> <fmt:message
+                                key="id"/> ${appointment.userClient.id}</label>
                         <input id="clientId" class="form-control" value="${appointment.userClient.id}"
                                type="hidden" name="clientId"/>
                     </div>
                     <div>
-                        <label for="doctorId"> <fmt:message key="doctor"/>  <fmt:message key="id"/> ${appointment.doctor.id}</label>
+                        <label for="doctorId"> <fmt:message key="doctor"/> <fmt:message
+                                key="id"/> ${appointment.doctor.id}</label>
                         <input id="doctorId" class="form-control" value="${appointment.doctor.id}"
                                type="hidden" name="doctorId"/>
                     </div>
                     <div>
-                        <label for="procedureId"> <fmt:message key="procedure"/>  <fmt:message key="id"/> ${appointment.procedure.id}</label>
+                        <label for="procedureId"> <fmt:message key="procedure"/> <fmt:message
+                                key="id"/> ${appointment.procedure.id}</label>
                         <input id="procedureId" class="form-control" value="${appointment.procedure.id}"
                                type="hidden" name="procedureId"/>
                     </div>
@@ -53,7 +57,8 @@
                     <br>
                     <div>
                         <label for="startTime"> <fmt:message key="start.time"/></label>
-                        <input id="startTime" class="form-control" value="${appointment.startTime}" type="time" name="startTime" >
+                        <input id="startTime" class="form-control" value="${appointment.startTime}" type="time"
+                               name="startTime">
                     </div>
                     <br>
                     <div>
@@ -61,13 +66,15 @@
                         <select id="status" class="form-select" aria-label="Disabled select example" name="status">
                             <option selected>${appointment.status}</option>
                             <c:forEach items="${statusList}" var="appointmentStatus">
-                                <option value="${appointmentStatus}">${appointmentStatus}</option>
+                                <c:if test="${appointmentStatus != appointment.status}">
+                                    <option value="${appointmentStatus}">${appointmentStatus}</option>
+                                </c:if>
                             </c:forEach>
                         </select>
                     </div>
                     <br>
                     <div>
-                        <button type="submit" class="btn btn-warning"> <fmt:message key="change"/></button>
+                        <button type="submit" class="btn btn-warning"><fmt:message key="change"/></button>
                     </div>
                 </div>
             </form>
