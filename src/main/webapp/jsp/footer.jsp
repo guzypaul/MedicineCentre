@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="custom" uri="customTag" %>
 
 <c:url var="cssFilePath" value="/css/style.css"/>
 <c:url var="procedureListPath" value="/controller?command=procedures"/>
@@ -17,7 +18,7 @@
       <li class="nav-item"><a href="${contacts}" class="nav-link px-2 text-muted"><fmt:message key="contacts"/></a></li>
       <li class="nav-item"><a href="${aboutUs}" class="nav-link px-2 text-muted"><fmt:message key="about.us"/></a></li>
     </ul>
-    <p class="text-center text-muted">&copy; 2022 <fmt:message key="startup.clinic"/></p>
+    <p class="text-center text-muted"><custom:copyright/></p>
   </footer>
 </div>
 </body>
