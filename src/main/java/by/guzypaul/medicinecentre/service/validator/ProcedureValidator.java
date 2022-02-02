@@ -1,6 +1,7 @@
 package by.guzypaul.medicinecentre.service.validator;
 
 import by.guzypaul.medicinecentre.entity.Procedure;
+import by.guzypaul.medicinecentre.entity.Qualification;
 import by.guzypaul.medicinecentre.service.checker.FileFormatChecker;
 
 import java.math.BigDecimal;
@@ -12,8 +13,8 @@ import java.math.BigDecimal;
  */
 public class ProcedureValidator {
     private FileFormatChecker formatChecker;
-    private static final String NAME_REGEX = "([\\p{Alpha}А-Яа-я]{1,15}[\\s-]?){0,9}";
-    private static final String DESCRIPTION_REGEX = "[.[^<>]]{1,1000}";
+    private static final String NAME_REGEX = "([\\p{Alpha}А-Яа-я]{3,15}[\\s-]?){0,9}";
+    private static final String DESCRIPTION_REGEX = "[.[^<>]]{5,1000}";
     private static final BigDecimal MAX_PRICE_VALUE = new BigDecimal("100000");
     private static final BigDecimal MIN_PRICE_VALUE = new BigDecimal("1");
     private static final int MAX_DURATION = 480;
@@ -46,7 +47,8 @@ public class ProcedureValidator {
                 && isValidDuration(procedure.getDuration())
                 && isValidPrice(procedure.getPrice())
                 && isValidDescription(procedure.getDescription())
-                && isValidateDoctorPicture(procedure.getImageName());
+                && isValidateDoctorPicture(procedure.getImageName())
+                && isValidateDoctorQualification(procedure.getDoctorQualification());
     }
 
     private boolean isValidDuration(int duration) {
@@ -67,5 +69,9 @@ public class ProcedureValidator {
 
     private boolean isValidateDoctorPicture(String profilePictureName) {
         return profilePictureName != null && formatChecker.checkImgFormat(profilePictureName);
+    }
+
+    private boolean isValidateDoctorQualification(String qualification) {
+        return qualification != null && Qualification.isValidQualification(qualification);
     }
 }

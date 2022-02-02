@@ -30,8 +30,20 @@ public class UserValidatorTest {
     }
 
     @Test
+    void validateUserWithNullNameTest() {
+        testUser.setName(null);
+        Assert.assertFalse(userValidator.validateUser(testUser));
+    }
+
+    @Test
     void validateUserWithInvalidSurnameTest() {
         testUser.setSurname("d");
+        Assert.assertFalse(userValidator.validateUser(testUser));
+    }
+
+    @Test
+    void validateUserWithNullSurnameTest() {
+        testUser.setSurname(null);
         Assert.assertFalse(userValidator.validateUser(testUser));
     }
 
@@ -42,20 +54,32 @@ public class UserValidatorTest {
     }
 
     @Test
+    void validateUserWithNullPasswordTest() {
+        testUser.setPassword(null);
+        Assert.assertFalse(userValidator.validateUser(testUser));
+    }
+
+    @Test
     void validateUserWithInvalidEmailTest() {
         testUser.setEmail("vas.gmaail@com");
         Assert.assertFalse(userValidator.validateUser(testUser));
     }
 
     @Test
-    void validateUserWithNullRoleTest() {
-        testUser.setRole(null);
+    void validateUserWithNullEmailTest() {
+        testUser.setEmail(null);
         Assert.assertFalse(userValidator.validateUser(testUser));
     }
 
     @Test
     void validateUserWithInvalidPhoneNumberTest() {
-        testUser.setPhone("37525000");
+        testUser.setPhone("3752500");
+        Assert.assertFalse(userValidator.validateUser(testUser));
+    }
+
+    @Test
+    void validateUserWithNullPhoneNumberTest() {
+        testUser.setPhone(null);
         Assert.assertFalse(userValidator.validateUser(testUser));
     }
 }
