@@ -19,7 +19,7 @@ add appointment		|||*||
 view all your appointments		|||*||
 view all appointments|*|*|||	
 view all to you appointments			||||*|
-change appointment	|*|*|*||
+change appointment	|*|*|||
 confirm appointment	|*|*|||
 cancel appointment	|*|*|||
 add schedule		|*|||||
