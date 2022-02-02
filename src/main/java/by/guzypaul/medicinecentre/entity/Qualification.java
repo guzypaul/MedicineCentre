@@ -56,6 +56,6 @@ public enum Qualification {
      */
     public static boolean isValidQualification(String qualification) {
         return Arrays.stream(Qualification.values())
-                .anyMatch(currentQualification -> currentQualification.getQualificationName().toUpperCase().equals(qualification.toUpperCase()));
+                .anyMatch(currentQualification -> currentQualification.getQualificationName().equalsIgnoreCase(qualification));
     }
 }

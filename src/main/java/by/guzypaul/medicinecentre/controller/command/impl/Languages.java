@@ -43,6 +43,6 @@ public enum Languages {
      */
     public static boolean isValidLanguage(String locale) {
         return Arrays.stream(Languages.values())
-                .anyMatch(language -> language.getLocaleName().toUpperCase().equals(locale.toUpperCase()));
+                .anyMatch(language -> language.getLocaleName().equalsIgnoreCase(locale));
     }
 }

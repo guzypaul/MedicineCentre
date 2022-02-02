@@ -24,7 +24,7 @@ public class UserValidator {
                 && isValidEmail(user.getEmail())
                 && isValidPassword(user.getPassword())
                 && isValidPhone(user.getPhone())
-                && isValidRole(user.getRole());
+                && isValidRole(user.getRole().name());
     }
 
     /**
@@ -38,7 +38,7 @@ public class UserValidator {
                 && isValidSurname(user.getSurname())
                 && isValidEmail(user.getEmail())
                 && isValidPhone(user.getPhone())
-                && isValidRole(user.getRole());
+                && isValidRole(String.valueOf(user.getRole()));
     }
 
     private boolean isValidName(String name) {
@@ -58,10 +58,10 @@ public class UserValidator {
     }
 
     private boolean isValidPhone(String phone) {
-        return phone != null && !phone.isEmpty() && phone.length() >= 10 && phone.length() <= 15;
+        return phone != null && !phone.isEmpty() && phone.length() >= 8 && phone.length() <= 15;
     }
 
-    private boolean isValidRole(Role role) {
-        return role != null;
+    private boolean isValidRole(String role) {
+        return role != null && Role.isValidARole(role);
     }
 }

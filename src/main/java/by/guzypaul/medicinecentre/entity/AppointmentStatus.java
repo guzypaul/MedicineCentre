@@ -1,5 +1,7 @@
 package by.guzypaul.medicinecentre.entity;
 
+import java.util.Arrays;
+
 /**
  * The enum Appointment status.
  * @author Guziy Paul
@@ -16,5 +18,10 @@ public enum AppointmentStatus {
     /**
      * Canceled appointment status.
      */
-    CANCELED
+    CANCELED;
+
+    public static boolean isValidAppointmentStatus(String status) {
+        return Arrays.stream(AppointmentStatus.values())
+                .anyMatch(currentStatus -> currentStatus.toString().equals(status.toUpperCase()));
+    }
 }
