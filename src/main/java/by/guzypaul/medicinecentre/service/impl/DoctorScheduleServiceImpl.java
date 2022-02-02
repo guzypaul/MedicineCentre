@@ -6,7 +6,7 @@ import by.guzypaul.medicinecentre.dao.interfaces.DoctorScheduleDao;
 import by.guzypaul.medicinecentre.entity.DoctorSchedule;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.DoctorScheduleService;
-import by.guzypaul.medicinecentre.validator.DoctorScheduleValidator;
+import by.guzypaul.medicinecentre.service.validator.DoctorScheduleValidator;
 
 import java.util.List;
 import java.util.Optional;

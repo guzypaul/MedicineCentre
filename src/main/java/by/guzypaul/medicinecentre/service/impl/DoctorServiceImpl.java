@@ -7,7 +7,7 @@ import by.guzypaul.medicinecentre.entity.Doctor;
 import by.guzypaul.medicinecentre.entity.User;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
-import by.guzypaul.medicinecentre.validator.DoctorValidator;
+import by.guzypaul.medicinecentre.service.validator.DoctorValidator;
 
 import java.util.List;
 import java.util.Optional;

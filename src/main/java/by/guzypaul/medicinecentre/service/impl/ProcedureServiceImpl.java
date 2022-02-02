@@ -6,7 +6,7 @@ import by.guzypaul.medicinecentre.dao.interfaces.ProcedureDao;
 import by.guzypaul.medicinecentre.entity.Procedure;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
-import by.guzypaul.medicinecentre.validator.ProcedureValidator;
+import by.guzypaul.medicinecentre.service.validator.ProcedureValidator;
 
 import java.util.List;
 import java.util.Optional;

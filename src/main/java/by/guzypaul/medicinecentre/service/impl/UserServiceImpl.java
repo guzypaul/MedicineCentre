@@ -6,8 +6,8 @@ import by.guzypaul.medicinecentre.dao.interfaces.UserDao;
 import by.guzypaul.medicinecentre.entity.User;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.UserService;
-import by.guzypaul.medicinecentre.validator.DuplicationChecker;
-import by.guzypaul.medicinecentre.validator.UserValidator;
+import by.guzypaul.medicinecentre.service.validator.DuplicationChecker;
+import by.guzypaul.medicinecentre.service.validator.UserValidator;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;

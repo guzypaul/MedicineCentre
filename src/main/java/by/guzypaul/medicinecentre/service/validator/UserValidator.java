@@ -1,4 +1,4 @@
-package by.guzypaul.medicinecentre.validator;
+package by.guzypaul.medicinecentre.service.validator;
 
 import by.guzypaul.medicinecentre.entity.Role;
 import by.guzypaul.medicinecentre.entity.User;
