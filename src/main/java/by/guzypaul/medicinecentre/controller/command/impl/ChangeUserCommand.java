@@ -65,6 +65,7 @@ public class ChangeUserCommand implements Command {
             if (!String.valueOf(userService.readByPhone(phone).get().getId()).equals(userId)) {
                 throw new CommandException("User with such phone number already exist!");
             }
+
             Optional<User> userOptional = userService.readById(userId);
 
             if (userOptional.isPresent()) {

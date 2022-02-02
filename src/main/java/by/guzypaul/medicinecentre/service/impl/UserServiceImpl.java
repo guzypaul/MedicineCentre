@@ -4,9 +4,10 @@ import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.DaoFactory;
 import by.guzypaul.medicinecentre.dao.interfaces.UserDao;
 import by.guzypaul.medicinecentre.entity.User;
+import by.guzypaul.medicinecentre.service.checker.UserUpdatingDuplicationChecker;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.UserService;
-import by.guzypaul.medicinecentre.service.checker.DuplicationChecker;
+import by.guzypaul.medicinecentre.service.checker.UserCreatingDuplicationChecker;
 import by.guzypaul.medicinecentre.service.validator.UserValidator;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 /**
  * The type User service.
+ *
  * @author Guziy Paul
  * @see UserService
  */
@@ -22,7 +24,8 @@ public class UserServiceImpl implements UserService {
     private static final String INVALID_USER = "Invalid user!";
     private final UserDao userDao;
     private final UserValidator userValidator;
-    private final DuplicationChecker duplicationChecker;
+    private final UserCreatingDuplicationChecker userCreatingDuplicationChecker;
+    private final UserUpdatingDuplicationChecker userUpdatingDuplicationChecker;
 
     /**
      * Instantiates a new User service.
@@ -30,7 +33,8 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl() {
         userDao = DaoFactory.getInstance().getUserDao();
         userValidator = new UserValidator();
-        duplicationChecker = new DuplicationChecker();
+        userCreatingDuplicationChecker = new UserCreatingDuplicationChecker();
+        userUpdatingDuplicationChecker = new UserUpdatingDuplicationChecker();
     }
 
     @Override
@@ -82,7 +86,7 @@ public class UserServiceImpl implements UserService {
     public boolean create(User entity) throws ServiceException {
         try {
             if (userValidator.validateUser(entity)
-                    && duplicationChecker.checkDuplication(entity)) {
+                    && userCreatingDuplicationChecker.checkDuplication(entity)) {
                 entity.setPassword(BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()));
                 return userDao.create(entity);
             }
@@ -96,7 +100,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean update(User entity) throws ServiceException {
         try {
-            if (userValidator.validateUserForUpdating(entity)) {
+            if (userValidator.validateUserForUpdating(entity)
+                    && userUpdatingDuplicationChecker.checkDuplication(entity)) {
                 return userDao.update(entity);
             }
             throw new ServiceException(INVALID_USER);

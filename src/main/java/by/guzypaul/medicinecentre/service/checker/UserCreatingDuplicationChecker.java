@@ -9,13 +9,13 @@ import by.guzypaul.medicinecentre.entity.User;
  * The type Duplication checker.
  * @author Guziy Paul
  */
-public class DuplicationChecker {
+public class UserCreatingDuplicationChecker {
     private final UserDao userDao;
 
     /**
      * Instantiates a new Duplication checker.
      */
-    public DuplicationChecker() {
+    public UserCreatingDuplicationChecker() {
         userDao = DaoFactory.getInstance().getUserDao();
     }
 
