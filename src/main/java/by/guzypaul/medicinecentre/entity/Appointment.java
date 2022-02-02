@@ -6,6 +6,7 @@ import java.util.Objects;
 
 /**
  * The type Appointment.
+ * @author Guziy Paul
  */
 public class Appointment implements Entity {
     private int id;

@@ -14,9 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Change doctor page command.
+ */
 public class ChangeDoctorPageCommand implements Command {
     private final DoctorService doctorService;
 
+    /**
+     * Instantiates a new Change doctor page command.
+     * @author Guziy Paul
+     * @see Command
+     */
     public ChangeDoctorPageCommand() {
         doctorService = ServiceFactory.getInstance().getDoctorService();
     }

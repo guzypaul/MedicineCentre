@@ -11,11 +11,19 @@ import by.guzypaul.medicinecentre.validator.ProcedureValidator;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Procedure service.
+ * @author Guziy Paul
+ * @see ProcedureService
+ */
 public class ProcedureServiceImpl implements ProcedureService {
     private static final String INVALID_PROCEDURE = "Invalid procedure!";
     private final ProcedureDao procedureDao;
     private final ProcedureValidator procedureValidator;
 
+    /**
+     * Instantiates a new Procedure service.
+     */
     public ProcedureServiceImpl() {
         procedureDao = DaoFactory.getInstance().getProcedureDao();
         procedureValidator = new ProcedureValidator();

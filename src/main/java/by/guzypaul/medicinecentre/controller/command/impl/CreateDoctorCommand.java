@@ -25,11 +25,19 @@ import java.time.LocalTime;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * The type Create doctor command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class CreateDoctorCommand implements Command {
     private final DoctorService doctorService;
     private final UserService userService;
     private final DoctorScheduleService doctorScheduleService;
 
+    /**
+     * Instantiates a new Create doctor command.
+     */
     public CreateDoctorCommand() {
         doctorService = ServiceFactory.getInstance().getDoctorService();
         userService = ServiceFactory.getInstance().getUserService();

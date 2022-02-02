@@ -9,9 +9,17 @@ import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Doctor list forward command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class DoctorListForwardCommand implements Command {
     private final DoctorService doctorService;
 
+    /**
+     * Instantiates a new Doctor list forward command.
+     */
     public DoctorListForwardCommand() {
         doctorService = ServiceFactory.getInstance().getDoctorService();
     }

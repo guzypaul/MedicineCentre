@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Create procedure page command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class CreateProcedurePageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {

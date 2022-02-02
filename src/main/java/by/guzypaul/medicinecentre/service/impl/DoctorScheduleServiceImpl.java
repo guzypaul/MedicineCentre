@@ -11,11 +11,19 @@ import by.guzypaul.medicinecentre.validator.DoctorScheduleValidator;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Doctor schedule service.
+ * @author Guziy Paul
+ * @see DoctorScheduleService
+ */
 public class DoctorScheduleServiceImpl implements DoctorScheduleService {
     private static final String INVALID_DOCTOR_SCHEDULE = "Invalid doctor schedule!";
     private final DoctorScheduleDao doctorScheduleDao;
     private final DoctorScheduleValidator doctorScheduleValidator;
 
+    /**
+     * Instantiates a new Doctor schedule service.
+     */
     public DoctorScheduleServiceImpl() {
         doctorScheduleDao = DaoFactory.getInstance().getDoctorScheduleDao();
         doctorScheduleValidator = new DoctorScheduleValidator();

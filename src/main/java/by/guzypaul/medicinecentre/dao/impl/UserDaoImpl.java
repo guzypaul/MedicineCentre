@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type User dao.
+ * @author Guziy Paul
+ * @see UserDao
+ */
 public class UserDaoImpl implements UserDao {
     private static final String READ_ALL_USER_SQL = "SELECT users.id AS user_id, users.name AS user_name, " +
             "users.surname, users.password, users.email, " +

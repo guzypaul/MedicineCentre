@@ -13,10 +13,18 @@ import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * The type Delete doctor and schedule page command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class DeleteDoctorAndSchedulePageCommand implements Command {
     private final DoctorService doctorService;
     private final DoctorScheduleService doctorScheduleService;
 
+    /**
+     * Instantiates a new Delete doctor and schedule page command.
+     */
     public DeleteDoctorAndSchedulePageCommand() {
         doctorService = ServiceFactory.getInstance().getDoctorService();
         doctorScheduleService = ServiceFactory.getInstance().getDoctorScheduleService();

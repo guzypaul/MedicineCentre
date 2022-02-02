@@ -11,9 +11,17 @@ import by.guzypaul.medicinecentre.service.interfaces.UserService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * The type User list command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class UserListCommand implements Command {
     private final UserService userService;
 
+    /**
+     * Instantiates a new User list command.
+     */
     public UserListCommand() {
         userService = ServiceFactory.getInstance().getUserService();
     }

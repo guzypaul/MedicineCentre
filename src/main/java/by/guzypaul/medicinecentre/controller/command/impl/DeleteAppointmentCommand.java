@@ -11,9 +11,17 @@ import by.guzypaul.medicinecentre.service.interfaces.AppointmentService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * The type Delete appointment command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class DeleteAppointmentCommand implements Command {
     private final AppointmentService appointmentService;
 
+    /**
+     * Instantiates a new Delete appointment command.
+     */
     public DeleteAppointmentCommand() {
         appointmentService = ServiceFactory.getInstance().getAppointmentService();
     }

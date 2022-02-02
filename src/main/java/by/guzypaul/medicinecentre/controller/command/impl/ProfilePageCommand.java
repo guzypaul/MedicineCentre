@@ -16,12 +16,20 @@ import by.guzypaul.medicinecentre.service.interfaces.UserService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * The type Profile page command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class ProfilePageCommand implements Command {
     private final UserService userService;
     private final DoctorService doctorService;
     private final DoctorScheduleService doctorScheduleService;
     private final AppointmentService appointmentService;
 
+    /**
+     * Instantiates a new Profile page command.
+     */
     public ProfilePageCommand() {
         userService = ServiceFactory.getInstance().getUserService();
         doctorService = ServiceFactory.getInstance().getDoctorService();

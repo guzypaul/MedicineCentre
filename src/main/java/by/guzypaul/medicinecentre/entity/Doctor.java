@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /**
  * The type Doctor.
+ * @author Guziy Paul
  */
 public class Doctor implements Entity {
     private int id;
@@ -154,14 +155,29 @@ public class Doctor implements Entity {
         return rank;
     }
 
+    /**
+     * Sets rank.
+     *
+     * @param rank the rank
+     */
     public void setRank(String rank) {
         this.rank = rank;
     }
 
+    /**
+     * Gets doctor info.
+     *
+     * @return the doctor info
+     */
     public User getDoctorInfo() {
         return doctorInfo;
     }
 
+    /**
+     * Sets doctor info.
+     *
+     * @param doctorInfo the doctor info
+     */
     public void setDoctorInfo(User doctorInfo) {
         this.doctorInfo = doctorInfo;
     }

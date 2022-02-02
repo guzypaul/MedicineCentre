@@ -5,7 +5,18 @@ import by.guzypaul.medicinecentre.entity.DoctorSchedule;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The type Dao doctor schedule mapper.
+ * @author Guziy Paul
+ */
 public class DaoDoctorScheduleMapper {
+    /**
+     * Map doctor schedule doctor schedule.
+     *
+     * @param resultSet the result set
+     * @return the doctor schedule
+     * @throws SQLException the sql exception
+     */
     public DoctorSchedule mapDoctorSchedule (ResultSet resultSet) throws SQLException {
         DoctorSchedule doctorSchedule = new DoctorSchedule();
         DaoDoctorMapper daoDoctorMapper = new DaoDoctorMapper();

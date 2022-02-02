@@ -13,12 +13,20 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type User service.
+ * @author Guziy Paul
+ * @see UserService
+ */
 public class UserServiceImpl implements UserService {
     private static final String INVALID_USER = "Invalid user!";
     private final UserDao userDao;
     private final UserValidator userValidator;
     private final DuplicationChecker duplicationChecker;
 
+    /**
+     * Instantiates a new User service.
+     */
     public UserServiceImpl() {
         userDao = DaoFactory.getInstance().getUserDao();
         userValidator = new UserValidator();

@@ -7,6 +7,11 @@ import by.guzypaul.medicinecentre.controller.util.PageFinder;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Change language command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class ChangeLanguageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {

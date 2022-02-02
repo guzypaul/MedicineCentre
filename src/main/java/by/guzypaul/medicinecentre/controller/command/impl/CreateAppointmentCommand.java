@@ -20,12 +20,20 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 
+/**
+ * The type Create appointment command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class CreateAppointmentCommand implements Command {
     private final AppointmentService appointmentService;
     private final UserService userService;
     private final DoctorService doctorService;
     private final ProcedureService procedureService;
 
+    /**
+     * Instantiates a new Create appointment command.
+     */
     public CreateAppointmentCommand() {
         appointmentService = ServiceFactory.getInstance().getAppointmentService();
         userService = ServiceFactory.getInstance().getUserService();

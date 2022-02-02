@@ -6,7 +6,18 @@ import by.guzypaul.medicinecentre.entity.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The type Dao client mapper.
+ * @author Guziy Paul
+ */
 public class DaoClientMapper {
+    /**
+     * Map client user.
+     *
+     * @param resultSet the result set
+     * @return the user
+     * @throws SQLException the sql exception
+     */
     public User mapClient (ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getInt("client_id"));

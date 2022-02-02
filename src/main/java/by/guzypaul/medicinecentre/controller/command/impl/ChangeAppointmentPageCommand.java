@@ -12,9 +12,17 @@ import by.guzypaul.medicinecentre.service.interfaces.AppointmentService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * The type Change appointment page command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class ChangeAppointmentPageCommand implements Command {
     private final AppointmentService appointmentService;
 
+    /**
+     * Instantiates a new Change appointment page command.
+     */
     public ChangeAppointmentPageCommand() {
         appointmentService = ServiceFactory.getInstance().getAppointmentService();
     }

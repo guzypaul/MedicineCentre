@@ -11,9 +11,17 @@ import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * The type Delete procedure command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class DeleteProcedureCommand implements Command {
     private final ProcedureService procedureService;
 
+    /**
+     * Instantiates a new Delete procedure command.
+     */
     public DeleteProcedureCommand() {
         procedureService = ServiceFactory.getInstance().getProcedureService();
     }

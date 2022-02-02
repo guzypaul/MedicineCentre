@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Procedure dao.
+ * @author Guziy Paul
+ * @see ProcedureDao
+ */
 public class ProcedureDaoImpl implements ProcedureDao {
     private static final String READ_ALL_PROCEDURE_SQL = "SELECT procedures.id AS procedure_id, " +
             "procedures.name AS procedure_name, procedures.description, procedures.duration, procedures.price, " +

@@ -5,6 +5,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * The type Security filter.
+ * @author Guziy Paul
+ */
 @WebFilter(filterName = "SecurityFilter")
 public class SecurityFilter implements Filter {
     @Override

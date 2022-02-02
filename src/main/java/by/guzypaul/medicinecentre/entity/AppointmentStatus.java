@@ -2,6 +2,7 @@ package by.guzypaul.medicinecentre.entity;
 
 /**
  * The enum Appointment status.
+ * @author Guziy Paul
  */
 public enum AppointmentStatus {
     /**

@@ -5,6 +5,10 @@ import by.guzypaul.medicinecentre.entity.Appointment;
 import java.sql.Time;
 import java.time.LocalDate;
 
+/**
+ * The type Appointment validator.
+ * @author Guziy Paul
+ */
 public class AppointmentValidator {
     private static final LocalDate MAX_DATE = LocalDate.now().plusMonths(12);
     private static final LocalDate MIN_DATE = LocalDate.now();
@@ -14,6 +18,12 @@ public class AppointmentValidator {
     private final DoctorValidator doctorValidator = new DoctorValidator();
     private final ProcedureValidator procedureValidator = new ProcedureValidator();
 
+    /**
+     * Validate appointment boolean.
+     *
+     * @param appointment the appointment
+     * @return the boolean
+     */
     public boolean validateAppointment(Appointment appointment) {
         return appointment != null && userValidator.validateUser(appointment.getUserClient())
                 && doctorValidator.validateDoctor(appointment.getDoctor())

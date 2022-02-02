@@ -5,6 +5,7 @@ import java.util.Objects;
 
 /**
  * The type Procedure.
+ * @author Guziy Paul
  */
 public class Procedure implements Entity{
     private int id;

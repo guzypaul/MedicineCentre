@@ -12,9 +12,17 @@ import by.guzypaul.medicinecentre.service.interfaces.UserService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * The type Change user page command.
+ */
 public class ChangeUserPageCommand implements Command {
     private final UserService userService;
 
+    /**
+     * Instantiates a new Change user page command.
+     * @author Guziy Paul
+     * @see Command
+     */
     public ChangeUserPageCommand() {
         userService = ServiceFactory.getInstance().getUserService();
     }

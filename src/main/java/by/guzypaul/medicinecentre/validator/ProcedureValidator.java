@@ -4,6 +4,10 @@ import by.guzypaul.medicinecentre.entity.Procedure;
 
 import java.math.BigDecimal;
 
+/**
+ * The type Procedure validator.
+ * @author Guziy Paul
+ */
 public class ProcedureValidator {
     private static final String NAME_REGEX = "([\\p{Alpha}А-Яа-я]{1,15}[\\s-]?){0,9}";
     private static final String DESCRIPTION_REGEX = "[.[^<>]]{1,1000}";
@@ -12,6 +16,12 @@ public class ProcedureValidator {
     private static final int MAX_DURATION = 480;
     private static final int MIN_DURATION = 5;
 
+    /**
+     * Validate procedure boolean.
+     *
+     * @param procedure the procedure
+     * @return the boolean
+     */
     public boolean validateProcedure(Procedure procedure) {
         return procedure != null && isValidName(procedure.getName())
                 && isValidDuration(procedure.getDuration())

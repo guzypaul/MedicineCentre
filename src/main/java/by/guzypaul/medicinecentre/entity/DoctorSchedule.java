@@ -5,6 +5,7 @@ import java.util.Objects;
 
 /**
  * The type Doctor schedule.
+ * @author Guziy Paul
  */
 public class DoctorSchedule implements Entity{
     private int id;

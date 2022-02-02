@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * The enum Qualification.
+ * @author Guziy Paul
  */
 public enum Qualification {
     /**

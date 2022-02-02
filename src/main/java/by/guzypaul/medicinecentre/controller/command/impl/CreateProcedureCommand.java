@@ -18,9 +18,17 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
+/**
+ * The type Create procedure command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class CreateProcedureCommand implements Command {
     private final ProcedureService procedureService;
 
+    /**
+     * Instantiates a new Create procedure command.
+     */
     public CreateProcedureCommand() {
         procedureService = ServiceFactory.getInstance().getProcedureService();
     }

@@ -3,11 +3,21 @@ package by.guzypaul.medicinecentre.validator;
 import by.guzypaul.medicinecentre.entity.Role;
 import by.guzypaul.medicinecentre.entity.User;
 
+/**
+ * The type User validator.
+ * @author Guziy Paul
+ */
 public class UserValidator {
 
     private static final String EMAIL_REGEX = "^([а-яa-z0-9_-]+\\.)*[а-яa-z0-9_-]+@[а-яa-z0-9_-]" +
             "+(\\.[а-яa-z0-9_-]+)*\\.[а-яa-z]{2,6}$";
 
+    /**
+     * Validate user boolean.
+     *
+     * @param user the user
+     * @return the boolean
+     */
     public boolean validateUser(User user) {
         return user != null && isValidName(user.getName())
                 && isValidSurname(user.getSurname())
@@ -17,6 +27,12 @@ public class UserValidator {
                 && isValidRole(user.getRole());
     }
 
+    /**
+     * Validate user for updating boolean.
+     *
+     * @param user the user
+     * @return the boolean
+     */
     public boolean validateUserForUpdating(User user) {
         return user != null && isValidName(user.getName())
                 && isValidSurname(user.getSurname())

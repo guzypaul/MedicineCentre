@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Appointment dao.
+ * @author Guziy Paul
+ * @see AppointmentDao
+ */
 public class AppointmentDaoImpl implements AppointmentDao {
     private static final String READ_ALL_APPOINTMENT_SQL = "SELECT appointments.id AS appointment_id, " +
             "appointments.date, appointments.start_time, appointments.end_time, appointments.status, " +

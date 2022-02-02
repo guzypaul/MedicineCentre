@@ -12,9 +12,17 @@ import by.guzypaul.medicinecentre.service.interfaces.UserService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * The type Change user command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class ChangeUserCommand implements Command {
     private final UserService userService;
 
+    /**
+     * Instantiates a new Change user command.
+     */
     public ChangeUserCommand() {
         userService = ServiceFactory.getInstance().getUserService();
     }

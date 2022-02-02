@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 /**
  * Util class for finding last page
+ *
  * @author Guziy Paul
  */
 public final class PageFinder {

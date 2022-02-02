@@ -20,12 +20,20 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 
+/**
+ * The type Change appointment command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class ChangeAppointmentCommand implements Command {
     private final AppointmentService appointmentService;
     private final UserService userService;
     private final DoctorService doctorService;
     private final ProcedureService procedureService;
 
+    /**
+     * Instantiates a new Change appointment command.
+     */
     public ChangeAppointmentCommand() {
         appointmentService = ServiceFactory.getInstance().getAppointmentService();
         userService = ServiceFactory.getInstance().getUserService();

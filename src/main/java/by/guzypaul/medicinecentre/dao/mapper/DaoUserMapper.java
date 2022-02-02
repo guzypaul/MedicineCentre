@@ -6,7 +6,18 @@ import by.guzypaul.medicinecentre.entity.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The type Dao user mapper.
+ * @author Guziy Paul
+ */
 public class DaoUserMapper {
+    /**
+     * Map user user.
+     *
+     * @param resultSet the result set
+     * @return the user
+     * @throws SQLException the sql exception
+     */
     public User mapUser (ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getInt("user_id"));

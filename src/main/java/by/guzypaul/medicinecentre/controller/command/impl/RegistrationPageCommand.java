@@ -6,6 +6,11 @@ import by.guzypaul.medicinecentre.controller.command.Router;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Registration page command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class RegistrationPageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {

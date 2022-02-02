@@ -14,10 +14,18 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Appointment list command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class AppointmentListCommand implements Command {
     private final DoctorService doctorService;
     private final AppointmentService appointmentService;
 
+    /**
+     * Instantiates a new Appointment list command.
+     */
     public AppointmentListCommand() {
         doctorService = ServiceFactory.getInstance().getDoctorService();
         appointmentService = ServiceFactory.getInstance().getAppointmentService();

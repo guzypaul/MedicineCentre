@@ -5,6 +5,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * The type Command access filter.
+ * @author Guziy Paul
+ */
 @WebFilter(filterName = "CommandAccessFilter")
 public class CommandAccessFilter implements Filter {
     @Override

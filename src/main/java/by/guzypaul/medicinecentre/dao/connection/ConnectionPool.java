@@ -14,8 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Object that contains all created connections and manages them.
- *
- *  @author Guziy Paul
+ * @author Guziy Paul
  */
 public class ConnectionPool {
     private static final AtomicBoolean INSTANCE_CREATED = new AtomicBoolean(false);
@@ -61,6 +60,7 @@ public class ConnectionPool {
      * Gets instance.
      *
      * @return the instance
+     * @throws ConnectionPoolException the connection pool exception
      */
     public static ConnectionPool getInstance() throws ConnectionPoolException {
         if (!INSTANCE_CREATED.get()) {
@@ -82,6 +82,7 @@ public class ConnectionPool {
      * Initialize connection pool.
      *
      * @param connectionsNumber the connections number
+     * @throws ConnectionPoolException the connection pool exception
      * @throws ConnectionPoolException the connection pool exception
      */
     public void initializeConnectionPool(int connectionsNumber) throws ConnectionPoolException, ConnectionPoolException {

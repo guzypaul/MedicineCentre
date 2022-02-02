@@ -10,15 +10,37 @@ import java.util.stream.Collectors;
 import static by.guzypaul.medicinecentre.controller.command.CommandFactory.*;
 
 
+/**
+ * The enum Command access level.
+ * @author Guziy Paul
+ */
 public enum CommandAccessLevel {
+    /**
+     * Default command access level.
+     */
     DEFAULT(Arrays.asList(PROCEDURE_LIST, PROCEDURE_PAGE, DOCTOR_LIST, DOCTOR_PAGE, ABOUT_US, CONTACTS,
             CHANGE_LANGUAGE, ERROR_PAGE)),
+    /**
+     * Guest command access level.
+     */
     GUEST(Arrays.asList(AUTHORIZATION, AUTHORIZATION_PAGE, REGISTRATION, REGISTRATION_PAGE)),
+    /**
+     * User command access level.
+     */
     USER(Arrays.asList(LOGOUT, PROFILE_PAGE, CHANGE_USER_PAGE, CHANGE_USER, APPOINTMENT_LIST, CREATE_APPOINTMENT_PAGE,
             CREATE_APPOINTMENT)),
+    /**
+     * Doctor command access level.
+     */
     DOCTOR(Arrays.asList(LOGOUT, PROFILE_PAGE, APPOINTMENT_LIST)),
+    /**
+     * Moderator command access level.
+     */
     MODERATOR(Arrays.asList(LOGOUT, PROFILE_PAGE, USER_LIST, APPOINTMENT_LIST, CHANGE_APPOINTMENT_PAGE, CHANGE_APPOINTMENT,
             DELETE_APPOINTMENT_PAGE, DELETE_APPOINTMENT, CHANGE_USER_PAGE, CHANGE_USER)),
+    /**
+     * Admin command access level.
+     */
     ADMIN(Arrays.asList(LOGOUT, PROFILE_PAGE, USER_LIST,
             APPOINTMENT_LIST, CHANGE_APPOINTMENT_PAGE, CHANGE_APPOINTMENT, DELETE_APPOINTMENT_PAGE, DELETE_APPOINTMENT,
             CHANGE_USER_PAGE, CHANGE_USER,
@@ -34,10 +56,21 @@ public enum CommandAccessLevel {
         this.commands = commands;
     }
 
+    /**
+     * Gets commands.
+     *
+     * @return the commands
+     */
     public List<CommandFactory> getCommands() {
         return commands;
     }
 
+    /**
+     * Is access command boolean.
+     *
+     * @param request the request
+     * @return the boolean
+     */
     public static boolean isAccessCommand(HttpServletRequest request) {
         String command = request.getParameter("command");
         if (command == null || command.isEmpty()) {

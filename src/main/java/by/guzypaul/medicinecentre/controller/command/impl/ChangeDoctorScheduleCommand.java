@@ -13,9 +13,17 @@ import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Optional;
 
+/**
+ * The type Change doctor schedule command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class ChangeDoctorScheduleCommand implements Command {
     private final DoctorScheduleService doctorScheduleService;
 
+    /**
+     * Instantiates a new Change doctor schedule command.
+     */
     public ChangeDoctorScheduleCommand() {
         doctorScheduleService = ServiceFactory.getInstance().getDoctorScheduleService();
     }

@@ -15,10 +15,18 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Create appointment page command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class CreateAppointmentPageCommand implements Command {
     private final ProcedureService procedureService;
     private final DoctorService doctorService;
 
+    /**
+     * Instantiates a new Create appointment page command.
+     */
     public CreateAppointmentPageCommand() {
         procedureService = ServiceFactory.getInstance().getProcedureService();
         doctorService = ServiceFactory.getInstance().getDoctorService();

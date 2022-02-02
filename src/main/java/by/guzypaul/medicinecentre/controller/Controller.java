@@ -19,6 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+/**
+ * The type Controller.
+ * @author Guziy Paul
+ */
 @WebServlet("/controller")
 @MultipartConfig(location = "C:\\Users\\skysnaker\\IdeaProjects\\MedicineCentre\\target\\MedicineCentre-1.0-SNAPSHOT\\download")
 public class Controller extends HttpServlet {

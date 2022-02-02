@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Doctor schedule dao.
+ * @author Guziy Paul
+ * @see DoctorScheduleDao
+ */
 public class DoctorScheduleDaoImpl implements DoctorScheduleDao {
     private static final String READ_ALL_DOCTOR_SCHEDULE_SQL = "SELECT doctor_schedules.id AS doctor_schedules_id, " +
             "doctor_schedules.start_time, doctor_schedules.end_time, " +

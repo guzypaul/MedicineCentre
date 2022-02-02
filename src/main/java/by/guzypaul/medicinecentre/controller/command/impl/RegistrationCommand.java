@@ -11,9 +11,17 @@ import by.guzypaul.medicinecentre.service.interfaces.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Registration command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class RegistrationCommand implements Command {
     private final UserService userService;
 
+    /**
+     * Instantiates a new Registration command.
+     */
     public RegistrationCommand() {
         userService = ServiceFactory.getInstance().getUserService();
     }

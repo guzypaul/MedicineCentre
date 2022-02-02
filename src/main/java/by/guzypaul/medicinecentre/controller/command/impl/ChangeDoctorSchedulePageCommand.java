@@ -11,9 +11,17 @@ import by.guzypaul.medicinecentre.service.interfaces.DoctorScheduleService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * The type Change doctor schedule page command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class ChangeDoctorSchedulePageCommand implements Command {
     private final DoctorScheduleService doctorScheduleService;
 
+    /**
+     * Instantiates a new Change doctor schedule page command.
+     */
     public ChangeDoctorSchedulePageCommand() {
         doctorScheduleService = ServiceFactory.getInstance().getDoctorScheduleService();
     }

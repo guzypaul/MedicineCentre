@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /**
  * The type User.
+ * @author Guziy Paul
  */
 public class User implements Entity {
     private int id;

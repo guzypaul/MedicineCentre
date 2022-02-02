@@ -6,6 +6,11 @@ import by.guzypaul.medicinecentre.controller.command.Router;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Logout command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class LogoutCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {

@@ -12,9 +12,17 @@ import org.mindrot.jbcrypt.BCrypt;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * The type Authorization command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class AuthorizationCommand implements Command {
     private final UserService userService;
 
+    /**
+     * Instantiates a new Authorization command.
+     */
     public AuthorizationCommand() {
         userService = ServiceFactory.getInstance().getUserService();
     }

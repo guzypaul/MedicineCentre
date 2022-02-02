@@ -12,12 +12,20 @@ import by.guzypaul.medicinecentre.validator.DoctorValidator;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Doctor service.
+ * @author Guziy Paul
+ * @see DoctorService
+ */
 public class DoctorServiceImpl implements DoctorService {
     private static final String INVALID_DOCTOR = "Invalid doctor!";
     private final DoctorDao doctorDao;
     private final DoctorValidator doctorValidator;
 
 
+    /**
+     * Instantiates a new Doctor service.
+     */
     public DoctorServiceImpl() {
         doctorDao = DaoFactory.getInstance().getDoctorDao();
         doctorValidator = new DoctorValidator();

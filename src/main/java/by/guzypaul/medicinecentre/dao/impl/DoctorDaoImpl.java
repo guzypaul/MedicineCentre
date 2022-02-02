@@ -14,6 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Doctor dao.
+ * @author Guziy Paul
+ * @see DoctorDao
+ */
 public class DoctorDaoImpl implements DoctorDao {
 
     private static final String READ_ALL_DOCTOR_SQL = "SELECT doctors.id AS doctor_id, doctors.qualification, " +

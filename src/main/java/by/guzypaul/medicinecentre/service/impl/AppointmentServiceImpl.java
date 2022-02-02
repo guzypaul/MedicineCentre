@@ -11,11 +11,19 @@ import by.guzypaul.medicinecentre.validator.AppointmentValidator;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Appointment service.
+ * @author Guziy Paul
+ * @see AppointmentService
+ */
 public class AppointmentServiceImpl implements AppointmentService {
     private static final String INVALID_APPOINTMENT = "Invalid appointment!";
     private final AppointmentDao appointmentDao;
     private final AppointmentValidator appointmentValidator;
 
+    /**
+     * Instantiates a new Appointment service.
+     */
     public AppointmentServiceImpl() {
         appointmentDao = DaoFactory.getInstance().getAppointmentDao();
         appointmentValidator = new AppointmentValidator();

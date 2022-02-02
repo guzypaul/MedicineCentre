@@ -6,6 +6,11 @@ import by.guzypaul.medicinecentre.controller.command.Router;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Contacts forward command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class ContactsForwardCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {

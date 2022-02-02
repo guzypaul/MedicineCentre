@@ -9,9 +9,17 @@ import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Procedure list forward command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class ProcedureListForwardCommand implements Command {
     private final ProcedureService procedureService;
 
+    /**
+     * Instantiates a new Procedure list forward command.
+     */
     public ProcedureListForwardCommand() {
         procedureService = ServiceFactory.getInstance().getProcedureService();
     }

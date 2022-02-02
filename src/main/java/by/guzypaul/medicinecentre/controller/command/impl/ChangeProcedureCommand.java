@@ -19,9 +19,17 @@ import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * The type Change procedure command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class ChangeProcedureCommand implements Command {
     private final ProcedureService procedureService;
 
+    /**
+     * Instantiates a new Change procedure command.
+     */
     public ChangeProcedureCommand() {
         procedureService = ServiceFactory.getInstance().getProcedureService();
     }

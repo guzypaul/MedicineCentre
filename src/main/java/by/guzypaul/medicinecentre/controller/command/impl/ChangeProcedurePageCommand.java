@@ -14,9 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Change procedure page command.
+ * @author Guziy Paul
+ * @see Command
+ */
 public class ChangeProcedurePageCommand implements Command {
     private final ProcedureService procedureService;
 
+    /**
+     * Instantiates a new Change procedure page command.
+     */
     public ChangeProcedurePageCommand() {
         procedureService = ServiceFactory.getInstance().getProcedureService();
     }

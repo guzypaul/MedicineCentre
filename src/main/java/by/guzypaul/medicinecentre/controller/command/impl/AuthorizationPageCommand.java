@@ -6,6 +6,9 @@ import by.guzypaul.medicinecentre.controller.command.Router;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Authorization page command.
+ */
 public class AuthorizationPageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
