@@ -58,7 +58,7 @@ public class UserValidator {
     }
 
     private boolean isValidPhone(String phone) {
-        return phone != null && !phone.isEmpty() && phone.length() <= 15;
+        return phone != null && !phone.isEmpty() && phone.length() >= 10 && phone.length() <= 15;
     }
 
     private boolean isValidRole(Role role) {

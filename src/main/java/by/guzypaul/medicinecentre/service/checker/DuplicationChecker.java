@@ -1,4 +1,4 @@
-package by.guzypaul.medicinecentre.service.validator;
+package by.guzypaul.medicinecentre.service.checker;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.DaoFactory;
