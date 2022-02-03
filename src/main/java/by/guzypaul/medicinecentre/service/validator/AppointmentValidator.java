@@ -1,7 +1,7 @@
 package by.guzypaul.medicinecentre.service.validator;
 
 import by.guzypaul.medicinecentre.entity.Appointment;
-import by.guzypaul.medicinecentre.entity.AppointmentStatus;
+import by.guzypaul.medicinecentre.entity.AppStatus;
 
 import java.sql.Time;
 import java.time.LocalDate;
@@ -48,6 +48,6 @@ public class AppointmentValidator {
     }
 
     private boolean isValidStatus(String text) {
-        return text != null && AppointmentStatus.isValidAppointmentStatus(text);
+        return text != null && AppStatus.isValidAppointmentStatus(text);
     }
 }

@@ -6,7 +6,7 @@ import java.util.Arrays;
  * The enum Appointment status.
  * @author Guziy Paul
  */
-public enum AppointmentStatus {
+public enum AppStatus {
     /**
      * Claimed appointment status.
      */
@@ -21,7 +21,7 @@ public enum AppointmentStatus {
     CANCELED;
 
     public static boolean isValidAppointmentStatus(String status) {
-        return Arrays.stream(AppointmentStatus.values())
+        return Arrays.stream(AppStatus.values())
                 .anyMatch(currentStatus -> currentStatus.toString().equals(status.toUpperCase()));
     }
 }
