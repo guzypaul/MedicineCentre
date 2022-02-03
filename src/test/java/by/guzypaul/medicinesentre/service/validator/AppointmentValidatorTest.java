@@ -27,7 +27,7 @@ public class AppointmentValidatorTest {
         Procedure procedure = new Procedure(1, "surgery", "default1.jpg", BigDecimal.valueOf(500),
                 "removing something extra ", 30, "surgeon");
         testAppointment = new Appointment(userClient, doctor, LocalDate.now().plusDays(10),
-                Time.valueOf("11:00:00"), Time.valueOf("12:00:00"), procedure, "CLAIMED");
+                Time.valueOf("11:00:00"), Time.valueOf("12:00:00"), procedure, AppStatus.valueOf("CLAIMED"));
     }
 
     @Test
@@ -50,12 +50,6 @@ public class AppointmentValidatorTest {
     @Test
     void validateAppointmentWithNullStartTimeTest() {
         testAppointment.setStartTime(null);
-        Assert.assertFalse(appointmentValidator.validateAppointment(testAppointment));
-    }
-
-    @Test
-    void validateAppointmentWithInvalidStatusTest() {
-        testAppointment.setStatus("Canceledddd");
         Assert.assertFalse(appointmentValidator.validateAppointment(testAppointment));
     }
 

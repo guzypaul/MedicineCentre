@@ -190,6 +190,6 @@ public class AppointmentDaoImpl implements AppointmentDao {
         preparedStatement.setTime(4, entity.getStartTime());
         preparedStatement.setTime(5, entity.getEndTime());
         preparedStatement.setInt(6, entity.getProcedure().getId());
-        preparedStatement.setString(7, entity.getStatus());
+        preparedStatement.setString(7, entity.getStatus().toString());
     }
 }

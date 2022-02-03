@@ -32,7 +32,7 @@ public class AppointmentValidator {
                 && isValidDate(appointment.getDate())
                 && isValidStartTime(appointment.getStartTime())
                 && isValidEndTime(appointment.getEndTime())
-                && isValidStatus(appointment.getStatus());
+                && isValidStatus(String.valueOf(appointment.getStatus()));
     }
 
     private boolean isValidDate(LocalDate date) {
