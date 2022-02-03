@@ -19,7 +19,7 @@ public class CreateProcedurePageCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
         List<String> qualificationList = new ArrayList<>();
         for (Qualification qualification : Qualification.values()) {
-            String qualificationName = qualification.getQualificationName();
+            String qualificationName = qualification.getName();
             qualificationList.add(qualificationName);
         }
         request.setAttribute("qualificationList", qualificationList);

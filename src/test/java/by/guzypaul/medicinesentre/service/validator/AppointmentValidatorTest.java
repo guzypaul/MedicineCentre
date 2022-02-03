@@ -20,12 +20,12 @@ public class AppointmentValidatorTest {
     @BeforeEach
     void setUp() {
         appointmentValidator2 = mock(AppointmentValidator.class);
-        appointmentValidator = new AppointmentValidator(); //todo mockito
+        appointmentValidator = new AppointmentValidator();
         User userClient = new User(1, "Ivan", "Petrov", "ivan_petrov@gmail.com",
                 "12345678", "375257897878", Role.USER);
-        Doctor doctor = new Doctor(1, "surgeon", "high", "default.jpg");
+        Doctor doctor = new Doctor(1, Qualification.SURGEON, "high", "default.jpg");
         Procedure procedure = new Procedure(1, "surgery", "default1.jpg", BigDecimal.valueOf(500),
-                "removing something extra ", 30, "surgeon");
+                "removing something extra ", 30, Qualification.SURGEON);
         testAppointment = new Appointment(userClient, doctor, LocalDate.now().plusDays(10),
                 Time.valueOf("11:00:00"), Time.valueOf("12:00:00"), procedure, AppStatus.valueOf("CLAIMED"));
     }

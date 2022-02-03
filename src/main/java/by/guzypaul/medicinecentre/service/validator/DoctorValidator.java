@@ -36,7 +36,7 @@ public class DoctorValidator {
      * @return the boolean
      */
     public boolean validateDoctor(Doctor doctor) {
-        return doctor != null && isValidQualification(doctor.getQualification())
+        return doctor != null && isValidQualification(doctor.getQualification().getName())
                 && isValidRank(doctor.getRank())
                 && userValidator.validateUser(doctor.getDoctorInfo())
                 && isValidateDoctorPicture(doctor.getPhotoName());
@@ -49,7 +49,7 @@ public class DoctorValidator {
      * @return the boolean
      */
     public boolean validateDoctorForUpdating(Doctor doctor) {
-        return doctor != null && isValidQualification(doctor.getQualification())
+        return doctor != null && isValidQualification(doctor.getQualification().getName())
                 && isValidRank(doctor.getRank())
                 && isValidateDoctorPicture(doctor.getPhotoName());
     }

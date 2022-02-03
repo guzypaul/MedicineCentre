@@ -30,7 +30,8 @@ public enum Qualification {
     /**
      * Exorcist qualification.
      */
-    EXORCIST("Exorcist");
+    EXORCIST("Exorcist"),
+    DOCTOR("Doctor");
 
 
     private final String qualificationName;
@@ -44,8 +45,15 @@ public enum Qualification {
      *
      * @return the qualification name
      */
-    public String getQualificationName() {
+    public String getName() {
         return qualificationName;
+    }
+
+    public static Qualification findByName(String qualificationName) {
+        return Arrays.stream(Qualification.values())
+                .filter(currentQualification -> currentQualification.getName().equals(qualificationName))
+                .findFirst()
+                .orElse(DOCTOR);
     }
 
     /**
@@ -56,6 +64,6 @@ public enum Qualification {
      */
     public static boolean isValidQualification(String qualification) {
         return Arrays.stream(Qualification.values())
-                .anyMatch(currentQualification -> currentQualification.getQualificationName().equalsIgnoreCase(qualification));
+                .anyMatch(currentQualification -> currentQualification.getName().equalsIgnoreCase(qualification));
     }
 }

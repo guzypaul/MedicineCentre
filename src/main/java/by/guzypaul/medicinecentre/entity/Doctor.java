@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 public class Doctor implements Entity {
     private int id;
-    private String qualification;
+    private Qualification qualification;
     private String rank;
     private User doctorInfo;
     private String photoName;
@@ -27,7 +27,7 @@ public class Doctor implements Entity {
      * @param doctorInfo    the doctor info
      * @param photoName     the photo name
      */
-    public Doctor(String qualification, String rank, User doctorInfo, String photoName) {
+    public Doctor(Qualification qualification, String rank, User doctorInfo, String photoName) {
         this.qualification = qualification;
         this.rank = rank;
         this.doctorInfo = doctorInfo;
@@ -43,7 +43,7 @@ public class Doctor implements Entity {
      * @param doctorInfo    the doctor info
      * @param photoName     the photo name
      */
-    public Doctor(int id, String qualification, String rank, User doctorInfo, String photoName) {
+    public Doctor(int id, Qualification qualification, String rank, User doctorInfo, String photoName) {
         this.id = id;
         this.qualification = qualification;
         this.rank = rank;
@@ -59,7 +59,7 @@ public class Doctor implements Entity {
      * @param rank          the rank
      * @param photoName     the photo name
      */
-    public Doctor(int id, String qualification, String rank, String photoName) {
+    public Doctor(int id, Qualification qualification, String rank, String photoName) {
         this.id = id;
         this.qualification = qualification;
         this.rank = rank;
@@ -73,7 +73,7 @@ public class Doctor implements Entity {
      * @param rank          the rank
      * @param doctorInfo    the doctor info
      */
-    public Doctor(String qualification, String rank, User doctorInfo) {
+    public Doctor(Qualification qualification, String rank, User doctorInfo) {
         this.qualification = qualification;
         this.rank = rank;
         this.doctorInfo = doctorInfo;
@@ -86,7 +86,7 @@ public class Doctor implements Entity {
      * @param qualification the qualification
      * @param rank          the rank
      */
-    public Doctor(int id, String qualification, String rank) {
+    public Doctor(int id, Qualification qualification, String rank) {
         this.id = id;
         this.qualification = qualification;
         this.rank = rank;
@@ -133,7 +133,7 @@ public class Doctor implements Entity {
      *
      * @return the qualification
      */
-    public String getQualification() {
+    public Qualification getQualification() {
         return qualification;
     }
 
@@ -142,7 +142,7 @@ public class Doctor implements Entity {
      *
      * @param qualification the qualification
      */
-    public void setQualification(String qualification) {
+    public void setQualification(Qualification qualification) {
         this.qualification = qualification;
     }
 

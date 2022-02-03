@@ -4,6 +4,7 @@ import by.guzypaul.medicinecentre.controller.command.Command;
 import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
 import by.guzypaul.medicinecentre.entity.Procedure;
+import by.guzypaul.medicinecentre.entity.Qualification;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
@@ -63,7 +64,7 @@ public class ChangeProcedureCommand implements Command {
             if (procedureOptional.isPresent()) {
                 Procedure procedure = new Procedure(Integer.parseInt(procedureId), name,
                         BigDecimal.valueOf(Double.parseDouble(price)), description, Integer.parseInt(duration),
-                        doctorQualification);
+                        Qualification.findByName(doctorQualification));
 
                 for (Part part : request.getParts()) {
                     if (part.getName().equals("procedure-picture")) {

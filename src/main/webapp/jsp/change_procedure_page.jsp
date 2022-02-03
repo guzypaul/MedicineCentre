@@ -68,9 +68,9 @@
                         <label for="qualification"><fmt:message key="doctor"/> <fmt:message key="qualification"/></label>
                         <select id="qualification" class="form-select" aria-label="Disabled select example"
                                 name="doctorQualification">
-                            <option selected>${procedure.doctorQualification}</option>
+                            <option selected>${procedure.doctorQualification.getName()}</option>
                             <c:forEach items="${qualificationList}" var="doctorQualification">
-                                <c:if test="${doctorQualification != procedure.doctorQualification}">
+                                <c:if test="${doctorQualification != procedure.doctorQualification.getName()}">
                                     <option value="${doctorQualification}">${doctorQualification}</option>
                                 </c:if>
                             </c:forEach>

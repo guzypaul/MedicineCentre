@@ -3,10 +3,7 @@ package by.guzypaul.medicinecentre.controller.command.impl;
 import by.guzypaul.medicinecentre.controller.command.Command;
 import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
-import by.guzypaul.medicinecentre.entity.Doctor;
-import by.guzypaul.medicinecentre.entity.DoctorSchedule;
-import by.guzypaul.medicinecentre.entity.Role;
-import by.guzypaul.medicinecentre.entity.User;
+import by.guzypaul.medicinecentre.entity.*;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.interfaces.DoctorScheduleService;
@@ -70,7 +67,7 @@ public class CreateDoctorCommand implements Command {
                 User userDoctor = userOptional.get();
                 userDoctor.setRole(Role.DOCTOR);
                 userService.update(userDoctor);
-                Doctor doctor = new Doctor(qualification, rank, userDoctor);
+                Doctor doctor = new Doctor(Qualification.findByName(qualification), rank, userDoctor);
 
                 for (Part part : request.getParts()) {
                     if (part.getName().equals("doctor-picture")) {
@@ -80,7 +77,7 @@ public class CreateDoctorCommand implements Command {
                                 .lines()
                                 .collect(Collectors.joining("\n"));
                         if (!part.getSubmittedFileName().isEmpty()) {
-                            String pictureName = "doctor_" + doctor.getQualification() + "_" + part.getSubmittedFileName();
+                            String pictureName = "doctor_" + doctor.getQualification().getName() + "_" + part.getSubmittedFileName();
                             doctor.setPhotoName(pictureName);
                             part.write(pictureName);
                         }

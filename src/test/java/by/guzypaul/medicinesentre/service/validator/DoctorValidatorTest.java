@@ -1,6 +1,7 @@
 package by.guzypaul.medicinesentre.service.validator;
 
 import by.guzypaul.medicinecentre.entity.Doctor;
+import by.guzypaul.medicinecentre.entity.Qualification;
 import by.guzypaul.medicinecentre.service.checker.FileFormatChecker;
 import by.guzypaul.medicinecentre.service.validator.DoctorValidator;
 import org.junit.Assert;
@@ -19,7 +20,7 @@ public class DoctorValidatorTest {
     void setUp() {
         doctorValidator = new DoctorValidator();
         formatChecker = mock(FileFormatChecker.class);
-        testDoctor = new Doctor(1,"surgeon", "high", "default.jpg");
+        testDoctor = new Doctor(1,Qualification.SURGEON, "high", "default.jpg");
     }
 
     @Test
@@ -42,18 +43,6 @@ public class DoctorValidatorTest {
     @Test
     void validateDoctorWithNullRankTest() {
         testDoctor.setRank(null);
-        Assert.assertFalse(doctorValidator.validateDoctorForUpdating(testDoctor));
-    }
-
-    @Test
-    void validateDoctorWithInvalidQualificationTest() {
-        testDoctor.setQualification("fr");
-        Assert.assertFalse(doctorValidator.validateDoctorForUpdating(testDoctor));
-    }
-
-    @Test
-    void validateDoctorWithNullQualificationTest() {
-        testDoctor.setQualification(null);
         Assert.assertFalse(doctorValidator.validateDoctorForUpdating(testDoctor));
     }
 

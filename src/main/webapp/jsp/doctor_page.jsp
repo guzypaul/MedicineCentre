@@ -64,7 +64,7 @@
                 <div class="col-lg-8">
                     <h2><c:out value="${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}"/></h2>
                     <br>
-                    <h4><fmt:message key="qualification"/>: <c:out value="${doctor.qualification}"/></h4>
+                    <h4><fmt:message key="qualification"/>: <c:out value="${doctor.qualification.getName()}"/></h4>
                     <h4><fmt:message key="rank"/>: <c:out value="${doctor.rank}"/></h4>
                     <h4><fmt:message key="email"/>: <c:out value="${doctor.doctorInfo.email}"/></h4>
                     <c:if test="${role == 'MODERATOR' || role == 'ADMIN'}">

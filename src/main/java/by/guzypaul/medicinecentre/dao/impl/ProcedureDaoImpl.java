@@ -109,6 +109,6 @@ public class ProcedureDaoImpl implements ProcedureDao {
         preparedStatement.setInt(3, entity.getDuration());
         preparedStatement.setBigDecimal(4, entity.getPrice());
         preparedStatement.setString(5, entity.getImageName());
-        preparedStatement.setString(6, entity.getDoctorQualification());
+        preparedStatement.setString(6, entity.getDoctorQualification().getName());
     }
 }

@@ -38,7 +38,7 @@
                                  alt="<c:out value="${doctor.doctorInfo.name}
                                  ${doctor.doctorInfo.surname}"/>"></a></p>
                         <div><p>
-                            <h3><c:out value="${doctor.qualification}"/></h3></p>
+                            <h3><c:out value="${doctor.qualification.getName()}"/></h3></p>
                             <p><c:out value="${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}"/></p>
                             <p><fmt:message key="rank"/>: <c:out value="${doctor.rank}"/></p>
                         </div>

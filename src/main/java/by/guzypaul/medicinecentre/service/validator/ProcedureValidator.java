@@ -48,7 +48,7 @@ public class ProcedureValidator {
                 && isValidPrice(procedure.getPrice())
                 && isValidDescription(procedure.getDescription())
                 && isValidateDoctorPicture(procedure.getImageName())
-                && isValidateDoctorQualification(procedure.getDoctorQualification());
+                && isValidateDoctorQualification(procedure.getDoctorQualification().getName());
     }
 
     private boolean isValidDuration(int duration) {

@@ -47,7 +47,7 @@ public class ChangeDoctorPageCommand implements Command {
             if  (doctorOptional.isPresent()) {
                 List<String> qualificationList = new ArrayList<>();
                 for (Qualification qualification : Qualification.values()) {
-                    String qualificationName = qualification.getQualificationName();
+                    String qualificationName = qualification.getName();
                     qualificationList.add(qualificationName);
                 }
                 request.setAttribute("qualificationList", qualificationList);

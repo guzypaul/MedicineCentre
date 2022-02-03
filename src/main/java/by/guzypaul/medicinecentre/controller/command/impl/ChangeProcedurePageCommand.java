@@ -49,7 +49,7 @@ public class ChangeProcedurePageCommand implements Command {
 
                 List<String> qualificationList = new ArrayList<>();
                 for (Qualification qualification : Qualification.values()) {
-                    String qualificationName = qualification.getQualificationName();
+                    String qualificationName = qualification.getName();
                     qualificationList.add(qualificationName);
                 }
 

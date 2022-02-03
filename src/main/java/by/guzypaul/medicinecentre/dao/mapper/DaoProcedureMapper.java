@@ -1,6 +1,7 @@
 package by.guzypaul.medicinecentre.dao.mapper;
 
 import by.guzypaul.medicinecentre.entity.Procedure;
+import by.guzypaul.medicinecentre.entity.Qualification;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +26,7 @@ public class DaoProcedureMapper {
         procedure.setImageName(resultSet.getString("image_name"));
         procedure.setPrice(resultSet.getBigDecimal("price")) ;
         procedure.setDuration(resultSet.getInt("duration"));
-        procedure.setDoctorQualification(resultSet.getString("doctor_qualification"));
+        procedure.setDoctorQualification(Qualification.findByName(resultSet.getString("doctor_qualification")));
 
         return procedure;
     }

@@ -154,7 +154,7 @@ public class DoctorDaoImpl implements DoctorDao {
     public boolean create(Doctor entity) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(CREATE_DOCTOR_BY_ID_SQL)) {
-            preparedStatement.setString(1, entity.getQualification());
+            preparedStatement.setString(1, entity.getQualification().getName());
             preparedStatement.setString(2, entity.getRank());
             preparedStatement.setInt(3, entity.getDoctorInfo().getId());
             preparedStatement.setString(4, entity.getPhotoName());
@@ -169,7 +169,7 @@ public class DoctorDaoImpl implements DoctorDao {
     public boolean update(Doctor entity) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().acquireConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DOCTOR_BY_ID_SQL)) {
-            preparedStatement.setString(1, entity.getQualification());
+            preparedStatement.setString(1, entity.getQualification().getName());
             preparedStatement.setString(2, entity.getRank());
             preparedStatement.setString(3, entity.getPhotoName());
             preparedStatement.setInt(4, entity.getId());

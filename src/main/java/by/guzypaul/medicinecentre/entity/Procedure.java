@@ -14,7 +14,7 @@ public class Procedure implements Entity{
     private BigDecimal price;
     private String description;
     private int duration;
-    private String doctorQualification;
+    private Qualification doctorQualification;
 
     /**
      * Instantiates a new Procedure.
@@ -32,7 +32,7 @@ public class Procedure implements Entity{
      * @param duration            the duration
      * @param doctorQualification the doctor qualification
      */
-    public Procedure(String name, String imageName, BigDecimal price, String description, int duration, String doctorQualification) {
+    public Procedure(String name, String imageName, BigDecimal price, String description, int duration, Qualification doctorQualification) {
         this.name = name;
         this.imageName = imageName;
         this.price = price;
@@ -52,7 +52,7 @@ public class Procedure implements Entity{
      * @param duration            the duration
      * @param doctorQualification the doctor qualification
      */
-    public Procedure(int id, String name, String imageName, BigDecimal price, String description, int duration, String doctorQualification) {
+    public Procedure(int id, String name, String imageName, BigDecimal price, String description, int duration, Qualification doctorQualification) {
         this.id = id;
         this.name = name;
         this.imageName = imageName;
@@ -71,7 +71,7 @@ public class Procedure implements Entity{
      * @param duration            the duration
      * @param doctorQualification the doctor qualification
      */
-    public Procedure(String name, BigDecimal price, String description, int duration, String doctorQualification) {
+    public Procedure(String name, BigDecimal price, String description, int duration, Qualification doctorQualification) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -89,7 +89,7 @@ public class Procedure implements Entity{
      * @param duration            the duration
      * @param doctorQualification the doctor qualification
      */
-    public Procedure(int id, String name, BigDecimal price, String description, int duration, String doctorQualification) {
+    public Procedure(int id, String name, BigDecimal price, String description, int duration, Qualification doctorQualification) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -211,7 +211,7 @@ public class Procedure implements Entity{
      *
      * @return the doctor qualification
      */
-    public String getDoctorQualification() {
+    public Qualification getDoctorQualification() {
         return doctorQualification;
     }
 
@@ -220,7 +220,7 @@ public class Procedure implements Entity{
      *
      * @param doctorQualification the doctor qualification
      */
-    public void setDoctorQualification(String doctorQualification) {
+    public void setDoctorQualification(Qualification doctorQualification) {
         this.doctorQualification = doctorQualification;
     }
 

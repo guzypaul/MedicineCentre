@@ -1,6 +1,7 @@
 package by.guzypaul.medicinesentre.service.validator;
 
 import by.guzypaul.medicinecentre.entity.Procedure;
+import by.guzypaul.medicinecentre.entity.Qualification;
 import by.guzypaul.medicinecentre.service.checker.FileFormatChecker;
 import by.guzypaul.medicinecentre.service.validator.ProcedureValidator;
 import org.junit.Assert;
@@ -22,7 +23,7 @@ public class ProcedureValidatorTest {
         procedureValidator = new ProcedureValidator();
         formatChecker = mock(FileFormatChecker.class);
         testProcedure = new Procedure("surgery", "default.jpg", BigDecimal.valueOf(500),
-                "removing something extra ", 30, "surgeon");
+                "removing something extra ", 30, Qualification.SURGEON);
     }
 
     @Test
@@ -87,18 +88,6 @@ public class ProcedureValidatorTest {
     @Test
     void validateProcedureWithInvalidDurationTest() {
         testProcedure.setDuration(3);
-        Assert.assertFalse(procedureValidator.validateProcedure(testProcedure));
-    }
-
-    @Test
-    void validateProcedureWithInvalidQualificationTest() {
-        testProcedure.setDoctorQualification("SantaClaus");
-        Assert.assertFalse(procedureValidator.validateProcedure(testProcedure));
-    }
-
-    @Test
-    void validateProcedureWithNullQualificationTest() {
-        testProcedure.setDoctorQualification(null);
         Assert.assertFalse(procedureValidator.validateProcedure(testProcedure));
     }
 }
