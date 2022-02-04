@@ -58,13 +58,13 @@ public class ChangeUserCommand implements Command {
                 }
             }
 
-            if (!String.valueOf(userService.readByEmail(email).get().getId()).equals(userId)) {
+            /*if (!String.valueOf(userService.readByEmail(email).get().getId()).equals(userId)) { //todo
                 throw new CommandException("User with such e-mail already exist!");
             }
 
             if (!String.valueOf(userService.readByPhone(phone).get().getId()).equals(userId)) {
                 throw new CommandException("User with such phone number already exist!");
-            }
+            }*/
 
             Optional<User> userOptional = userService.readById(userId);
 

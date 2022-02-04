@@ -39,7 +39,7 @@ public class CreateAppointmentPageCommand implements Command {
             Optional<Procedure> procedureOptional = procedureService.readById(procedureId);
 
             if (procedureOptional.isPresent()) {
-                String doctorQualification = procedureOptional.get().getDoctorQualification().getName(); //todo check
+                String doctorQualification = procedureOptional.get().getDoctorQualification().getName();
                 List<Doctor> doctorList = doctorService.readByQualification(doctorQualification);
                 request.setAttribute("doctorList", doctorList);
                 request.setAttribute("procedureId", procedureId);
