@@ -1,7 +1,6 @@
 package by.guzypaul.medicinecentre.service;
 
 import by.guzypaul.medicinecentre.service.impl.*;
-import by.guzypaul.medicinecentre.service.interfaces.*;
 
 /**
  * The type Service factory.

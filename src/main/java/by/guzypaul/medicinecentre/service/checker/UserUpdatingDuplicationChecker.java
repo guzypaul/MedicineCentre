@@ -2,7 +2,7 @@ package by.guzypaul.medicinecentre.service.checker;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.DaoFactory;
-import by.guzypaul.medicinecentre.dao.interfaces.UserDao;
+import by.guzypaul.medicinecentre.dao.UserDao;
 import by.guzypaul.medicinecentre.entity.User;
 
 import java.util.Optional;

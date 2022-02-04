@@ -1,7 +1,7 @@
 package by.guzypaul.medicinecentre.service.validator;
 
 import by.guzypaul.medicinecentre.entity.Appointment;
-import by.guzypaul.medicinecentre.entity.AppStatus;
+import by.guzypaul.medicinecentre.entity.AppointmentStatus;
 
 import java.sql.Time;
 import java.time.LocalDate;
@@ -15,9 +15,27 @@ public class AppointmentValidator {
     private static final LocalDate MIN_DATE = LocalDate.now();
     private static final Time START_TIME = Time.valueOf("08:00:00");
     private static final Time END_TIME = Time.valueOf("22:00:00");
-    private final UserValidator userValidator = new UserValidator();
-    private final DoctorValidator doctorValidator = new DoctorValidator();
-    private final ProcedureValidator procedureValidator = new ProcedureValidator();
+    private UserValidator userValidator;
+    private DoctorValidator doctorValidator;
+    private ProcedureValidator procedureValidator;
+
+    public AppointmentValidator() {
+        userValidator = new UserValidator();
+        doctorValidator = new DoctorValidator();
+        procedureValidator = new ProcedureValidator();
+    }
+
+    public void setUserValidator(UserValidator userValidator) {
+        this.userValidator = userValidator;
+    }
+
+    public void setDoctorValidator(DoctorValidator doctorValidator) {
+        this.doctorValidator = doctorValidator;
+    }
+
+    public void setProcedureValidator(ProcedureValidator procedureValidator) {
+        this.procedureValidator = procedureValidator;
+    }
 
     /**
      * Validate appointment boolean.
@@ -48,6 +66,6 @@ public class AppointmentValidator {
     }
 
     private boolean isValidStatus(String text) {
-        return text != null && AppStatus.isValidAppointmentStatus(text);
+        return text != null && AppointmentStatus.isValidAppointmentStatus(text);
     }
 }

@@ -1,6 +1,5 @@
-package by.guzypaul.medicinecentre.dao.interfaces;
+package by.guzypaul.medicinecentre.dao;
 
-import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.entity.DoctorSchedule;
 
 import java.util.Optional;

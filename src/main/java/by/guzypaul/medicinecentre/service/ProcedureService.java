@@ -1,4 +1,4 @@
-package by.guzypaul.medicinecentre.service.interfaces;
+package by.guzypaul.medicinecentre.service;
 
 import by.guzypaul.medicinecentre.entity.Procedure;
 

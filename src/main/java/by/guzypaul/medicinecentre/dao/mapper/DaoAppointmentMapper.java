@@ -1,6 +1,6 @@
 package by.guzypaul.medicinecentre.dao.mapper;
 
-import by.guzypaul.medicinecentre.entity.AppStatus;
+import by.guzypaul.medicinecentre.entity.AppointmentStatus;
 import by.guzypaul.medicinecentre.entity.Appointment;
 
 import java.sql.ResultSet;
@@ -31,7 +31,7 @@ public class DaoAppointmentMapper {
         appointment.setStartTime(resultSet.getTime("start_time"));
         appointment.setEndTime(resultSet.getTime("end_time"));
         appointment.setProcedure(daoProcedureMapper.mapProcedure(resultSet));
-        appointment.setStatus(AppStatus.valueOf(resultSet.getString("status").toUpperCase()));
+        appointment.setStatus(AppointmentStatus.valueOf(resultSet.getString("status").toUpperCase()));
 
         return appointment;
     }

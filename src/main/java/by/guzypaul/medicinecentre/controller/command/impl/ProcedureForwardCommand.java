@@ -6,7 +6,7 @@ import by.guzypaul.medicinecentre.controller.command.Router;
 import by.guzypaul.medicinecentre.entity.Procedure;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
-import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
+import by.guzypaul.medicinecentre.service.ProcedureService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;

@@ -82,4 +82,12 @@ public class UserValidatorTest {
         testUser.setPhone(null);
         Assert.assertFalse(userValidator.validateUser(testUser));
     }
+
+    @Test
+    void validateUserWithNullRoleTest() {
+        testUser.setRole(null);
+        Assert.assertFalse(userValidator.validateUserForUpdating(testUser));
+    }
+
+
 }

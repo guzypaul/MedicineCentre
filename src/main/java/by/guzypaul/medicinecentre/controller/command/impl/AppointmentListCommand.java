@@ -7,8 +7,8 @@ import by.guzypaul.medicinecentre.entity.Appointment;
 import by.guzypaul.medicinecentre.entity.Doctor;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
-import by.guzypaul.medicinecentre.service.interfaces.AppointmentService;
-import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
+import by.guzypaul.medicinecentre.service.AppointmentService;
+import by.guzypaul.medicinecentre.service.DoctorService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

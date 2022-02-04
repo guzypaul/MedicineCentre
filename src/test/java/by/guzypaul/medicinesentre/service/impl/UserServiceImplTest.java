@@ -1,14 +1,13 @@
 package by.guzypaul.medicinesentre.service.impl;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
-import by.guzypaul.medicinecentre.dao.interfaces.UserDao;
+import by.guzypaul.medicinecentre.dao.UserDao;
 import by.guzypaul.medicinecentre.entity.Role;
 import by.guzypaul.medicinecentre.entity.User;
-import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.checker.UserCreatingDuplicationChecker;
 import by.guzypaul.medicinecentre.service.checker.UserUpdatingDuplicationChecker;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
-import by.guzypaul.medicinecentre.service.interfaces.UserService;
+import by.guzypaul.medicinecentre.service.impl.UserServiceImpl;
 import by.guzypaul.medicinecentre.service.validator.UserValidator;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,8 +20,8 @@ import java.util.Optional;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class UserServiceTest {
-    private UserService userService;
+public class UserServiceImplTest {
+    private UserServiceImpl userService;
     private UserDao userDao;
     private User firstTestUser;
     private User secondTestUser;
@@ -32,11 +31,15 @@ public class UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        userService = ServiceFactory.getInstance().getUserService();
+        userService = new UserServiceImpl();
         userDao = mock(UserDao.class);
         userValidator = mock(UserValidator.class);
         userCreatingDuplicationChecker = mock(UserCreatingDuplicationChecker.class);
         userUpdatingDuplicationChecker = mock(UserUpdatingDuplicationChecker.class);
+        userService.setUserDao(userDao);
+        userService.setUserValidator(userValidator);
+        userService.setUserCreatingDuplicationChecker(userCreatingDuplicationChecker);
+        userService.setUserUpdatingDuplicationChecker(userUpdatingDuplicationChecker);
 
         firstTestUser = new User(1, "Dmitriy", "Kruglov", "kruglov@gmail.com",
                 "123456", "+37525123456", Role.USER);
@@ -54,12 +57,12 @@ public class UserServiceTest {
     @Test
     void readUsersByIdTest() throws DaoException, ServiceException {
         when(userDao.readById(1)).thenReturn(Optional.of(firstTestUser));
-        Assert.assertEquals(firstTestUser, userService.readById("1"));
+        Assert.assertEquals(firstTestUser, userService.readById("1").get());
     }
 
     @Test
     void readUserWithInvalidIdTest() {
-        Assert.assertThrows(ServiceException.class, () -> userService.readById("egeg"));
+        Assert.assertThrows(NumberFormatException.class, () -> userService.readById("egeg"));
     }
 
     @Test
@@ -78,7 +81,7 @@ public class UserServiceTest {
 
     @Test
     void deleteUserWithInvalidIdTest() {
-        Assert.assertThrows(ServiceException.class, () -> userService.deleteById("dada"));
+        Assert.assertThrows(NumberFormatException.class, () -> userService.deleteById("dada"));
     }
 
     @Test
@@ -87,15 +90,6 @@ public class UserServiceTest {
         when(userUpdatingDuplicationChecker.checkDuplication(firstTestUser)).thenReturn(true);
         when(userDao.update(firstTestUser)).thenReturn(true);
         Assert.assertTrue(userService.update(firstTestUser));
-    }
-
-    @Test
-    void updateUserWithInvalidIdTest() throws DaoException {
-        firstTestUser.setId(0);
-        when(userValidator.validateUserForUpdating(firstTestUser)).thenReturn(true);
-        when(userUpdatingDuplicationChecker.checkDuplication(firstTestUser)).thenReturn(true);
-        when(userDao.update(firstTestUser)).thenReturn(true);
-        Assert.assertThrows(ServiceException.class, () -> userService.update(firstTestUser));
     }
 
     @Test

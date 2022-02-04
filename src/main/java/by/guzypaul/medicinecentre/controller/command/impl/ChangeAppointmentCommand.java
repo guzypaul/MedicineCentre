@@ -6,10 +6,10 @@ import by.guzypaul.medicinecentre.controller.command.Router;
 import by.guzypaul.medicinecentre.entity.*;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
-import by.guzypaul.medicinecentre.service.interfaces.AppointmentService;
-import by.guzypaul.medicinecentre.service.interfaces.DoctorService;
-import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
-import by.guzypaul.medicinecentre.service.interfaces.UserService;
+import by.guzypaul.medicinecentre.service.AppointmentService;
+import by.guzypaul.medicinecentre.service.DoctorService;
+import by.guzypaul.medicinecentre.service.ProcedureService;
+import by.guzypaul.medicinecentre.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Time;
@@ -76,7 +76,7 @@ public class ChangeAppointmentCommand implements Command {
 
                 Appointment appointment = new Appointment(Integer.parseInt(appointmentId), userClientOptional.get(),
                         doctorOptional.get(), LocalDate.parse(date), startTime, endTime,
-                        procedureOptional.get(), AppStatus.valueOf(status));
+                        procedureOptional.get(), AppointmentStatus.valueOf(status));
                 appointmentService.update(appointment);
                 request.getSession().setAttribute("isAppointmentChanged", true);
                 return new Router("/controller?command=appointments", Router.Type.REDIRECT);

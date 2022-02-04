@@ -1,4 +1,4 @@
-package by.guzypaul.medicinecentre.service.interfaces;
+package by.guzypaul.medicinecentre.service;
 
 import by.guzypaul.medicinecentre.entity.DoctorSchedule;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;

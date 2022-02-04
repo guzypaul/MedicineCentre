@@ -1,6 +1,5 @@
-package by.guzypaul.medicinecentre.dao.interfaces;
+package by.guzypaul.medicinecentre.dao;
 
-import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.entity.Appointment;
 
 import java.util.List;

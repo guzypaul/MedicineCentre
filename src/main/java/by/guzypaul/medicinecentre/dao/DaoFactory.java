@@ -1,7 +1,6 @@
 package by.guzypaul.medicinecentre.dao;
 
 import by.guzypaul.medicinecentre.dao.impl.*;
-import by.guzypaul.medicinecentre.dao.interfaces.*;
 
 /**
  * The type Dao factory.

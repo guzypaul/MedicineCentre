@@ -2,12 +2,12 @@ package by.guzypaul.medicinecentre.service.impl;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.DaoFactory;
-import by.guzypaul.medicinecentre.dao.interfaces.UserDao;
+import by.guzypaul.medicinecentre.dao.UserDao;
 import by.guzypaul.medicinecentre.entity.User;
+import by.guzypaul.medicinecentre.service.checker.UserCreatingDuplicationChecker;
 import by.guzypaul.medicinecentre.service.checker.UserUpdatingDuplicationChecker;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
-import by.guzypaul.medicinecentre.service.interfaces.UserService;
-import by.guzypaul.medicinecentre.service.checker.UserCreatingDuplicationChecker;
+import by.guzypaul.medicinecentre.service.UserService;
 import by.guzypaul.medicinecentre.service.validator.UserValidator;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -22,10 +22,10 @@ import java.util.Optional;
  */
 public class UserServiceImpl implements UserService {
     private static final String INVALID_USER = "Invalid user!";
-    private final UserDao userDao;
-    private final UserValidator userValidator;
-    private final UserCreatingDuplicationChecker userCreatingDuplicationChecker;
-    private final UserUpdatingDuplicationChecker userUpdatingDuplicationChecker;
+    private UserDao userDao;
+    private UserValidator userValidator;
+    private UserCreatingDuplicationChecker userCreatingDuplicationChecker;
+    private UserUpdatingDuplicationChecker userUpdatingDuplicationChecker;
 
     /**
      * Instantiates a new User service.
@@ -35,6 +35,42 @@ public class UserServiceImpl implements UserService {
         userValidator = new UserValidator();
         userCreatingDuplicationChecker = new UserCreatingDuplicationChecker();
         userUpdatingDuplicationChecker = new UserUpdatingDuplicationChecker();
+    }
+
+    /**
+     * Sets user dao.
+     *
+     * @param userDao the user dao
+     */
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    /**
+     * Sets user validator.
+     *
+     * @param userValidator the user validator
+     */
+    public void setUserValidator(UserValidator userValidator) {
+        this.userValidator = userValidator;
+    }
+
+    /**
+     * Sets user creating duplication checker.
+     *
+     * @param userCreatingDuplicationChecker the user creating duplication checker
+     */
+    public void setUserCreatingDuplicationChecker(UserCreatingDuplicationChecker userCreatingDuplicationChecker) {
+        this.userCreatingDuplicationChecker = userCreatingDuplicationChecker;
+    }
+
+    /**
+     * Sets user updating duplication checker.
+     *
+     * @param userUpdatingDuplicationChecker the user updating duplication checker
+     */
+    public void setUserUpdatingDuplicationChecker(UserUpdatingDuplicationChecker userUpdatingDuplicationChecker) {
+        this.userUpdatingDuplicationChecker = userUpdatingDuplicationChecker;
     }
 
     @Override
@@ -100,11 +136,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean update(User entity) throws ServiceException {
         try {
-            if (userValidator.validateUserForUpdating(entity)
-                    && userUpdatingDuplicationChecker.checkDuplication(entity)) {
-                return userDao.update(entity);
+            if (!userValidator.validateUserForUpdating(entity)) {
+                throw new ServiceException(INVALID_USER);
             }
-            throw new ServiceException(INVALID_USER);
+
+            if (!userUpdatingDuplicationChecker.checkDuplication(entity)) {
+                throw new ServiceException("User with such e-mail or phone number already exist!");
+            }
+
+            return userDao.update(entity);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

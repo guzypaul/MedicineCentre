@@ -7,7 +7,7 @@ import by.guzypaul.medicinecentre.entity.Role;
 import by.guzypaul.medicinecentre.entity.User;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
-import by.guzypaul.medicinecentre.service.interfaces.UserService;
+import by.guzypaul.medicinecentre.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;

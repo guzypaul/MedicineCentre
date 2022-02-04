@@ -2,10 +2,10 @@ package by.guzypaul.medicinecentre.service.impl;
 
 import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.DaoFactory;
-import by.guzypaul.medicinecentre.dao.interfaces.ProcedureDao;
+import by.guzypaul.medicinecentre.dao.ProcedureDao;
 import by.guzypaul.medicinecentre.entity.Procedure;
 import by.guzypaul.medicinecentre.service.exception.ServiceException;
-import by.guzypaul.medicinecentre.service.interfaces.ProcedureService;
+import by.guzypaul.medicinecentre.service.ProcedureService;
 import by.guzypaul.medicinecentre.service.validator.ProcedureValidator;
 
 import java.util.List;

@@ -4,7 +4,7 @@ import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.DaoFactory;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPool;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPoolException;
-import by.guzypaul.medicinecentre.dao.interfaces.DoctorDao;
+import by.guzypaul.medicinecentre.dao.DoctorDao;
 import by.guzypaul.medicinecentre.dao.mapper.DaoDoctorMapper;
 import by.guzypaul.medicinecentre.entity.Doctor;
 import by.guzypaul.medicinecentre.entity.User;

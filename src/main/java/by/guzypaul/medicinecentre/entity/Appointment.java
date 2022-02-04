@@ -16,7 +16,7 @@ public class Appointment implements Entity {
     private Time startTime;
     private Time endTime;
     private Procedure procedure;
-    private AppStatus status;
+    private AppointmentStatus status;
 
     /**
      * Instantiates a new Appointment.
@@ -35,7 +35,7 @@ public class Appointment implements Entity {
      * @param procedure  the procedure
      * @param status     the status
      */
-    public Appointment(User userClient, Doctor doctor, LocalDate date, Time startTime, Time endTime, Procedure procedure, AppStatus status) {
+    public Appointment(User userClient, Doctor doctor, LocalDate date, Time startTime, Time endTime, Procedure procedure, AppointmentStatus status) {
         this.userClient = userClient;
         this.doctor = doctor;
         this.date = date;
@@ -57,7 +57,7 @@ public class Appointment implements Entity {
      * @param procedure  the procedure
      * @param status     the status
      */
-    public Appointment(int id, User userClient, Doctor doctor, LocalDate date, Time startTime, Time endTime, Procedure procedure, AppStatus status) {
+    public Appointment(int id, User userClient, Doctor doctor, LocalDate date, Time startTime, Time endTime, Procedure procedure, AppointmentStatus status) {
         this.id = id;
         this.userClient = userClient;
         this.doctor = doctor;
@@ -199,7 +199,7 @@ public class Appointment implements Entity {
      *
      * @return the status
      */
-    public AppStatus getStatus() {
+    public AppointmentStatus getStatus() {
         return status;
     }
 
@@ -208,7 +208,7 @@ public class Appointment implements Entity {
      *
      * @param status the status
      */
-    public void setStatus(AppStatus status) {
+    public void setStatus(AppointmentStatus status) {
         this.status = status;
     }
 

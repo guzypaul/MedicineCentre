@@ -3,7 +3,7 @@ package by.guzypaul.medicinecentre.dao.impl;
 import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPool;
 import by.guzypaul.medicinecentre.dao.connection.ConnectionPoolException;
-import by.guzypaul.medicinecentre.dao.interfaces.DoctorScheduleDao;
+import by.guzypaul.medicinecentre.dao.DoctorScheduleDao;
 import by.guzypaul.medicinecentre.dao.mapper.DaoDoctorScheduleMapper;
 import by.guzypaul.medicinecentre.entity.DoctorSchedule;
 
