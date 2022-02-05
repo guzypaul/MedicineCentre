@@ -53,6 +53,9 @@
                     </c:forEach>
                 </div>
                 <br>
+                <div>
+                    <h3><fmt:message key="choose.date.time"/></h3>
+                </div>
                 <div class="row">
                     <div class="col-lg-5"></div>
                     <div class="col-lg-2">
