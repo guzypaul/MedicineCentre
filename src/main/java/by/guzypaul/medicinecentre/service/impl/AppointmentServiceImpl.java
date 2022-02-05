@@ -1,11 +1,12 @@
 package by.guzypaul.medicinecentre.service.impl;
 
+import by.guzypaul.medicinecentre.dao.AppointmentDao;
 import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.DaoFactory;
-import by.guzypaul.medicinecentre.dao.AppointmentDao;
 import by.guzypaul.medicinecentre.entity.Appointment;
-import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.AppointmentService;
+import by.guzypaul.medicinecentre.service.checker.AppointmentDuplicationChecker;
+import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.validator.AppointmentValidator;
 
 import java.util.List;
@@ -18,8 +19,10 @@ import java.util.Optional;
  */
 public class AppointmentServiceImpl implements AppointmentService {
     private static final String INVALID_APPOINTMENT = "Invalid appointment!";
+    private static final String INVALID_DATE_TIME = "Sorry, this time is busy. Please select another!";
     private final AppointmentDao appointmentDao;
     private final AppointmentValidator appointmentValidator;
+    private final AppointmentDuplicationChecker appointmentDuplicationChecker;
 
     /**
      * Instantiates a new Appointment service.
@@ -27,6 +30,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     public AppointmentServiceImpl() {
         appointmentDao = DaoFactory.getInstance().getAppointmentDao();
         appointmentValidator = new AppointmentValidator();
+        appointmentDuplicationChecker = new AppointmentDuplicationChecker();
     }
 
     @Override
@@ -77,10 +81,15 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public boolean create(Appointment entity) throws ServiceException {
         try {
-            if (appointmentValidator.validateAppointment(entity)) {
-                return appointmentDao.create(entity);
+            if (!appointmentValidator.validateAppointment(entity)) {
+                throw new ServiceException(INVALID_APPOINTMENT);
             }
-            throw new ServiceException(INVALID_APPOINTMENT);
+
+            if (!appointmentDuplicationChecker.checkDuplication(entity)) {
+                throw new ServiceException(INVALID_DATE_TIME);
+            }
+
+            return appointmentDao.create(entity);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -89,10 +98,15 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public boolean update(Appointment entity) throws ServiceException {
         try {
-            if (appointmentValidator.validateAppointment(entity)) {
-                return appointmentDao.update(entity);
+            if (!appointmentValidator.validateAppointment(entity)) {
+                throw new ServiceException(INVALID_APPOINTMENT);
             }
-            throw new ServiceException(INVALID_APPOINTMENT);
+
+            if (!appointmentDuplicationChecker.checkDuplication(entity)) {
+                throw new ServiceException(INVALID_DATE_TIME);
+            }
+
+            return appointmentDao.update(entity);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

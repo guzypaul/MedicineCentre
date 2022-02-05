@@ -80,7 +80,7 @@ public class CreateAppointmentCommand implements Command {
                 throw new CommandException("Return and fill all fields correctly please!");
             }
         } catch (ServiceException e) {
-            throw new CommandException("Return and fill all fields correctly please!");
+            throw new CommandException(e.getMessage());
         }
     }
 }

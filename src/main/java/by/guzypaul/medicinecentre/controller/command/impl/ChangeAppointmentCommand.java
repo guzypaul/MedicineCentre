@@ -85,7 +85,7 @@ public class ChangeAppointmentCommand implements Command {
                 return new Router("/controller?command=change_appointment_page", Router.Type.REDIRECT);
             }
         } catch (ServiceException e) {
-            throw new CommandException(e);
+            throw new CommandException(e.getMessage());
         }
     }
 }
