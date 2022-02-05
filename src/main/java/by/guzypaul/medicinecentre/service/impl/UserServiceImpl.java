@@ -22,6 +22,7 @@ import java.util.Optional;
  */
 public class UserServiceImpl implements UserService {
     private static final String INVALID_USER = "Invalid user!";
+    private static final String DUPLICATE_USER = "User with such e-mail or phone number already exist!";
     private UserDao userDao;
     private UserValidator userValidator;
     private UserCreatingDuplicationChecker userCreatingDuplicationChecker;
@@ -121,13 +122,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean create(User entity) throws ServiceException {
         try {
-            if (userValidator.validateUser(entity)
-                    && userCreatingDuplicationChecker.checkDuplication(entity)) {
-                entity.setPassword(BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()));
-                return userDao.create(entity);
+            if (!userValidator.validateUser(entity) ) {
+                throw new ServiceException(INVALID_USER);
             }
 
-            return false;
+            if (!userCreatingDuplicationChecker.checkDuplication(entity)) {
+                throw new ServiceException(DUPLICATE_USER);
+            }
+
+            entity.setPassword(BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()));
+            return userDao.create(entity);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -141,7 +145,7 @@ public class UserServiceImpl implements UserService {
             }
 
             if (!userUpdatingDuplicationChecker.checkDuplication(entity)) {
-                throw new ServiceException("User with such e-mail or phone number already exist!");
+                throw new ServiceException(DUPLICATE_USER);
             }
 
             return userDao.update(entity);

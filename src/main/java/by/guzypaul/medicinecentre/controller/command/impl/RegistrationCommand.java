@@ -56,7 +56,7 @@ public class RegistrationCommand implements Command {
                 return new Router("/controller?command=registration_page", Router.Type.REDIRECT);
             }
         } catch (ServiceException e) {
-            throw new CommandException(e);
+            throw new CommandException(e.getMessage());
         }
     }
 }
