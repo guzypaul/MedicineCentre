@@ -32,25 +32,25 @@
                     <div>
                         <label for="name"><fmt:message key="name"/></label>
                         <input id="name" class="form-control" tabindex="1" value="${user.name}" type="text"
-                               name="name"/>
+                               name="name" required/>
                     </div>
                     <br>
                     <div>
                         <label for="surname"><fmt:message key="surname"/></label>
                         <input id="surname" class="form-control" tabindex="2" value="${user.surname}" type="text"
-                               name="surname"/>
+                               name="surname" required/>
                     </div>
                     <br>
                     <div>
                         <label for="phone"><fmt:message key="phone.number"/></label>
                         <input id="phone" class="form-control" tabindex="3" value="${user.phone}" type="text"
-                               name="phone"/>
+                               name="phone" required/>
                     </div>
                     <br>
                     <div>
                         <label for="email"><fmt:message key="email"/></label>
                         <input id="email" class="form-control" tabindex="4" value="${user.email}"
-                               type="text" name="email"/>
+                               type="text" name="email" required/>
                     </div>
                     <br>
                     <c:if test="${role == 'ADMIN' || role == 'MODERATOR'}">
@@ -75,7 +75,7 @@
                         <br>
                     </c:if>
                     <div>
-                        <button type="submit" class="btn btn-warning"><fmt:message key="change"/></button>
+                        <button type="submit" class="btn btn-warning btn-block"><fmt:message key="change"/></button>
                     </div>
                 </div>
             </form>

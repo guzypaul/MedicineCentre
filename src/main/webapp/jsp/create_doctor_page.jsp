@@ -39,38 +39,38 @@
                     <br>
                     <div>
                         <label for="rank"><fmt:message key="rank"/></label>
-                        <input id="rank" class="form-control" tabindex="2" placeholder="<fmt:message key="rank"/>" type="text" name="rank"/>
+                        <input id="rank" class="form-control" tabindex="2" placeholder="<fmt:message key="rank"/>" type="text" name="rank" required/>
                     </div>
                     <br>
                     <div>
                         <label for="userId"><fmt:message key="user"/> <fmt:message key="id"/></label>
                         <input id="userId" class="form-control" tabindex="3" placeholder="<fmt:message key="user"/> <fmt:message key="id"/>" type="text"
-                               name="userId"/>
+                               name="userId" required/>
                     </div>
                     <br>
                     <div class="mb-3">
                         <label for="formFileSm" class="form-label"><fmt:message key="picture"/></label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file" name="doctor-picture">
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" name="doctor-picture" required>
                     </div>
                     <br>
                     <div>
                         <label for="startTime"><fmt:message key="start.time"/></label>
-                        <input id="startTime" class="form-control" type="time" name="startTime">
+                        <input id="startTime" class="form-control" type="time" name="startTime" required>
                     </div>
                     <br>
                     <div>
                         <label for="endTime"><fmt:message key="end.time"/></label>
-                        <input id="endTime" class="form-control" type="time" name="endTime"/>
+                        <input id="endTime" class="form-control" type="time" name="endTime" required/>
                     </div>
                     <br>
                     <div>
                         <label for="info"><fmt:message key="days"/></label>
                         <input id="info" class="form-control" tabindex="7" placeholder="<fmt:message key="days"/>" type="text"
-                               name="info"/>
+                               name="info" required/>
                     </div>
                     <br>
                     <div>
-                        <button type="submit" class="btn btn-warning"><fmt:message key="create"/></button>
+                        <button type="submit" class="btn btn-warning btn-block"><fmt:message key="create"/></button>
                     </div>
                 </div>
             </form>

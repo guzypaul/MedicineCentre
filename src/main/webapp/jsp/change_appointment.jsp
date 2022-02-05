@@ -52,13 +52,13 @@
                     <br>
                     <div>
                         <label for="date"> <fmt:message key="date"/></label>
-                        <input id="date" class="form-control" value="${appointment.date}" type="date" name="date">
+                        <input id="date" class="form-control" value="${appointment.date}" type="date" name="date" required>
                     </div>
                     <br>
                     <div>
                         <label for="startTime"> <fmt:message key="start.time"/></label>
                         <input id="startTime" class="form-control" value="${appointment.startTime}" type="time"
-                               name="startTime">
+                               name="startTime" required>
                     </div>
                     <br>
                     <div>
@@ -74,7 +74,7 @@
                     </div>
                     <br>
                     <div>
-                        <button type="submit" class="btn btn-warning"><fmt:message key="change"/></button>
+                        <button type="submit" class="btn btn-warning btn-block"><fmt:message key="change"/></button>
                     </div>
                 </div>
             </form>

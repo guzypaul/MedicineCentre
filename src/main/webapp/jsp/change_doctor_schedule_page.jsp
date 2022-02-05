@@ -35,22 +35,22 @@
                     <br>
                     <div>
                         <label for="startTime"><fmt:message key="start.time"/></label>
-                        <input id="startTime" class="form-control" value="${doctorSchedule.startTime}" type="time" name="startTime">
+                        <input id="startTime" class="form-control" value="${doctorSchedule.startTime}" type="time" name="startTime" required/>
                     </div>
                     <br>
                     <div>
                         <label for="endTime"><fmt:message key="end.time"/></label>
-                        <input id="endTime" class="form-control" value="${doctorSchedule.endTime}" type="time" name="endTime"/>
+                        <input id="endTime" class="form-control" value="${doctorSchedule.endTime}" type="time" name="endTime" required/>
                     </div>
                     <br>
                     <div>
                         <label for="info"><fmt:message key="days"/></label>
                         <input id="info" class="form-control" tabindex="3" value="${doctorSchedule.info}" type="text"
-                               name="info"/>
+                               name="info" required/>
                     </div>
                     <br>
                     <div>
-                        <button type="submit" class="btn btn-warning"><fmt:message key="change"/></button>
+                        <button type="submit" class="btn btn-warning btn-block"><fmt:message key="change"/></button>
                     </div>
                 </div>
             </form>

@@ -50,7 +50,7 @@
                     <div>
                         <label for="rank"><fmt:message key="rank"/></label>
                         <input id="rank" class="form-control" tabindex="2" value="${doctor.rank}" type="text"
-                               name="rank"/>
+                               name="rank" required/>
                     </div>
                     <br>
                     <div class="mb-3">
@@ -60,7 +60,7 @@
                     </div>
                     <br>
                     <div>
-                        <button type="submit" class="btn btn-warning"><fmt:message key="change"/></button>
+                        <button type="submit" class="btn btn-warning btn-block"><fmt:message key="change"/></button>
                     </div>
                 </div>
             </form>

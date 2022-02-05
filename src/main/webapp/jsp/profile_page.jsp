@@ -38,7 +38,7 @@
             </div>
             <c:if test="${role == 'DOCTOR'}">
                 <div class="col-lg-4">
-                    <h4><fmt:message key="qualification"/>: <c:out value="${doctor.qualification}"/></h4>
+                    <h4><fmt:message key="qualification"/>: <c:out value="${doctor.qualification.getName()}"/></h4>
                     <h4><fmt:message key="rank"/>: <c:out value="${doctor.rank}"/></h4>
                     <h4><fmt:message key="schedule"/></h4>
                     <h4><fmt:message key="start.time"/>: <c:out value="${schedule.startTime}"/></h4>

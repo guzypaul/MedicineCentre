@@ -36,7 +36,7 @@
                     <div>
                         <label for="name"><fmt:message key="name"/></label>
                         <input id="name" class="form-control" tabindex="1" value="${procedure.name}" type="text"
-                               name="name"/>
+                               name="name" required/>
                     </div>
                     <br>
                     <div class="mb-3">
@@ -48,20 +48,20 @@
                     <div>
                         <label for="price"><fmt:message key="price"/> $</label>
                         <input id="price" class="form-control" tabindex="3" value="${procedure.price}" type="text"
-                               name="price"/>
+                               name="price" required/>
                     </div>
                     <br>
                     <div>
                         <label for="description"><fmt:message key="description"/></label>
                         <input id="description" class="form-control" tabindex="4" value="${procedure.description}"
                                type="text"
-                               name="description"/>
+                               name="description" required/>
                     </div>
                     <br>
                     <div>
                         <label for="duration"><fmt:message key="duration"/> (<fmt:message key="minutes"/>)</label>
                         <input id="duration" class="form-control" tabindex="5" value="${procedure.duration}" type="text"
-                               name="duration"/>
+                               name="duration" required/>
                     </div>
                     <br>
                     <div>
@@ -78,7 +78,7 @@
                     </div>
                     <br>
                     <div>
-                        <button type="submit" class="btn btn-warning"><fmt:message key="change"/></button>
+                        <button type="submit" class="btn btn-warning btn-block"><fmt:message key="change"/></button>
                     </div>
                 </div>
             </form>
