@@ -34,7 +34,7 @@
                     <c:forEach items="${doctorList}" var="doctor">
                         <div class="col-lg-3">
                             <div class="form-check">
-                                <input value="${doctor.id}" class="form-check-input" type="radio" name="doctorId"
+                                <input value="${doctor.id}" class="form-check-input" type="radio" name="doctorId" required
                                        id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     <h5><c:out value="${doctor.doctorInfo.name} ${doctor.doctorInfo.surname}"/></h5>
@@ -64,16 +64,16 @@
                         <br>
                         <div>
                             <label for="date"><fmt:message key="date"/></label>
-                            <input id="date" class="form-control" type="date" name="date">
+                            <input id="date" class="form-control" type="date" name="date" required >
                         </div>
                         <br>
                         <div>
                             <label for="startTime"><fmt:message key="start.time"/></label>
-                            <input id="startTime" class="form-control" type="time" name="startTime">
+                            <input id="startTime" class="form-control" type="time" name="startTime" required >
                         </div>
                         <br>
                         <div>
-                            <button type="submit" class="btn btn-warning"><fmt:message key="make"/> <fmt:message key="appointment"/></button>
+                            <button type="submit" class="btn btn-warning btn-block"><fmt:message key="make"/> <fmt:message key="appointment"/></button>
                         </div>
                     </div>
                 </div>

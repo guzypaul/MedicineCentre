@@ -27,31 +27,31 @@
                 <div class="container-fluid">
                     <div>
                         <label for="name"><fmt:message key="name"/></label>
-                        <input id="name" class="form-control" tabindex="1" placeholder="<fmt:message key="name"/>" type="text" name="name"/>
+                        <input id="name" class="form-control" tabindex="1" placeholder="<fmt:message key="name"/>" type="text" name="name" required/>
                     </div>
                     <br>
                     <div>
                         <label for="surname"> <fmt:message key="surname"/></label>
-                        <input id="surname" class="form-control" tabindex="2" placeholder=" <fmt:message key="surname"/>" type="text" name="surname"/>
+                        <input id="surname" class="form-control" tabindex="2" placeholder=" <fmt:message key="surname"/>" type="text" name="surname" required/>
                     </div>
                     <br>
                     <div>
                         <label for="phone-number"><fmt:message key="phone.number"/></label>
-                        <input id="phone-number" class="form-control" tabindex="3" placeholder="<fmt:message key="phone.number"/>" type="tel" name="phone"/>
+                        <input id="phone-number" class="form-control" tabindex="3" placeholder="<fmt:message key="phone.number"/>" type="tel" name="phone" required/>
                     </div>
                     <br>
                     <div>
                         <label for="email"><fmt:message key="email"/></label>
-                        <input id="email" class="form-control" tabindex="4" placeholder="<fmt:message key="email"/>" type="text" name="email"/>
+                        <input id="email" class="form-control" tabindex="4" placeholder="<fmt:message key="email"/>" type="text" name="email" required/>
                     </div>
                     <br>
                     <div>
                         <label for="password"> <fmt:message key="password"/></label>
-                        <input id="password" class="form-control" tabindex="5" placeholder=" <fmt:message key="password"/>" type="password" name="password" value=""/><br>
+                        <input id="password" class="form-control" tabindex="5" placeholder=" <fmt:message key="password"/>" type="password" name="password" required/><br>
                     </div>
                     <br>
                     <div>
-                        <button type="submit" class="btn btn-warning"><fmt:message key="register"/></button>
+                        <button type="submit" class="btn btn-warning btn-block"><fmt:message key="register"/></button>
                     </div>
                 </div>
             </form>

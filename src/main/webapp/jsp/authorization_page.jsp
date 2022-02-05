@@ -38,16 +38,16 @@
                 <div class="container-fluid">
                     <div>
                         <label for="email"><fmt:message key="email"/></label>
-                        <input id="email" class="form-control" tabindex="1" placeholder="<fmt:message key="email"/>" type="text" name="email"/>
+                        <input id="email" class="form-control" tabindex="1"  placeholder="<fmt:message key="email"/>" type="text" name="email" required/>
                     </div>
                     <br>
                     <div>
                         <label for="password"><fmt:message key="password"/></label>
-                        <input id="password" class="form-control" tabindex="2" placeholder="<fmt:message key="password"/>" type="password" name="password"/><br>
+                        <input id="password" class="form-control" tabindex="2" placeholder="<fmt:message key="password"/>" type="password" name="password" required/><br>
                     </div>
                     <br>
                     <div>
-                        <button type="submit" class="btn btn-warning"><fmt:message key="sign.in"/></button>
+                        <button type="submit" class="btn btn-warning authorization-button btn-block"><fmt:message key="sign.in"/></button>
                     </div>
                 </div>
             </form>
