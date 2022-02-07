@@ -41,7 +41,7 @@ public class AppointmentValidatorTest {
                 Time.valueOf("11:00:00"), Time.valueOf("12:00:00"), procedure, AppointmentStatus.CLAIMED);
         when(doctorValidator.validateDoctor(doctor)).thenReturn(true);
         when(procedureValidator.validateProcedure(procedure)).thenReturn(true);
-        when(userValidator.validateUser(userClient)).thenReturn(true);
+        when(userValidator.isValidUser(userClient)).thenReturn(true);
     }
 
     @Test

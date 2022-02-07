@@ -20,73 +20,73 @@ public class UserValidatorTest {
 
     @Test
     void validateNullUserTest() {
-        Assert.assertFalse(userValidator.validateUser(null));
+        Assert.assertFalse(userValidator.isValidUser(null));
     }
 
     @Test
     void validateUserWithInvalidNameTest() {
         testUser.setName("F");
-        Assert.assertFalse(userValidator.validateUser(testUser));
+        Assert.assertFalse(userValidator.isValidUser(testUser));
     }
 
     @Test
     void validateUserWithNullNameTest() {
         testUser.setName(null);
-        Assert.assertFalse(userValidator.validateUser(testUser));
+        Assert.assertFalse(userValidator.isValidUser(testUser));
     }
 
     @Test
     void validateUserWithInvalidSurnameTest() {
         testUser.setSurname("d");
-        Assert.assertFalse(userValidator.validateUser(testUser));
+        Assert.assertFalse(userValidator.isValidUser(testUser));
     }
 
     @Test
     void validateUserWithNullSurnameTest() {
         testUser.setSurname(null);
-        Assert.assertFalse(userValidator.validateUser(testUser));
+        Assert.assertFalse(userValidator.isValidUser(testUser));
     }
 
     @Test
     void validateUserWithInvalidPasswordTest() {
         testUser.setPassword("123");
-        Assert.assertFalse(userValidator.validateUser(testUser));
+        Assert.assertFalse(userValidator.isValidUser(testUser));
     }
 
     @Test
     void validateUserWithNullPasswordTest() {
         testUser.setPassword(null);
-        Assert.assertFalse(userValidator.validateUser(testUser));
+        Assert.assertFalse(userValidator.isValidUser(testUser));
     }
 
     @Test
     void validateUserWithInvalidEmailTest() {
         testUser.setEmail("vas.gmaail@com");
-        Assert.assertFalse(userValidator.validateUser(testUser));
+        Assert.assertFalse(userValidator.isValidUser(testUser));
     }
 
     @Test
     void validateUserWithNullEmailTest() {
         testUser.setEmail(null);
-        Assert.assertFalse(userValidator.validateUser(testUser));
+        Assert.assertFalse(userValidator.isValidUser(testUser));
     }
 
     @Test
     void validateUserWithInvalidPhoneNumberTest() {
         testUser.setPhone("3752500");
-        Assert.assertFalse(userValidator.validateUser(testUser));
+        Assert.assertFalse(userValidator.isValidUser(testUser));
     }
 
     @Test
     void validateUserWithNullPhoneNumberTest() {
         testUser.setPhone(null);
-        Assert.assertFalse(userValidator.validateUser(testUser));
+        Assert.assertFalse(userValidator.isValidUser(testUser));
     }
 
     @Test
     void validateUserWithNullRoleTest() {
         testUser.setRole(null);
-        Assert.assertFalse(userValidator.validateUserForUpdating(testUser));
+        Assert.assertFalse(userValidator.isValidUserForUpdating(testUser));
     }
 
 

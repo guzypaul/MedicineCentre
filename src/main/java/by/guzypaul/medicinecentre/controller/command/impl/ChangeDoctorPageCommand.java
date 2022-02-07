@@ -36,7 +36,7 @@ public class ChangeDoctorPageCommand implements Command {
 
             if (doctorId == null) {
                 doctorId = request.getSession().getAttribute("doctorId").toString();
-                request.removeAttribute("doctorId");
+                request.getSession().removeAttribute("doctorId");
                 if (doctorId == null) {
                     throw new CommandException("Unknown doctor!");
                 }

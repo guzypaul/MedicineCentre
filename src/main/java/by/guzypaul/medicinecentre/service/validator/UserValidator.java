@@ -11,6 +11,7 @@ public class UserValidator {
 
     private static final String EMAIL_REGEX = "^([а-яa-z0-9_-]+\\.)*[а-яa-z0-9_-]+@[а-яa-z0-9_-]" +
             "+(\\.[а-яa-z0-9_-]+)*\\.[а-яa-z]{2,6}$";
+    private static final String PHONE_REGEX = "^(\\+375|80)(29|25|44|33)(\\d{3})(\\d{2})(\\d{2})$";
 
     /**
      * Validate user boolean.
@@ -18,7 +19,7 @@ public class UserValidator {
      * @param user the user
      * @return the boolean
      */
-    public boolean validateUser(User user) {
+    public boolean isValidUser(User user) {
         return user != null && isValidName(user.getName())
                 && isValidSurname(user.getSurname())
                 && isValidEmail(user.getEmail())
@@ -33,7 +34,7 @@ public class UserValidator {
      * @param user the user
      * @return the boolean
      */
-    public boolean validateUserForUpdating(User user) {
+    public boolean isValidUserForUpdating(User user) {
         return user != null && isValidName(user.getName())
                 && isValidSurname(user.getSurname())
                 && isValidEmail(user.getEmail())
@@ -58,7 +59,7 @@ public class UserValidator {
     }
 
     private boolean isValidPhone(String phone) {
-        return phone != null && !phone.isEmpty() && phone.length() >= 8 && phone.length() <= 15;
+        return phone != null && phone.matches(PHONE_REGEX);
     }
 
     private boolean isValidRole(String role) {

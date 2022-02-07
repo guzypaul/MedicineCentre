@@ -33,7 +33,7 @@ public class ChangeDoctorSchedulePageCommand implements Command {
 
             if (doctorScheduleId == null) {
                 doctorScheduleId = request.getSession().getAttribute("doctorScheduleId").toString();
-                request.removeAttribute("doctorScheduleId");
+                request.getSession().removeAttribute("doctorScheduleId");
                 if (doctorScheduleId == null) {
                     throw new CommandException("Unknown doctor schedule!");
                 }

@@ -33,8 +33,8 @@ public class ChangeUserPageCommand implements Command {
             String userId = request.getParameter("userId");
 
             if (userId == null) {
-                userId = request.getSession().getAttribute("userId").toString();
-                request.removeAttribute("userId");
+                userId = request.getSession().getAttribute("updatingUserId").toString();
+                request.getSession().removeAttribute("updatingUserId");
                 if (userId == null) {
                     throw new CommandException("Unknown user!");
                 }

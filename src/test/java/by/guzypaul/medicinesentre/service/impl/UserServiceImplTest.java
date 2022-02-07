@@ -68,7 +68,7 @@ public class UserServiceImplTest {
     @Test
     void addUserTest() throws DaoException, ServiceException {
         when(userDao.create(firstTestUser)).thenReturn(true);
-        when(userValidator.validateUser(firstTestUser)).thenReturn(true);
+        when(userValidator.isValidUser(firstTestUser)).thenReturn(true);
         when(userCreatingDuplicationChecker.checkDuplication(firstTestUser)).thenReturn(true);
         Assert.assertTrue(userService.create(firstTestUser));
     }
@@ -86,7 +86,7 @@ public class UserServiceImplTest {
 
     @Test
     void updateUserTest() throws DaoException, ServiceException {
-        when(userValidator.validateUserForUpdating(firstTestUser)).thenReturn(true);
+        when(userValidator.isValidUserForUpdating(firstTestUser)).thenReturn(true);
         when(userUpdatingDuplicationChecker.checkDuplication(firstTestUser)).thenReturn(true);
         when(userDao.update(firstTestUser)).thenReturn(true);
         Assert.assertTrue(userService.update(firstTestUser));

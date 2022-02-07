@@ -44,7 +44,7 @@ public class AppointmentValidator {
      * @return the boolean
      */
     public boolean validateAppointment(Appointment appointment) {
-        return appointment != null && userValidator.validateUser(appointment.getUserClient())
+        return appointment != null && userValidator.isValidUser(appointment.getUserClient())
                 && doctorValidator.validateDoctor(appointment.getDoctor())
                 && procedureValidator.validateProcedure(appointment.getProcedure())
                 && isValidDate(appointment.getDate())

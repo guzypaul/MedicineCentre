@@ -36,7 +36,7 @@ public class ChangeProcedurePageCommand implements Command {
 
             if (procedureId == null) {
                 procedureId = request.getSession().getAttribute("procedureId").toString();
-                request.removeAttribute("procedureId");
+                request.getSession().removeAttribute("procedureId");
                 if (procedureId == null) {
                     throw new CommandException("Unknown procedure!");
                 }

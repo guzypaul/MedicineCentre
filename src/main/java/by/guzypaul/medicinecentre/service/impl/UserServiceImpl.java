@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean create(User entity) throws ServiceException {
         try {
-            if (!userValidator.validateUser(entity) ) {
+            if (!userValidator.isValidUser(entity) ) {
                 throw new ServiceException(INVALID_USER);
             }
 
@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean update(User entity) throws ServiceException {
         try {
-            if (!userValidator.validateUserForUpdating(entity)) {
+            if (!userValidator.isValidUserForUpdating(entity)) {
                 throw new ServiceException(INVALID_USER);
             }
 

@@ -34,7 +34,7 @@ public class ChangeAppointmentPageCommand implements Command {
 
             if (appointmentId == null) {
                 appointmentId = request.getSession().getAttribute("appointmentId").toString();
-                request.removeAttribute("appointmentId");
+                request.getSession().removeAttribute("appointmentId");
                 if (appointmentId == null) {
                     throw new CommandException("Unknown appointment!");
                 }

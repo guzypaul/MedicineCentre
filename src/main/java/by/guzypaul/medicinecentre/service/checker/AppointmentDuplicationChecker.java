@@ -5,8 +5,6 @@ import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.DaoFactory;
 import by.guzypaul.medicinecentre.entity.Appointment;
 
-import java.util.List;
-
 public class AppointmentDuplicationChecker {
     private final AppointmentDao appointmentDao;
 
@@ -14,15 +12,9 @@ public class AppointmentDuplicationChecker {
         appointmentDao = DaoFactory.getInstance().getAppointmentDao();
     }
 
-    public boolean checkDuplication(Appointment appointment) throws DaoException { //todo why skipped
-        List<Appointment> appointmentWithSpecificDoctorList = appointmentDao.readByDoctorId(appointment.getDoctor().getId());
-        for (Appointment currentAppointment : appointmentWithSpecificDoctorList) {
-            if (currentAppointment.getDate().equals(appointment.getDate())
-                    && currentAppointment.getStartTime().equals((appointment.getStartTime()))) {
-
-                return false;
-            }
-        }
-        return true;
+    public boolean checkDuplication(Appointment appointment) throws DaoException {
+        return appointmentDao.readByDoctorId(appointment.getDoctor().getId()).stream()
+                .noneMatch(currentAppointment -> currentAppointment.getDate().equals(appointment.getDate())
+                        && currentAppointment.getStartTime().equals((appointment.getStartTime())));
     }
 }

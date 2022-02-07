@@ -38,7 +38,7 @@ public class DoctorValidator {
     public boolean validateDoctor(Doctor doctor) {
         return doctor != null && isValidQualification(doctor.getQualification().getName())
                 && isValidRank(doctor.getRank())
-                && userValidator.validateUser(doctor.getDoctorInfo())
+                && userValidator.isValidUser(doctor.getDoctorInfo())
                 && isValidateDoctorPicture(doctor.getPhotoName());
     }
 

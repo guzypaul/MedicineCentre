@@ -46,7 +46,7 @@ public class ChangeUserCommand implements Command {
                     || phone == null || phone.isEmpty()
                     || role == null || role.isEmpty()) {
                 request.getSession().setAttribute("isUserChanged", false);
-                request.getSession().setAttribute("userId", userId);
+                request.getSession().setAttribute("updatingUserId", userId);
 
                 return new Router("/controller?command=change_user_page", Router.Type.REDIRECT);
             }
