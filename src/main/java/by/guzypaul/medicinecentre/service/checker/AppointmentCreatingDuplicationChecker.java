@@ -5,10 +5,10 @@ import by.guzypaul.medicinecentre.dao.DaoException;
 import by.guzypaul.medicinecentre.dao.DaoFactory;
 import by.guzypaul.medicinecentre.entity.Appointment;
 
-public class AppointmentDuplicationChecker {
+public class AppointmentCreatingDuplicationChecker {
     private final AppointmentDao appointmentDao;
 
-    public AppointmentDuplicationChecker() {
+    public AppointmentCreatingDuplicationChecker() {
         appointmentDao = DaoFactory.getInstance().getAppointmentDao();
     }
 

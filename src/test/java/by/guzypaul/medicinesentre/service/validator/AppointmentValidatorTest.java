@@ -46,47 +46,47 @@ public class AppointmentValidatorTest {
 
     @Test
     void validateNullAppointmentTest() {
-        Assert.assertFalse(appointmentValidator.validateAppointment(null));
+        Assert.assertFalse(appointmentValidator.isValidAppointment(null));
     }
 
     @Test
     void validateRightAppointmentTest() {
-        Assert.assertTrue(appointmentValidator.validateAppointment(testAppointment));
+        Assert.assertTrue(appointmentValidator.isValidAppointment(testAppointment));
     }
 
     @Test
     void validateAppointmentWithNullDateTest() {
         testAppointment.setDate(null);
-        Assert.assertFalse(appointmentValidator.validateAppointment(testAppointment));
+        Assert.assertFalse(appointmentValidator.isValidAppointment(testAppointment));
     }
 
     @Test
     void validateAppointmentWithInvalidStartTimeTest() {
         testAppointment.setStartTime(Time.valueOf("07:00:00"));
-        Assert.assertFalse(appointmentValidator.validateAppointment(testAppointment));
+        Assert.assertFalse(appointmentValidator.isValidAppointment(testAppointment));
     }
 
     @Test
     void validateAppointmentWithNullStartTimeTest() {
         testAppointment.setStartTime(null);
-        Assert.assertFalse(appointmentValidator.validateAppointment(testAppointment));
+        Assert.assertFalse(appointmentValidator.isValidAppointment(testAppointment));
     }
 
     @Test
     void validateAppointmentWithNullStatusTest() {
         testAppointment.setEndTime(null);
-        Assert.assertFalse(appointmentValidator.validateAppointment(testAppointment));
+        Assert.assertFalse(appointmentValidator.isValidAppointment(testAppointment));
     }
 
     @Test
     void validateDoctorScheduleWithInvalidEndTimeTest() {
         testAppointment.setEndTime(Time.valueOf("23:00:00"));
-        Assert.assertFalse(appointmentValidator.validateAppointment(testAppointment));
+        Assert.assertFalse(appointmentValidator.isValidAppointment(testAppointment));
     }
 
     @Test
     void validateDoctorScheduleWithNullEndTimeTest() {
         testAppointment.setEndTime(null);
-        Assert.assertFalse(appointmentValidator.validateAppointment(testAppointment));
+        Assert.assertFalse(appointmentValidator.isValidAppointment(testAppointment));
     }
 }

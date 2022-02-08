@@ -43,7 +43,7 @@ public class AppointmentValidator {
      * @param appointment the appointment
      * @return the boolean
      */
-    public boolean validateAppointment(Appointment appointment) {
+    public boolean isValidAppointment(Appointment appointment) {
         return appointment != null && userValidator.isValidUser(appointment.getUserClient())
                 && doctorValidator.validateDoctor(appointment.getDoctor())
                 && procedureValidator.validateProcedure(appointment.getProcedure())
