@@ -53,7 +53,7 @@
                                type="text" name="email" required/>
                     </div>
                     <br>
-                    <c:if test="${role == 'ADMIN' || role == 'MODERATOR'}">
+                    <c:if test="${role == 'ADMIN'}">
                         <div>
                             <label for="role"><fmt:message key="role"/></label>
                             <select id="role" class="form-select" aria-label="Disabled select example" name="role">
@@ -67,7 +67,7 @@
                         </div>
                         <br>
                     </c:if>
-                    <c:if test="${role == 'USER'}">
+                    <c:if test="${role == 'USER' || role == 'MODERATOR'}">
                         <div>
                             <input class="form-control" value="${user.role}"
                                    type="hidden" name="role"/>

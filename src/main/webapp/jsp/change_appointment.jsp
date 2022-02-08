@@ -26,26 +26,17 @@
             <form class="registration-inputs" action="${changeAppointment}" method="post">
                 <div class="container-fluid">
                     <div>
-                        <label for="appointmentId"> <fmt:message key="appointment"/> <fmt:message
-                                key="id"/> ${appointment.id}</label>
+                        <h4>Procedure: ${appointment.procedure.name}</h4>
+                        <h4>Doctor: ${appointment.doctor.doctorInfo.surname} ${appointment.doctor.doctorInfo.name}</h4>
+                        <h4>Client: ${appointment.userClient.surname} ${appointment.userClient.name}</h4>
+                    </div>
+                    <div>
                         <input id="appointmentId" class="form-control" value="${appointment.id}"
                                type="hidden" name="appointmentId"/>
-                    </div>
-                    <div>
-                        <label for="clientId"> <fmt:message key="client"/> <fmt:message
-                                key="id"/> ${appointment.userClient.id}</label>
                         <input id="clientId" class="form-control" value="${appointment.userClient.id}"
                                type="hidden" name="clientId"/>
-                    </div>
-                    <div>
-                        <label for="doctorId"> <fmt:message key="doctor"/> <fmt:message
-                                key="id"/> ${appointment.doctor.id}</label>
                         <input id="doctorId" class="form-control" value="${appointment.doctor.id}"
                                type="hidden" name="doctorId"/>
-                    </div>
-                    <div>
-                        <label for="procedureId"> <fmt:message key="procedure"/> <fmt:message
-                                key="id"/> ${appointment.procedure.id}</label>
                         <input id="procedureId" class="form-control" value="${appointment.procedure.id}"
                                type="hidden" name="procedureId"/>
                     </div>

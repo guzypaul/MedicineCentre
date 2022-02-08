@@ -6,11 +6,10 @@ import by.guzypaul.medicinecentre.controller.command.Router;
 import by.guzypaul.medicinecentre.entity.Role;
 import by.guzypaul.medicinecentre.entity.User;
 import by.guzypaul.medicinecentre.service.ServiceFactory;
-import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.UserService;
+import by.guzypaul.medicinecentre.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -54,7 +53,11 @@ public class ChangeUserCommand implements Command {
             String currentRole = request.getSession().getAttribute("role").toString();
             String currentId = request.getSession().getAttribute("userId").toString();
 
-            if (Objects.equals(currentRole, "USER") && (!userId.equals(currentId) || !role.equals(currentRole))) {
+            if (currentRole.equals(Role.USER.toString()) && (!userId.equals(currentId) || !role.equals(currentRole))) {
+                throw new CommandException("Attempted Unauthorized Access!");
+            }
+
+            if (currentRole.equals(Role.MODERATOR.toString()) && !role.equals(Role.USER.toString())) {
                 throw new CommandException("Attempted Unauthorized Access!");
             }
 

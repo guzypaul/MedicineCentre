@@ -34,7 +34,7 @@ public class UserListCommand implements Command {
             List<User> userList = userService.readAll();
             if (Role.valueOf(request.getSession().getAttribute("role").toString()) == Role.MODERATOR) {
                 request.setAttribute("userList", userList.stream()
-                        .filter(user -> user.getRole() != Role.ADMIN)
+                        .filter(user -> user.getRole() == Role.USER)
                         .collect(Collectors.toList()));
             } else {
                 request.setAttribute("userList", userList);
