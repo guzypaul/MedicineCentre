@@ -5,10 +5,10 @@ import by.guzypaul.medicinecentre.controller.command.CommandException;
 import by.guzypaul.medicinecentre.controller.command.Router;
 import by.guzypaul.medicinecentre.entity.Appointment;
 import by.guzypaul.medicinecentre.entity.Doctor;
-import by.guzypaul.medicinecentre.service.ServiceFactory;
-import by.guzypaul.medicinecentre.service.exception.ServiceException;
 import by.guzypaul.medicinecentre.service.AppointmentService;
 import by.guzypaul.medicinecentre.service.DoctorService;
+import by.guzypaul.medicinecentre.service.ServiceFactory;
+import by.guzypaul.medicinecentre.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -37,7 +37,7 @@ public class AppointmentListCommand implements Command {
             String role = String.valueOf(request.getSession().getAttribute("role"));
             String userId = request.getSession().getAttribute("userId").toString();
 
-            if (role.toUpperCase() == "DOCTOR") {
+            if (role.toUpperCase() == "DOCTOR") {       //TODO equals
                 Optional<Doctor> doctorOptional = doctorService.readByUserId(userId);
                 String doctorId = String.valueOf(doctorOptional.get().getId());
                 List<Appointment> appointmentListForDoctor = appointmentService.readByDoctorId(doctorId);

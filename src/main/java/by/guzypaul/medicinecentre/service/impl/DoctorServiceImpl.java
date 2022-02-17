@@ -55,7 +55,7 @@ public class DoctorServiceImpl implements DoctorService {
         try {
             return doctorDao.readAll();
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e); //TODO throw daoExc
         }
     }
 
